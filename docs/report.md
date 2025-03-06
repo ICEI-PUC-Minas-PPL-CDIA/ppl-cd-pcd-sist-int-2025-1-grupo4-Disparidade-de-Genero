@@ -1,18 +1,23 @@
 # TITULO DO PROJETO
 
 
-**Nome completo do Aluno 1, email do aluno 1**
+**Pedro Lansdowne Oliveira, pedro.lansdowne@sga.pucminas.br**
 
-**Nome completo do Aluno 2, email do aluno 2**
+**Leonardo Andrade Caetano Dornelas, lacdornelas@sga.pucminas.br**
 
-**Nome completo do Aluno 3, email do aluno 3**
+**Augusto Henrique Gonçalves Valbonetti, ahgvalbonetti@sga.pucminas.br**
+
+**Eduardo Fraga Fonseca Gomes, eduardo.fonseca@sga.pucminas.br**
+
+**Vitor Martins Gonçalves, vitor.goncalves@sga.pucminas.br**
+
 
 ---
 
 Professores:
 
-** Prof. Nome do Prof 1 **
-** Prof. Nome do Prof 2 **
+**Hugo Bastos de Paula**
+**Sandro Jerônimo de Almeida**
 
 ---
 
