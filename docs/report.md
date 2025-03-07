@@ -90,14 +90,11 @@ Além do mais, escolhemos esse tema pois, como já ocorre em nosso processo de g
 
 ##    Público alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. 
-O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários 
-na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos 
-usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O nosso público-alvo são gerentes de empresa que buscam uma menor disparidade de mulheres no setor de análise de dados, como gerentes de RH e chefes de setor de tecnologia.
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, 
-diagramas de personas e mapa de stakeholders.
+###  Descrição da persona
+
+Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na análise de dados. Luisa sente a disparidade de gênero nos cargos de tecnologia e quer tornar a empresa em um lugar com mais equidade. Luisa entende que a mente feminina pode ser diferencial na tomada decisão da empresa e quer um serviço de consultoria para solucionar esse problema.
 
 > **Links Úteis**:
 > - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
