@@ -81,12 +81,12 @@ com base nos dados da pesquisa, a fim de identificar potenciais desigualdades de
 
 ###    Justificativas
 
-Mostre também as **justificativas** para o  desenvolvimento do seu trabalho e, caso deseje, 
-destaque alguma contribuição do trabalho.
-
-A justific ativa deve descrever a importância ou a motivação para o desenvolvimento do 
-sistema inteligente escolhido. Indique as razões pelas quais você escolheu seus objetivos 
-específicos ou as razões para aprofundar em certos aspectos do software.
+A razão para fazermos esse trabalho vem da necessidade de apoiar a igualdade entre gêneros no mercado de dados, 
+um lugar que ainda mostra diferenças grandes entre homens e mulheres. Ao olharmos para a diferença por gênero, 
+tentamos achar as causas dessas desigualdades e dar números que podem ajudar políticas e ações de inclusão. 
+Além do mais, esse estudo ajuda a saber sobre a importância da diversidade no setor, o que pode melhorar a 
+inovação e o desempenho das empresas.
+͏
 
 > **Links Úteis**:
 > - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
