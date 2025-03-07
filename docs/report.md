@@ -11,6 +11,8 @@
 
 **Vitor Martins Gonçalves, vitor.goncalves@sga.pucminas.br**
 
+**Gustavo Bacellar Nunes Soares, gbnsoares@sga.pucminas.br**
+
 
 ---
 
