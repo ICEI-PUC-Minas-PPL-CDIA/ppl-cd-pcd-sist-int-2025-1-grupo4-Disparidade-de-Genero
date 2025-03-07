@@ -28,8 +28,9 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_**Resumo**. Escrever aqui o resumo. O resumo deve contextualizar rapidamente o trabalho, descrever seu objetivo e, ao final, 
-mostrar algum resultado relevante do trabalho (até 10 linhas)._
+_**Resumo**. 
+
+Este estudo investiga a disparidade de gênero no setor de dados no Brasil, analisando os desafios enfrentados pelas mulheres e propondo soluções para promover a equidade. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
 
 ---
 
