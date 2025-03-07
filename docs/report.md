@@ -60,18 +60,20 @@ explicitamente se o aluno tiver autorização para tal.
 
 ###    Objetivo geral
 
-Nesta seção deve-se escrever um pequeno parágrafo ou frase com o **objetivo geral** 
-do trabalho. O objetivo deve ser bem direto, específico e definido com verbos de 
-ação (elaborar, propor, avaliar, comparar etc.). No caso deste projeto, o objetivo é
-"desenvolver um sistema inteligente para ...". O seu objetivo geral deve ser uma
-pergunta orientada a dados. Ou seja, ela deve incluir de forma geral os dados em que
-os modelos irão se basear para atingir o objetivo.
+Avaliar a disparidade de gênero no setor de dados no Brasil, analisando os dados do 
+"State of Data Brazil 2023" para identificar diferenças de participação, salários, 
+oportunidades de crescimento e desafios enfrentados por mulheres e homens nesse mercado. 
+O estudo busca entender como esses fatores impactam a equidade de gênero na área de dados e 
+propor soluções para promover a inclusão e a igualdade de oportunidades.
 
 ####    Objetivos específicos
 
-Apresente também alguns (pelo menos 2) **objetivos específicos** dependendo de onde 
-você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar 
-no seu trabalho.
+1- Analisar a distribuição de gênero entre os profissionais do setor de dados, utilizando os dados do 
+"State of Data Brazil 2023", para identificar as diferenças nas taxas de participação de homens e mulheres na área.
+
+2-Comparar os salários médios e as oportunidades de crescimento entre homens e mulheres no setor de dados, 
+com base nos dados da pesquisa, a fim de identificar potenciais desigualdades de remuneração e progressão na carreira.
+
 
 > **Links Úteis**:
 > - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
