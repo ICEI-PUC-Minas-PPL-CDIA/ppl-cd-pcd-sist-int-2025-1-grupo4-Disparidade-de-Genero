@@ -45,18 +45,12 @@ Os números refletem essa realidade. Pesquisas mostram que a presença feminina 
 
 ###    Problema
 
-Nesse momento você deve apresentar o problema que seu agente pretende resolver. 
-No entanto, não é a hora de comentar sobre a aplicação.
-Descreva também o contexto em que essa aplicação será usada, se  houver: 
-empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, 
-pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+No Brasil, as mulheres que trabalham em setores de Dados são prejudicadas por haver, intrinsicamente, uma disparidade de gênero em seu setor laboral. Tal problema ocorre por um viés social, por exemplo, por meio de esteriótipos sobre empregos ou, também, por um viés econômico, em que as mulheres perdem oportunidades de empregos ou de salários melhores para homens.
+Dito isso, observa-se uma notória discrepância de gênero em um mercado de trabalho na área da computação.
 
-O **problema** pode ser algo vivido em uma empresa específica. Neste caso, o aluno deve 
-sucintamente apresentar o cenário de problema da empresa. A empresa só deve ser citada 
-explicitamente se o aluno tiver autorização para tal.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
+
+
 
 
 ###    Objetivo geral
