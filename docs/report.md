@@ -39,9 +39,8 @@ A introdução deve apresentar de dois a quatro parágrafos de contextualizaçã
 
 ###    Contextualização
 
-Na **contextualização**, o aluno deve dizer do que se trata o trabalho, em que área ou contexto se insere. 
-A **contextualização** deve ser desenvolvida de algo mais genérico para algo mais específico. 
-A citação de pesquisas quantitativas é bem aceita aqui (corretamente referenciadas).
+A área de ciência de dados cresce a passos largos, movimentando bilhões e influenciando decisões no mundo todo. Mas, quando olhamos para quem está por trás dessas análises e algoritmos, percebemos uma realidade preocupante: a disparidade de gênero ainda é grande. As mulheres continuam sub-representadas no setor, enfrentando barreiras que vão desde a entrada no mercado até a progressão na carreira.
+Os números refletem essa realidade. Pesquisas mostram que a presença feminina na ciência de dados ainda é muito menor do que a masculina, e as chances de ocupar cargos de liderança são ainda mais reduzidas. Entender essa disparidade e buscar soluções para torná-la coisa do passado não é apenas uma questão de justiça – é também uma maneira de tornar o setor mais diverso, inovador e eficiente.
 
 ###    Problema
 
