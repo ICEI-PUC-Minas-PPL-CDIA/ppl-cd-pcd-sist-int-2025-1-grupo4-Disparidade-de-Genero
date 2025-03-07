@@ -81,7 +81,7 @@ com base nos dados da pesquisa, a fim de identificar potenciais desigualdades de
 
 ###    Justificativas
 
-A razão para fazermos esse trabalho vem da necessidade de apoiar a igualdade entre gêneros no mercado de dados, 
+A razão pela a escolha do tema Disparidade de gênero no setor de dados vem da necessidade de apoiar a igualdade entre gêneros no mercado de dados, 
 um lugar que ainda mostra diferenças grandes entre homens e mulheres. Ao olharmos para a diferença por gênero, 
 tentamos achar as causas dessas desigualdades e dar números que podem ajudar políticas e ações de inclusão. 
 Além do mais, esse estudo ajuda a saber sobre a importância da diversidade no setor, o que pode melhorar a 
