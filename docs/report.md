@@ -17,6 +17,7 @@
 Professores:
 
 **Hugo Bastos de Paula**
+
 **Sandro Jerônimo de Almeida**
 
 ---
@@ -50,9 +51,6 @@ Dito isso, observa-se uma notória discrepância de gênero em um mercado de tra
 
 
 
-
-
-
 ###    Objetivo geral
 
 Avaliar a disparidade de gênero no setor de dados no Brasil, analisando os dados do 
@@ -70,9 +68,6 @@ propor soluções para promover a inclusão e a igualdade de oportunidades.
 com base nos dados da pesquisa, a fim de identificar potenciais desigualdades de remuneração e progressão na carreira.
 
 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
-
 
 ###    Justificativas
 
@@ -83,10 +78,6 @@ Além do mais, escolhemos esse tema pois, como já ocorre em nosso processo de g
 é cerca de 8% da quantidade total de alunos, com isso, podemos observar a tamanha discrepancia.
 ͏
 
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
-
-
 
 ##    Público alvo
 
@@ -96,14 +87,8 @@ O nosso público-alvo são gerentes de empresa que buscam uma menor disparidade 
 
 Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na análise de dados. Luisa sente a disparidade de gênero nos cargos de tecnologia e quer tornar a empresa em um lugar com mais equidade. Luisa entende que a mente feminina pode ser diferencial na tomada decisão da empresa e quer um serviço de consultoria para solucionar esse problema.
 
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
 
-
-## Análise exploratórida dos dados
+## Análise exploratória dos dados
 
 ###    Dicionário de dados
 
