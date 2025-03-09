@@ -95,6 +95,15 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 
 ###    Dicionário de dados
 
+| Nome do Atributo       | Tipo de Dado | Descrição                                                                                 |
+|------------------------|--------------|-------------------------------------------------------------------------------------------|
+| `ID`                   | Inteiro      | Identificador único do participante.                                                     |
+| `Gênero`               | Categórico   | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).                         |
+| `Idade`                | Inteiro      | Idade do participante em anos completos.                                                 |
+| `Cargo`                | Texto        | Cargo atual do participante no setor de dados.                                          |
+| `Salário Anual`        | Real         | Remuneração anual bruta em moeda local.                                                 |
+
+
 Apresente uma descrição das bases de dados a serem utilizadas. 
 Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
 com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
