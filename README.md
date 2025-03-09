@@ -1,17 +1,21 @@
 # Nome do projeto
 
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto. Lembrando que o objeto é desenvolver um sistema inteligente. Você deve mencionar o produto que está sendo desenvolvido, e não o que se espera obter com este produto.
+Disparidade de Gênero no Setor de Dados
+O projeto tem como objetivo desenvolver um sistema inteligente para analisar a disparidade de gênero no setor de dados. Utilizando técnicas de inteligência artificial e aprendizado de máquina, o sistema será projetado para coletar, processar e interpretar informações sobre a participação de diferentes gêneros na área, identificando padrões e possíveis desigualdades.
+
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Pedro Lansdowne Oliveira
+* Leonardo Andrade Caetano Dornelas
+* Augusto Henrique Gonçalves Valbonetti
+* Eduardo Fraga Fonseca Gomes
+* Vitor Martins Gonçalves
+* Gustavo Bacellar Nunes Soares
 
 ## Professor
 
-* Nome completo do professor (Prof. Hugo Bastos de Paula)
+* Hugo Bastos de Paula
 
 ## Instruções de utilização
 
