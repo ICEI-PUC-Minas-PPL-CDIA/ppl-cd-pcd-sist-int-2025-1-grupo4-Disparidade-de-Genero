@@ -1,4 +1,4 @@
-# Disparidade de Gênero no Setor de Dados
+# Disparidade de Gênero no Setor da Tecnologia
 
 
 **Pedro Lansdowne Oliveira, pedro.lansdowne@sga.pucminas.br**
