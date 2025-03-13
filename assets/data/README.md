@@ -11,7 +11,7 @@ Os principais documentos a serem produzidos são:
 * `Dataset - Factors Influencing Technology Adoption in Consumer Households.csv`
 	* base fonte enriquecimento dos dados principais
 
-* `final_processed_data.csv`
+* `Diversity in tech companies.csv`
   * base final processada, limpa e selecionada
 	
 Demais artefatos que julgar pertinentes.
