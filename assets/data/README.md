@@ -14,7 +14,7 @@ Os principais documentos a serem produzidos são:
 * `Diversity in tech companies.csv`
 	* base fonte enriquecimento dos dados principais
    
-* 
+* `base_final.processada`
   * base final processada, limpa e selecionada
 	
 Demais artefatos que julgar pertinentes.
