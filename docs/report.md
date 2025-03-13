@@ -94,20 +94,30 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 
 ## Análise exploratória dos dados
 
-###    Dicionário de dados
+
+###    Dicionário de dados da base principal
 
 | Nome do Atributo       | Tipo de Dado | Descrição                                                                                 |
 |------------------------|--------------|-------------------------------------------------------------------------------------------|
-| `ID`                   | Inteiro      | Identificador único do participante.                                                     |
-| `Gênero`               | Categórico   | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).                         |
-| `Idade`                | Inteiro      | Idade do participante em anos completos.                                                 |
-| `Cargo`                | Texto        | Cargo atual do participante no setor de dados.                                          |
-| `Salário Anual`        | Real         | Remuneração anual bruta em moeda local.                                                 |
+| `ID`                   | Inteiro      | Identificador único do participante.                                                      |
+| `Gênero`               | Categórico   | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).                          |
+| `Idade`                | Inteiro      | Idade do participante em anos completos.                                                  |
+| `Cargo`                | Texto        | Cargo atual do participante no setor de dados.                                            |
+| `Salário Anual`        | Real         | Remuneração anual bruta em moeda local.                                                   |
 
+Base de Dados principal:
+Descrição:
 
-BASE DE ENRIQUECIMENTO DE DADOS PRINCIPAL : Dataset - Factors Influencing Technology Adoption in Consumer Households.csv
+###    Dicionário de dados da base para enriquecimento
 
-A base de dados "Factors Influencing Technology Adoption in Consumer Households", tem informações da quantidade de homens e mulheres que usam as tecnologias, a quantidade que trabalha na área, nivel de escolaridade de cada genero, e mostra que a grande maioria que utiliza as tecnologias são homens, o que mostra a grande disparidade de gênero na área.
+| Nome do Atributo       | Tipo de Dado | Descrição                                                                                 |
+|------------------------|--------------|-------------------------------------------------------------------------------------------|
+| `Age`                  | Inteiro      | Identificador único do participante.                                                      |
+| `Gender`               | Categórico   | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).                          |
+| `EducationLevel`       | Texto        | Grau de escolaridade do usuário.                                                          |
+
+Base de dados para enriquecimento da base principal: Dataset - Factors Influencing Technology Adoption in Consumer Households.csv
+Descrição: A base de dados "Factors Influencing Technology Adoption in Consumer Households", tem informações da quantidade de homens e mulheres que usam as tecnologias, a quantidade que trabalha na área, nivel de escolaridade de cada genero, e mostra que a grande maioria que utiliza as tecnologias são homens, o que mostra a grande disparidade de gênero na área.
 
 ###    Descrição de dados
 
