@@ -104,6 +104,8 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 | `Salário Anual`        | Real         | Remuneração anual bruta em moeda local.                                                 |
 
 
+BASE DE DADOS PROVISORIA PRINCIPAL : https://www.kaggle.com/datasets/mrcalvinwhite/technology-perception-survey
+
 Apresente uma descrição das bases de dados a serem utilizadas. 
 Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
 com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
