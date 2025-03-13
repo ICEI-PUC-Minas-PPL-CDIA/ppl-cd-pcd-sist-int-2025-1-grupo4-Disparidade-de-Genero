@@ -107,13 +107,7 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 
 BASE DE ENRIQUECIMENTO DE DADOS PRINCIPAL : Dataset - Factors Influencing Technology Adoption in Consumer Households.csv
 
-Apresente uma descrição das bases de dados a serem utilizadas. 
-Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
-com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
-
-Este projeto deve utilizar pelo menos duas fontes de dados. Uma fonte principal e 
-uma fonte para enriquecimentos dos dados principais.
-
+A base de dados "Factors Influencing Technology Adoption in Consumer Households", tem informações da quantidade de homens e mulheres que usam as tecnologias, a quantidade que trabalha na área, nivel de escolaridade de cada genero, e mostra que a grande maioria que utiliza as tecnologias são homens, o que mostra a grande disparidade de gênero na área.
 
 ###    Descrição de dados
 
