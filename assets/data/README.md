@@ -8,8 +8,8 @@ Os principais documentos a serem produzidos são:
 `
 	* base principal original. pode ser em qualquer formato tabular
 
-* `other_data_raw.csv`
-	* outras bases utilizadas no processo de enriquecimento
+* `Dataset - Factors Influencing Technology Adoption in Consumer Households.csv`
+	* base fonte enriquecimento dos dados principais
 
 * `final_processed_data.csv`
   * base final processada, limpa e selecionada
