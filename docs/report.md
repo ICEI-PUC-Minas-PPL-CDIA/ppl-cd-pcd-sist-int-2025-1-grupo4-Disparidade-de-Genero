@@ -105,8 +105,8 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 | `Cargo`                | Texto        | Cargo atual do participante no setor de dados.                                            |
 | `Salário Anual`        | Real         | Remuneração anual bruta em moeda local.                                                   |
 
-Base de Dados principal:
-Descrição:
+Base de Dados principal: State_of_data_BR_2023_Kaggle - df_survey_2023.csv
+Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
 
 ###    Dicionário de dados da base para enriquecimento
 
