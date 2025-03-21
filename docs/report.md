@@ -30,7 +30,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_**Resumo**. 
+**Resumo**. 
 
 Este estudo investiga a disparidade de gênero no setor da tecnologia no Brasil, analisando os desafios enfrentados pelas mulheres e propondo soluções para promover a equidade. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
 
@@ -131,8 +131,8 @@ Descrição: A base de dados "Factors Influencing Technology Adoption in Consume
 | `# Male %`             | Quantitativo | Contínuo       | Número de homens em porcentaegem que trabalham na respectiva empresa.         |
 | `# % White`            | Quantitativo | Conínuo        | Número de brancos em porcentagem que trabalham na respectiva empresa.         |
 | `% Asian`              | Quantitativo | Contínuo       | Porcentagem de asiáticos que trabalham na respectiva empresa.                 |
-| `%Latino`              | Quantitativo | Contínuo       | Porcentagem de latinos que trabalham na respectiva empresa.                   |
-| `%Black`               | Quantitativo | Contínuo       | Porcentagem de negros que trabalham na respectiva empresa.                    |
+| `% Latino`             | Quantitativo | Contínuo       | Porcentagem de latinos que trabalham na respectiva empresa.                   |
+| `% Black`              | Quantitativo | Contínuo       | Porcentagem de negros que trabalham na respectiva empresa.                    |
 | `% Multi`              | Quantitativo | Contínuo       | Pocentagem de pessoas que se enquadram em mais de uma etnia.                  |
 | `% Other`              | Quantitativo | Contínuo       | Porcentagem de outras etnias não listadas.                                    |
 
