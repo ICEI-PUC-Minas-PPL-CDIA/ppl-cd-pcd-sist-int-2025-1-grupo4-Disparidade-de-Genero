@@ -112,10 +112,10 @@ Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura deta
 
 | Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
 |------------------------|--------------|----------------|-------------------------------------------------------------------------------|
-| 'Gender'               | Qualitativo  | Binominal Simétrico          | Gênero (Masculino ou Feminino) dos entrevistados                |
-| 'Age'                  |  Quantitativo| Não normalizados             | Idade dos entrevistados                                         |
-| 'Education Level'      |  Qualitativo | Nominal                      | Nível de escolaridade dos entrevistados                         |
-| 'HouseHoldIncome'      |  Quantitativo| Não normalizados             | Renda familiar dos entrevistados                                |
+| `Gender`               | Qualitativo  | Binominal Simétrico          | Gênero (Masculino ou Feminino) dos entrevistados                |
+| `Age`                  |  Quantitativo| Não normalizados             | Idade dos entrevistados                                         |
+| `Education Level`      |  Qualitativo | Nominal                      | Nível de escolaridade dos entrevistados                         |
+| `HouseHoldIncome`      |  Quantitativo| Não normalizados             | Renda familiar dos entrevistados                                |
 
 Base de dados para enriquecimento da base principal: Dataset - Factors Influencing Technology Adoption in Consumer Households.csv
 Descrição: A base de dados "Factors Influencing Technology Adoption in Consumer Households", tem informações da quantidade de homens e mulheres que usam as tecnologias, a quantidade que trabalha na área, nivel de escolaridade de cada genero, e mostra que a grande maioria que utiliza as tecnologias são homens, o que mostra a grande disparidade de gênero na área.
