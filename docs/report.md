@@ -97,27 +97,44 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 
 ###    Dicionário de dados da base principal
 
-| Nome do Atributo       | Tipo de Dado | Descrição                                                                                 |
-|------------------------|--------------|-------------------------------------------------------------------------------------------|
-| `ID`                   | Inteiro      | Identificador único do participante.                                                      |
-| `Gênero`               | Categórico   | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).                          |
-| `Idade`                | Inteiro      | Idade do participante em anos completos.                                                  |
-| `Cargo`                | Texto        | Cargo atual do participante no setor de dados.                                            |
-| `Salário Anual`        | Real         | Remuneração anual bruta em moeda local.                                                   |
+| Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
+|------------------------|--------------|----------------|-------------------------------------------------------------------------------|
+| `ID`                   | Qualitativo  | Nominal        | Identificador único do participante.                                          |
+| `Gênero`               | Qualitativo  | Nominal        | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).              |
+| `Idade`                | Quantitativo | Discreta       | Idade do participante em anos completos.                                      |
+| `Cargo`                | Qualitativo  | Nominal        | Cargo atual do participante no setor de dados.                                |
+| `Salário Anual`        | Quantitativo | Conínuo        | Remuneração anual bruta em moeda local.                                       |
 
 Base de Dados principal: State_of_data_BR_2023_Kaggle - df_survey_2023.csv
 Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
 
-###    Dicionário de dados da base para enriquecimento
+###    Dicionário de dados da base para enriquecimento 1
 
-| Nome do Atributo       | Tipo de Dado | Descrição                                                                                 |
-|------------------------|--------------|-------------------------------------------------------------------------------------------|
-| `Age`                  | Inteiro      | Identificador único do participante.                                                      |
-| `Gender`               | Categórico   | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).                          |
-| `EducationLevel`       | Texto        | Grau de escolaridade do usuário.                                                          |
+| Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
+|------------------------|--------------|----------------|-------------------------------------------------------------------------------|
+| `ID`                   | Qualitativo  | Nominal        | Identificador único do participante.                                          |
+| `Gênero`               | Qualitativo  | Nominal        | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).              |
+| `Idade`                | Quantitativo | Discreta       | Idade do participante em anos completos.                                      |
+| `Cargo`                | Qualitativo  | Nominal        | Cargo atual do participante no setor de dados.                                |
+| `Salário Anual`        | Quantitativo | Conínuo        | Remuneração anual bruta em moeda local.                                       |
 
 Base de dados para enriquecimento da base principal: Dataset - Factors Influencing Technology Adoption in Consumer Households.csv
 Descrição: A base de dados "Factors Influencing Technology Adoption in Consumer Households", tem informações da quantidade de homens e mulheres que usam as tecnologias, a quantidade que trabalha na área, nivel de escolaridade de cada genero, e mostra que a grande maioria que utiliza as tecnologias são homens, o que mostra a grande disparidade de gênero na área.
+
+###    Dicionário de dados da base para enriquecimento 2
+
+| Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
+|------------------------|--------------|----------------|-------------------------------------------------------------------------------|
+| `# Year`               | Quantitativo | Discreta       | Ano em que foi realizada a coleta de dados.                                   |
+| `Company`              | Qualitativo  | Nominal        | Empresa de tecnologia sendo analisada (Google, Microsoft, Apple...).          |
+| `# Female %`           | Quantitativo | Contínuo       | Número de mulheres em porcentagem que trabalham na respectiva empresa.        |
+| `# Male %`             | Quantitativo | Contínuo       | Número de homens em porcentaegem que trabalham na respectiva empresa.         |
+| `# % White`            | Quantitativo | Conínuo        | Número de brancos em porcentagem que trabalham na respectiva empresa.         |
+| `% Asian`              | Quantitativo | Contínuo       | Porcentagem de asiáticos que trabalham na respectiva empresa.                 |
+| `%Latino`              | Quantitativo | Contínuo       | Porcentagem de latinos que trabalham na respectiva empresa.                   |
+| `%Black`               | Quantitativo | Contínuo       | Porcentagem de negros que trabalham na respectiva empresa.                    |
+| `% Multi`              | Quantitativo | Contínuo       | Pocentagem de pessoas que se enquadram em mais de uma etnia.                  |
+| `% Other`              | Quantitativo | Contínuo       | Porcentagem de outras etnias não listadas.                                    |
 
 ###    Descrição de dados
 
