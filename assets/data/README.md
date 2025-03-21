@@ -6,13 +6,13 @@ Os principais documentos a serem produzidos são:
 
 * `[State_of_data_BR_2023_Kaggle - df_survey_2023.csv]
 `
-	* base principal original. pode ser em qualquer formato tabular
+	* base principal original.
 
-* `Dataset - Factors Influencing Technology Adoption in Consumer Households.csv`
-	* base fonte enriquecimento dos dados principais
+* `[Dataset - Factors Influencing Technology Adoption in Consumer Households.csv]`
+	* 1ª base fonte enriquecimento dos dados principais
 
-* `Diversity in tech companies.csv`
-	* base fonte enriquecimento dos dados principais
+* `[Diversity in tech companies.csv]`
+	* 2ª base fonte enriquecimento dos dados principais
    
 * `base_final.processada`
   * base final processada, limpa e selecionada
