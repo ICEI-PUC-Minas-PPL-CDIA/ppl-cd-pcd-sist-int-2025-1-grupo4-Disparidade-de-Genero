@@ -32,16 +32,16 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 _**Resumo**. 
 
-Este estudo investiga a disparidade de gênero no setor de dados no Brasil, analisando os desafios enfrentados pelas mulheres e propondo soluções para promover a equidade. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
+Este estudo investiga a disparidade de gênero no setor da tecnologia no Brasil, analisando os desafios enfrentados pelas mulheres e propondo soluções para promover a equidade. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
 
 ---
 
 
 ## Introdução
 
-  É notório que o pensamento, tanto feminino quanto masculino, apresenta-se extremamente válido para o avanço tecnológico, inclusive no Setor de Dados no Brasil. Entretanto, tal realidade apresenta-se desvirtuada e validada por uma análise descritiva que pode ser realizada ao observar o banco de dados servindo como referência para esta pesquisa. Através de uma análise descritiva, esse estudo busca, primeiramente, validar tal infeliz realidade da disparidade (em todas as suas vertentes) de gênero no Setor de Dados no Brasil e então, propor alternativas válidas para a promoção da inclusão de gênero equalitária nesse nicho.
+  É notório que o pensamento, tanto feminino quanto masculino, apresenta-se extremamente válido para o avanço tecnológico, inclusive no Setor da tecnologia no Brasil. Entretanto, tal realidade apresenta-se desvirtuada e validada por uma análise descritiva que pode ser realizada ao observar o banco de dados servindo como referência para esta pesquisa. Através de uma análise descritiva, esse estudo busca, primeiramente, validar tal infeliz realidade da disparidade (em todas as suas vertentes) de gênero no Setor da tecnologia no Brasil e então, propor alternativas válidas para a promoção da inclusão de gênero equalitária nesse nicho.
 As causas que podem ser inferidas para esse desafio são várias e serão abordadas abaixo. Dentre elas, observa-se o imaginário social enraizado de que mulheres não são tão ábeis em tecnologia quanto os homens, além haver uma ausência de representatividade feminina nesse nicho, fora a dupla-jornada de trabalho que,normalmente, mulheres enfrentam, limitando ainda mais sua capacidade de cresimento, contribuição e evolução nesse ramo.
-  Essa pesquisa é importante uma vez que, com sua validação e correta execução, mais mulheres poderão ter lugar e espaço no Setor de Dados no Brasil. Com isso, além de fornecer mais rotatividade de empregos no mercado, mais vidas serão positivamente contribuídas pelo trabalho, com o incentivo, mesmo que sutil, a mais mulheres ingressando nesse ramo, sem haver disparidades, desigualdades ou destratamentos, haverão mais mentes pensantes dentro desse mercado, contribuindo para mais avanços científicos úteis para o mundo e o futuro, os quais podem estar sendo retardados pela presença de desvalorização da força feminina dentro desse mercado, tema pelo qual abordaremos com mais detalhes a seguir.
+  Essa pesquisa é importante uma vez que, com sua validação e correta execução, mais mulheres poderão ter lugar e espaço no Setor da tecnologia no Brasil. Com isso, além de fornecer mais rotatividade de empregos no mercado, mais vidas serão positivamente contribuídas pelo trabalho, com o incentivo, mesmo que sutil, a mais mulheres ingressando nesse ramo, sem haver disparidades, desigualdades ou destratamentos, haverão mais mentes pensantes dentro desse mercado, contribuindo para mais avanços científicos úteis para o mundo e o futuro, os quais podem estar sendo retardados pela presença de desvalorização da força feminina dentro desse mercado, tema pelo qual abordaremos com mais detalhes a seguir.
 
 ###    Contextualização
 
@@ -50,22 +50,22 @@ Os números refletem essa realidade. Pesquisas mostram que a presença feminina 
 
 ###    Problema
 
-No Brasil, as mulheres que trabalham em setores de Dados são prejudicadas por haver, intrinsicamente, uma disparidade de gênero em seu setor laboral. Tal problema ocorre por um viés social, por exemplo, por meio de esteriótipos sobre empregos ou, também, por um viés econômico, em que as mulheres perdem oportunidades de empregos ou de salários melhores para homens.
+No Brasil, as mulheres que trabalham em setores da Tecnologia são prejudicadas por haver, intrinsicamente, uma disparidade de gênero em seu setor laboral. Tal problema ocorre por um viés social, por exemplo, por meio de esteriótipos sobre empregos ou, também, por um viés econômico, em que as mulheres perdem oportunidades de empregos ou de salários melhores para homens.
 Dito isso, observa-se uma notória discrepância de gênero em um mercado de trabalho na área da computação.
 
 
 
 ###    Objetivo geral
 
-Avaliar a disparidade de gênero no setor de dados no Brasil, analisando os dados do 
+Avaliar a disparidade de gênero no setor da tecnologia no Brasil, analisando os dados do 
 "State of Data Brazil 2023" para identificar diferenças de participação, salários, 
 oportunidades de crescimento e desafios enfrentados por mulheres e homens nesse mercado. 
-O estudo busca entender como esses fatores impactam a equidade de gênero na área de dados e 
+O estudo busca entender como esses fatores impactam a equidade de gênero na área tecnológica e 
 propor soluções para promover a inclusão e a igualdade de oportunidades.
 
 ####    Objetivos específicos
 
-1- Analisar a distribuição de gênero entre os profissionais do setor de dados, utilizando os dados do 
+1- Analisar a distribuição de gênero entre os profissionais do setor de tecnologia, utilizando os dados do 
 "State of Data Brazil 2023", para identificar as diferenças nas taxas de participação de homens e mulheres na área.
 
 2-Comparar os salários médios e as oportunidades de crescimento entre homens e mulheres no setor de dados, 
@@ -75,7 +75,7 @@ com base nos dados da pesquisa, a fim de identificar potenciais desigualdades de
 
 ###    Justificativas
 
-A razão pela a escolha do tema Disparidade de gênero no setor de dados vem da necessidade de apoiar a igualdade entre gêneros no mercado de dados, 
+A razão pela a escolha do tema Disparidade de gênero no setor de T.I vem da necessidade de apoiar a igualdade entre gêneros no mercado de dados, 
 um lugar que ainda mostra diferenças grandes entre homens e mulheres. Ao olharmos para a diferença por gênero, 
 tentamos achar as causas dessas desigualdades e dar números que podem ajudar políticas e ações de inclusão. 
 Além do mais, escolhemos esse tema pois, como já ocorre em nosso processo de graduação, na PUC Minas, onde na sala de aula, a quantidade de mulheres 
@@ -85,7 +85,7 @@ Além do mais, escolhemos esse tema pois, como já ocorre em nosso processo de g
 
 ##    Público alvo
 
-O nosso público-alvo são gerentes de empresa que buscam uma menor disparidade de mulheres no setor de análise de dados, como gerentes de RH e chefes de setor de tecnologia.
+O nosso público-alvo são gerentes de empresa que buscam uma menor disparidade de mulheres nos diversos setores da tecnologia, como gerentes de RH e chefes de setor de tecnologia.
 
 ###  Descrição da persona
 
