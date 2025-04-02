@@ -107,6 +107,7 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 | `Escolaridade`         | Qualitativo  | Ordinal        | Nível de escolaridade mais alto alcançado pelo participante (Ensino Médio, Graduação, Pós-Graduação, etc.). |                      |`SatisfaçãoProfissional`| Qualitativo  | Ordinal        | Grau de satisfação do participante com sua carreira (Muito Insatisfeito, Insatisfeito, Neutro, Satisfeito, Muito Satisfeito). |
 | `Experiência (anos)`   | Quantitativo | Discreta       | Tempo de experiência do participante na área de dados, em anos completos.     |
 | `Tamanho Empresa`      | Qualitativo  | Ordinal        | Porte da empresa onde o participante trabalha (Pequena, Média, Grande).       |
+| `Horas Semanais`       | Quantitativo | Discreta       | Quantidade média de horas trabalhadas por semana.                             |
 
 
 Base de Dados principal: State_of_data_BR_2023_Kaggle - df_survey_2023.csv
