@@ -108,6 +108,8 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 | `Experiência (anos)`   | Quantitativo | Discreta       | Tempo de experiência do participante na área de dados, em anos completos.     |
 | `Tamanho Empresa`      | Qualitativo  | Ordinal        | Porte da empresa onde o participante trabalha (Pequena, Média, Grande).       |
 | `Horas Semanais`       | Quantitativo | Discreta       | Quantidade média de horas trabalhadas por semana.                             |
+| `Modelo de Trabalho`   | Qualitativo  | Nominal        | Forma de trabalho do participante (Presencial, Remoto, Híbrido).              |
+| `Tipo de Contrato`     | Qualitativo  | Nominal        | Tipo de vínculo empregatício do participante (CLT, PJ, Freelancer, etc.).     |
 
 
 Base de Dados principal: State_of_data_BR_2023_Kaggle - df_survey_2023.csv
