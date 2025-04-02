@@ -104,6 +104,10 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 | `Idade`                | Quantitativo | Discreta       | Idade do participante em anos completos.                                      |
 | `Cargo`                | Qualitativo  | Nominal        | Cargo atual do participante no setor de dados.                                |
 | `Salário Anual`        | Quantitativo | Conínuo        | Remuneração anual bruta em moeda local.                                       |
+| `Escolaridade`         | Qualitativo  | Ordinal        | Nível de escolaridade mais alto alcançado pelo participante (Ensino Médio, Graduação, Pós-Graduação, etc.). |                      |`SatisfaçãoProfissional`| Qualitativo  | Ordinal        | Grau de satisfação do participante com sua carreira (Muito Insatisfeito, Insatisfeito, Neutro, Satisfeito, Muito Satisfeito). |
+| `Experiência (anos)`   | Quantitativo | Discreta       | Tempo de experiência do participante na área de dados, em anos completos.     |
+| `Tamanho Empresa`      | Qualitativo  | Ordinal        | Porte da empresa onde o participante trabalha (Pequena, Média, Grande).       |
+
 
 Base de Dados principal: State_of_data_BR_2023_Kaggle - df_survey_2023.csv
 Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
