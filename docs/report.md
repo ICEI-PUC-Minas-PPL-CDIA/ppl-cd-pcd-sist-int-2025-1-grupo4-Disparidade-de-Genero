@@ -155,10 +155,11 @@ Descrição: A base de dados "Factors Influencing Technology Adoption in Consume
 
 ###    Descrição de dados
 
-Utilize a análise descritiva baseada em estatística de primeira ordem para descrever os dados.
-Como descrever dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
-Como descrever dados qualitativos (categóricos): moda (valor mais frequente), quantidade de valores distintos (categorias), distribuição das categorias (histograma), etc.
+Como base secundária, utilizamos os microdados do IPEA, que tem como referencia os dados do IBGE e PNAD. Os dados estão separados por nível de região do Brasil, e retratam o mercado de trabalho em cada região separada por trimestre e gênero. A base está dividida entre dados qualitativos e quantitativos.
 
+Dados qualitativos:
+
+Dados quantitativos:
 
 ## Preparação dos dados
 
