@@ -106,19 +106,21 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 
 | Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
 |------------------------|--------------|----------------|-------------------------------------------------------------------------------|
-| `ID`                   | Qualitativo  | Nominal        | Identificador único do participante.                                          |
-| `Gênero`               | Qualitativo  | Nominal        | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).              |
-| `Idade`                | Quantitativo | Discreta       | Idade do participante em anos completos.                                      |
-| `Cargo`                | Qualitativo  | Nominal        | Cargo atual do participante no setor de dados.                                |
-| `Salário Anual`        | Quantitativo | Conínuo        | Remuneração anual bruta em moeda local.                                       |
-| `Escolaridade`         | Qualitativo  | Ordinal        | Nível de escolaridade mais alto alcançado pelo participante (Ensino Médio, Graduação, Pós-Graduação, etc.). |                      |`SatisfaçãoProfissional`| Qualitativo  | Ordinal        | Grau de satisfação do participante com sua carreira (Muito Insatisfeito, Insatisfeito, Neutro, Satisfeito, Muito Satisfeito). |
-| `Experiência (anos)`   | Quantitativo | Discreta       | Tempo de experiência do participante na área de dados, em anos completos.     |
-| `Tamanho Empresa`      | Qualitativo  | Ordinal        | Porte da empresa onde o participante trabalha (Pequena, Média, Grande).       |
-| `Horas Semanais`       | Quantitativo | Discreta       | Quantidade média de horas trabalhadas por semana.                             |
-| `Modelo de Trabalho`   | Qualitativo  | Nominal        | Forma de trabalho do participante (Presencial, Remoto, Híbrido).              |
-| `Tipo de Contrato`     | Qualitativo  | Nominal        | Tipo de vínculo empregatício do participante (CLT, PJ, Freelancer, etc.).     |
+| `ID`                     | Qualitativo  | Nominal        | Identificador único do participante.                                          |
+| `Idade`                  | Quantitativo | Discreta       | Idade do participante em anos completos.                                      |
+| `Gênero`                 | Qualitativo  | Nominal        | Gênero do participante (Masculino, Feminino, Não-Binário, etc.).              |
+| `Cor/Raça/Etnia`         | Qualitativo  | Nominal        | Cor, Raça ou Etnia do participante(Branca, Preta, Parda, Amarela, Indigena, Outra). |
+| `Estado onde mora`       | Qualitativo  | Nominal        | Estado onde o participante mora atualmente(Minas Gerais, Rio de Janeiro, etc.) |
+| `Região onde mora`       | Qualitativo  | Nominal        | Região do país onde o participante mora atualmente(Sudeste, Norte, Sul, etc.)  |
+| `Nivel de Ensino`        | Qualitativo  | Ordinal        | Nível de ensino/escolaridade mais alto concluido pelo participante (Ensino Médio, Graduação, Pós-Graduação, etc.). |
+| `Situação de trabalho`   | Qualitativo  | Nominal        | Tipo de vínculo empregatício do participante (CLT, PJ, Freelancer, etc.).      |
+| `Cargo`                  | Qualitativo  | Nominal        | Cargo atual do participante no setor de dados.                                 |
+| `Faixa Salarial`         | Quantitativo | Contínuo       | Intervalo de remuneração mensal do particpante.                                |
+| `Experiência (anos)`     | Quantitativo | Discreta       | Tempo de experiência do participante na área de dados, em anos completos.      |
+| `Forma de Trabalho`      | Qualitativo  | Nominal        | Forma de trabalho do participante (Presencial, Remoto, Híbrido).               |
+| `Satisfação Profissional`| Qualitativo  | Nominal        | Satisfação do participante com sua empresa atual (Estou satifeito, Não estou satisfeito). |
 
-
+#### Descrição da base
 Base de Dados principal: State_of_data_BR_2023_Kaggle - df_survey_2023.csv
 Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
 
@@ -144,7 +146,7 @@ Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura deta
 | `Taxa de Desemprego `  | Quantitativo| Contínuo        | Percentual da população economicamente ativa que está desempregada no 1º trimestre de 2023.| 
 | `Taxa de subutilização da força de trabalho`    | Quantitativo | Contínuo | Percentual da força de trabalho subutilizada (desempregada, subocupada ou potencial) no 1º trimestre de 2023.|
 
-###    Descrição de dados
+####   Descrição da base
 
 Como base secundária, utilizamos os microdados do IPEA, que tem como referencia os dados do IBGE e PNAD. Os dados estão separados por nível de região do Brasil, e retratam o mercado de trabalho em cada região separada por trimestre e gênero. A base está dividida entre dados qualitativos e quantitativos.
 
@@ -166,6 +168,17 @@ Rendimento médio real efetivo;
 Taxa de participação;
 Taxa de desemprego;
 Taxa de subutilização da força de trabalho;
+
+
+###    Dicionário de dados da base para enriquecimento 2
+
+| Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
+|------------------------|--------------|----------------|-------------------------------------------------------------------------------|
+| ``                     |              |                |                                                                               |
+
+#### Descrição da base
+...
+
 
 ## Preparação dos dados
 
