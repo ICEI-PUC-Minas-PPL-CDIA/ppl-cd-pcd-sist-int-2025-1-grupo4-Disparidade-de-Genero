@@ -148,9 +148,24 @@ Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura deta
 
 Como base secundária, utilizamos os microdados do IPEA, que tem como referencia os dados do IBGE e PNAD. Os dados estão separados por nível de região do Brasil, e retratam o mercado de trabalho em cada região separada por trimestre e gênero. A base está dividida entre dados qualitativos e quantitativos.
 
-Dados qualitativos:
+*Dados qualitativos:*
+Sigla;
+Código região;
 
-Dados quantitativos:
+*Dados quantitativos:*
+Ocupados;
+Desocupados;
+Informalidade;
+Força de trabalho efetivo trabalho principal;
+Força de trabalho habitual trabalho principal;
+Força de trabalho efetivo todos trabalhos;
+Força de trabalho habitual todos trabalhos;
+Média de horas trabalhadas efetiva;
+Média de horas trabalhadas habitual;
+Rendimento médio real efetivo;
+Taxa de participação;
+Taxa de desemprego;
+Taxa de subutilização da força de trabalho;
 
 ## Preparação dos dados
 
