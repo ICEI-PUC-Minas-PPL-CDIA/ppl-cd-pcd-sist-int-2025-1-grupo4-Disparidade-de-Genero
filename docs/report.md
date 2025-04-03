@@ -65,11 +65,19 @@ propor soluções para promover a inclusão e a igualdade de oportunidades.
 
 ####    Objetivos específicos
 
-1- Analisar a distribuição de gênero entre os profissionais do setor de tecnologia, utilizando os dados do 
-"State of Data Brazil 2023", para identificar as diferenças nas taxas de participação de homens e mulheres na área.
+1- Analisar a distribuição de gênero entre os profissionais do setor de tecnologia
 
-2-Comparar os salários médios e as oportunidades de crescimento entre homens e mulheres no setor de dados, 
-com base nos dados da pesquisa, a fim de identificar potenciais desigualdades de remuneração e progressão na carreira.
+2-Comparar os salários médios entre homens e mulheres no setor de dados
+
+3- Comparar as oportunidades de crescimento entre homens e mulheres no setor de dados
+
+4- Identificar os principais desafios enfrentados por mulheres no setor de dados
+
+5- Comparar a representatividade feminina em cargos de liderança no setor de dados
+
+6- Examinar a relação entre nível de escolaridade e empregabilidade de mulheres no setor
+
+7- Estudar a presença de viés de gênero nos processos seletivos do setor de tecnologia
 
 
 
