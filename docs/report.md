@@ -122,36 +122,27 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 Base de Dados principal: State_of_data_BR_2023_Kaggle - df_survey_2023.csv
 Descrição:O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
 
-###    Dicionário de dados da base para enriquecimento 1 - Factors Influencing Technology Adoption in Consumer Households
+###    Dicionário de dados da base para enriquecimento 1 - Indicadores de Mercado de Trabalho por Região e Gênero – PNAD Contínua (2023 T3) IPEA
 
 | Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
 |------------------------|--------------|----------------|-------------------------------------------------------------------------------|
-| `Gender`               | Qualitativo  | Binominal Simétrico          | Gênero (Masculino ou Feminino) dos entrevistados                |
-| `Age`                  |  Quantitativo| Não normalizados             | Idade dos entrevistados                                         |
-| `Education Level`      |  Qualitativo | Nominal                      | Nível de escolaridade dos entrevistados                         |
-| `HouseHoldIncome`      |  Quantitativo| Não normalizados             | Renda familiar dos entrevistados                                |
-
-Base de dados para enriquecimento da base principal: Dataset - Factors Influencing Technology Adoption in Consumer Households.csv
-Descrição: A base de dados "Factors Influencing Technology Adoption in Consumer Households", tem informações da quantidade de homens e mulheres que usam as tecnologias, a quantidade que trabalha na área, nivel de escolaridade de cada genero, e mostra que a grande maioria que utiliza as tecnologias são homens, o que mostra a grande disparidade de gênero na área.
-
-###    Dicionário de dados da base para enriquecimento 2 - Diversity in Tech Companies
-
-| Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
-|------------------------|--------------|----------------|-------------------------------------------------------------------------------|
-| `# Year`               | Quantitativo | Discreta       | Ano em que foi realizada a coleta de dados.                                   |
-| `Company`              | Qualitativo  | Nominal        | Empresa de tecnologia sendo analisada (Google, Microsoft, Apple...).          |
-| `# Female %`           | Quantitativo | Contínuo       | Número de mulheres em porcentagem que trabalham na respectiva empresa.        |
-| `# Male %`             | Quantitativo | Contínuo       | Número de homens em porcentaegem que trabalham na respectiva empresa.         |
-| `# % White`            | Quantitativo | Conínuo        | Número de brancos em porcentagem que trabalham na respectiva empresa.         |
-| `% Asian`              | Quantitativo | Contínuo       | Porcentagem de asiáticos que trabalham na respectiva empresa.                 |
-| `%Latino`              | Quantitativo | Contínuo       | Porcentagem de latinos que trabalham na respectiva empresa.                   |
-| `%Black`               | Quantitativo | Contínuo       | Porcentagem de negros que trabalham na respectiva empresa.                    |
-| `% Multi`              | Quantitativo | Contínuo       | Pocentagem de pessoas que se enquadram em mais de uma etnia.                  |
-| `% Other`              | Quantitativo | Contínuo       | Porcentagem de outras etnias não listadas.                                    |
-
-
-
-
+| `Sigla`                |  Qualitativo | Nominal        | Sigla correspondente à região do Brasil.                                      |
+| `Código Região`        |  Qualitativo | Nominal        | Código numérico associado à região do Brasil.                                 |
+| `Região`               |  Qualitativo | Nominal        | Nome completo da região do Brasil (Centro-Oeste, Norte, Nordeste, Sul, Sudeste). |
+| `Ocupados `            |  Quantitativo| Contínuo       | Percentual de homens e mulheres ocupados na região no 3º trimestre de 2023.   |  
+| `Desocupados `         |  Quantitativo| Contínuo       | Percentual de homens e mulheres desocupados na região no 3º trimestre de 2023.| 
+| `Informalidade`        |  Quantitativo| Contínuo       | Percentual de trabalhadores informais do sexo masculino e feminino na região, de acordo com a PNAD Contínua|                   
+| `Força de trabalho Efetivo Trabalho Principal ` |  Quantitativo| Contínuo | Média de horas efetivamente trabalhadas no trabalho principal no 1º trimestre de 2023.  |  
+| `Força de trabalho Habitual Trabalho Principal `|  Quantitativo| Contínuo | Média de horas habitualmente trabalhadas no trabalho principal no 1º trimestre de 2023. |
+| `Força de trabalho Efetivo Todos Trabalhos `    |  Quantitativo| Contínuo | Média de horas efetivamente trabalhadas no trabalho principal no 1º trimestre de 2023.  |  
+| `Força de trabalho Habitual Todos Trabalhos `   |  Quantitativo| Contínuo | Média de horas habitualmente trabalhadas considerando todos os trabalhos no 1º trimestre de 2023. |  
+| `Média horas trabalhadas Efetiva ` |  Quantitativo| Contínuo   | Média de horas efetivamente trabalhadas por homens e mulheres no trabalho principal no 1º trimestre de 2023. |  
+| `Média horas trabalhadas Habitual` |  Quantitativo| Contínuo   | Média de horas habitualmente trabalhadas considerando todos os trabalhos no 1º trimestre de 2023. |  
+| `Rendimento médio real Efetivo`    |  Quantitativo| Contínuo   | Média do rendimento real efetivo no trabalho principal no 4º trimestre de 2023. |  
+| `Média de horas trabalhadas Habitual` |  Quantitativo| Contínuo| Média de horas habitualmente trabalhadas no trabalho principal no 4º trimestre de 2023.|  
+| `Taxa de Participaçao `| Quantitativo| Contínuo        | Percentual da população que faz parte da força de trabalho no 1º trimestre de 2023.|  
+| `Taxa de Desemprego `  | Quantitativo| Contínuo        | Percentual da população economicamente ativa que está desempregada no 1º trimestre de 2023.| 
+| `Taxa de subutilização da força de trabalho`    | Quantitativo | Contínuo | Percentual da força de trabalho subutilizada (desempregada, subocupada ou potencial) no 1º trimestre de 2023.|
 
 ###    Descrição de dados
 
