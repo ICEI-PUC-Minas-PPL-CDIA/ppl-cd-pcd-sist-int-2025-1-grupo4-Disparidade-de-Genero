@@ -20,7 +20,7 @@ Professores:
 
 **Hugo Bastos de Paula**
 
-**Sandro Jerônimo de Almeida**
+**Hayala Nepomuceno Curto**
 
 ---
 
@@ -32,7 +32,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 _**Resumo**. 
 
-Este estudo investiga a disparidade de gênero no setor da tecnologia no Brasil, analisando os desafios enfrentados pelas mulheres e propondo soluções para promover a equidade. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
+Este estudo investiga a disparidade de gênero no setor da tecnologia no Brasil, analisando os desafios enfrentados pelas mulheres. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres no mercado de trabalho de dados. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
 
 ---
 
@@ -78,14 +78,13 @@ com base nos dados da pesquisa, a fim de identificar potenciais desigualdades de
 A razão pela a escolha do tema Disparidade de gênero no setor de T.I vem da necessidade de apoiar a igualdade entre gêneros no mercado de dados, 
 um lugar que ainda mostra diferenças grandes entre homens e mulheres. Ao olharmos para a diferença por gênero, 
 tentamos achar as causas dessas desigualdades e dar números que podem ajudar políticas e ações de inclusão. 
-Além do mais, escolhemos esse tema pois, como já ocorre em nosso processo de graduação, na PUC Minas, onde na sala de aula, a quantidade de mulheres 
-é cerca de 8% da quantidade total de alunos, com isso, podemos observar a tamanha discrepancia.
-͏
+
 
 
 ##    Público alvo
 
 O nosso público-alvo são gerentes de empresa que buscam uma menor disparidade de mulheres nos diversos setores da tecnologia, como gerentes de RH e chefes de setor de tecnologia.
+Temos como público alvo diretores e coordenadores de instiruições de ensino da área, ja que podemos observar uma grande falta de mulheres nos cursos da área. Além de estudantes que buscam se graduar na área de tecnologia.
 
 ###  Descrição da persona
 
