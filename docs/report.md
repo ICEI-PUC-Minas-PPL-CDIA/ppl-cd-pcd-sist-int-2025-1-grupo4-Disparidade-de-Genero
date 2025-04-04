@@ -125,6 +125,49 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 #### Descrição da base
 O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
 
+# 📊 Análise Exploratória de Dados (EDA) - State of Data Brazil 2023
+
+Este repositório contém uma análise exploratória de dados (EDA) realizada com a base **State of Data Brazil 2023**. Nesta análise, investigamos alguns atributos relevantes, como **idade** e **faixa salarial**, para entender melhor a distribuição dos dados.
+
+## 📌 Atributos Selecionados
+
+Foram analisados dois atributos principais:
+- **Idade** 📅
+- **Faixa salarial** 💰 (média dos extremos dos intervalos)
+
+## 📊 Estatísticas Descritivas
+
+A tabela a seguir apresenta as estatísticas descritivas calculadas para os dois atributos selecionados:
+
+| Estatística  | Idade | Faixa Salarial (R$) |
+|-------------|------|--------------------|
+| Quartil 3 (Q3) | 27   | 14.000,5 |
+| Quartil 1 (Q1) | 36   | 5.000,5  |
+| Mediana      | 30   | 10.000,5 |
+| Média        | 31,99 | 10.050,5 |
+| Desvio Padrão | 7,62  | 6.969,22 |
+| Máximo       | 73   | 35.000,5 |
+| Mínimo       | 18   | 1.050,5  |
+
+## 📈 Visualizações
+
+Foram gerados histogramas para visualizar a distribuição dos dados:
+- **Idade**: Distribuição da idade dos participantes da pesquisa.
+  ![Histograma atributo Idade](https://media.discordapp.net/attachments/1357513541300519082/1357531068340633680/idade.png?ex=67f08ad4&is=67ef3954&hm=302a0bbd2a10f9f019c36b19819b26be7b05f29da2e6faec8053194e728f23c0&=&format=webp&quality=lossless)
+- **Faixa salarial**: Faixas salariais ajustadas para valores médios de intervalo.
+  ![Histograma atributo Faixa salarial](https://media.discordapp.net/attachments/1357513541300519082/1357546291776720946/image.png?ex=67f09901&is=67ef4781&hm=9ff84b0546890d33499084a70f2f69114d1afd4c54353bcd7d16ee8a4b6466dd&=&format=webp&quality=lossless)
+  
+
+## 🔎 Metodologia
+
+1. **Limpeza dos dados**: Tratamento de valores nulos e conversão dos dados categóricos para quantitativos.
+2. **Cálculo dos quartis e estatísticas descritivas**: Usando fórmulas de quartil, média, desvio padrão, máximo e mínimo.
+3. **Transformação da faixa salarial**: Extração dos valores mínimo e máximo de cada faixa e cálculo da média dos extremos.
+4. **Geração de gráficos**: Criação de histogramas para melhor compreensão dos dados.
+
+
+
+
 ###    Dicionário de dados da base para enriquecimento 1 - Indicadores de Mercado de Trabalho por Região e Gênero – PNAD Contínua (2023 T3) IPEA
 
 | Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
