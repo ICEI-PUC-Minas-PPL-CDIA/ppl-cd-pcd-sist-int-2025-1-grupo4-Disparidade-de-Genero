@@ -132,8 +132,17 @@ Este repositório contém uma análise exploratória de dados (EDA) realizada co
 ## 📌 Atributos Selecionados
 
 Foram analisados dois atributos principais:
-- **Idade** 📅
-- **Faixa salarial** 💰 (média dos extremos dos intervalos)
+- **Idade** 
+- **Faixa salarial** (média dos extremos dos intervalos)
+- **Gênero**
+- **Cor/Raça/Etnia**
+- **Estado onde mora**
+- **Região onde mora**
+- **Nível de ensino**
+- **Situação de trabalho**
+- **Cargo**
+- **Experiência em anos**
+- **Forma de trabalho**
 
 ## 📊 Estatísticas Descritivas
 
@@ -156,6 +165,25 @@ Foram gerados histogramas para visualizar a distribuição dos dados:
   ![Histograma atributo Idade](https://media.discordapp.net/attachments/1357513541300519082/1357531068340633680/idade.png?ex=67f08ad4&is=67ef3954&hm=302a0bbd2a10f9f019c36b19819b26be7b05f29da2e6faec8053194e728f23c0&=&format=webp&quality=lossless)
 - **Faixa salarial**: Faixas salariais ajustadas para valores médios de intervalo.
   ![Histograma atributo Faixa salarial](https://media.discordapp.net/attachments/1357513541300519082/1357546291776720946/image.png?ex=67f09901&is=67ef4781&hm=9ff84b0546890d33499084a70f2f69114d1afd4c54353bcd7d16ee8a4b6466dd&=&format=webp&quality=lossless)
+- **Gênero**: Distribuição dos gêneros dos participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/bcf6299f-2d5d-4ace-a38b-f037d91b7e4b)
+- **Cor/Raça/Etnia**: Distribuição de cor/raça/etnia dos participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/0fdafe5c-bbfb-49d6-a762-5162936f9143)
+- **Estado onde mora**: Estados onde moram os participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/6c76a12d-4773-4da4-b23c-285ed66ba7fc)
+- **Região onde mora**: Região onde moram os participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/0029fc00-b4bb-4bf5-875a-d0f5445924b6)
+- **Nível de ensino**: Nível de ensino dos participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/260569ed-c489-4740-8ed6-e9814cb66580)
+- **Situação de trabalho**: Atual situação de trabalho dos participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/088722a1-7b84-4ef6-b3a4-3dafa4082a08)
+- **Cargo**: Atual cargo dos participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/df2c7c85-2038-4577-8e5e-71f386f47c7b)
+- **Experiência em anos**: Anos na área dos participantes da pesquisa.
+  ![image](https://github.com/user-attachments/assets/92d7bc7f-31c2-41d0-9254-71089697fcee)
+- **Forma de trabalho**: Forma como os participantes da pesquisa atendem ao trabalho.
+  ![image](https://github.com/user-attachments/assets/16faeda2-0a46-464b-a61a-063e360f63b7)
+
   
 
 ## 🔎 Metodologia
