@@ -1,0 +1,9 @@
+;Valores;('P1_b ', 'Genero');;;;;;;;;;;;;;;;
+;Contagem de ('P0', 'id');;Soma de ('P1_f_1', 'Quantidade de oportunidades de emprego/vagas recebidas');;Média de ('P1_a ', 'Idade');;Média de Salario De;;Média de Salario Ate;;Média de MÉDIA FAIXA SALARIAL;;Total Contagem de ('P0', 'id');Total Soma de ('P1_f_1', 'Quantidade de oportunidades de emprego/vagas recebidas');Total Média de ('P1_a ', 'Idade');Total Média de Salario De;Total Média de Salario Ate;Total Média de MÉDIA FAIXA SALARIAL
+('P1_i_2 ', 'Regiao onde mora');Feminino;Masculino;Feminino;Masculino;Feminino;Masculino;Feminino;Masculino;Feminino;Masculino;Feminino;Masculino;;;;;;
+Centro-oeste;75;266;21;19;31,77333333;32,88345865;#VALOR!;#VALOR!;#VALOR!;#VALOR!;9229,313559;10452,78216;341;40;32,63929619;#VALOR!;#VALOR!;10212,16667
+Nordeste;147;459;48;29;31,14965986;31,20043573;#VALOR!;#VALOR!;#VALOR!;#VALOR!;6510,02381;8229,666667;606;77;31,18811881;#VALOR!;#VALOR!;7860,4182
+Norte;18;64;3;7;29,66666667;31,484375;#VALOR!;#VALOR!;#VALOR!;#VALOR!;4192,807692;9113,707547;82;10;31,08536585;#VALOR!;#VALOR!;8144,439394
+Sudeste;797;2348;178;93;32,23337516;32,0306644;#VALOR!;#VALOR!;#VALOR!;#VALOR!;9285,171533;10870,76328;3145;271;32,08203498;#VALOR!;#VALOR!;10484,51494
+Sul;225;734;52;15;31,89333333;31,79291553;#VALOR!;#VALOR!;#VALOR!;#VALOR!;7640,596618;9601,861573;959;67;31,8164755;#VALOR!;#VALOR!;9134,140553
+Total Geral;1262;3871;302;163;31,98256735;31,93670886;#VALOR!;#VALOR!;#VALOR!;#VALOR!;8629,124883;10280,23168;5133;465;31,94798364;#VALOR!;#VALOR!;9891,029217
