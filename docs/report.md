@@ -106,46 +106,46 @@ Como nossa persona pensamos na Luisa, gerente de RH de uma empresa focada na an�
 
 ###    Dicionário de dados da base principal - State of Data Brazil 2023
 
-| `ID`                                       | Qualitativo  | Nominal        | Identificador único do participante.                                          |
-| `Idade`                                    | Quantitativo | Discreta       | Idade do participante em anos completos.                                      |
-| `Gênero`                                   | Qualitativo  | Nominal        | Identidade de gênero do participante.                                         |
-| `Cor/Raça/Etnia`                           | Qualitativo  | Nominal        | Cor, raça ou etnia autodeclarada pelo participante.                           |
-| `Experiência Profissional Prejudicada`     | Qualitativo  | Nominal        | Participante já teve a carreira prejudicada por algum fator pessoal.          |
-| `Experiência Prejudicada por Gênero`       | Qualitativo  | Nominal        | Identidade de gênero prejudicou a trajetória profissional.                    |
-| `Aspectos Prejudicados`                    | Qualitativo  | Nominal        | Lista de aspectos profissionais afetados negativamente.                       |
-| `Oportunidades de vagas`                   | Qualitativo  | Ordinal        | Quantidade de oportunidades de emprego/vagas recebidas.                       |
-| `Senioridade das vagas`                    | Qualitativo  | Ordinal        | Senioridade das vagas recebidas em relação à experiência.                     |
-| `Aprovação em entrevistas`                 | Qualitativo  | Ordinal        | Aprovação em processos seletivos/entrevistas.                                 |
-| `Oportunidades de carreira`                | Qualitativo  | Ordinal        | Oportunidades de progressão de carreira.                                      |
-| `Velocidade de progressão`                 | Qualitativo  | Ordinal        | Velocidade de progressão de carreira.                                         |
-| `Cobrança/Estresse no trabalho`            | Qualitativo  | Ordinal        | Nível de cobrança ou estresse no ambiente de trabalho.                        |
-| `Atenção às ideias`                        | Qualitativo  | Ordinal        | Atenção dada às opiniões e ideias do participante.                            |
-| `Relação no trabalho`                      | Qualitativo  | Ordinal        | Relação com membros da empresa durante o trabalho.                            |
-| `Relação fora do trabalho`                 | Qualitativo  | Ordinal        | Relação com membros da empresa fora do ambiente de trabalho.                  |
-| `Estado onde mora`                         | Qualitativo  | Nominal        | Unidade Federativa (estado) de residência atual.                              |
-| `Código da Região`                         | Qualitativo  | Nominal        | Código identificador da região geográfica.                                    |
-| `Região onde mora`                         | Qualitativo  | Nominal        | Região do país onde reside.                                                   |
-| `Nível de Ensino`                          | Qualitativo  | Ordinal        | Nível mais alto de escolaridade concluído.                                    |
-| `Área de Formação`                         | Qualitativo  | Nominal        | Área do conhecimento da formação principal.                                   |
-| `Situação de trabalho`                     | Qualitativo  | Nominal        | Tipo de vínculo atual com o mercado de trabalho.                              |
-| `Cargo Atual`                              | Qualitativo  | Nominal        | Cargo atual do participante na área de dados.                                 |
-| `Nível`                                    | Qualitativo  | Ordinal        | Nível hierárquico do cargo (Júnior, Pleno, Sênior etc.).                      |
-| `Faixa Salarial`                           | Quantitativo | Contínuo       | Intervalo de remuneração mensal do participante.                              |
-| `Salário De`                               | Quantitativo | Contínuo       | Valor mínimo da faixa salarial.                                               |
-| `Salário Até`                              | Quantitativo | Contínuo       | Valor máximo da faixa salarial.                                               |
-| `Média Faixa Salarial`                     | Quantitativo | Contínuo       | Valor médio entre o salário mínimo e o máximo.                                |
-| `Experiência na área de dados (anos)`      | Quantitativo | Discreta       | Tempo de experiência na área de dados, em anos completos.                     |
-| `Satisfação na empresa atual`              | Qualitativo  | Nominal        | Grau de satisfação do participante com sua empresa atual.                     |
-| `Falta de oportunidade de crescimento`     | Qualitativo  | Nominal        | Participante aponta falta de oportunidades como motivo de insatisfação.       |
-| `Salário abaixo do mercado`                | Qualitativo  | Nominal        | Participante sente que está sendo mal remunerado.                             |
-| `Relação ruim com liderança`               | Qualitativo  | Nominal        | Problemas na relação com o gestor/líder.                                      |
-| `Desejo de mudar de área`                  | Qualitativo  | Nominal        | Participante deseja mudar de área de atuação.                                 |
-| `Desejo de mais benefícios`                | Qualitativo  | Nominal        | Participante deseja mais benefícios da empresa.                               |
-| `Clima de trabalho ruim`                   | Qualitativo  | Nominal        | Percepção negativa do ambiente de trabalho.                                   |
-| `Falta de maturidade analítica na empresa` | Qualitativo  | Nominal        | Participante percebe baixa maturidade analítica na organização.               |
 
-
-
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| `ID`                                       | Qualitativo  | Nominal        | Identificador único do participante.                                     |
+| `Idade`                                    | Quantitativo | Discreta       | Idade do participante em anos completos.                                 |
+| `Gênero`                                   | Qualitativo  | Nominal        | Identidade de gênero do participante.                                    |
+| `Cor/Raça/Etnia`                           | Qualitativo  | Nominal        | Cor, raça ou etnia autodeclarada pelo participante.                      |
+| `Experiência Profissional Prejudicada`     | Qualitativo  | Nominal        | Participante já teve a carreira prejudicada por algum fator pessoal.     |
+| `Experiência Prejudicada por Gênero`       | Qualitativo  | Nominal        | Identidade de gênero prejudicou a trajetória profissional.               |
+| `Aspectos Prejudicados`                    | Qualitativo  | Nominal        | Lista de aspectos profissionais afetados negativamente.                  |
+| `Oportunidades de vagas`                   | Qualitativo  | Ordinal        | Quantidade de oportunidades de emprego/vagas recebidas.                  |
+| `Senioridade das vagas`                    | Qualitativo  | Ordinal        | Senioridade das vagas recebidas em relação à experiência.                |
+| `Aprovação em entrevistas`                 | Qualitativo  | Ordinal        | Aprovação em processos seletivos/entrevistas.                            |
+| `Oportunidades de carreira`                | Qualitativo  | Ordinal        | Oportunidades de progressão de carreira.                                 |
+| `Velocidade de progressão`                 | Qualitativo  | Ordinal        | Velocidade de progressão de carreira.                                    |
+| `Cobrança/Estresse no trabalho`            | Qualitativo  | Ordinal        | Nível de cobrança ou estresse no ambiente de trabalho.                   |
+| `Atenção às ideias`                        | Qualitativo  | Ordinal        | Atenção dada às opiniões e ideias do participante.                       |
+| `Relação no trabalho`                      | Qualitativo  | Ordinal        | Relação com membros da empresa durante o trabalho.                       |
+| `Relação fora do trabalho`                 | Qualitativo  | Ordinal        | Relação com membros da empresa fora do ambiente de trabalho.             |
+| `Estado onde mora`                         | Qualitativo  | Nominal        | Unidade Federativa (estado) de residência atual.                         |
+| `Código da Região`                         | Qualitativo  | Nominal        | Código identificador da região geográfica.                               |
+| `Região onde mora`                         | Qualitativo  | Nominal        | Região do país onde reside.                                              |
+| `Nível de Ensino`                          | Qualitativo  | Ordinal        | Nível mais alto de escolaridade concluído.                               |
+| `Área de Formação`                         | Qualitativo  | Nominal        | Área do conhecimento da formação principal.                              |
+| `Situação de trabalho`                     | Qualitativo  | Nominal        | Tipo de vínculo atual com o mercado de trabalho.                         |
+| `Cargo Atual`                              | Qualitativo  | Nominal        | Cargo atual do participante na área de dados.                            |
+| `Nível`                                    | Qualitativo  | Ordinal        | Nível hierárquico do cargo (Júnior, Pleno, Sênior etc.).                 |
+| `Faixa Salarial`                           | Quantitativo | Contínuo       | Intervalo de remuneração mensal do participante.                         |
+| `Salário De`                               | Quantitativo | Contínuo       | Valor mínimo da faixa salarial.                                          |
+| `Salário Até`                              | Quantitativo | Contínuo       | Valor máximo da faixa salarial.                                          |
+| `Média Faixa Salarial`                     | Quantitativo | Contínuo       | Valor médio entre o salário mínimo e o máximo.                           |
+| `Experiência na área de dados (anos)`      | Quantitativo | Discreta       | Tempo de experiência na área de dados, em anos completos.                |
+| `Satisfação na empresa atual`              | Qualitativo  | Nominal        | Grau de satisfação do participante com sua empresa atual.                |
+| `Falta de oportunidade de crescimento`     | Qualitativo  | Nominal        | Participante aponta falta de oportunidades como motivo de insatisfação.  |
+| `Salário abaixo do mercado`                | Qualitativo  | Nominal        | Participante sente que está sendo mal remunerado.                        |
+| `Relação ruim com liderança`               | Qualitativo  | Nominal        | Problemas na relação com o gestor/líder.                                 |
+| `Desejo de mudar de área`                  | Qualitativo  | Nominal        | Participante deseja mudar de área de atuação.                            |
+| `Desejo de mais benefícios`                | Qualitativo  | Nominal        | Participante deseja mais benefícios da empresa.                          |
+| `Clima de trabalho ruim`                   | Qualitativo  | Nominal        | Percepção negativa do ambiente de trabalho.                              |
+| `Falta de maturidade analítica na empresa` | Qualitativo  | Nominal        | Participante percebe baixa maturidade analítica na organização.          |
 
 
 #### Descrição da base
