@@ -158,19 +158,40 @@ Este repositório contém uma análise exploratória de dados (EDA) realizada co
 ## 📌 Atributos Selecionados
 
 Foram analisados dois atributos principais:
-- **Idade** 
-- **Faixa salarial** (média dos extremos dos intervalos)
-- **Gênero**
-- **Cor/Raça/Etnia**
-- **Estado onde mora**
-- **Região onde mora**
-- **Nível de ensino**
-- **Situação de trabalho**
-- **Cargo**
-- **Experiência em anos**
-- **Forma de trabalho**
+
+Idade  
+Gênero  
+Cor/raca/etnia Experiência profissional prejudicada (análise bi-variada) 
+Experiência prejudicada devido a minha identidade de gênero  
+Aspectos prejudicados  
+Quantidade de oportunidades de emprego/vagas recebidas  
+Senioridade das vagas recebidas em relação à sua experiência  
+Aprovação em processos seletivos/entrevistas  
+Oportunidades de progressão de carreira  
+Velocidade de progressão de carreira   
+Atenção dada diante das minhas opiniões e ideias  
+UF onde mora
+Região onde mora  
+Nível de Ensino  
+Área de Formação   
+Qual sua situação atual de trabalho?  
+Porcentagem de Pessoas com a mesma situação de trabalho na região  
+Cargo Atual
+Nível
+Faixa salarial  
+Quanto tempo de experiência na área de dados você tem?
+Você está satisfeito na sua empresa atual?  
+
+
 
 ## 📊 Estatísticas Descritivas
+
+ 🔎 Metodologia
+
+1. **Limpeza dos dados**: Tratamento de valores nulos e conversão dos dados categóricos para quantitativos.
+2. **Cálculo dos quartis e estatísticas descritivas**: Usando fórmulas de quartil, média, desvio padrão, máximo e mínimo.
+3. **Transformação da faixa salarial**: Extração dos valores mínimo e máximo de cada faixa e cálculo da média dos extremos.
+4. **Geração de gráficos**: Criação de histogramas para melhor compreensão dos dados.
 
 A tabela a seguir apresenta as estatísticas descritivas calculadas para os dois atributos selecionados:
 
@@ -214,12 +235,6 @@ Foram gerados histogramas para visualizar a distribuição dos dados:
 
   
 
-## 🔎 Metodologia
-
-1. **Limpeza dos dados**: Tratamento de valores nulos e conversão dos dados categóricos para quantitativos.
-2. **Cálculo dos quartis e estatísticas descritivas**: Usando fórmulas de quartil, média, desvio padrão, máximo e mínimo.
-3. **Transformação da faixa salarial**: Extração dos valores mínimo e máximo de cada faixa e cálculo da média dos extremos.
-4. **Geração de gráficos**: Criação de histogramas para melhor compreensão dos dados.
 
 
 
@@ -279,7 +294,19 @@ Taxa de subutilização da força de trabalho;
 #### Descrição da base
 ...
 
-### Dicionário de dados da Base Unificada e Trabalhada
+
+
+## Preparação dos dados
+
+A preparação dos dados consiste dos seguintes passos:
+
+### State of Data 2023 - Atributos Selecionados e Processamento
+
+A partir da base State of Data 2023, realizamos a seleção dos atributos que consideramos mais relevantes para a abordagem do nosso tema. Para cada atributo selecionado, elaboramos uma descrição clara e definimos o respectivo tipo de dado.
+
+No que se refere à presença de ruídos na base — como dados omissos ou incompletos —, realizamos o preenchimento de parte dessas lacunas, com o objetivo de viabilizar a aplicação de um modelo de classificação binária.
+
+Adicionalmente, desenvolvemos um dicionário de dados com a finalidade de explicitar os códigos utilizados, garantindo maior transparência e compreensão na manipulação e análise da base. 
 
 | N  | Nome da Variável                                                                             | Descrição do Atributo                                                                                                                                                                                                                                                                                                                                                     |
 |----|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -326,19 +353,6 @@ Taxa de subutilização da força de trabalho;
 | 44 | ('P2_l_5 ', 'Gostaria de receber mais benefícios')                      | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
 | 45 | ('P2_l_6 ', 'O clima de trabalho/ambiente não é bom')                   | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
 | 46 | ('P2_l_7 ', 'Falta de maturidade analítica na empresa')                | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-| 47 | 0                                                          | Valor não especificado no dicionário original                                                                                                                                                                                                                                        |
-| 48 | -                                                          | -                                                                                                                                                                                                                                                                                    |
-| 49 | -                                                          | -                                                                                                                                                                                                                                                                                    |
-| 50 | -                                                          | -                                                                                                                                                                                                                                                                                    |
-| 51 | -                                                          | -                                                                                                                                                                                                                                                                                    |
-| 52 | -                                                          | -                                                                                                                                                                                                                                                                                    |
-
-
-
-## Preparação dos dados
-
-A preparação dos dados consiste dos seguintes passos:
-
 > - Seleção dos atributos
 > - Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
 > - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
