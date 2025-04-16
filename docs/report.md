@@ -279,6 +279,63 @@ Taxa de subutilização da força de trabalho;
 #### Descrição da base
 ...
 
+### Dicionário de dados da Base Unificada e Trabalhada
+| N  | Nome da Variável                                             | Descrição do Atributo                                                                                                                                     |
+|----|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1  | P0                                                           | Identidade                                                                                                                                                |
+| 2  | P1_a                                                         | 18 até 73 ANOS                                                                                                                                            |
+| 3  | P1_b                                                         | Masculino, Feminino, Prefiro não informar, Outro                                                                                                          |
+| 4  | Cod Genero (0 a 3)                                           | Masculino = 0; Feminino = 1; Outro = 2; Prefiro não informar = 3                                                                                          |
+| 5  | P1_c                                                         | Branca, Amarela, Parda, Preto                                                                                                                             |
+| 6  | Cod Cor/raca/etnia                                           | Branca = 0; Amarela = 1; Parda = 2; Preto = 3                                                                                                             |
+| 7  | P1_e                                                         | Não acredito que minha experiência profissional seja afetada devido a esses fatores = 0; Sim, acredito que seja afetada devido a identidade de gênero = 1; Nada = 2 |
+| 8  | P1_e_3                                                       | Sim = 1; Não = 0; Não foi preenchido = 2                                                                                                                  |
+| 9  | P1_f                                                         | Concatenação da forma como as pessoas sentem-se prejudicadas                                                                                              |
+| 10 | P1_f_1                                                       | Número indicando essa quantidade                                                                                                                          |
+| 11 | P1_f_2                                                       | Número indicando essa quantidade                                                                                                                          |
+| 12 | P1_f_3                                                       | Número indicando essa quantidade                                                                                                                          |
+| 13 | P1_f_4                                                       | Número indicando essa quantidade                                                                                                                          |
+| 14 | P1_f_5                                                       | Número indicando essa quantidade                                                                                                                          |
+| 15 | P1_f_6                                                       | Número indicando essa quantidade                                                                                                                          |
+| 16 | P1_f_7                                                       | Número indicando essa quantidade                                                                                                                          |
+| 17 | P1_f_8                                                       | Número indicando essa quantidade                                                                                                                          |
+| 18 | P1_f_9                                                       | Número indicando essa quantidade                                                                                                                          |
+| 19 | P1_i_1                                                       | Sigla do estado                                                                                                                                           |
+| 20 | Código Região                                                | Número do código                                                                                                                                          |
+| 21 | P1_i_2                                                       | Nome da região                                                                                                                                            |
+| 22 | P1_l                                                         | Não ter graduação formal, ser Estudante de Graduação, Pós-graduação, Graduação/Bacharelado, Mestrado ou Doutorado/Phd                                   |
+| 23 | COD_Nível_Ensino                                             | Não tenho graduação formal = 0; Estudante de Graduação = 1; Pós-graduação = 2; Graduação/Bacharelado = 3; Mestrado = 4; Doutorado ou Phd = 5; Não respondeu = 6 |
+| 24 | P1_m                                                         | Área de Formação                                                                                                                                          |
+| 25 | COD_Área_de_Formação                                         | Diversos códigos de área — ver descrição acima                                                                                                           |
+| 26 | COD_OCUP                                                     | Sim = 1; Não = 0                                                                                                                                          |
+| 27 | P2_a                                                         | Situação atual de trabalho                                                                                                                                |
+| 28 | COD_SIT_TRAB                                                 | Empregado (CLT) = 3; Empreendedor (CNPJ) = 2; Servidor Público = 6; etc.                                                                                  |
+| 29 | Concat                                                       | Mesclagem de atributos do IPEA e State of Data                                                                                                           |
+| 30 | Porcentagem de Pessoas na Região                             | Valor em porcentagem referente                                                                                                                            |
+| 31 | P2_f                                                         | Cargo atual                                                                                                                                               |
+| 32 | Cod Cargo Atual                                              | Analista de BI = 1; Cientista de Dados = 7; Engenheiro de Dados = 12; etc.                                                                               |
+| 33 | P2_g                                                         | Nível                                                                                                                                                     |
+| 34 | COD_Nivel                                                    | Dado faltante = 3; Júnior = 1; Pleno = 2; Sênior = 0                                                                                                      |
+| 35 | COD_SALARIO                                                  | Ver tabela de faixas salariais                                                                                                                            |
+| 36 | P2_h                                                         | Faixa salarial                                                                                                                                            |
+| 37 | MÉDIA FAIXA SALARIAL                                         | Distribuição da média                                                                                                                                     |
+| 38 | Rendimento Médio da região                                   | Distribuído conforme faixas                                                                                                                               |
+| 39 | P2_i                                                         | Tempo de experiência na área de dados                                                                                                                    |
+| 40 | Estimativa dos anos de experiência                           | Anos de experiência estimados                                                                                                                             |
+| 41 | P2_k                                                         | Satisfação na empresa atual                                                                                                                               |
+| 42 | P2_l_1                                                       | Falta de oportunidade de crescimento                                                                                                                     |
+| 43 | P2_l_2                                                       | Salário abaixo do mercado                                                                                                                                |
+| 44 | P2_l_3                                                       | Relação com o gestor                                                                                                                                      |
+| 45 | P2_l_4                                                       | Desejo de atuar em outra área                                                                                                                             |
+| 46 | P2_l_5                                                       | Desejo de mais benefícios                                                                                                                                |
+| 47 | P2_l_6                                                       | Clima organizacional ruim                                                                                                                                |
+| 48 | P2_l_7                                                       | Falta de maturidade analítica                                                                                                                            |
+| 49 | 0                                                            | (Possivelmente placeholder para valor nulo ou dado ausente)                                                                                              |
+| 50 |                                                              |                                                                                                                                                           |
+| 51 |                                                              |                                                                                                                                                           |
+| 52 |                                                              |                                                                                                                                                           |
+
+
 
 ## Preparação dos dados
 
