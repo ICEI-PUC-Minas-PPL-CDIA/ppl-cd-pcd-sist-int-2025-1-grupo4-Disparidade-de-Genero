@@ -188,7 +188,9 @@ A tabela a seguir apresenta as estatísticas descritivas calculadas para os dois
 
 Foram gerados histogramas para visualizar a distribuição dos dados:
 - **Idade**: Distribuição da idade dos participantes da pesquisa.
-  ![Histograma atributo Idade](https://media.discordapp.net/attachments/1357513541300519082/1357531068340633680/idade.png?ex=67f08ad4&is=67ef3954&hm=302a0bbd2a10f9f019c36b19819b26be7b05f29da2e6faec8053194e728f23c0&=&format=webp&quality=lossless)
+![image](https://github.com/user-attachments/assets/0efa2c18-45bf-4f6f-8d4c-25fe2bf5a385)
+
+
 - **Faixa salarial**: Faixas salariais ajustadas para valores médios de intervalo.
   ![Histograma atributo Faixa salarial](https://media.discordapp.net/attachments/1357513541300519082/1357546291776720946/image.png?ex=67f09901&is=67ef4781&hm=9ff84b0546890d33499084a70f2f69114d1afd4c54353bcd7d16ee8a4b6466dd&=&format=webp&quality=lossless)
 - **Gênero**: Distribuição dos gêneros dos participantes da pesquisa.
