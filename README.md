@@ -1,4 +1,4 @@
-## Disparidade de Gênero no Setor da Tecnologia
+## Disparidade de Gênero no Setor de Dados
 
 O projeto tem como objetivo desenvolver um sistema inteligente para analisar a disparidade de gênero no setor da tecnologia. Utilizando técnicas de inteligência artificial e aprendizado de máquina, o sistema será projetado para coletar, processar e interpretar informações sobre a participação de diferentes gêneros na área, identificando padrões e possíveis desigualdades.
 
