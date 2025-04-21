@@ -205,6 +205,30 @@ A tabela a seguir apresenta as estatísticas descritivas calculadas para os dois
 | Máximo       | 73   | 35.000,5 |
 | Mínimo       | 18   | 1.050,5  |
 
+📊 Estatísticas Descritivas (State of Data Brazil 2023)
+ Idade -
+Moda: A faixa etária mais comum entre os profissionais de dados é de 25 a 29 anos.
+
+Média: A idade média dos profissionais é de aproximadamente 30 anos.
+
+Mediana: A mediana da idade também se encontra na faixa de 25 a 29 anos.​
+
+ Salário - 
+Moda: A faixa salarial mais frequente está entre R$ 4.000 e R$ 6.000 mensais.
+
+Média: O salário médio dos profissionais de dados é de cerca de R$ 7.000 por mês.
+
+Mediana: A mediana salarial também se encontra na faixa de R$ 7.000 mensais.​
+
+ Gênero -
+Distribuição:
+
+Masculino: 76,2%
+
+Feminino: 23,8%
+
+Outros/Prefiro não informar: Dados não especificados
+
 ## 📈 Visualizações
 
 Foram gerados histogramas para visualizar a distribuição dos dados:
