@@ -253,9 +253,66 @@ Foram gerados histogramas para visualizar a distribuição dos dados:
 - **Cargo**: Atual cargo dos participantes da pesquisa.
   ![image](https://github.com/user-attachments/assets/df2c7c85-2038-4577-8e5e-71f386f47c7b)
 - **Experiência em anos**: Anos na área dos participantes da pesquisa.
+  
   ![image](https://github.com/user-attachments/assets/92d7bc7f-31c2-41d0-9254-71089697fcee)
 - **Forma de trabalho**: Forma como os participantes da pesquisa atendem ao trabalho.
+  
   ![image](https://github.com/user-attachments/assets/16faeda2-0a46-464b-a61a-063e360f63b7)
+- **Experiência profissional prejudicada**: Participantes que por alguma característica são afetados negativamente no ambiente de trabalho.
+  
+  ![image](https://github.com/user-attachments/assets/3ae5094d-c430-4d04-8db0-9ca17bad6631)
+  * Por que?:
+    
+  ![image](https://github.com/user-attachments/assets/3848134f-1ca2-4f3e-94cd-662f03d0e6ab)
+  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+- **Experiência pessoal prejudicada por gênero**:
+  
+  ![image](https://github.com/user-attachments/assets/19c16761-8478-49a3-9614-5562aea1b618)
+  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+- **Aspectos prejudicados**:
+  
+    ![image](https://github.com/user-attachments/assets/3755f20c-67e0-410c-a3ed-4b855675e63b)
+      *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+- **Oportunidade de emprego**:
+  
+    ![image](https://github.com/user-attachments/assets/37765b30-1dff-4e8b-9b78-6b52d0eee523)
+    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+- **Senioridade das vagas**:
+  
+  ![image](https://github.com/user-attachments/assets/31c46b10-5822-47a5-a687-4df2e4a0be26)
+    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+- **Aprovação em entrevistas**:
+  
+  ![image](https://github.com/user-attachments/assets/36a73d05-85b5-48f0-9ce8-848082779b99)
+  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+- **Oportunidade de progressão de carreira**:
+  
+  ![image](https://github.com/user-attachments/assets/baca44b6-67fc-416f-a0cd-d78b2ba50c78)
+  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+
+- **Velocidade de progressão de carreira**:
+  ![image](https://github.com/user-attachments/assets/f6f3bbbf-7f2e-42ba-8d3a-2dcc84877db5)
+    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+  
+- **Stress no trabalho**:
+  ![image](https://github.com/user-attachments/assets/45c1145a-790b-4b00-91fc-26da5a57e248)
+    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+
+- **Atenção dada às ideias**:
+  ![image](https://github.com/user-attachments/assets/733da054-113a-45fa-b7d8-79cbd7dcbdac)
+    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+
+- **Relação com outros membros do trabalho**:
+  ![image](https://github.com/user-attachments/assets/56d78239-e4c8-429d-a635-18ec65c43219)
+    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+
+- **Relação com membros do trabalho fora da empresa**:
+  ![image](https://github.com/user-attachments/assets/2b3f8bb5-53dd-4d28-b177-d65622f20f51)
+    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
+
+
+
+
 
   
 
