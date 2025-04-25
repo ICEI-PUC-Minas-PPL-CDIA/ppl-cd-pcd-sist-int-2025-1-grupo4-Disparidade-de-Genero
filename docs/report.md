@@ -442,7 +442,9 @@ Adicionalmente, desenvolvemos um dicionário de dados com a finalidade de explic
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
+### Modelo 1: Árvore de Decisão
+
+Foi feita a escolha desse modelo devido ao nosso objetivo principal ser prever que fator é afetado pela disparidade de gênero no setor de dados.
 
 Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
 Justifique a escolha do modelo.
