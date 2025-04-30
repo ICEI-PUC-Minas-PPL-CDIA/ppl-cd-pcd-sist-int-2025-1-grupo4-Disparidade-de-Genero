@@ -1,11 +1,15 @@
+# ✍ Disparidade de Gênero na Contratação 
+## ❓ Perguntas orientadas a dados
+- Mulheres e homens têm taxas de contratação iguais no setor de tecnologia, considerando as mesmas qualificações, área de formação e nível de experiência?
+-  A quantidade de vagas recebidas por mulheres na área de dados é inferior à quantidade recebida por homens, especialmente em empresas localizadas em regiões com alta demanda tecnológica?
 
-# 📊 Script para Criação de Bases de Dados
+## 📊 Script para Criação de Bases de Dados
 
 Este script realiza a manipulação de dados de um arquivo CSV, criando duas bases de dados distintas a partir do DataFrame original. As bases de dados resultantes são salvas como arquivos CSV separados.
 
-## 🧩 Passos para Execução
+### 🧩 Passos para Execução
 
-### 🔹 Passo 1: Importar a biblioteca pandas
+#### 🔹 Passo 1: Importar a biblioteca pandas
 
 ```python
 import pandas as pd
@@ -13,7 +17,7 @@ import pandas as pd
 
 A biblioteca pandas é essencial para a manipulação de dados, leitura de arquivos CSV, criação de DataFrames e realização de operações com os dados.
 
-### 🔹 Passo 2: Carregar o DataFrame Original
+#### 🔹 Passo 2: Carregar o DataFrame Original
 
 ```python
 df_survey = pd.read_csv('State_of_data_BR_2023_Kaggle - df_survey_2023.csv')
@@ -21,7 +25,7 @@ df_survey = pd.read_csv('State_of_data_BR_2023_Kaggle - df_survey_2023.csv')
 
 Usamos a função `pd.read_csv()` para ler o arquivo CSV original e criar um DataFrame chamado `df_survey`. Substitua `'State_of_data_BR_2023_Kaggle - df_survey_2023.csv'` pelo nome do seu arquivo CSV, se necessário.
 
-### 🔹 Passo 3: Definir as Colunas para Cada Base
+#### 🔹 Passo 3: Definir as Colunas para Cada Base
 
 ```python
 colunas_base1 = [
@@ -44,7 +48,7 @@ colunas_base2 = [
 
 Aqui, definimos as listas `colunas_base1` e `colunas_base2`, que contêm os nomes das colunas desejadas para cada base de dados. Incluímos o ID do respondente (`"('P0', 'id')"`), que será utilizado em ambas as bases.
 
-### 🔹 Passo 4: Criar e Salvar as Bases de Dados
+#### 🔹 Passo 4: Criar e Salvar as Bases de Dados
 
 ```python
 df_base1 = df_survey[colunas_base1]
@@ -58,7 +62,7 @@ print("Bases de dados criadas com sucesso!")
 
 Neste passo, criamos os DataFrames `df_base1` e `df_base2` a partir das colunas definidas nas listas acima. Em seguida, salvamos cada DataFrame como um arquivo CSV (`base1.csv` e `base2.csv`), utilizando o método `to_csv()`. O argumento `index=False` garante que o índice do DataFrame não seja incluído nos arquivos CSV.
 
-### ✅ Resultado
+#### ✅ Resultado
 
 Ao final da execução do script, as bases de dados serão salvas com sucesso e uma mensagem será exibida:
 
@@ -66,15 +70,15 @@ Ao final da execução do script, as bases de dados serão salvas com sucesso e 
 Bases de dados criadas com sucesso!
 ```
 
-# 📘 Geração de Dicionário de Dados em Markdown com Python
+## 📘 Geração de Dicionário de Dados em Markdown com Python
 
 Este repositório contém um script em Python que gera automaticamente tabelas em formato Markdown com dicionários de dados, a partir de um conjunto de atributos referentes a perguntas de um questionário.
 
 ---
 
-## 📂 Estrutura do Script
+### 📂 Estrutura do Script
 
-### 1. Importar a biblioteca `pandas`
+#### 1. Importar a biblioteca `pandas`
 
 ```python
 import pandas as pd
@@ -84,7 +88,7 @@ import pandas as pd
 
 ---
 
-### 2. Inicializar dicionários de dados
+#### 2. Inicializar dicionários de dados
 
 ```python
 dicionario_dados_q1 = []
@@ -95,7 +99,7 @@ dicionario_dados_q2 = []
 
 ---
 
-### 3. Definir atributos para a pergunta 1
+#### 3. Definir atributos para a pergunta 1
 
 ```python
 atributos_q1 = {
@@ -112,7 +116,7 @@ atributos_q1 = {
 
 ---
 
-### 4. Criar dicionário de dados para a pergunta 1
+#### 4. Criar dicionário de dados para a pergunta 1
 
 ```python
 for atributo, info in atributos_q1.items():
@@ -128,7 +132,7 @@ for atributo, info in atributos_q1.items():
 
 ---
 
-### 5. Definir atributos para a pergunta 2
+#### 5. Definir atributos para a pergunta 2
 
 ```python
 atributos_q2 = {
@@ -145,7 +149,7 @@ atributos_q2 = {
 
 ---
 
-### 6. Criar dicionário de dados para a pergunta 2
+#### 6. Criar dicionário de dados para a pergunta 2
 
 ```python
 for atributo, info in atributos_q2.items():
@@ -161,7 +165,7 @@ for atributo, info in atributos_q2.items():
 
 ---
 
-### 7. Gerar tabelas em Markdown
+#### 7. Gerar tabelas em Markdown
 
 ```python
 tabela_markdown_q1 = pd.DataFrame(dicionario_dados_q1).to_markdown(index=False)
@@ -172,7 +176,7 @@ tabela_markdown_q2 = pd.DataFrame(dicionario_dados_q2).to_markdown(index=False)
 
 ---
 
-### 8. Imprimir as tabelas
+#### 8. Imprimir as tabelas
 
 ```python
 print("## Pergunta 1\n")
@@ -185,9 +189,9 @@ print(tabela_markdown_q2)
 
 ---
 
-## ✅ Resultado Esperado
+### ✅ Resultado Esperado
 
-### Pergunta 1
+#### Pergunta 1
 
 | Atributo                                                 | Tipo do Dado | Escala  | Descrição                                     |
 |----------------------------------------------------------|--------------|---------|------------------------------------------------|
@@ -197,7 +201,7 @@ print(tabela_markdown_q2)
 | ('P1_l ', 'Nivel de Ensino')                             | Qualitativo  | Ordinal | Nível de ensino do participante.               |
 | ('P1_m ', 'Área de Formação')                            | Qualitativo  | Nominal | Área de formação do participante.              |
 
-### Pergunta 2
+#### Pergunta 2
 
 | Atributo                                                                | Tipo do Dado | Escala  | Descrição                                                  |
 |-------------------------------------------------------------------------|--------------|---------|-------------------------------------------------------------|
