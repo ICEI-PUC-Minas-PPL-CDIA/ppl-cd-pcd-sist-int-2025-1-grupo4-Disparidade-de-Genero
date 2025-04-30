@@ -185,7 +185,7 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 | `Clima de trabalho ruim`                   | Qualitativo  | Nominal        | Percepção negativa do ambiente de trabalho.                              |
 | `Falta de maturidade analítica na empresa` | Qualitativo  | Nominal        | Participante percebe baixa maturidade analítica na organização.          |
 
-- Atributos relevantes da base de dados principal para 1ºpergunta orientada
+# - Atributos relevantes da base de dados principal para 1ª pergunta orientada
 
 Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
 
@@ -202,6 +202,54 @@ Pergunta orientada a dados: Como as taxas de conclusão do ensino superior varia
 | `Experiência Prejudicada por Genero`       | Qualitativo  | Nominal        | Se o gênero prejudicou a trajetória profissiona.                         |
 | `Situação de Trabalho`                     | Qualitativo  | Nominal        | Vínculo empregatício (CLT, PJ, Autônomo, Desempregado).                  |
 | `Cor/Raça/Etnia`                           | Qualitativo  | Nominal        | Autodeclaração racial (Branco, Preto, Pardo, Amarelo, Indígena).         |
+
+# - Atributos relevantes da base de dados principal para 2ª pergunta orientada
+
+Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| ``                                       |   |         |                                      |
+
+
+# - Atributos relevantes da base de dados principal para 3ª pergunta orientada
+
+Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| ``                                       |   |         |                                      |
+
+# - Atributos relevantes da base de dados principal para 4ª pergunta orientada
+
+Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| ``                                       |   |         |                                      |
+
+# - Atributos relevantes da base de dados principal para 5ª pergunta orientada
+
+Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| ``                                       |   |         |                                      |
+# - Atributos relevantes da base de dados principal para 6ª pergunta orientada
+
+Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| ``                                       |   |         |                                      |
 
 #### Descrição da base
 O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
