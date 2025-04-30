@@ -1,62 +1,62 @@
-📊 Análise de Taxas de Conclusão do Ensino Superior por Gênero, Área e Região
-🎯 Objetivo
-Preparar e limpar os dados para responder à pergunta orientada a dados:
+# 🧹 Limpeza de Dados - Taxas de Conclusão do Ensino Superior por Gênero, Área e Região  
+[📄 Código da limpeza](src/code_data_cleanest/base_auxiliares/limpezadedados_2perguntaorientadadados_baux.ipynb)
 
-Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+---
 
-🧹 Etapas da Limpeza de Dados
-1. 📥 Importação e Leitura do Arquivo
-O arquivo foi lido utilizando pandas com os seguintes parâmetros:
+## 📄 Objetivo
 
-python
-Copiar
-Editar
+Preparar os dados brutos da base **dados_brutos.csv** para responder a uma **pergunta orientada a dados**, analisando **como as taxas de conclusão do ensino superior variam entre homens e mulheres**, considerando a **área de formação** e a **região geográfica** do participante.
+
+---
+
+## 🔍 Etapas da Limpeza de Dados
+
+### 1. **Importação e Leitura do Arquivo**
+- O arquivo foi lido usando `pandas.read_csv()` com os parâmetros adequados:
+  - `sep=';'` para reconhecer o delimitador correto.
+  - `encoding='latin-1'` para interpretar corretamente os caracteres especiais.
+  - `low_memory=False` para evitar avisos durante a leitura de grandes volumes de dados.
+
+```python
 import pandas as pd
 
 df = pd.read_csv('dados_brutos.csv', sep=';', encoding='latin-1', low_memory=False)
-2. 📌 Seleção de Colunas Relevantes
-Foram mantidas apenas as colunas necessárias para análise:
 
+---
 
-Coluna	Tipo	Escala	Descrição
-ID	Qualitativo	Nominal	Identificador único do participante
-Idade	Quantitativo	Discreta	Idade em anos completos
-Gênero	Qualitativo	Nominal	Identidade de gênero
-Nível de Ensino	Qualitativo	Ordinal	Nível mais alto de escolaridade concluído
-Área de Formação	Qualitativo	Nominal	Área do conhecimento da formação principal
-Região onde mora	Qualitativo	Nominal	Região do país de residência
-Código da Região	Qualitativo	Nominal	Código da região geográfica
-Estado onde mora	Qualitativo	Ordinal	Unidade Federativa de residência
-python
-Copiar
-Editar
-colunas_relevantes = [
-    'ID', 'Idade', 'Gênero', 'Nível de Ensino',
-    'Área de Formação', 'Região onde mora',
-    'Código da Região', 'Estado onde mora'
-]
+### 2. **Seleção de Colunas Relevantes**
+Foram selecionadas apenas as colunas necessárias para a análise:
 
-df_filtrado = df[colunas_relevantes].copy()
-3. 🧼 Remoção de Dados Faltantes e Duplicados
-python
-Copiar
-Editar
+| Coluna Original       | Descrição                                        |  
+|-----------------------|--------------------------------------------------| 
+| ID	                | Identificador único do participante              |   
+| Idade	                | Idade do participante em anos completos          | 
+| Gênero	            | Identidade de gênero do participante             | 
+| Nível de Ensin o      | Nível mais alto de escolaridade concluído        | 
+| Área de Formação      | Área do conhecimento da formação principal (exatas, humanas, biológicas)| 
+| Região onde mora	    | Região geográfica do Brasil onde o participante reside | 
+| Código da Região	    | Código categórico associado à região geográfica  | 
+| Estado onde mora      | Unidade Federativa (UF) de residência atual      |
+
+---
+
+### 3. **Filtragem e Remoção de Ruído**
+```python
 df_limpo = df_filtrado.dropna().drop_duplicates()
-4. 🎓 Criação da Variável “Conclusão do Ensino Superior”
-Nova coluna booleana que identifica se o participante concluiu o ensino superior ou níveis acima:
+```
 
-python
-Copiar
-Editar
+---
+
+### 4. **Criação da Variável de Conclusão do Ensino Superior**
+```python
 df_limpo['Conclusao_Superior'] = df_limpo['Nível de Ensino'].apply(
     lambda x: x.lower() in ['graduação', 'pós-graduação', 'mestrado', 'doutorado']
 )
-5. 📊 Agrupamento por Gênero, Área e Região
-Calcula o total de pessoas, total de concluintes e taxa percentual por grupo:
+```
+---
 
-python
-Copiar
-Editar
+### 5. **Agrupamento por Gênero, Área e Região**
+```python
 df_agrupado = df_limpo.groupby(['Gênero', 'Área de Formação', 'Região onde mora']).agg(
     Total_Pessoas=('ID', 'count'),
     Total_Concluintes=('Conclusao_Superior', 'sum')
@@ -65,23 +65,25 @@ df_agrupado = df_limpo.groupby(['Gênero', 'Área de Formação', 'Região onde 
 df_agrupado['Taxa_Conclusao'] = (
     df_agrupado['Total_Concluintes'] / df_agrupado['Total_Pessoas']
 ) * 100
-6. 💾 Exportação dos Dados Finais
-python
-Copiar
-Editar
+```
+
+---
+### 6. **Exportação dos Dados Limpos**
+```python
 df_agrupado.to_csv('taxas_conclusao_superior_genero_area_regiao.csv', index=False)
-✅ Resultado Final
-O arquivo taxas_conclusao_superior_genero_area_regiao.csv contém a taxa de conclusão do ensino superior segmentada por:
+```
 
-Gênero
+---
 
-Área de Formação
+## ✅ Resultado Final
 
-Região Geográfica
+Um arquivo .csv contendo as taxas de conclusão por gênero, área e região, permitindo análises como:
 
-Exemplos de Análises Possíveis:
-Quais áreas têm maior equilíbrio de gênero na conclusão do ensino superior?
+🎓 "Mulheres concluem mais o ensino superior em humanas ou exatas?"
+🌍 "Qual região tem maior desigualdade de gênero na educação superior?"
+📊 "Há equilíbrio entre homens e mulheres nas diferentes áreas?"
 
-As mulheres concluem mais o ensino superior em alguma região específica?
+---
 
-Em que regiões há maior disparidade nas taxas de conclusão entre homens e mulheres?
+
+
