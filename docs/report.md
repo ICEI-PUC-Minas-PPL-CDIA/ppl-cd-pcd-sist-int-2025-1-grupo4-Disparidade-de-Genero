@@ -99,27 +99,43 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 ###  Personas
 
 1️⃣ Persona: Desenvolvedora Plena em Tecnologia
+
 Nome: Carla Nunes
+
 Idade: 29 anos
+
 Objetivo: Entender se está sendo remunerada de forma justa em comparação aos colegas homens com funções similares.
+
 Desafios: Dificuldade em acessar dados transparentes e atualizados sobre salários com recorte de gênero.
 
 2️⃣ Persona: Coordenadora de Diversidade e Inclusão
+
 Nome: Priscila Duarte
+
 Idade: 35 anos
+
 Objetivo: Desenvolver políticas internas que reduzam a desigualdade salarial de gênero.
+
 Desafios: Falta de indicadores específicos sobre mulheres em cargos técnicos e de liderança na empresa.
 
 3️⃣ Persona: Engenheiro de Software Sênior
+
 Nome: Rafael Lima
+
 Idade: 41 anos
+
 Objetivo: Apoiar iniciativas de equidade de gênero no setor, incluindo revisão salarial.
+
 Desafios: Não tem acesso a comparativos salariais por gênero que possam embasar ações efetivas.
 
 4️⃣ Persona: Consultora de Igualdade de Gênero em ONGs
+
 Nome: Sônia Ferreira
+
 Idade: 47 anos
+
 Objetivo: Promover ações públicas e privadas que eliminem a diferença salarial entre homens e mulheres na tecnologia.
+
 Desafios: Precisa de estudos aprofundados com dados desagregados por cargo, gênero, região e senioridade.
 
 
