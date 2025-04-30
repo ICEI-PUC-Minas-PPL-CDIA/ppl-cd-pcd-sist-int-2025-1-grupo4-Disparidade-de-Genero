@@ -29,12 +29,12 @@ Foram selecionadas apenas as colunas necessárias para a análise:
 
 | Coluna Original       | Descrição                                        |  
 |-----------------------|--------------------------------------------------| 
-| ID	                | Identificador único do participante              |   
+| ID	                  | Identificador único do participante              |   
 | Idade	                | Idade do participante em anos completos          | 
-| Gênero	            | Identidade de gênero do participante             | 
+| Gênero	              | Identidade de gênero do participante             | 
 | Nível de Ensin o      | Nível mais alto de escolaridade concluído        | 
-| Área de Formação      | Área do conhecimento da formação principal (exatas, humanas, biológicas)| 
-| Região onde mora	    | Região geográfica do Brasil onde o participante reside | 
+| Área de Formação      | Área do conhecimento da formação principal       | 
+| Região onde mora	    | Região geográfica do Brasil onde reside          | 
 | Código da Região	    | Código categórico associado à região geográfica  | 
 | Estado onde mora      | Unidade Federativa (UF) de residência atual      |
 
@@ -79,9 +79,9 @@ df_agrupado.to_csv('taxas_conclusao_superior_genero_area_regiao.csv', index=Fals
 
 Um arquivo .csv contendo as taxas de conclusão por gênero, área e região, permitindo análises como:
 
-🎓 "Mulheres concluem mais o ensino superior em humanas ou exatas?"
-🌍 "Qual região tem maior desigualdade de gênero na educação superior?"
-📊 "Há equilíbrio entre homens e mulheres nas diferentes áreas?"
+🎓 "Mulheres concluem mais o ensino superior em humanas ou exatas?"<br>
+🌍 "Qual região tem maior desigualdade de gênero na educação superior?"<br>
+📊 "Há equilíbrio entre homens e mulheres nas diferentes áreas?"<br>
 
 ---
 
