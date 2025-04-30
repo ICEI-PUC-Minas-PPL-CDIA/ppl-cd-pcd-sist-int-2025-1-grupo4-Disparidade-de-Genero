@@ -185,6 +185,23 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 | `Clima de trabalho ruim`                   | Qualitativo  | Nominal        | Percepção negativa do ambiente de trabalho.                              |
 | `Falta de maturidade analítica na empresa` | Qualitativo  | Nominal        | Participante percebe baixa maturidade analítica na organização.          |
 
+- Atributos relevantes da base de dados principal para 1ºpergunta orientada
+
+Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| `ID`                                       | Qualitativo  | Nominal        | Identificador único do participante.                                     |
+| `Idade`                                    | Quantitativo | Discreta       | Idade do participante em anos completos.                                 |
+| `Gênero`                                   | Qualitativo  | Nominal        | Identidade de gênero do participante.                                    |
+| `Nível de Ensino`                          | Qualitativo  | Ordinal        | Nível mais alto de escolaridade concluído (ex: ensino médio, graduação, etc). |
+| `Área de Formação`                         | Qualitativo  | Nominal        | Área do conhecimento da formação principal (ex: exatas, humanas, biológicas). |
+| `Região onde mora`                         | Qualitativo  | Nominal        | Região do país onde o participante reside (ex: Norte, Sudeste, Sul, etc.).    |
+| `Código da Região`                         | Qualitativo  | Nominal        | Código numérico ou categórico da região geográfica.                      |
+| `Estado onde mora`                         | Qualitativo  | Ordinal        | Unidade Federativa (estado) de residência atual.                         |
+| `Experiência Prejudicada por Genero`       | Qualitativo  | Nominal        | Se o gênero prejudicou a trajetória profissiona.                         |
+| `Situação de Trabalho`                     | Qualitativo  | Nominal        | Vínculo empregatício (CLT, PJ, Autônomo, Desempregado).                  |
+| `Cor/Raça/Etnia`                           | Qualitativo  | Nominal        | Autodeclaração racial (Branco, Preto, Pardo, Amarelo, Indígena).         |
 
 #### Descrição da base
 O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
