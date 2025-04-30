@@ -21,6 +21,7 @@ Preparar os dados brutos da base **dados_brutos.csv** para responder a uma **per
 import pandas as pd
 
 df = pd.read_csv('dados_brutos.csv', sep=';', encoding='latin-1', low_memory=False)
+```
 
 ---
 
