@@ -207,9 +207,29 @@ Pergunta orientada a dados: Como as taxas de conclusão do ensino superior varia
 
 Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
 
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| ``                                       |   |         |                                      |
+Pergunta destrinchada em duas: 
+- Mulheres e homens têm taxas de contratação iguais no setor de tecnologia, considerando as mesmas qualificações, área de formação e nível de experiência?
+- A quantidade de vagas recebidas por mulheres na área de dados é inferior à quantidade recebida por homens, especialmente em empresas localizadas em regiões com alta demanda tecnológica?
+
+
+#### Pergunta 1
+
+| Atributo                                                 | Tipo do Dado | Escala  | Descrição                                     |
+|----------------------------------------------------------|--------------|---------|------------------------------------------------|
+| `Genero`                                                 | Qualitativo  | Nominal | Identidade de gênero do participante.          |
+| `Cargo Atual`                                            | Qualitativo  | Nominal | Cargo atual do participante.                   |
+| `Quanto tempo de experiência na área de dados você tem?` | Quantitativo | Discreta| Tempo de experiência na área de dados em anos. |
+| `Nivel de Ensino`                                        | Qualitativo  | Ordinal | Nível de ensino do participante.               |
+| `Área de Formação`                                       | Qualitativo  | Nominal | Área de formação do participante.              |
+
+#### Pergunta 2
+
+| Atributo                                                                | Tipo do Dado | Escala  | Descrição                                                  |
+|-------------------------------------------------------------------------|--------------|---------|-------------------------------------------------------------|
+| `Genero`                                                                | Qualitativo  | Nominal | Identidade de gênero do participante.                       |
+| `Quantidade de oportunidades de emprego/vagas recebidas`                | Qualitativo  | Ordinal | Quantidade de oportunidades de emprego/vagas recebidas.     |
+| `Estado onde mora`                                                      | Qualitativo  | Nominal | Estado onde o participante reside.                          |
+| `Cargo Atual`                                                           | Qualitativo  | Nominal | Cargo atual do participante.                                |
 
 
 # - Atributos relevantes da base de dados principal para 3ª pergunta orientada
