@@ -53,7 +53,8 @@ Após a filtragem, realizei uma série de limpezas e transformações para prepa
   #### 3.3.1. Conversão de faixas para valores médios (idade, salário)
   * 3.3.1.1 Média intervalos das faixas salariais:
   O programa precisava ler atributos float para ter uma noção boa do salário. A ideia foi tirar a média dos extremos dos intervalos.
-  Código usado no excel: `=SE(ÉCÉL.VAZIA(H2);10000;
+  Código usado no excel:
+  > =SE(ÉCÉL.VAZIA(H2);10000;
   SE(H2="Acima de R$ 40.001/mês";45000;
   SE(H2="de R$ 1.001/mês a R$ 2.000/mês";1500;
   SE(H2="de R$ 1001/mês a R$ 2.000/mês";1500;
@@ -67,10 +68,12 @@ Após a filtragem, realizei uma série de limpezas e transformações para prepa
   SE(H2="de R$ 4.001/mês a R$ 6.000/mês";5000;
   SE(H2="de R$ 6.001/mês a R$ 8.000/mês";7000;
   SE(H2="de R$ 8.001/mês a R$ 12.000/mês";10000;
-  SE(H2="Menos de R$ 1.000/mês";500;"")))))))))))))))`
+  SE(H2="Menos de R$ 1.000/mês";500;"")))))))))))))))
+
   para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
   * 3.3.1.2 Média intervalos das idades. O programa precisava ter um atributo int ou float. A ideia foi tirar a média dos extremos dos intervalos.
-  Código usado no excel: `=SE(A2="17-21"; 19;
+  Código usado no excel:
+  > =SE(A2="17-21"; 19;
   SE(A2="22-24"; 23;
   SE(A2="25-29"; 27;
   SE(A2="30-34"; 32;
@@ -78,12 +81,80 @@ Após a filtragem, realizei uma série de limpezas e transformações para prepa
   SE(A2="40-44"; 42;
   SE(A2="45-49"; 47;
   SE(A2="50-54"; 52;
-  SE(A2="55+"; 57,5)))))))))`
+  SE(A2="55+"; 57,5)))))))))
+
   para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
     
   #### 3.3.2. Agrupamento de cargos em categorias macro
+  Havia muitos cargos, alguns "parecidos", podendo ser agrupados em macro-categorias. Alterações feitas:
+  |Cargo Original|	Cargo Agrupado|
+  |---------------|----------------|
+  |Cientista de Dados/Data Scientist<br>Analista de Dados/Data Analyst<br>Analista de BI/BI Analyst<br>Analista de Inteligência de Mercado/Market Intelligence	|Análise de Dados|
+  |Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect<br>Analytics Engineer	|Engenharia de Dados|
+  |Engenheiro de Machine Learning/ML Engineer/AI |Engineer	ML/IA|
+  |Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas	Desenvolvimento|
+  |Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)	Produto|
+  |Estatístico<br>Economista	|Científico/Quantitativo|
+  |DBA/Administrador de Banco de Dados<br>Analista de Suporte/Analista Técnico|	Infraestrutura|
+  |Outras Engenharias (não inclui dev)|	Outras Engenharias|
+  |Professor/Pesquisador	|Acadêmico|
+  |Analista de Negócios/Business Analyst|	Negócios|
+  |Outra Opção	|Outro|
+  |(vazio)	|Não informado|
+  
+  Código usado no excel:
+  > =SE(ÉCÉL.VAZIA(D2);"Não informado";
+  SE(OU(D2="Cientista de Dados/Data Scientist";D2="Analista de Dados/Data Analyst";D2="Analista de BI/BI Analyst";D2="Analista de Inteligência de Mercado/Market Intelligence");"Análise    de Dados";
+  SE(OU(D2="Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect";D2="Analytics Engineer");"Engenharia de Dados";
+  SE(D2="Engenheiro de Machine Learning/ML Engineer/AI Engineer";"ML/IA";
+  SE(D2="Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas";"Desenvolvimento";
+  SE(D2="Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)";"Produto";
+  SE(OU(D2="Estatístico";D2="Economista");"Científico/Quantitativo";
+  SE(OU(D2="DBA/Administrador de Banco de Dados";D2="Analista de Suporte/Analista Técnico");"Infraestrutura";
+  SE(D2="Outras Engenharias (não inclui dev)";"Outras Engenharias";
+  SE(D2="Professor/Pesquisador";"Acadêmico";
+  SE(D2="Analista de Negócios/Business Analyst";"Negócios";
+  SE(D2="Outra Opção";"Outro";"Outro"))))))))))))
+
+  para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
+  
   #### 3.3.3. Conversão de variáveis categóricas em numéricas (ordinal ou binária)
+  * 3.3.3.1 Nível (júnior, pleno e sênior) são um atributo ordinal. Então decidi transformá-los em júnior=0, pleno=1 e sênior=2, porque sênior>pleno>júnior.
+  Código usado:
+  > =SE(F2="Júnior";0;
+  SE(F2="Pleno";1;
+  SE(F2="Sênior";2;
+  SE(ÉCÉL.VAZIA(F2);ALEATÓRIOENTRE(0;2);""""))))
+
+  para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
+  * 3.3.3.2 Pretensão de mudar de emprego está como atributo qualitativo. Para aquelas pessoas que apresentam qualquer vontade em sair de seu emprego, vou considerar que vão sair. 
+  Inclusive, esse será o atributo-alvo. Segue abaixo o exemplo:
+
+  |('P2_n ', 'Você pretende mudar de emprego nos próximos 6 meses?') | A pessoa vai sair da empresa?|
+  |------------------------------------------------------------------|-------------------------------|
+  |Estou em busca de oportunidades dentro ou fora do Brasil | Sim (1) |
+  |Estou em busca de oportunidades, mas apenas fora do Brasil | Sim (1) |
+  |Não estou buscando e não pretendo mudar de emprego nos próximos 6 meses | Não (0) |
+  |Não estou buscando, mas me considero aberto a outras oportunidades | Sim (1) |
+  |(vazio) | (vazio por enquanto) | 
+
+  Código usado no excel: 
+  > =SE(ÉCÉL.VAZIA(L2);
+    SE(ALEATÓRIO()<=0,75;1;0);
+    SE(OU(
+        L2="Estou em busca de oportunidades dentro ou fora do Brasil";
+        L2="Estou em busca de oportunidades, mas apenas fora do Brasil";
+        L2="Não estou buscando, mas me considero aberto a outras oportunidades"
+    );1;0))
+  
+  para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
+
+  
   #### 3.3.4. Preenchimento de valores ausentes de forma proporcional ou por estatística do grupo
+  * Você deve ter percebido que os códigos citados acima apresentam algo a mais que só transformar dados qualitativos em quantitativos ou outras funções como a de agrupamento.
+  Foram implementados nos códigos a tarefa de preencherem os dados faltantes proporcionalmente à frequência com que os dados reais aparecem.
+  * Vamos analisar coluna por coluna:
+  
   #### 3.3.5. Criação de uma nova feature: `Estou no trabalho ideal para mim?`
 
 Binarização do target
