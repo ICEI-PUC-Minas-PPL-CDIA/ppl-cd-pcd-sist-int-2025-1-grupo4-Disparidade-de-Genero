@@ -3,7 +3,22 @@
 - Mulheres e homens têm taxas de contratação iguais no setor de tecnologia, considerando as mesmas qualificações, área de formação e nível de experiência?
 -  A quantidade de vagas recebidas por mulheres na área de dados é inferior à quantidade recebida por homens, especialmente em empresas localizadas em regiões com alta demanda tecnológica?
 
-## 📊 Script para Criação de Bases de Dados
+## 💭 Seleção de atributos que respondem às perguntas orientadas a dados
+Consultando o dicionário de dados da base do State of Data, foi possível selecionar os atributos que melhor respondem às perguntas. São eles:
+### Pergunta 1:
+- 'P1_b ', 'Genero'
+- 'P2_f ', 'Cargo Atual'
+- 'P2_i ', 'Quanto tempo de experiência na área de dados você tem?'
+- 'P1_l ', 'Nivel de Ensino'
+- 'P1_m ', 'Área de Formação'
+### Pergunta 2:
+- 'P1_b ', 'Genero'
+- 'P1_f_1', 'Quantidade de oportunidades de emprego/vagas recebidas'
+- 'P1_i ', 'Estado onde mora'
+- 'P2_f ', 'Cargo Atual'
+
+
+## 📊 Script para Criação de Bases de Dados 
 
 Este script realiza a manipulação de dados de um arquivo CSV, criando duas bases de dados distintas a partir do DataFrame original. As bases de dados resultantes são salvas como arquivos CSV separados.
 
