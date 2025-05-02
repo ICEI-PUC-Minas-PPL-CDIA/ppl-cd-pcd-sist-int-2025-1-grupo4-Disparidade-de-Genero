@@ -92,8 +92,8 @@ Após a filtragem, realizei uma série de limpezas e transformações para prepa
   |Cientista de Dados/Data Scientist<br>Analista de Dados/Data Analyst<br>Analista de BI/BI Analyst<br>Analista de Inteligência de Mercado/Market Intelligence	|Análise de Dados|
   |Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect<br>Analytics Engineer	|Engenharia de Dados|
   |Engenheiro de Machine Learning/ML Engineer/AI |Engineer	ML/IA|
-  |Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas	Desenvolvimento|
-  |Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)	Produto|
+  |Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas	|Desenvolvimento|
+  Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)	|Produto|
   |Estatístico<br>Economista	|Científico/Quantitativo|
   |DBA/Administrador de Banco de Dados<br>Analista de Suporte/Analista Técnico|	Infraestrutura|
   |Outras Engenharias (não inclui dev)|	Outras Engenharias|
@@ -150,70 +150,173 @@ Após a filtragem, realizei uma série de limpezas e transformações para prepa
   para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
 
   
-  #### 3.3.4. Preenchimento de valores ausentes de forma proporcional ou por estatística do grupo
+  #### 3.3.4. Preenchimento de valores ausentes de forma proporcional ou por estatística do grupo remoção de linhas. 
   * Você deve ter percebido que os códigos citados acima apresentam algo a mais que só transformar dados qualitativos em quantitativos ou outras funções como a de agrupamento.
   Foram implementados nos códigos a tarefa de preencherem os dados faltantes proporcionalmente à frequência com que os dados reais aparecem.
   * Vamos analisar coluna por coluna:
+  * `('P1_a_1 ', 'Faixa idade')`:
+    - não apresenta dados faltantes.
+  * `('P1_b ', 'Genero')`:
+    - Não apresenta dados faltantes. Entretanto, apresenta dados que podem não contribuir para a análise, como `Outro` e `Prefiro não informar`. Como esses dados são quase       insignificantes na base (veja a tabela abaixo), resolvi tirar.
+
+  
+  
+   |('P1_b ', 'Genero')|	Porcentagem do total geral) |
+   |-------------------|---------------------------------|
+   |Feminino|	24,43%|
+   |Masculino|	75,10%|
+   |Outro	|0,17%|
+   |Prefiro não informar|	0,30%|
+  
+  * `('P2_f ', 'Cargo Atual')`:
+    - Nos dados faltantes, adicionei "Não foi informado"
+  
+  * `('P2_g ', 'Nivel')`
+    - Haviam muitos dados faltantes. Para isso, distribuí proporcionalmente conforme eles aparecem realmente pelos dados faltantes, já que representam 27% de toda base e seria ruim removê-los. Na base, eles aparecem de forma equilibrada, confira:
+
+  |Nível   |Quantidade|
+  |--------|----------|
+  |Júnior	| 1046|
+  |Pleno	| 1392|
+  |Sênior	| 1419|
+  |(vazio) | 1437|	
+
+  * `('P2_r ', 'Atualmente qual a sua forma de trabalho?')`
+    - Haviam muitos dados faltantes. Para isso, distribuí proporcionalmente conforme eles aparecem realmente pelos dados faltantes, já que representam 10% de toda base e seria ruim removê-los. Na base, eles aparecem de forma que o Modelo 100% remoto se destaca. Confira:
+   
+  |('P2_r ', 'Atualmente qual a sua forma de trabalho?')|	Porcentaegm|
+  |-----------------------------------------------------|--------------------------------|
+  |Modelo 100% presencial	|14,93%|
+  |Modelo 100% remoto	|41,58%|
+  |Modelo híbrido com dias fixos de trabalho presencial|	14,93%|
+  |Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)|	18,36%|
+  |(vazio)	|10,20%|
+   
+  * `('P2_s ', 'Qual a forma de trabalho ideal para você?')`
+    - Haviam muitos dados faltantes. Para isso, distribuí proporcionalmente conforme eles aparecem realmente pelos dados faltantes, já que representam 10% de toda base e seria ruim removê-los. Na base, eles aparecem de forma que o Modelo 100% remoto se destaca mais uma vez. Confira:
+  
+  |('P2_s ', 'Qual a forma de trabalho ideal para você?')|	Porcentagem|
+  |------------------------------------------------------|--------------|
+  |Modelo 100% presencial|	1,81%|
+  |Modelo 100% remoto|	40,13%|
+  |Modelo híbrido com dias fixos de trabalho presencial|	7,35%|
+  |Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)|	40,51%|
+  |(vazio)	|10,20%|
   
   #### 3.3.5. Criação de uma nova feature: `Estou no trabalho ideal para mim?`
+  * Aqui a ideia foi pegar a coluna do trabalho que a pessoa está, juntamente com a coluna do trabalho que seria ideal para ela. Se a resposta for sim, eu criei uma nova coluna       simbolizando a satisfação pessoal da pessoa com seu trabalho. Se ela está no trabalho que é ideal para ela, as possibilidades de ela querer sair são reduzidas. Exemplo:
 
-Binarização do target
+  |Forma de trabalho atual | Forma de trabalho ideal | Estou no trabalho ideal para mim? |
+  |-------------------------------------------------------------------|---------------------------------------------|-----------|
+  |Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)|Modelo 100% remoto| Não = 0|
+  |Modelo 100% remoto |Modelo 100% remoto| Sim = 1|
+  |Modelo 100% remoto|Modelo 100% remoto| Sim = 1|
+  |Modelo 100% remoto|Modelo 100% remoto| Sim = 1|
+  |Modelo híbrido com dias fixos de trabalho presencial|Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)| Não = 0|
+  |Modelo 100% remoto|Modelo 100% remoto| Sim = 1|
+  |Modelo híbrido com dias fixos de trabalho presencial|Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)| Não = 0|
+  |Modelo híbrido flexível|Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)| Não = 0|
+  |Modelo 100% presencial|Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)| Não = 0|
 
-Exemplo de código para transformação:
+  Código para excel usado: 
+  > =SE(O2=Q2;1;0)
 
-text
-# Idade média
-df_filtrada['Média_Idades'] = df_filtrada['P1_a_1'].apply(lambda x: ... )
+  para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
 
-# Agrupamento de cargos
-df_filtrada['Cargo_Categoria'] = df_filtrada['P2_f'].map({...})
+  
+### 3.6. Base Refinada
 
-# Nível ordinal
-df_filtrada['Nível_Ordinal'] = df_filtrada['P2_g'].map({'Júnior': 0, 'Pleno': 1, 'Sênior': 2})
+* Após todas essas alterações, a base ficou assim: [base para modelo preditivo refinada.csv)]([https://github.com/seu_usuario/seu_repositorio/blob/main/dados.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/assets/data/Base_principal_State_of_data_2023/State_of_data_BR_2023_Kaggle%20-%20df_survey_2023.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/assets/data/Analise_exploratoria_perguntas_orientadas_a_dados/Pergunta_orientada_a_dados%20(3)/base%20para%20modelo%20preditivo%20refinada.csv))
 
-# Salário médio
-df_filtrada['Média_Faixa_Salarial'] = df_filtrada['P2_h'].map({...})
+  - Base original: 5294 linhas, 550 colunas
+  - Base filtrada: 5294 linhas, 10 colunas
+  - Base refinada: 5294 linhas, 18 colunas (após feature engineering)
 
-# Satisfação binária
-df_filtrada['Satisfação_empresa'] = df_filtrada['P2_k'].apply(lambda x: 1 if x == 'Satisfeito' else 0)
+* Observações:
 
-# Target binário
-df_filtrada['vai_sair'] = df_filtrada['P2_n'].apply(lambda x: 1 if x == 'Sim, estou em busca' else 0)
+  - Todas as etapas foram documentadas e os códigos utilizados estão nos blocos acima.
+  - As transformações garantem que os dados estejam prontos para a modelagem preditiva.
+  
+---
+## 4. Construção do 1º Modelo Induzido
 
-# Forma de trabalho one-hot e preenchimento de nulos
-df_filtrada['Forma_Trabalho'] = df_filtrada['P2_r'].fillna('Remoto')
+Usei o Google Colab, programando em Python. Código usado:
 
-# Nova coluna: Estou no trabalho ideal
-df_filtrada['Estou_no_trabalho_ideal'] = (df_filtrada['P2_r'] == df_filtrada['P2_s'])
-Visualização da base refinada:
 
-text
-print(df_filtrada.head())
-print(df_filtrada.shape)  # (n_linhas, n_colunas_final)
-Resumo das principais transformações:
+> from google.colab import files
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import matplotlib.pyplot as plt
+import csv
+uploaded = files.upload()
+nome_arquivo = next(iter(uploaded))
+data = pd.read_csv(
+    nome_arquivo,
+    sep=';',
+    engine='python',
+    encoding='latin1',
+    quoting=csv.QUOTE_NONE
+)
+print("Dados carregados com sucesso!\n")
+print(data.head())
+print("\nColunas detectadas:")
+print(data.columns.tolist())
+target = 'Pretenção de sair - TARGET'
+features = [
+    'Média_Idades',
+    "('P1_b ', 'Genero')",
+    'Agrupamento_Cargo_Atual',
+    'Nível_Ordinal',
+    'MÉDIA_FAIXA_SALARIAL',
+    'Satisfação na empresa dados preenchidos',
+    'Forma de trabalho com dados faltantes preenchidos',
+    'Estou no trabalho que quero?'
+]
+data = data.dropna(subset=[target])
+X = data[features].copy()
+y = data[target].copy()
+X['Média_Idades'] = (
+    X['Média_Idades']
+      .astype(str)
+      .str.replace(',', '.')
+      .astype(float)
+)
+X['Nível_Ordinal'] = X['Nível_Ordinal'].astype(float)
+X['Média_Idades'] = X['Média_Idades'].fillna(X['Média_Idades'].mean())
+X['Nível_Ordinal'] = X['Nível_Ordinal'].fillna(X['Nível_Ordinal'].median())
+X = pd.get_dummies(
+    X,
+    columns=[
+        "('P1_b ', 'Genero')",
+        'Agrupamento_Cargo_Atual',
+        'Forma de trabalho com dados faltantes preenchidos'
+    ],
+    drop_first=True
+    )
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
+    random_state=42
+)
+model = DecisionTreeClassifier(random_state=42)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print(f'\nAcurácia:  {accuracy_score(y_test, y_pred):.2f}')
+print(f'Precisão:  {precision_score(y_test, y_pred):.2f}')
+print(f'Recall:    {recall_score(y_test, y_pred):.2f}')
+print(f'F1-score:  {f1_score(y_test, y_pred):.2f}')
+plt.figure(figsize=(20,10))
+plot_tree(
+    model,
+    feature_names=X.columns,
+    class_names=['Ficar','Sair'],
+    filled=True,
+    rounded=True,
+    fontsize=10
+)
+plt.title("Árvore de Decisão – Intenção de Saída")
+plt.show()
 
-Coluna original	Transformação aplicada	Nova coluna/resultante
-P1_a_1	Faixa -> valor médio	Média_Idades
-P1_b	Remoção de valores "Outro" e "Prefiro não informar"	P1_b
-P2_f	Agrupamento em categorias macro	Cargo_Categoria
-P2_g	Ordinal + preenchimento proporcional de nulos	Nível_Ordinal
-P2_h	Faixa -> valor médio + preenchimento de nulos	Média_Faixa_Salarial
-P2_k	Binarização + preenchimento de nulos	Satisfação_empresa
-P2_n	Binarização (target)	vai_sair
-P2_r	One-hot + preenchimento de nulos	Forma_Trabalho
-P2_s	Comparação com P2_r para nova feature	Estou_no_trabalho_ideal
-Resumo visual do processo:
-
-Base original: 5294 linhas, 550 colunas
-
-Base filtrada: 5294 linhas, 10 colunas
-
-Base refinada: 5294 linhas, ~10-13 colunas (após feature engineering)
-
-Observações:
-
-Todas as etapas foram documentadas e os códigos utilizados estão nos blocos acima.
-
-Prints dos DataFrames em cada etapa podem ser inseridos para facilitar a visualização.
-
-As transformações garantem que os dados estejam prontos para a modelagem preditiva.
