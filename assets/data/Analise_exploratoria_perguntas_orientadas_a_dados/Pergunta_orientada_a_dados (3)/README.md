@@ -320,3 +320,106 @@ plot_tree(
 plt.title("Árvore de Decisão – Intenção de Saída")
 plt.show()
 
+### Explicação do Código de Modelagem Preditiva
+
+Este código implementa um fluxo completo de modelagem preditiva usando uma Árvore de Decisão para prever a intenção de saída de colaboradores. Veja o passo a passo:
+
+* 1. Importação das Bibliotecas
+`python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score`
+
+  - `pandas`: manipulação e análise de dados.
+
+  - `sklearn.model_selection.train_test_split`: separa os dados em conjuntos de treino e teste.
+
+  - `sklearn.tree.DecisionTreeClassifier`: algoritmo de árvore de decisão para classificação.
+
+  - `sklearn.metrics`: métricas para avaliação do modelo.
+
+* 2. Carregamento da Base de Dados
+`python
+data = pd.read_csv('base para modelo preditivo refinada.csv')
+print(data.head())`
+  - Carrega o arquivo CSV com os dados já refinados e prontos para modelagem.
+
+  - Exibe as primeiras linhas para conferência.
+
+* 3. Definição das Variáveis
+`target = 'Pretenção de sair - TARGET'
+features = [
+    'Média_Idades',
+    'Genero',
+    'Agrupamento_Cargo_Atual',
+    'Nível de forma Ordinal',
+    'MÉDIA_FAIXA_SALARIAL',
+    'Satisfação na empresa dados preenchidos',
+    'Forma de trabalho com dados faltantes preenchidos',
+    'Estou no trabalho ideal para mim?'
+]`
+
+  - X = data[features]
+  - y = data[target]
+  - *target*: coluna que indica se o colaborador pretende sair (variável a ser prevista).
+
+  - features: lista das colunas preditoras utilizadas pelo modelo.
+
+  - X: DataFrame com as variáveis preditoras.
+
+  - y: Série com a variável alvo.
+
+* 4. Divisão dos Dados em Treinamento e Teste
+
+`X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)`
+  - Separa os dados em 80% para treino e 20% para teste, garantindo aleatoriedade reprodutível (random_state=42).
+
+* 5. Treinamento do Modelo
+`model = DecisionTreeClassifier(random_state=42)
+model.fit(X_train, y_train)`
+  - Inicializa o modelo de Árvore de Decisão.
+
+  - Treina o modelo usando os dados de treino.
+
+* 6. Realização de Previsões
+`y_pred = model.predict(X_test)`
+  - Utiliza o modelo treinado para prever a intenção de saída nos dados de teste.
+
+* 7. Avaliação do Modelo
+`accuracy = accuracy_score(y_test, y_pred)
+print(f'Acurácia do modelo: {accuracy:.2f}')
+precision = precision_score(y_test, y_pred)
+print(f'Precisão do modelo: {precision:.2f}')
+recall = recall_score(y_test, y_pred)
+print(f'Recall do modelo: {recall:.2f}')
+f1 = f1_score(y_test, y_pred)
+print(f'F1-score do modelo: {f1:.2f}')`
+
+  - *Acurácia*: proporção de previsões corretas.
+
+  - *Precisão*: entre as previsões positivas, quantas estavam corretas.
+
+  - *Recall*: entre os casos positivos reais, quantos foram identificados corretamente.
+
+  - *F1-score*: média harmônica entre precisão e recall.
+
+---
+
+## 5. Resultados
+
+### Avaliação do modelo:
+
+  - Acurácia = 0.68
+  - Precisão = 0.80
+  - Recall = 0.78
+  - F1-score = 0.79
+  - cm = [[98,159],[178,619]]
+
+### Árvore de decisão:
+
+![ArvoreDeDecisao](file:///C:/Users/Usu%C3%A1rio/Downloads/arvore%20of%20the%20decisions.jpg)
+
+### Matriz de confusão:
+
+![MatrizDeConfusao](file:///C:/Users/Usu%C3%A1rio/Downloads/matriz%20confusao.png)
