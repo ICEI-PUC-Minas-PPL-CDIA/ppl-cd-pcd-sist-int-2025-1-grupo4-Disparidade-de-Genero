@@ -418,8 +418,9 @@ print(f'F1-score do modelo: {f1:.2f}')`
 
 ### Árvore de decisão:
 
-![ArvoreDeDecisao](file:///C:/Users/Usu%C3%A1rio/Downloads/arvore%20of%20the%20decisions.jpg)
+![arvore of the decisions](https://github.com/user-attachments/assets/5f882d5c-2e05-4c0d-9495-a391e5899638)
+
 
 ### Matriz de confusão:
 
-![MatrizDeConfusao](file:///C:/Users/Usu%C3%A1rio/Downloads/matriz%20confusao.png)
+![matriz confusao](https://github.com/user-attachments/assets/a0b3fdd8-f068-4555-9f72-40cff6184e96)
