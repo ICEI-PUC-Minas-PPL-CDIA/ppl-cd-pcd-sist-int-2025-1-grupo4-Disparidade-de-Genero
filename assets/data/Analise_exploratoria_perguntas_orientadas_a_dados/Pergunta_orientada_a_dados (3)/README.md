@@ -42,47 +42,49 @@ A base original foi fornecida em formato .csv contendo 5294 linhas e 550 colunas
   |  'P2_g'   |     Nível | Qualitativo |Júnior<br>Pleno<br>Sênior<br>(vazio) |
   |  'P2_h'   |     Faixa salarial | Qualitativo intervalar | Acima de R$ 40.001/mês<br>de R$ 1.001/mês a R$ 2.000/mês<br>de R$ 1001/mês a R$ 2.000/mês<br>de R$ 12.001/mês a R$ 16.000/mês<br>de R$ 16.001/mês a R$ 20.000/mês<br>de R$ 2.001/mês a R$ 3.000/mês<br>de R$ 20.001/mês a R$ 25.000/mês<br>de R$ 25.001/mês a R$ 30.000/mês<br>de R$ 3.001/mês a R$ 4.000/mês<br>de R$ 30.001/mês a R$ 40.000/mês<br>de R$ 4.001/mês a R$ 6.000/mês<br>de R$ 6.001/mês a R$ 8.000/mês<br>de R$ 8.001/mês a R$ 12.000/mês<br>Menos de R$ 1.000/mês<br>(vazio) |
   |  'P2_k'   |     Satisfação empresa | Bool | 0<br>1<br>(vazio) |
-  |  'P2_n'   |      Pretensão mudar emprego | Qualitativo |
-  |  'P2_r'    |     Forma de trabalho | Qualitativo |
-  |  'P2_s'     |     Forma de trabalho ideal | Qualitativo |
-]
-df_filtrada = df_original[features + ['P0']]
-print(df_filtrada.head())
-print(df_filtrada.shape)  # (5294, 10)
-Explicação dos campos selecionados:
+  |  'P2_n'   |      Pretensão mudar emprego | Qualitativo | Estou em busca de oportunidades dentro ou fora do Brasil<br>Estou em busca de oportunidades, mas apenas fora do Brasil<br>Não estou buscando e não pretendo mudar de emprego nos próximos 6 meses<br>Não estou buscando, mas me considero aberto a outras oportunidades<br>(vazio) |
+  |  'P2_r'    |     Forma de trabalho | Qualitativo |Modelo 100% presencial<br>Modelo 100% remoto<br>Modelo híbrido com dias fixos de trabalho presencial<br>Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)<br>(vazio) |
+  |  'P2_s'     |     Forma de trabalho ideal | Qualitativo | Modelo 100% presencial<br>Modelo 100% remoto<br>Modelo híbrido com dias fixos de trabalho presencial<br>Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)<br>(vazio) |
 
-P1_a_1: Faixa de idade do colaborador
 
-P1_b: Gênero
+### 3.3. Base Refinada e Transformações
+Após a filtragem, realizei uma série de limpezas e transformações para preparar os dados para a modelagem. As principais etapas foram:
 
-P2_f: Cargo atual
-
-P2_g: Nível profissional
-
-P2_h: Faixa salarial
-
-P2_k: Satisfação com a empresa
-
-P2_n: Pretensão de mudar de emprego (target)
-
-P2_r: Forma de trabalho atual
-
-P2_s: Forma de trabalho ideal
-
-P0: Identificador único
-
-2.3. Base Refinada e Transformações
-Após a filtragem, realizamos uma série de limpezas e transformações para preparar os dados para a modelagem. As principais etapas foram:
-
-Conversão de faixas para valores médios (idade, salário)
-
-Agrupamento de cargos em categorias macro
-
-Conversão de variáveis categóricas em numéricas (ordinal, binária ou one-hot)
-
-Preenchimento de valores ausentes de forma proporcional ou por estatística do grupo
-
-Criação de novas features (ex: estou_no_trabalho_ideal)
+  #### 3.3.1. Conversão de faixas para valores médios (idade, salário)
+  * 3.3.1.1 Média intervalos das faixas salariais:
+  O programa precisava ler atributos float para ter uma noção boa do salário. A ideia foi tirar a média dos extremos dos intervalos.
+  Código usado no excel: `=SE(ÉCÉL.VAZIA(H2);10000;
+  SE(H2="Acima de R$ 40.001/mês";45000;
+  SE(H2="de R$ 1.001/mês a R$ 2.000/mês";1500;
+  SE(H2="de R$ 1001/mês a R$ 2.000/mês";1500;
+  SE(H2="de R$ 12.001/mês a R$ 16.000/mês";14000;
+  SE(H2="de R$ 16.001/mês a R$ 20.000/mês";18000;
+  SE(H2="de R$ 2.001/mês a R$ 3.000/mês";2500;
+  SE(H2="de R$ 20.001/mês a R$ 25.000/mês";22500;
+  SE(H2="de R$ 25.001/mês a R$ 30.000/mês";27500;
+  SE(H2="de R$ 3.001/mês a R$ 4.000/mês";3500;
+  SE(H2="de R$ 30.001/mês a R$ 40.000/mês";35000;
+  SE(H2="de R$ 4.001/mês a R$ 6.000/mês";5000;
+  SE(H2="de R$ 6.001/mês a R$ 8.000/mês";7000;
+  SE(H2="de R$ 8.001/mês a R$ 12.000/mês";10000;
+  SE(H2="Menos de R$ 1.000/mês";500;"")))))))))))))))`
+  para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
+  * 3.3.1.2 Média intervalos das idades. O programa precisava ter um atributo int ou float. A ideia foi tirar a média dos extremos dos intervalos.
+  Código usado no excel: `=SE(A2="17-21"; 19;
+  SE(A2="22-24"; 23;
+  SE(A2="25-29"; 27;
+  SE(A2="30-34"; 32;
+  SE(A2="35-39"; 37;
+  SE(A2="40-44"; 42;
+  SE(A2="45-49"; 47;
+  SE(A2="50-54"; 52;
+  SE(A2="55+"; 57,5)))))))))`
+  para a linha 2. Nas linhas subsequentes o código é o mesmo, só alterando a linha.
+    
+  #### 3.3.2. Agrupamento de cargos em categorias macro
+  #### 3.3.3. Conversão de variáveis categóricas em numéricas (ordinal ou binária)
+  #### 3.3.4. Preenchimento de valores ausentes de forma proporcional ou por estatística do grupo
+  #### 3.3.5. Criação de uma nova feature: `Estou no trabalho ideal para mim?`
 
 Binarização do target
 
