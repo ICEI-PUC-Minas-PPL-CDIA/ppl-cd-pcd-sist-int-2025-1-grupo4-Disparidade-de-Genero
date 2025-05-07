@@ -187,7 +187,7 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 
 # - Atributos relevantes da base de dados principal para 1ª pergunta orientada
 
-Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+**Pergunta orientada a dados:**  *Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?*
 
 | Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
 |--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
@@ -205,7 +205,7 @@ Pergunta orientada a dados: Como as taxas de conclusão do ensino superior varia
 
 # - Atributos relevantes da base de dados principal para 2ª pergunta orientada
 
-Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
+**Pergunta orientada a dados:**  *Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?*
 
 Pergunta destrinchada em duas: 
 - Mulheres e homens têm taxas de contratação iguais no setor de tecnologia, considerando as mesmas qualificações, área de formação e nível de experiência?
