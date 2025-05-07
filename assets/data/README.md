@@ -8,10 +8,10 @@ Os principais documentos a serem produzidos são:
 `
 	* base principal original.
 
-* `[Dataset - Factors Influencing Technology Adoption in Consumer Households.csv]`
+* ``
 	* 1ª base fonte enriquecimento dos dados principais
 
-* `[Diversity in tech companies.csv]`
+* ``
 	* 2ª base fonte enriquecimento dos dados principais
    
 * `base_final.processada`
