@@ -1,6 +1,7 @@
  # Modelo explicativo da Análise Exploratória de Dados (EDA)
 🎯 Objetivo
-Investigar a hipótese de que a disparidade de gênero na contratação e remuneração varia conforme a região onde a pessoa mora, com base na base state_of_data_2023.csv.
+Investigar como a disparidade de gênero interfere na situação atual de trabalho conforme a região onde a pessoa mora 
+a hipótese de que a disparidade de gênero na contratação e remuneração varia conforme a região onde a pessoa mora, com base na base state_of_data_2023.csv.
 
 ✅ Passo 1 – Configuração do ambiente no Google Colab
 python
