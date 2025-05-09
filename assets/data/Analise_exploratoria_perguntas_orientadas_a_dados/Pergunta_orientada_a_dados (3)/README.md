@@ -424,3 +424,163 @@ print(f'F1-score do modelo: {f1:.2f}')`
 ### Matriz de confusão:
 
 ![matriz confusao](https://github.com/user-attachments/assets/a0b3fdd8-f068-4555-9f72-40cff6184e96)
+
+
+
+
+# 🏁 Sprint 4 ATUALIZADA – Relatório Completo
+
+## 1. Introdução
+**Objetivo do projeto:**
+Antecipar a intenção de saída (turnover) de colaboradores no setor de tecnologia, fornecendo ao RH indicadores para programas de retenção.
+
+**Por que este modelo?**
+
+- Identificar riscos de desligamento antecipadamente
+- Minimizar custos de substituição e treinamento
+- Melhorar estratégias de engajamento e satisfação
+- Em comparação com o a versão anterior, este modelo visa aumentar a acurácia, a precisão, o recall, o f1-score, AUROC, e aumentar os acertos da Matriz de Confusão, proporcionalmente ao conjunto analisado e testado.
+
+## 2. Finalidade e explicações
+> “Otimizar modelo preditivo anterior”
+
+- **O que mudou em comparação à versão anterior do modelo?**
+- Adicionei mais colunas: `('P1_a ', 'Idade')`(achei as idades numéricas sem estarem em faixas), `('P2_d ', 'Gestor?')`(vou remover todos os gestores porque o foco são os funcionários que pretendem sair), `('P0', 'id')`(para me ajudar nas análises no excel (vou remover posteriormente na hora do modelo))
+- Removi colunas: `('P1_a_1 ', 'Faixa idade')`(achei as idades numéricas sem estarem em faixas), `Média_Idades`(pelo mesmo motivo), 
+- Considerei remover todas as linhas as quais suas respectivas colunas continham algum atributo faltante ao invés de prever o dado vazio. (fiz isso na própria tabela do excel)
+- Anteriormente, estive usando o Google Colab. Agora, adotei o Jupyter Notebook
+
+- **O que foi mantido?**
+- Optei por manter o algoritmo de árvore de decisão, uma vez que quero prever um conceito, mesmo que seja booleano (no caso, sair ou ficar, 1/0)
+- O TARGET - `Pretenção de sair - TARGET`
+- As outras colunas não citadas, como podemos ver na tabela abaixo: 
+
+
+|      **Coluna**       | **Tipo de dado** | **Atributos correspondentes** | **Alteração** |
+|-----------------------|------------------|-------------------------------|---------------|
+|     `Faixa idade` | Qualitativo intervalar |17-21 <br>22-24<br>25-29<br>30-34<br>35-39<br>40-44<br>45-49<br>50-54<br>55+ | Removido |
+|     `Gênero` |  Qualitativo | Feminino<br>Masculino<br>Outro<br>Prefiro não informar | Mantido |
+|  `Cargo Atual` | Qualitativo | Analista de BI/BI Analyst<br>Analista de Dados/Data Analyst<br>Analista de Inteligência de Mercado/Market Intelligence<br>Analista de Negócios/Business Analyst<br>Analista de Suporte/Analista Técnico<br>Analytics Engineer<br>Cientista de Dados/Data Scientist<br>Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)<br>DBA/Administrador de Banco de Dados<br>Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas<br>Economista<br>Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect<br>Engenheiro de Machine Learning/ML Engineer/AI Engineer<br>Estatístico<br>Outra Opção<br>Outras Engenharias (não inclui dev)<br>Professor/Pesquisador<br>(vazio) | Mantido |
+|   `Nível` | Qualitativo |Júnior<br>Pleno<br>Sênior<br>(vazio) | Mantido |
+|   `Faixa salarial` | Qualitativo intervalar | Acima de R$ 40.001/mês<br>de R$ 1.001/mês a R$ 2.000/mês<br>de R$ 1001/mês a R$ 2.000/mês<br>de R$ 12.001/mês a R$ 16.000/mês<br>de R$ 16.001/mês a R$ 20.000/mês<br>de R$ 2.001/mês a R$ 3.000/mês<br>de R$ 20.001/mês a R$ 25.000/mês<br>de R$ 25.001/mês a R$ 30.000/mês<br>de R$ 3.001/mês a R$ 4.000/mês<br>de R$ 30.001/mês a R$ 40.000/mês<br>de R$ 4.001/mês a R$ 6.000/mês<br>de R$ 6.001/mês a R$ 8.000/mês<br>de R$ 8.001/mês a R$ 12.000/mês<br>Menos de R$ 1.000/mês<br>(vazio) | Mantido |
+|   `Satisfação empresa` | Bool | 0<br>1<br>(vazio) | Mantido |
+|   `Pretensão mudar emprego` | Qualitativo | Estou em busca de oportunidades dentro ou fora do Brasil<br>Estou em busca de oportunidades, mas apenas fora do Brasil<br>Não estou buscando e não pretendo mudar de emprego nos próximos 6 meses<br>Não estou buscando, mas me considero aberto a outras oportunidades<br>(vazio) | Mantido |
+|     `Forma de trabalho` | Qualitativo | Modelo 100% presencial<br>Modelo 100% remoto<br>Modelo híbrido com dias fixos de trabalho presencial<br>Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)<br>(vazio) | Mantido |
+|     `Forma de trabalho ideal` | Qualitativo | Modelo 100% presencial<br>Modelo 100% remoto<br>Modelo híbrido com dias fixos de trabalho presencial<br>Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)<br>(vazio) | Mantido |
+| `ID` | Qualitativo | códigos específicos como 001b2d1qtli8t9z7oqgdhj001b2d4i0g | Acrescido |
+|`Gestor?` | Bool | 0 ou 1 | Acrescido |
+|`Idade` | Quantitativo discreto | Números inteiros entre 18 e 73 incluindo os extremos | Acrescido |
+
+
+
+
+
+
+3. Pipeline de Dados
+Leitura do CSV refinado (sep=';', encoding='latin1').
+
+
+
+
+
+
+
+
+Renomeação das colunas para nomes simples (ex.: ('P1_a ', 'Idade') → Idade).
+
+One-Hot Encoding em AgrupamentoCargos.
+
+Split estratificado 80 % treino / 20 % teste.
+
+Baseline com DummyClassifier(strategy='most_frequent').
+
+GridSearchCV em DecisionTreeClassifier (criterion, max_depth, min_samples_leaf, class_weight) usando F1 como métrica.
+
+Avaliação no teste: accuracy, precision, recall, F1 e AUROC.
+
+Matriz de confusão rotulada.
+
+Exportação da árvore otimizada como decision_tree.png.
+
+4. Resultados
+4.1. Modelo Anterior (árvore de decisão padrão)
+Accuracy: 0.68
+
+Precision: 0.80
+
+Recall: 0.78
+
+F1-score: 0.79
+
+Matriz de Confusão:
+
+lua
+Copiar
+Editar
+[[ 98 (TN), 159 (FP)]
+ [178 (FN), 619 (TP)]]
+4.2. Modelo Atual (árvore otimizada via GridSearchCV)
+Melhores parâmetros:
+criterion='gini', max_depth=None, min_samples_leaf=1, class_weight=None
+
+Accuracy: 0.7552 (+11,7 pp)
+
+Precision: 0.7599 (–4,0 pp)
+
+Recall: 0.9880 (+20,8 pp)
+
+F1-score: 0.8591 (+6,9 pp)
+
+AUROC: 0.6878
+
+Matriz de Confusão:
+
+lua
+Copiar
+Editar
+[[   7 (TN), 182 (FP)]
+ [   7 (FN), 576 (TP)]]
+4.2.1. Melhoria
+Recall saltou de 78 % para 98,8 %: o modelo quase não perde nenhum colaborador que vai sair.
+
+F1 subiu de 0,79 para 0,859: melhor equilíbrio geral.
+
+Accuracy cresceu de 0,68 para 0,755: bem acima do baseline de ~0,75.
+
+4.2.2. Piora
+Precision caiu de 0,80 para 0,76, aumentando falsos positivos (de 159 para 182).
+
+Justificativa: ao priorizar recall, o modelo ficou mais “conservador” em prever saída, aceitando mais alarmes falsos para não perder verdadeiros turnover — estratégia adequada quando perder um turnover real é mais custoso que lidar com intervenções desnecessárias.
+
+5. Discussão e Conclusão
+Trade-off recall × precision:
+O novo modelo opta por maximizar recall, garantindo que quase ninguém que tenha intenção de sair seja ignorado.
+
+Impacto prático:
+
+Vantagem: RH consegue agir sobre praticamente 100 % dos potenciais turnover.
+
+Custo: maior número de falsos positivos (intervenções que não eram necessárias).
+
+Recomendação:
+Este modelo é ideal quando o custo de perder um turnover (e permitir a saída sem reação) é maior que o custo de abordagens preventivas em falsos alarmes.
+
+6. Reprodutibilidade
+Código: notebook_sprint4_atualizado.ipynb (disponível no repositório)
+
+Dados: BASE SPRINT 4 VERSAO 2.1.csv na pasta /dados
+
+Dependências:
+
+text
+Copiar
+Editar
+pandas
+scikit-learn
+matplotlib
+Execução:
+
+pip install -r requirements.txt
+
+Abrir notebook e executar sequencialmente as células.
+
