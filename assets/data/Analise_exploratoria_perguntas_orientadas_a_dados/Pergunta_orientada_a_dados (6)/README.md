@@ -9,11 +9,9 @@ Atributos selecionados:
 | Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                        | Dicionário      |
 |--------------------------------------------|--------------|----------------|----------------------------------------------------------------------------------|-----------------|
 | `Idade`                                    | Quantitativo | Nominal        | Identificador único do participante.                                             |
-| `Gênero`                                   | Qualitativo  | Nominal        | Gênero do participante.                                                          | Masculino = 0
-                                                                                                                                                                  Feminino = 1
-| `Cor/raca/etnia`                           | Qualitativo  | Nominal        | Cor/raca/etnia do participante.                                                  | Amarela = 2 Preta = 1 Branca = 0 Prefiro não informar = 5 Parda = 3 Outra = 5
- Indígena = 4
-| `PCD`                                      | Qualitativo  | Nominal        | Se o particpante é PCD ou não.                                                   |
+| `Gênero`                                   | Qualitativo  | Nominal        | Gênero do participante.                                                          | Masculino = 0 Feminino = 1
+| `Cor/raca/etnia`                           | Qualitativo  | Nominal        | Cor/raca/etnia do participante.                                                  | Amarela = 2 Preta = 1 Branca = 0 Prefiro não informar = 5 Parda = 3 Outra = 5 Indígena = 4
+| `PCD`                                      | Qualitativo  | Nominal        | Se o particpante é PCD ou não.                                                   |Não = 0 Sim = 1|
 | `Oportunidades de progressão de carreira`  | Qualitativo  | Nominal        | Se o participante possui as oportunidades de progressão de carreira prejudicadas.|
 | `uf onde mora`                             | Qualitativo  | Nominal        | UF/Estado onde a pessoa mora no momento da pesquisa.                             |
 | `Regiao onde mora`                         | Qualitativo  | Nominal        | Região onde a pessoa mora no momento da pesquisa.                                |
