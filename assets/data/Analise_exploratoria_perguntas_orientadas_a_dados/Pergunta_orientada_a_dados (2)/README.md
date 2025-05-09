@@ -227,10 +227,8 @@ print(tabela_markdown_q2)
 
 ---
 # Árvore de decisão e Matriz de Confusão
-- Árvore de decisão:
+
 ![image](https://github.com/user-attachments/assets/2cd906e0-e074-4bb1-b25f-a93b005fe3a8)
 
-- Matriz de Confusão:
 ![image](https://github.com/user-attachments/assets/d46c268e-5aed-47c9-abf4-62829f827344)
-
 
