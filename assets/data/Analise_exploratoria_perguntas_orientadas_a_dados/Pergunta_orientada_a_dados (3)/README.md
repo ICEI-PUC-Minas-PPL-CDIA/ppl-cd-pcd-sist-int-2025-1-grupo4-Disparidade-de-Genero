@@ -445,10 +445,11 @@ Antecipar a intenção de saída (turnover) de colaboradores no setor de tecnolo
 > “Quero otimizar o modelo preditivo anterior”
 
 - **O que mudou em comparação à versão anterior do modelo?**
-- Adicionei mais colunas: `('P1_a ', 'Idade')`(achei as idades numéricas sem estarem em faixas), `('P2_d ', 'Gestor?')`(vou remover todos os gestores porque o foco são os funcionários que pretendem sair), `('P0', 'id')`(para me ajudar nas análises no excel (vou remover posteriormente na hora do modelo))
-- Removi colunas: `('P1_a_1 ', 'Faixa idade')`(achei as idades numéricas sem estarem em faixas), `Média_Idades`(pelo mesmo motivo), 
-- Considerei remover todas as linhas as quais suas respectivas colunas continham algum atributo faltante ao invés de prever o dado vazio. (fiz isso na própria tabela do excel)
-- Anteriormente, estive usando o Google Colab. Agora, adotei o Jupyter Notebook
+- Adicionei mais colunas: `('P1_a ', 'Idade')`(achei as idades numéricas sem estarem em faixas), `('P2_d ', 'Gestor?')`(vou remover todos os gestores porque o foco são os funcionários que pretendem sair), `('P0', 'id')`(para me ajudar nas análises no excel (vou remover posteriormente na hora do modelo)).
+- Removi colunas: `('P1_a_1 ', 'Faixa idade')`(achei as idades numéricas sem estarem em faixas), `Média_Idades`(pelo mesmo motivo).
+- Considerei remover todas as linhas as quais suas respectivas colunas continham algum atributo faltante ao invés de prever o dado vazio. (fiz isso na própria tabela do excel).
+- Anteriormente, estive usando o Google Colab. Agora, adotei o Jupyter Notebook.
+- Eu tinha separado 75% do modelo para aprendizado e 25% para teste. Mas agora separei 80% para aprendizado e 20% para teste.
 
 - **O que foi mantido?**
 - Optei por manter o algoritmo de árvore de decisão, uma vez que quero prever um conceito, mesmo que seja booleano (no caso, sair ou ficar, 1/0)
@@ -510,100 +511,205 @@ Esta é a base refinada 2.1
 ## 3. Acesso às bases de dados
 
 **Base refinada 2.0**
-- [BASE SPRINT 4 VERSAO 2.0.csv)]([https://github.com/seu_usuario/seu_repositorio/blob/main/dados.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/assets/data/Base_principal_State_of_data_2023/State_of_data_BR_2023_Kaggle%20-%20df_survey_2023.csv)
+- [BASE SPRINT 4 VERSAO 2.0.csv)]([https://github.com/seu_usuario/seu_repositorio/blob/main/dados.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/commit/ed36a3a91a3095fc8c5fae1bcc7e1fb274cc9beb#diff-10b6f2cedd9707c28d337d832fd8dbc297debcce65626a4b2f86fd78f9b67988)
 
 **Base refinada 2.1**
-- [BASE SPRINT 4 VERSAO 2.1.csv)]([https://github.com/seu_usuario/seu_repositorio/blob/main/dados.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/assets/data/Base_principal_State_of_data_2023/State_of_data_BR_2023_Kaggle%20-%20df_survey_2023.csv)
+- [BASE SPRINT 4 VERSAO 2.1.csv)]([https://github.com/seu_usuario/seu_repositorio/blob/main/dados.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/commit/c49d6555503f50f1eb98dc6c77e0e72bea512f7e)
+
+| Base de dados | Número de linhas | Número de colunas |
+|-----------------|------------------|-------------------|
+| State of Data Brazil | 5294 | 399 |
+| Refinada 1.0 | 5294 | 10 |
+| Refinada 1.1 | 5294 | 18 |
+| Refinada 2.0 | 5294 | 18 |
+| Refinada 2.1 | 3857 | 9 |
 
 
+---
 
+## 4. Resultados
 
+## 4.1. Modelo Anterior (árvore de decisão padrão)
 
-
-
-
-
-
-
-4. Resultados
-4.1. Modelo Anterior (árvore de decisão padrão)
-Accuracy: 0.68
-
-Precision: 0.80
-
-Recall: 0.78
-
-F1-score: 0.79
-
-Matriz de Confusão:
-
-lua
-Copiar
-Editar
-[[ 98 (TN), 159 (FP)]
- [178 (FN), 619 (TP)]]
-4.2. Modelo Atual (árvore otimizada via GridSearchCV)
-Melhores parâmetros:
-criterion='gini', max_depth=None, min_samples_leaf=1, class_weight=None
-
-Accuracy: 0.7552 (+11,7 pp)
-
-Precision: 0.7599 (–4,0 pp)
-
-Recall: 0.9880 (+20,8 pp)
-
-F1-score: 0.8591 (+6,9 pp)
-
-AUROC: 0.6878
+- Accuracy: 0.68
+- Precision: 0.80
+- Recall: 0.78
+- F1-score: 0.79
 
 Matriz de Confusão:
 
-lua
-Copiar
-Editar
-[[   7 (TN), 182 (FP)]
- [   7 (FN), 576 (TP)]]
-4.2.1. Melhoria
-Recall saltou de 78 % para 98,8 %: o modelo quase não perde nenhum colaborador que vai sair.
+| | Modelo disse que ficou | Modelo disse que saiu | 
+|-|------------------------|-----------------------|
+| Ficou | 98 | 159 |
+| Saiu | 178 | 619 |
 
-F1 subiu de 0,79 para 0,859: melhor equilíbrio geral.
+ 
+## 4.2. Modelo Atual (árvore otimizada via GridSearchCV)
 
-Accuracy cresceu de 0,68 para 0,755: bem acima do baseline de ~0,75.
+- Melhores parâmetros:
+> criterion='gini', max_depth=None, min_samples_leaf=1, class_weight=None
 
-4.2.2. Piora
-Precision caiu de 0,80 para 0,76, aumentando falsos positivos (de 159 para 182).
+- Accuracy: 0.7552 (+11,7 pp)
+- Precision: 0.7599 (–4,0 pp)
+- Recall: 0.9880 (+20,8 pp)
+- F1-score: 0.8591 (+6,9 pp)
+- AUROC: 0.6878
 
-Justificativa: ao priorizar recall, o modelo ficou mais “conservador” em prever saída, aceitando mais alarmes falsos para não perder verdadeiros turnover — estratégia adequada quando perder um turnover real é mais custoso que lidar com intervenções desnecessárias.
+Matriz de Confusão:
 
-5. Discussão e Conclusão
+| | Modelo disse que ficou | Modelo disse que saiu | 
+|-|------------------------|-----------------------|
+| Ficou | 7 | 182 |
+| Saiu | 7 | 576 |
+
+
+
+### 4.2.1. Melhorias
+
+- Recall saltou de 78 % para 98,8 %: o modelo quase não perde nenhum colaborador que vai sair.
+- F1 subiu de 0,79 para 0,859: melhor equilíbrio geral.
+- Accuracy cresceu de 0,68 para 0,755: bem acima do baseline de ~0,75.
+
+### 4.2.2. Pioras
+- Precision caiu de 0,80 para 0,76, aumentando falsos positivos (de 159 em 1024 (15%) para 182 em 772 (23%)).
+
+- Justificativa: ao priorizar recall, o modelo ficou mais “conservador” em prever saída, aceitando mais alarmes falsos para não perder verdadeiros turnover — estratégia adequada quando perder um turnover real é mais custoso que lidar com intervenções desnecessárias.
+
+---
+
+## 5. Discussão e Conclusão
 Trade-off recall × precision:
 O novo modelo opta por maximizar recall, garantindo que quase ninguém que tenha intenção de sair seja ignorado.
 
-Impacto prático:
+### Impacto prático:
 
-Vantagem: RH consegue agir sobre praticamente 100 % dos potenciais turnover.
+- Vantagem: RH consegue agir sobre praticamente 100 % dos potenciais turnover.
+- Custo: maior número de falsos positivos (intervenções que não eram necessárias).
 
-Custo: maior número de falsos positivos (intervenções que não eram necessárias).
-
-Recomendação:
+### Recomendação:
 Este modelo é ideal quando o custo de perder um turnover (e permitir a saída sem reação) é maior que o custo de abordagens preventivas em falsos alarmes.
 
-6. Reprodutibilidade
-Código: notebook_sprint4_atualizado.ipynb (disponível no repositório)
+---
 
-Dados: BASE SPRINT 4 VERSAO 2.1.csv na pasta /dados
+## 6. Reprodutibilidade
+* Código em python 3 feito no jupyter notebook utilizado para o modelo 2.0 da SPRINT 4:
 
-Dependências:
 
-text
-Copiar
-Editar
-pandas
-scikit-learn
-matplotlib
-Execução:
+```
+# 0. Instalação (executar apenas se necessário)
+!pip install --upgrade pandas scikit-learn matplotlib
 
-pip install -r requirements.txt
+# 1. Importações
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.dummy import DummyClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn import metrics
 
-Abrir notebook e executar sequencialmente as células.
+# 2. Carregar CSV (mesmo diretório do notebook)
+filename = 'BASE SPRINT 4 VERSAO 2.1.csv'
+df = pd.read_csv(filename, sep=';', encoding='latin1')
+
+# 3. Renomear colunas para simplificar
+df.rename(columns={
+    "('P1_a ', 'Idade')": "Idade",
+    "EXPERIÊNCIA PREJUDICADA SIM OU NAO": "ExperienciaPrejudicada",
+    "AGRUPAMENTO CARGOS": "AgrupamentoCargos",
+    "MÉDIA FAIXA SALARIAL": "MediaFaixaSalarial",
+    "NÍVEL COM NÚMEROS ORDINAIS": "NivelOrdinal",
+    "('P2_k ', 'Você está satisfeito na sua empresa atual?')": "Satisfeito",
+    "PRETENDE SAIR SIM OU NAO - TARGET": "PretendeSair",
+    "ESTOU NA FORMA DE TRABALHO IDEAL?": "TrabalhoIdeal"
+}, inplace=True)
+
+# 4. Definir features e target
+feature_cols = [
+    'Idade', 'ExperienciaPrejudicada', 'AgrupamentoCargos',
+    'MediaFaixaSalarial', 'NivelOrdinal', 'Satisfeito', 'TrabalhoIdeal'
+]
+X = df[feature_cols]
+y = df['PretendeSair']
+
+# 5. Pré-processamento: One-Hot Encoding em AgrupamentoCargos
+preproc = ColumnTransformer([
+    ('onehot', OneHotEncoder(handle_unknown='ignore'), ['AgrupamentoCargos'])
+], remainder='passthrough')
+X_proc = preproc.fit_transform(X)
+
+# 6. Dividir treino/teste 80% / 20% (estratificado)
+X_train, X_test, y_train, y_test = train_test_split(
+    X_proc, y, test_size=0.20, random_state=42, stratify=y
+)
+
+# 7. Baseline DummyClassifier
+baseline = DummyClassifier(strategy='most_frequent', random_state=42)
+baseline.fit(X_train, y_train)
+y_base = baseline.predict(X_test)
+print("=== Baseline Metrics ===")
+print("Accuracy :", metrics.accuracy_score(y_test, y_base))
+print("Precision:", metrics.precision_score(y_test, y_base, zero_division=0))
+print("Recall   :", metrics.recall_score(y_test, y_base, zero_division=0))
+print("F1 Score :", metrics.f1_score(y_test, y_base, zero_division=0))
+print()
+
+# 8. Hyperparameter Tuning com GridSearchCV
+param_grid = {
+    'criterion': ['gini', 'entropy'],
+    'max_depth': [3, 5, 7, None],
+    'min_samples_leaf': [1, 5, 10, 20],
+    'class_weight': [None, 'balanced']
+}
+dt = DecisionTreeClassifier(random_state=42)
+grid = GridSearchCV(dt, param_grid, cv=5, scoring='f1', n_jobs=-1)
+grid.fit(X_train, y_train)
+
+print("Melhores parâmetros:", grid.best_params_)
+print("Melhor F1 em CV :", grid.best_score_, "\n")
+
+# 9. Avaliar o melhor modelo no conjunto de teste
+best_tree = grid.best_estimator_
+y_pred = best_tree.predict(X_test)
+y_proba = best_tree.predict_proba(X_test)[:, 1]
+
+print("=== Test Metrics (Best Tree) ===")
+print("Accuracy :", metrics.accuracy_score(y_test, y_pred))
+print("Precision:", metrics.precision_score(y_test, y_pred, zero_division=0))
+print("Recall   :", metrics.recall_score(y_test, y_pred, zero_division=0))
+print("F1 Score :", metrics.f1_score(y_test, y_pred, zero_division=0))
+print("AUROC    :", metrics.roc_auc_score(y_test, y_proba))
+print()
+
+# 10. Matriz de Confusão
+cm = metrics.confusion_matrix(y_test, y_pred, labels=[0,1])
+disp = metrics.ConfusionMatrixDisplay(cm, display_labels=['Fica (0)', 'Sai (1)'])
+disp.plot(cmap=plt.cm.Blues)
+plt.show()
+
+# 11. Plot & exportar a árvore de decisão
+plt.figure(figsize=(30,15), dpi=100)
+plot_tree(
+    best_tree,
+    feature_names=preproc.get_feature_names_out(),
+    class_names=['Fica','Sai'],
+    filled=True, rounded=True, fontsize=12
+)
+plt.title("Árvore de Decisão Otimizada")
+plt.savefig("decision_tree.png", dpi=300)
+plt.show()
+
+print("✅ Árvore exportada: decision_tree.png")
+
+```
+### Matriz de confusão:
+![matriz de confusao 2](https://github.com/user-attachments/assets/2c3897dd-070b-4d92-90aa-d8bb22893583)
+
+### Árvore de decisão: 
+![arvore de decisao 2](https://github.com/user-attachments/assets/5ef9a7f3-7c81-4d12-ab86-ebc9ead490a5)
+
+
+---
 
