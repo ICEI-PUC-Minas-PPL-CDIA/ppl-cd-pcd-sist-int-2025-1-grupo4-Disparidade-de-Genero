@@ -441,8 +441,8 @@ Antecipar a intenção de saída (turnover) de colaboradores no setor de tecnolo
 - Melhorar estratégias de engajamento e satisfação
 - Em comparação com o a versão anterior, este modelo visa aumentar a acurácia, a precisão, o recall, o f1-score, AUROC, e aumentar os acertos da Matriz de Confusão, proporcionalmente ao conjunto analisado e testado.
 
-## 2. Finalidade e explicações
-> “Otimizar modelo preditivo anterior”
+## 2. Finalidade e explicações de o que foi feito
+> “Quero otimizar o modelo preditivo anterior”
 
 - **O que mudou em comparação à versão anterior do modelo?**
 - Adicionei mais colunas: `('P1_a ', 'Idade')`(achei as idades numéricas sem estarem em faixas), `('P2_d ', 'Gestor?')`(vou remover todos os gestores porque o foco são os funcionários que pretendem sair), `('P0', 'id')`(para me ajudar nas análises no excel (vou remover posteriormente na hora do modelo))
@@ -472,35 +472,58 @@ Antecipar a intenção de saída (turnover) de colaboradores no setor de tecnolo
 |`Idade` | Quantitativo discreto | Números inteiros entre 18 e 73 incluindo os extremos | Acrescido |
 
 
+---
+
+- Como dessa vez eu vou manter as células vazias vazias para então removê-las, os códigos que adicionei às colunas mudaram: 
+
+| **Qual coluna da base 2.0?** |**Nome da coluna na base 2.0** | **Código usado na filtragem dos dados** |
+|------------------------------|-------------------------------|-----------------------------------------|
+| A | `('P0', 'id')` | - |
+| B | `('P1_a ', 'Idade')` | - |
+| C | `('P1_b ', 'Genero')`| - |
+| D | `('P1_e ', 'experiencia_profissional_prejudicada')` | - |
+| E | `EXPERIÊNCIA PREJUDICADA SIM OU NAO` | =SE(ÉCÉL.VAZIA(D2);; SE(D2="Não acredito que minha experiência profissional seja afetada devido a esses fatores";0;1)) |
+| F | `('P2_d ', 'Gestor?')` | - |
+| G | `('P2_f ', 'Cargo Atual')` | - |
+| H | `AGRUPAMENTO CARGOS` | =SE(ÉCÉL.VAZIA(G2);"Não informado"; SE(OU(G2="Cientista de Dados/Data Scientist";G2="Analista de Dados/Data Analyst";G2="Analista de BI/BI Analyst";G2="Analista de Inteligência de Mercado/Market Intelligence");"Análise de Dados"; SE(OU(G2="Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect";G2="Analytics Engineer");"Engenharia de Dados"; SE(G2="Engenheiro de Machine Learning/ML Engineer/AI Engineer";"ML/IA"; SE(G2="Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas";"Desenvolvimento"; SE(G2="Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)";"Produto"; SE(OU(G2="Estatístico";G2="Economista");"Científico/Quantitativo"; SE(OU(G2="DBA/Administrador de Banco de Dados";G2="Analista de Suporte/Analista Técnico");"Infraestrutura"; SE(G2="Outras Engenharias (não inclui dev)";"Outras Engenharias"; SE(G2="Professor/Pesquisador";"Acadêmico"; SE(G2="Analista de Negócios/Business Analyst";"Negócios"; SE(G2="Outra Opção";"Outro";"Outro")))))))))))) |
+| I | `('P2_h ', 'Faixa salarial')` | - |
+| J | `MÉDIA FAIXA SALARIAL` | =SE(ÉCÉL.VAZIA(I2);; SE(I2="Acima de R$ 40.001/mês";45000; SE(I2="de R$ 1.001/mês a R$ 2.000/mês";1500; SE(I2="de R$ 1001/mês a R$ 2.000/mês";1500; SE(I2="de R$ 12.001/mês a R$ 16.000/mês";14000; SE(I2="de R$ 16.001/mês a R$ 20.000/mês";18000; SE(I2="de R$ 2.001/mês a R$ 3.000/mês";2500; SE(I2="de R$ 20.001/mês a R$ 25.000/mês";22500; SE(I2="de R$ 25.001/mês a R$ 30.000/mês";27500; SE(I2="de R$ 3.001/mês a R$ 4.000/mês";3500; SE(I2="de R$ 30.001/mês a R$ 40.000/mês";35000; SE(I2="de R$ 4.001/mês a R$ 6.000/mês";5000; SE(I2="de R$ 6.001/mês a R$ 8.000/mês";7000; SE(I2="de R$ 8.001/mês a R$ 12.000/mês";10000; SE(I2="Menos de R$ 1.000/mês";500;""))))))))))))))) |
+| K | `('P2_g ', 'Nivel')` | - |
+| L | `NÍVEL COM NÚMEROS ORDINAIS` | =SE(K2="Júnior";0; SE(K2="Pleno";1; SE(K2="Sênior";2; SE(ÉCÉL.VAZIA(K2);ALEATÓRIOENTRE(0;2);"""")))) |
+| M | `('P2_k ', 'Você está satisfeito na sua empresa atual?')` | - |
+| N | `('P2_n ', 'Você pretende mudar de emprego nos próximos 6 meses?')` | - |
+| O | `PRETENDE SAIR SIM OU NAO - TARGET` | =SE(ÉCÉL.VAZIA(N2); SE(ALEATÓRIO()<=0,75;1;0); SE(OU(N2="Estou em busca de oportunidades dentro ou fora do Brasil"; N2="Estou em busca de oportunidades, mas apenas fora do Brasil"; N2="Não estou buscando, mas me considero aberto a outras oportunidades");1;0)) |
+ | P | `('P2_r ', 'Atualmente qual a sua forma de trabalho?')` | - |
+ | Q | `('P2_s ', 'Qual a forma de trabalho ideal para você?')` | - |
+ | R | `ESTOU NO TRABALHO IDEAL?` | =SE(P2=Q2;1;0) |
+
+Esta é a base refinada 2.0
+---
+
+- Para a base refinada 2.1, removi as colunas que não ajudariam na análise preditiva, removi todas as linhas com o atributo `1` correspondente à coluna `Gestor?`, depois removi a coluna `Gestor?` e removi todas as linhas com atributos faltantes, ficando assim:
+
+Base 2.1: atributos: `('P1_a ', 'Idade')`, `('P1_b ', 'Genero')`, `EXPERIÊNCIA PREJUDICADA SIM OU NAO`, `AGRUPAMENTO CARGOS`, `MÉDIA FAIXA SALARIAL`, `NÍVEL COM NÚMEROS ORDINAIS`, `('P2_k ', 'Você está satisfeito na sua empresa atual?')`, `PRETENDE SAIR SIM OU NAO - TARGET`, `ESTOU NA FORMA DE TRABALHO IDEAL?`.
+
+Esta é a base refinada 2.1
+---
+
+## 3. Acesso às bases de dados
+
+**Base refinada 2.0**
+- [BASE SPRINT 4 VERSAO 2.0.csv)]([https://github.com/seu_usuario/seu_repositorio/blob/main/dados.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/assets/data/Base_principal_State_of_data_2023/State_of_data_BR_2023_Kaggle%20-%20df_survey_2023.csv)
+
+**Base refinada 2.1**
+- [BASE SPRINT 4 VERSAO 2.1.csv)]([https://github.com/seu_usuario/seu_repositorio/blob/main/dados.csv](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/assets/data/Base_principal_State_of_data_2023/State_of_data_BR_2023_Kaggle%20-%20df_survey_2023.csv)
 
 
 
 
-3. Pipeline de Dados
-Leitura do CSV refinado (sep=';', encoding='latin1').
 
 
 
 
 
 
-
-
-Renomeação das colunas para nomes simples (ex.: ('P1_a ', 'Idade') → Idade).
-
-One-Hot Encoding em AgrupamentoCargos.
-
-Split estratificado 80 % treino / 20 % teste.
-
-Baseline com DummyClassifier(strategy='most_frequent').
-
-GridSearchCV em DecisionTreeClassifier (criterion, max_depth, min_samples_leaf, class_weight) usando F1 como métrica.
-
-Avaliação no teste: accuracy, precision, recall, F1 e AUROC.
-
-Matriz de confusão rotulada.
-
-Exportação da árvore otimizada como decision_tree.png.
 
 4. Resultados
 4.1. Modelo Anterior (árvore de decisão padrão)
