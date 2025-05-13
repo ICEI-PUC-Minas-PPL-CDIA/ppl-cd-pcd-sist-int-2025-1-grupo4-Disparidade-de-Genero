@@ -19,29 +19,29 @@ Atributos selecionados:
 | `Nivel de Ensino`                          | Qualitativo  | Ordinal        | Qual o nivel de ensino máximo que o partipante alcançou.                         |'Não tenho graduação formal' = 0;<br> 'Estudante de Graduação' = 1;<br> 'Graduação/Bacharelado' = 2;<br> 'Pós-graduação' = 3;<br> 'Mestrado' = 4;<br> 'Doutorado ou Phd' = 5;<br> 'Prefiro não informar' = 6<br>
 | `Area de Formação`                         | Qualitativo  | Nominal        | Em qual área do conhecimento o participante é formado ou está se formando.       |'Computação / Engenharia de Software / Sistemas de Informação/ TI' = 0;<br> 'Economia/ Administração / Contabilidade / Finanças/ Negócios' = 1;<br> 'Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais' = 2;<br> 'Outra opção' = 3;<br> 'Marketing / Publicidade / Comunicação / Jornalismo' = 4;<br> 'Ciências Biológicas/ Farmácia/ Medicina/ Área da Saúde' = 5;<br> 'Ciências Sociais' = 6;<br> 'Outras Engenharias' = 7;<br> 'Química / Física' = 8
 | `Qual sua situação atual de trabalho?`     | Qualitativo  | Nominal        | Qual a situação de trabalho do participante.                                     |'Empregado (CLT)' = 0;<br> 'Empreendedor ou Empregado (CNPJ)' = 1;<br> 'Estagiário' = 2;<br> 'Freelancer' = 3;<br> 'Vivo no Brasil e trabalho remoto para empresa de fora do Brasil' = 4;<br> 'Vivo fora do Brasil e trabalho para empresa de fora do Brasil' = 5;<br> 'Servidor Público' = 6;<br> 'Prefiro não informar' = 7
-| `Setor`                                    | Qualitativo  | Nominal        | Em qual setor o participante trabalha.                                           |'Administração', 'Setor'] = 0
-; == 'Saúde', 'Setor'] = 1
-; == 'Educação', 'Setor'] = 2
-base.loc[base['Setor'] == 'Tecnologia/Fábrica de Software', 'Setor'] = 3
-base.loc[base['Setor'] == 'Setor Alimentício', 'Setor'] = 4
-base.loc[base['Setor'] == 'Varejo', 'Setor'] = 5
-base.loc[base['Setor'] == 'Marketing', 'Setor'] = 6
-base.loc[base['Setor'] == 'Indústria', 'Setor'] = 7
-base.loc[base['Setor'] == 'Internet/Ecommerce', 'Setor'] = 8
-base.loc[base['Setor'] == 'Seguros ou Previdência', 'Setor'] = 9
-base.loc[base['Setor'] == 'Área de Consultoria', 'Setor'] = 10
-base.loc[base['Setor'] == 'Área da Saúde', 'Setor'] = 11
-base.loc[base['Setor'] == 'Entretenimento ou Esportes', 'Setor'] = 12
-base.loc[base['Setor'] == 'Setor de Energia', 'Setor'] = 13
-base.loc[base['Setor'] == 'Outra Opção', 'Setor'] = 14
-base.loc[base['Setor'] == 'Setor Imobiliário/ Construção Civil', 'Setor'] = 15
-base.loc[base['Setor'] == 'Telecomunicação', 'Setor'] = 16
-base.loc[base['Setor'] == 'Setor Farmaceutico', 'Setor'] = 17
-base.loc[base['Setor'] == "Filantropia/ONG's", 'Setor'] = 18
-base.loc[base['Setor'] == 'Setor Automotivo', 'Setor'] = 19
-base.loc[base['Setor'] == 'Finanças ou Bancos', 'Setor'] = 19
-base.loc[base['Setor'] == 'Setor Público', 'Setor'] = 19
-base.loc[base['Setor'] == 'Agronegócios', 'Setor'] = 19
+| `Setor`                                    | Qualitativo  | Nominal        | Em qual setor o participante trabalha.                                           |'Administração', 'Setor'] = 0 <br>
+; 'Saúde', 'Setor'] = 1<br>
+; 'Educação', 'Setor'] = 2<br>
+; 'Tecnologia/Fábrica de Software' = 3<br>
+; 'Setor Alimentício'= 4<br>
+; 'Varejo' = 5<br>
+; 'Marketing' = 6<br>
+; 'Indústria' = 7<br>
+; 'Internet/Ecommerce' = 8<br>
+; 'Seguros ou Previdência' = 9<br>
+; 'Área de Consultoria' = 10<br>
+; 'Área da Saúde' = 11<br>
+; 'Entretenimento ou Esportes' = 12<br>
+; 'Setor de Energia' = 13<br>
+; 'Outra Opção' 14<br>
+; 'Setor Imobiliário/ Construção Civil'= 15<br>
+; 'Telecomunicação' = 16<br>
+; 'Setor Farmaceutico' = 17<br>
+; "Filantropia/ONG's" = 18<br>
+; 'Setor Automotivo' = 19<br>
+; 'Finanças ou Bancos' = 19<br>
+; 'Setor Público' = 19<br>
+; 'Agronegócios' = 19<br>
 | `Cargo`                                    | Qualitativo  | Nominal        | Qual cargo o participante ocupa no trabalho.                                     |
 | `Nivel`                                    | Qualitativo  | Nominal        | Qual o nivel de experiência do participante                                      |
 | `Forma de trabalho?`                       | Qualitativo  | Nominal        | Qual a forma de trabalho do particpante.                                         |
