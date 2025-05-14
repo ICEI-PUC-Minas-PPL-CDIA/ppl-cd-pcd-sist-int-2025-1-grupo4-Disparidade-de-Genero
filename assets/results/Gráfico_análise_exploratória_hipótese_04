@@ -1,0 +1,108 @@
+Analysis for Idade:
+count    5137.000000
+mean       31.962624
+std         7.613073
+min        18.000000
+25%        27.000000
+50%        30.000000
+75%        36.000000
+max        73.000000
+Name: Idade, dtype: float64
+
+Analysis for Genero:
+Genero
+0                       3865
+1                       1259
+Prefiro não informar      13
+Name: count, dtype: int64
+Mode: 0
+
+Analysis for Cor/raca/etnia:
+count    5137.000000
+mean        2.099474
+std         1.714775
+min         0.000000
+25%         1.000000
+50%         1.000000
+75%         4.000000
+max         6.000000
+Name: Cor/raca/etnia, dtype: float64
+
+Analysis for PCD:
+PCD
+0    5028
+1     109
+Name: count, dtype: int64
+Mode: 0
+
+Analysis for UF:
+UF
+24    2058
+12     555
+18     433
+15     417
+20     291
+23     250
+6      174
+4      155
+5      133
+16     124
+7      106
+8       91
+14      55
+10      46
+19      43
+13      33
+1       31
+3       29
+11      28
+25      22
+17      22
+9       20
+26       9
+21       7
+2        5
+Name: count, dtype: int64
+Mode: 24
+
+Analysis for Regiao onde mora:
+Regiao onde mora
+2               3152
+3                958
+1                605
+Centro-oeste     339
+0                 83
+Name: count, dtype: int64
+Mode: 2
+
+Analysis for Nível de Ensino:
+Nível de Ensino
+3    1784
+2    1753
+1     667
+4     628
+5     205
+0     100
+Name: count, dtype: int64
+Mode: 3
+
+Analysis for Área de formação:
+Área de formação
+0    2489
+2    1042
+1     791
+4     362
+3     130
+5     127
+7     116
+8      80
+Name: count, dtype: int64
+Mode: 0
+
+Analysis for Situação de trabalho:
+Situação de trabalho
+Empregado(a)       4668
+Desempregado(a)     469
+Name: count, dtype: int64
+Mode: Empregado(a)
+
