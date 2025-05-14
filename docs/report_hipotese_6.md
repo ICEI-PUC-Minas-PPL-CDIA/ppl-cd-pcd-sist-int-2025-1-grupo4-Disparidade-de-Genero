@@ -2,9 +2,13 @@
 
 Sendo feita por Vitor Martins
 
-Como o gênero, juntamente com o setor, situação atual de trabalho, cargo atual, forma de trabalho atual e região onde mora afetam a velocidade/oportunidade de  progressão de carreira
+# Como o gênero afeta na progressão de carreira no setor de dados
 
-Atributos selecionados:
+## Sumário
+
+1. 
+
+## Dicionário de dados
 
 
 | Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                        | Código                                                                               |
