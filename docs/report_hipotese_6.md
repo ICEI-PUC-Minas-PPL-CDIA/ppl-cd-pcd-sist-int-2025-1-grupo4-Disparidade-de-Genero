@@ -19,30 +19,8 @@ Atributos selecionados:
 | `Nivel de Ensino`                          | Qualitativo  | Ordinal        | Qual o nivel de ensino máximo que o partipante alcançou.                         |'Não tenho graduação formal' = 0;<br> 'Estudante de Graduação' = 1;<br> 'Graduação/Bacharelado' = 2;<br> 'Pós-graduação' = 3;<br> 'Mestrado' = 4;<br> 'Doutorado ou Phd' = 5;<br> 'Prefiro não informar' = 6<br>
 | `Area de Formação`                         | Qualitativo  | Nominal        | Em qual área do conhecimento o participante é formado ou está se formando.       |'Computação / Engenharia de Software / Sistemas de Informação/ TI' = 0;<br> 'Economia/ Administração / Contabilidade / Finanças/ Negócios' = 1;<br> 'Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais' = 2;<br> 'Outra opção' = 3;<br> 'Marketing / Publicidade / Comunicação / Jornalismo' = 4;<br> 'Ciências Biológicas/ Farmácia/ Medicina/ Área da Saúde' = 5;<br> 'Ciências Sociais' = 6;<br> 'Outras Engenharias' = 7;<br> 'Química / Física' = 8
 | `Qual sua situação atual de trabalho?`     | Qualitativo  | Nominal        | Qual a situação de trabalho do participante.                                     |'Empregado (CLT)' = 0;<br> 'Empreendedor ou Empregado (CNPJ)' = 1;<br> 'Estagiário' = 2;<br> 'Freelancer' = 3;<br> 'Vivo no Brasil e trabalho remoto para empresa de fora do Brasil' = 4;<br> 'Vivo fora do Brasil e trabalho para empresa de fora do Brasil' = 5;<br> 'Servidor Público' = 6;<br> 'Prefiro não informar' = 7
-| `Setor`                                    | Qualitativo  | Nominal        | Em qual setor o participante trabalha.                                           |'Administração', 'Setor'] = 0 <br>
-; 'Saúde', 'Setor'] = 1<br>
-; 'Educação', 'Setor'] = 2<br>
-; 'Tecnologia/Fábrica de Software' = 3<br>
-; 'Setor Alimentício'= 4<br>
-; 'Varejo' = 5<br>
-; 'Marketing' = 6<br>
-; 'Indústria' = 7<br>
-; 'Internet/Ecommerce' = 8<br>
-; 'Seguros ou Previdência' = 9<br>
-; 'Área de Consultoria' = 10<br>
-; 'Área da Saúde' = 11<br>
-; 'Entretenimento ou Esportes' = 12<br>
-; 'Setor de Energia' = 13<br>
-; 'Outra Opção' 14<br>
-; 'Setor Imobiliário/ Construção Civil'= 15<br>
-; 'Telecomunicação' = 16<br>
-; 'Setor Farmaceutico' = 17<br>
-; "Filantropia/ONG's" = 18<br>
-; 'Setor Automotivo' = 19<br>
-; 'Finanças ou Bancos' = 19<br>
-; 'Setor Público' = 19<br>
-; 'Agronegócios' = 19<br>
-| `Cargo`                                    | Qualitativo  | Nominal        | Qual cargo o participante ocupa no trabalho.                                     |
-| `Nivel`                                    | Qualitativo  | Nominal        | Qual o nivel de experiência do participante                                      |
-| `Forma de trabalho?`                       | Qualitativo  | Nominal        | Qual a forma de trabalho do particpante.                                         |
-| `Atuacao`                                  | Qualitativo  | Nominal        | Com que serviços o participante atua.                                            |
+| `Setor`                                    | Qualitativo  | Nominal        | Em qual setor o participante trabalha.                                           |'Administração', 'Setor'] = 0 <br>; 'Saúde', 'Setor'] = 1<br>; 'Educação', 'Setor'] = 2<br>; 'Tecnologia/Fábrica de Software' = 3<br>; 'Setor Alimentício'= 4<br>; 'Varejo' = 5<br>; 'Marketing' = 6<br>; 'Indústria' = 7<br>; 'Internet/Ecommerce' = 8<br>; 'Seguros ou Previdência' = 9<br>; 'Área de Consultoria' = 10<br>; 'Área da Saúde' = 11<br>; 'Entretenimento ou Esportes' = 12<br>; 'Setor de Energia' = 13<br>; 'Outra Opção' 14<br>; 'Setor Imobiliário/ Construção Civil'= 15<br>; 'Telecomunicação' = 16<br>; 'Setor Farmaceutico' = 17<br>; "Filantropia/ONG's" = 18<br>; 'Setor Automotivo' = 19<br>; 'Finanças ou Bancos' = 19<br>; 'Setor Público' = 19<br>; 'Agronegócios' = 19<br>
+| `Cargo`                                    | Qualitativo  | Nominal        | Qual cargo o participante ocupa no trabalho.                                     |'Analista de Dados/Data Analyst' = 0;<br> 'Analista de BI/BI Analyst' = 1;<br> 'DBA/Administrador de Banco de Dados' = 2;<br> 'Engenheiro de Machine Learning/ML Engineer/AI Engineer' = 3;<br> 'Analista de Negócios/Business Analyst' = 4;<br> 'Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas' = 5;<br> 'Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect' = 6;<br> 'Analytics Engineer = 7;<br> 'Estatístico' = 8;<br> 'Economista' = 9;<br> 'Cientista de Dados/Data Scientist' = 10;<br> 'Analista de Suporte/Analista Técnico' = 11;<br> 'Outras Engenharias (não inclui dev)' = 12;<br> 'Analista de Inteligência de Mercado/Market Intelligence' = 13;<br> 'Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)' = 14;<br> 'Professor/Pesquisador' = 15;<br> 'Outra Opção' = 16
+| `Nivel`                                    | Qualitativo  | Nominal        | Qual o nivel de experiência do participante                                      |'Júnior', 'Nivel'] = 0;<br> 'Pleno' = 1;<br> 'Sênior' = 2
+| `Forma de trabalho?`                       | Qualitativo  | Nominal        | Qual a forma de trabalho do particpante.                                         |'Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)' = 0;<br> 'Modelo 100% presencial' = 1;<br> 'Modelo 100% remoto' = 2;<br> 'Modelo híbrido com dias fixos de trabalho presencial' = 2
+| `Atuacao`                                  | Qualitativo  | Nominal        | Com que serviços o participante atua.                                            |'Ciência de Dados' = 0;<br> 'Análise de Dados' = 1;<br> 'Engenharia de Dados' = 2;<br> 'Outra atuação' = 3
