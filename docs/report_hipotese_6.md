@@ -28,3 +28,18 @@ Sendo feita por Vitor Martins
 | `Nivel`                                    | Qualitativo  | Nominal        | Qual o nivel de experiência do participante                                      |'Júnior', 'Nivel'] = 0;<br> 'Pleno' = 1;<br> 'Sênior' = 2
 | `Forma de trabalho?`                       | Qualitativo  | Nominal        | Qual a forma de trabalho do particpante.                                         |'Modelo híbrido flexível (o funcionário tem liberdade para escolher quando estar no escritório presencialmente)' = 0;<br> 'Modelo 100% presencial' = 1;<br> 'Modelo 100% remoto' = 2;<br> 'Modelo híbrido com dias fixos de trabalho presencial' = 2
 | `Atuacao`                                  | Qualitativo  | Nominal        | Com que serviços o participante atua.                                            |'Ciência de Dados' = 0;<br> 'Análise de Dados' = 1;<br> 'Engenharia de Dados' = 2;<br> 'Outra atuação' = 3
+
+
+
+
+## Limpeza e Tratamento de Dados
+
+Foram removidas todas as linhas que possuiam algum valor nulo nos campos selecionados acima exceto o atributo "Area de Formação"
+
+No atributo `Area de Formação` foi colocado a moda nos valores nulos
+
+E  tipo da coluna `Oportunidade de Progressão de Carreira` foi modificado de float para int
+
+
+
+
