@@ -1,19 +1,12 @@
-# 📊 Análise Exploratória - Disparidade de Gênero no Setor de Dados
+# Análise Exploratória - Disparidade de Gênero no Mercado de Trabalho
 
-**Hipótese:** Investigar como a disparidade de gênero interfere na situação atual de trabalho conforme a região onde a pessoa mora.
+**Hipótese**: Investigar como a disparidade de gênero interfere na situação atual de trabalho conforme a região onde a pessoa mora.
 
 ---
 
-## 📦 Instalação de Pacotes
+## 1. Importação de Bibliotecas
 
 ```python
-!pip install pandas
-Instala o pacote pandas para manipulação de dados tabulares.
-
-📚 Importação de Bibliotecas
-python
-Copiar
-Editar
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -21,19 +14,17 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import classification_report, accuracy_score
-Importa bibliotecas utilizadas para análise de dados, visualização e machine learning.
+```
+Foram importadas bibliotecas para análise de dados (pandas, seaborn, matplotlib) e para machine learning (sklearn).
 
-📥 Leitura da Base de Dados
-python
-Copiar
-Editar
+## 2. Leitura da Base de Dados
+```python
 base_princ = pd.read_csv('state_of_data_2023.csv')
-Lê o arquivo CSV com os dados do projeto e armazena no DataFrame base_princ.
+```
+Leitura da base de dados state_of_data_2023.csv.
 
-📝 Renomeando Colunas
-python
-Copiar
-Editar
+## 3. Renomeação das Colunas
+```python
 novo_nome_colunas = {
     "('P1_a ', 'Idade')": 'Idade',
     "('P1_b ', 'Genero')": 'Genero',
@@ -47,13 +38,11 @@ novo_nome_colunas = {
 }
 
 base_princ.columns = [novo_nome_colunas.get(col, col) for col in base_princ.columns]
-print(base_princ.columns)
-Renomeia colunas da base para facilitar a leitura e análise dos dados.
+```
+Mapeamento de nomes longos e complexos para nomes mais simples e intuitivos.
 
-🔎 Seleção de Colunas Relevantes
-python
-Copiar
-Editar
+## 4. Seleção das Colunas Relevantes
+```python
 colunas = [
     "Idade",
     "Genero",
@@ -66,242 +55,197 @@ colunas = [
     "Situação de trabalho"
 ]
 base_princ = base_princ[colunas]
-base_princ.columns.tolist()
-Seleciona apenas as colunas relevantes para a análise da hipótese proposta.
+```
+Seleciona apenas as colunas relevantes para a hipótese.
 
-## 👀 Visualização Inicial da Base
-
+## 5. Visualização Inicial
 ```python
 base_princ.head()
-Exibe as primeiras linhas do DataFrame para verificar a estrutura dos dados.
+```
+Exibe as primeiras linhas da base para inspeção visual dos dados.
 
-python
-Copiar
-Editar
-base_princ
-Exibe todo o DataFrame (cuidado com uso em bases grandes).
-
-python
-Copiar
-Editar
+## 6. Verificação da Estrutura da Tabela
+```python
 base_princ.info()
-Mostra informações como número de entradas, colunas, tipos de dados e valores não nulos.
+```
+Verifica o tipo de cada variável e a presença de valores nulos.
 
-🧼 Tratamento de Valores Nulos
-python
-Copiar
-Editar
+## 7. Verificação de valores nulos
+```python
 for col in base_princ.columns:
     nulos = base_princ[col].isnull().sum()
     print(f'numero de valores nulos na coluna {col} é: {nulos}')
-Conta e imprime a quantidade de valores nulos em cada coluna.
+```
 
-python
-Copiar
-Editar
-# Remover valores nulos da coluna UF
+## 8. Remoção de Valores Nulos em UF
+```python
 base_princ = base_princ.dropna(subset=['UF'])
+```
 
-for col in base_princ.columns:
-    nulos = base_princ[col].isnull().sum()
-    print(f'numero de valores nulos na coluna {col} é: {nulos}')
-Remove registros com valores ausentes na coluna UF.
-
-📊 Cálculo da Moda
-python
-Copiar
-Editar
-# Calcular e imprimir a moda de cada coluna
+## 9. Cálculo da Moda para Cada Coluna
+```python
 for col in base_princ.columns:
     mode_value = base_princ[col].mode()
     print(f'A moda da coluna {col} é: {mode_value.iloc[0]}')
-Calcula a moda (valor mais frequente) de cada coluna para avaliar possíveis preenchimentos.
+```
+Objetivo: Obter o valor mais frequente (moda) de cada coluna para entender padrões centrais em variáveis categóricas.
 
-✏️ Preenchimento de Dados Faltantes
-python
-Copiar
-Editar
+## 10. Preenchimento dos valores nulos
+```python
 base_princ.fillna(value='Computação / Engenharia de Software / Sistemas de Informação/ TI', inplace=True)
+```
+Objetivo: Preencher os valores nulos com a área de formação predominante, evitando perda de dados.
 
-for col in base_princ.columns:
-    nulos = base_princ[col].isnull().sum()
-    print(f'numero de valores nulos na coluna {col} é: {nulos}')
-Preenche os valores nulos com a área de formação mais comum e confirma se ainda restam ausências.
-
-🚫 Exclusão de Casos Ambíguos
-python
-Copiar
-Editar
-# Cortei o "Outro", por não identificar se era Homem ou Mulher
+## 11. Remoção de Registros com Gênero "Outro"
+```python
 index_to_drop = base_princ[base_princ['Genero'] == 'Outro'].index
-Filtra e identifica os registros onde o gênero é "Outro", para possível exclusão por não se enquadrar na análise binária.
+base_princ = base_princ.drop(index_to_drop)
+```
+Objetivo: Garantir a dicotomia homem/mulher, já que a categoria "Outro" não se enquadra no foco da análise de disparidade binária.
 
-🔢 Transformação de Variáveis Categóricas
-python
-Copiar
-Editar
+## 12. Análise Estrutual do DataFrame
+```python
+base_princ.info()
+```
+Objetivo: Verificar tipos de dados, valores não nulos e dimensões após as alterações iniciais.
+
+## 13. Codificação de variáveis categóricas
+```python
 base_princ.loc[base_princ['Genero'] == 'Masculino', 'Genero'] = 0
 base_princ.loc[base_princ['Genero'] == 'Feminino', 'Genero'] = 1
-# Obtém os índices das linhas onde o gênero é "Outro"
-index_to_drop = base_princ[base_princ['Genero'] == 'Outro'].index
-Converte os valores da coluna Genero para formato binário (0 para masculino, 1 para feminino).
+```
+Objetivo: Transformar o gênero em valores numéricos para análise estatística.
 
-## Pré-processamento e transformação de colunas
-
-### `base_princ = base_princ.drop(index_to_drop)`
-Remove as linhas do DataFrame que foram marcadas anteriormente como indesejadas, por conterem valores como "Prefiro não informar" em colunas críticas.
-
-### `base_princ['Cor/raca/etnia'] = LabelEncoder().fit_transform(base_princ['Cor/raca/etnia'])`
-Aplica transformação numérica à coluna de raça/cor usando `LabelEncoder`, convertendo categorias textuais em valores numéricos.
-
-### Substituição e exclusão de valores na coluna `PCD`
+```python
+base_princ['Cor/raca/etnia'] = LabelEncoder().fit_transform(base_princ['Cor/raca/etnia'])
+```
+## 14. Padronização da coluna PCD
 ```python
 base_princ.loc[base_princ['PCD'] == 'Sim', 'PCD'] = 1
 base_princ.loc[base_princ['PCD'] == 'Não', 'PCD'] = 0
 index_to_drop = base_princ[base_princ['PCD'] == 'Prefiro não informar'].index
 base_princ = base_princ.drop(index_to_drop)
-Converte respostas de "PCD" para valores binários (1 ou 0) e remove linhas com "Prefiro não informar".
+```
+Objetivo: Binário para “Sim” e “Não”; removidos valores “Prefiro não informar”.
 
-Codificação de regiões
-python
-Copiar
-Editar
-base_princ.loc[base_princ['Regiao onde mora'] == 'Norte', 'Regiao onde mora'] = 0
-...
-base_princ.loc[base_princ['Regiao onde mora'] == 'Sul', 'Regiao onde mora'] = 4
-Codifica a coluna Região onde mora em valores numéricos de 0 a 4, correspondendo a cada macrorregião do Brasil.
-
-Codificação de estados (UF)
-python
-Copiar
-Editar
-base_princ.loc[base_princ['UF'] == 'AC', 'UF'] = 0
-...
-base_princ.loc[base_princ['UF'] == 'TO', 'UF'] = 26
-Substitui siglas de estados por valores numéricos de 0 a 26.
-
-Codificação do Nível de Ensino
-python
-Copiar
-Editar
-base_princ.loc[base_princ['Nível de Ensino'] == 'Não tenho graduação formal', 'Nível de Ensino'] = 0
-...
-base_princ.loc[base_princ['Nível de Ensino'] == 'Doutorado ou Phd', 'Nível de Ensino'] = 5
-Converte os diferentes níveis de escolaridade em números de 0 a 5, facilitando análises e modelagem.
-
-Atribuição da moda para valores faltantes
-python
-Copiar
-Editar
-mode_value = base_princ['Nível de Ensino'].mode()
-base_princ.loc[base_princ['Nível de Ensino'] == 'Prefiro não informar', 'Nível de Ensino'] = 3
-Substitui "Prefiro não informar" pela moda da coluna, assumida como "Pós-graduação".
-
-Codificação da Área de formação
-python
-Copiar
-Editar
-base_princ.loc[base_princ['Área de formação'] == 'Computação / Engenharia de Software ...', 'Área de formação'] = 0
-...
-base_princ.loc[base_princ['Área de formação'] == 'Ciências Sociais', 'Área de formação'] = 8
-Agrupa e codifica as áreas de formação por categorias numéricas.
-
-Verificação do DataFrame
-python
-Copiar
-Editar
-base_princ.info()
-Exibe um resumo das colunas, tipos de dados e contagem de valores não nulos.
-
-Agrupamento da coluna Situação de trabalho
-python
-Copiar
-Editar
-base_princ.loc[base_princ['Situação de trabalho'] == 'Empregado (CLT)', 'Situação de trabalho'] = 'Empregado(a)'
-...
-base_princ.loc[base_princ['Situação de trabalho'] == 'Prefiro não informar', 'Situação de trabalho'] = 'Desempregado(a)'
-Agrupa respostas da situação de trabalho em duas categorias: Empregado(a) e Desempregado(a).
-
-Verificação de valores nulos na coluna
-python
-Copiar
-Editar
-null_counts = base_princ['Situação de trabalho'].isnull().sum()
-print(f"Number of null values in 'Situação de trabalho': {null_counts}")
-Verifica se há valores nulos na coluna Situação de trabalho.
-
-## Conversão da coluna `Situação de trabalho` para variável binária
-
+## 15. Codificação de Regiões e Estados
 ```python
-base_princ.loc[base_princ['Situação de trabalho'] == 'Empregado(a)', 'Situação de trabalho'] = 1
-base_princ.loc[base_princ['Situação de trabalho'] == 'Desempregado(a)', 'Situação de trabalho'] = 0
-Transforma a variável Situação de trabalho em binária para fins de análise e modelagem preditiva: 1 representa empregado(a) e 0 representa desempregado(a).
+base_princ['Regiao onde mora'] = base_princ['Regiao onde mora'].map({
+    'Norte': 0, 'Nordeste': 1, 'Sudeste': 2, 'Sul': 3, 'Centro-Oeste': 4
+})
+```
+Objetivo: Transformar regiões em dados numéricos ordenados .
+```python
+# Codificação manual dos estados brasileiros (UF)
+base_princ['UF'] = base_princ['UF'].map({
+    'AC': 0, 'AL': 1, 'AP': 2, 'AM': 3, 'BA': 4, 'CE': 5, 'DF': 6, 'ES': 7, 'GO': 8,
+    'MA': 9, 'MT': 10, 'MS': 11, 'MG': 12, 'PA': 13, 'PB': 14, 'PR': 15, 'PE': 16,
+    'PI': 17, 'RJ': 18, 'RN': 19, 'RS': 20, 'RO': 21, 'RR': 22, 'SC': 23, 'SP': 24,
+    'SE': 25, 'TO': 26
+})
+```
+Objetivo: Converter UF em valores numéricos únicos.
 
-Normalização dos dados
-python
-Copiar
-Editar
-scaler = StandardScaler()
-base_princ.iloc[:, :] = scaler.fit_transform(base_princ.iloc[:, :])
-Aplica StandardScaler para padronizar todas as colunas do DataFrame. A média passa a ser 0 e o desvio padrão 1, facilitando a performance de algoritmos de machine learning.
+## 15. Nível de Ensino
+```python
+base_princ['Nível de Ensino'] = base_princ['Nível de Ensino'].map({
+    'Não tenho graduação formal': 0,
+    'Estudante de Graduação': 1,
+    'Graduação/Bacharelado': 2,
+    'Pós-graduação': 3,
+    'Mestrado': 4,
+    'Doutorado ou Phd': 5,
+    'Prefiro não informar': 3
+})
+```
+Objetivo: Codifcação e tratamento de dados faltantes com valores intermediário.
 
-Separação das variáveis preditoras e alvo
-python
-Copiar
-Editar
-X = base_princ.drop('Situação de trabalho', axis=1)
-y = base_princ['Situação de trabalho']
-Separa os dados em duas partes:
+## 16. Área de formação
+```python
+base_princ['Área de formação'] = base_princ['Área de formação'].map({
+    'Computação / Engenharia de Software / Sistemas de Informação/ TI': 0,
+    'Economia/ Administração / Contabilidade / Finanças/ Negócios': 1,
+    'Outras Engenharias': 6,
+    'Química / Física': 3,
+    'Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais': 4,
+    'Marketing / Publicidade / Comunicação / Jornalismo': 5,
+    'Ciências Biológicas/ Farmácia/ Medicina/ Área da Saúde': 7,
+    'Outra opção': 0,
+    'Ciências Sociais': 8
+})
+```
+Objetivo: Codificar áreas de formação com foco em facilitar segmentação posterior.
 
-X: todas as colunas preditoras
+## 17. Situação de trabalho
+```python
+# Agrupando em 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Empregado (CLT)', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Empreendedor ou Empregado (CNPJ)', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Estagiário', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Trabalho na área Acadêmica/Pesquisador', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Servidor Público', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Vivo no Brasil e trabalho remoto para empresa de fora do Brasil', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Vivo fora do Brasil e trabalho para empresa de fora do Brasil', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Trabalho na área Acadêmica/Pesquisador', 'Situação de trabalho'] = 'Empregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Freelancer', 'Situação de trabalho'] = 'Empregado(a)'
 
-y: a variável alvo (situação de trabalho)
+# Agrupando em 'Desempregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Desempregado, buscando recolocação', 'Situação de trabalho'] = 'Desempregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Desempregado e não estou buscando recolocação', 'Situação de trabalho'] = 'Desempregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Somente Estudante (pós-graduação)', 'Situação de trabalho'] = 'Desempregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Somente Estudante (graduação)', 'Situação de trabalho'] = 'Desempregado(a)'
+base_princ.loc[base_princ['Situação de trabalho'] == 'Prefiro não informar', 'Situação de trabalho'] = 'Desempregado(a)'
 
-Divisão dos dados em treino e teste
-python
-Copiar
-Editar
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
-Divide os dados em 70% para treino e 30% para teste, mantendo a proporção das classes com stratify=y.
+# Verificando o resultado
+print(base_princ['Situação de trabalho'].value_counts())
 
-Treinamento do modelo: Árvore de Decisão
-python
-Copiar
-Editar
-arvore = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=42)
-arvore.fit(X_train, y_train)
-Cria e treina um modelo de árvore de decisão usando entropia como critério de divisão. A profundidade máxima é limitada a 3 para evitar overfitting.
+```
+Objetivo: Reduzir a granularidade de situações de trabalho em duas categorias: Empregado(a) e Desempregado(a).
 
-Avaliação da acurácia do modelo
-python
-Copiar
-Editar
-acuracia = accuracy_score(y_test, arvore.predict(X_test))
-print(f"Acurácia: {acuracia}")
-Calcula e exibe a acurácia do modelo com base nos dados de teste.
+## 18. Verificação de Consistência
+```python
+base_princ['Situação de trabalho'].isnull().sum()
+base_princ['Situação de trabalho'].unique()
+base_princ.info()
+```
+Objetivo: Garantir que os dados estejam devidamente limpos e categorizados.
 
-Visualização da Árvore de Decisão
-python
-Copiar
-Editar
-plt.figure(figsize=(20,10))
-plot_tree(arvore, filled=True, feature_names=X.columns, class_names=['Desempregado(a)', 'Empregado(a)'])
-plt.show()
-Gera uma visualização gráfica da árvore de decisão treinada, exibindo como as decisões foram tomadas com base nas variáveis preditoras.
+## 19. Análise Estatística das Variáveis
+```python
+# Statistical analysis
+for col in base_princ.columns:
+    print(f"\nAnalysis for {col}:")
 
-Extração da importância das variáveis
-python
-Copiar
-Editar
-importances = pd.Series(arvore.feature_importances_, index=X.columns)
-importances = importances[importances > 0]
-importances = importances.sort_values(ascending=True)
+    if pd.api.types.is_numeric_dtype(base_princ[col]):
+        print(base_princ[col].describe())  # Descriptive stats for numerical
+    else:
+        print(base_princ[col].value_counts())  # Frequency counts for categorical
+        print(f"Mode: {base_princ[col].mode()[0]}")  # Mode for categorical
+```
+Descrição:
+Esta etapa realiza uma análise estatística básica para todas as colunas da base de dados base_princ.
 
-plt.figure(figsize=(10, 6))
-importances.plot(kind='barh')
-plt.title('Importância das Variáveis')
-plt.xlabel('Importância')
-plt.ylabel('Variáveis')
-plt.tight_layout()
-plt.show()
+Para colunas numéricas, são exibidas estatísticas descritivas como média, desvio padrão, valor mínimo, máximo e quartis.
 
+Para colunas categóricas, são mostradas as frequências de cada categoria e a moda (valor mais comum).
+
+Essa análise ajuda a entender melhor a distribuição e os valores predominantes em cada variável, servindo como base para decisões futuras de limpeza e transformação dos dados.
+
+## 20. Exportação da Base de Dados Modificada
+```python
+base_princ.to_csv('base_princ_modificado.csv', index=False)
+```
+Descrição:
+Após as análises e eventuais modificações realizadas na base base_princ, este comando exporta o DataFrame para um novo arquivo CSV chamado base_princ_modificado.csv.
+O parâmetro index=False garante que o índice do DataFrame não seja salvo como uma coluna no arquivo final.
+
+Essa etapa é importante para registrar as alterações feitas na base e possibilitar seu uso em futuras análises ou modelo
+
+## 21. Download do arquivo modificado no google colab
+```python
+from google.colab import files
+files.download('base_princ_modificado.csv')
+```
+Descrição:
+Este comando permite o download do arquivo CSV modificado diretamente para o computador do usuário, quando o código está sendo executado no Google Colab.
+A função files.download() baixa o arquivo 'base_princ_modificado.csv', que foi gerado na etapa anterior, tornando possível armazená-lo localmente para uso posterior ou compartilhamento.
