@@ -7,7 +7,7 @@
 !pip install pandas scikit-learn matplotlib
 ```
 
-##📌 Célula 2 — Importar bibliotecas
+## 📌 Célula 2 — Importar bibliotecas
 
 ```python
 import pandas as pd
@@ -17,8 +17,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 ```
-
-##📌 Célula 3 — Carregar os dados
+ 
+## 📌 Célula 3 — Carregar os dados
 
 ```python
 # Suba o arquivo 'dados_limpos.csv' na lateral esquerda do Colab ou no mesmo diretório do Jupyter
@@ -28,7 +28,7 @@ df = pd.read_csv("dados_limpos.csv", sep=";", encoding="ISO-8859-1")
 df.head()
 ```
 
-##📌 Célula 4 — Criar variável-alvo binária
+## 📌 Célula 4 — Criar variável-alvo binária
 
 ```python
 # Definir níveis que representam conclusão do ensino superior
@@ -56,7 +56,7 @@ X_encoded = X.apply(LabelEncoder().fit_transform)
 X_train, X_test, y_train, y_test = train_test_split(X_encoded, y, test_size=0.3, random_state=42)
 ```
 
-##📌 Célula 6 — Treinar árvore de decisão
+## 📌 Célula 6 — Treinar árvore de decisão
 
 ```python
 # Criar e treinar o modelo de árvore de decisão
@@ -64,7 +64,7 @@ clf = DecisionTreeClassifier(max_depth=4, random_state=42)
 clf.fit(X_train, y_train)
 ```
 
-##📌 Célula 7 — Visualizar a árvore de decisão
+## 📌 Célula 7 — Visualizar a árvore de decisão
 
 ```python
 plt.figure(figsize=(16, 8))
@@ -73,7 +73,7 @@ plt.title("Árvore de Decisão - Conclusão do Ensino Superior")
 plt.show()
 ```
 
-##📌 Célula 8 — Gerar e visualizar matriz de confusão
+## 📌 Célula 8 — Gerar e visualizar matriz de confusão
 
 ```python
 # Fazer previsões
