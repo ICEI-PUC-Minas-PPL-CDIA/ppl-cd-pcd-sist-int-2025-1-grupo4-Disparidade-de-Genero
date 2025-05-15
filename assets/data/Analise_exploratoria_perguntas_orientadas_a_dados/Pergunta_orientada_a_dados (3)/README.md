@@ -1043,8 +1043,11 @@ plt.title("Árvore de Decisão (max_depth=3, min_samples_leaf≥10)")
 plt.show()
 
 ```
-##Tivemos então algumas melhoras:
-### Resultados da Versão v2.3 (Árvore Poda – max_depth=3, min_samples_leaf=10)
+
+
+## Tivemos então algumas melhoras:
+
+### Resultados da Versão v2.3 (Árvore Poda `max_depth=3`, `min_samples_leaf=10`)
 
 #### Distribuição de Classes no Treino
 - Antes do SMOTE:
