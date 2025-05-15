@@ -712,4 +712,393 @@ print("✅ Árvore exportada: decision_tree.png")
 
 
 ---
+# Sprint 4.1 (pequeno bônus)
+* Fiz uma alteração no código para que ele me mostre as informações separadamente dos índices na parte de treinamendo do modelo e na parte de teste.
+Código utilizado:
+```
+# 📓 Notebook: v2.3 – Poda para Reduzir Overfitting
+
+# 1. Instalação (se necessário)
+!pip install scikit-learn imbalanced-learn matplotlib seaborn graphviz
+
+# 2. Imports
+import pandas as pd, numpy as np
+import matplotlib.pyplot as plt, seaborn as sns
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.tree import DecisionTreeClassifier, plot_tree, export_graphviz
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score,
+    f1_score, roc_auc_score, confusion_matrix, classification_report
+)
+from imblearn.over_sampling import SMOTE
+
+# 3. Carregar dados
+df = pd.read_csv('BASE SPRINT 4 VERSAO 2.1.csv', sep=';', encoding='latin1')
+df = df.rename(columns={
+    "('P1_a ', 'Idade')"     : "Idade",
+    "EXPERIÊNCIA PREJUDICADA SIM OU NAO":"ExperienciaPrejudicada",
+    "AGRUPAMENTO CARGOS"     : "AgrupamentoCargos",
+    "MÉDIA FAIXA SALARIAL"   : "MediaFaixaSalarial",
+    "NÍVEL COM NÚMEROS ORDINAIS":"NivelOrdinal",
+    "('P2_k ', 'Você está satisfeito na sua empresa atual?')":"Satisfeito",
+    "PRETENDE SAIR SIM OU NAO - TARGET":"PretendeSair",
+    "ESTOU NA FORMA DE TRABALHO IDEAL?":"TrabalhoIdeal"
+})
+df = df[['Idade','ExperienciaPrejudicada','AgrupamentoCargos',
+         'MediaFaixaSalarial','NivelOrdinal','Satisfeito','TrabalhoIdeal','PretendeSair']].dropna()
+
+# 4. Conversão de tipos
+df['Idade'] = df['Idade'].astype(str).str.replace(',','.').astype(float)
+df['MediaFaixaSalarial'] = df['MediaFaixaSalarial'].astype(str).str.replace(',','.').astype(float)
+df['NivelOrdinal'] = df['NivelOrdinal'].astype(float)
+df['Satisfeito'] = df['Satisfeito'].astype(int)
+df['TrabalhoIdeal'] = df['TrabalhoIdeal'].astype(int)
+df['PretendeSair'] = df['PretendeSair'].astype(int)
+
+# 5. One-Hot Encoding em AgrupamentoCargos
+preproc = ColumnTransformer([
+    ('ohe', OneHotEncoder(handle_unknown='ignore'), ['AgrupamentoCargos'])
+], remainder='passthrough')
+X = preproc.fit_transform(df.drop('PretendeSair', axis=1))
+y = df['PretendeSair']
+
+# 6. Divisão Treino/Teste
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# 7. Balanceamento com SMOTE
+sm = SMOTE(random_state=42)
+X_tr, y_tr = sm.fit_resample(X_train, y_train)
+
+print("Distribuição TREINO antes SMOTE:", y_train.value_counts().to_dict())
+print("Distribuição TREINO após SMOTE:", pd.Series(y_tr).value_counts().to_dict())
+
+# 8. GridSearchCV com poda mais forte
+param_grid = {
+    'criterion'       : ['entropy'],
+    'max_depth'       : [3, 4, 5],       # profundidades menores
+    'min_samples_leaf': [10, 20, 50],    # folhas maiores
+    'class_weight'    : ['balanced']
+}
+dt = DecisionTreeClassifier(random_state=42)
+grid = GridSearchCV(dt, param_grid, cv=5, scoring='f1', n_jobs=-1, verbose=1)
+grid.fit(X_tr, y_tr)
+
+best = grid.best_estimator_
+print("\n→ Melhores parâmetros (poda):", grid.best_params_)
+print("→ Melhor F1 CV:", grid.best_score_)
+
+# 9. Avaliação – TREINO
+y_tr_pred  = best.predict(X_tr)
+y_tr_prob  = best.predict_proba(X_tr)[:,1]
+print("\n=== Métricas no TREINO ===")
+print(classification_report(y_tr, y_tr_pred, target_names=['Fica','Sai']))
+print("AUC train:", roc_auc_score(y_tr, y_tr_prob))
+cm_tr = confusion_matrix(y_tr, y_tr_pred)
+sns.heatmap(cm_tr, annot=True, fmt='d', cmap='Greens',
+            xticklabels=['Fica','Sai'], yticklabels=['Fica','Sai'])
+plt.title("Confusão (Treino)"); plt.show()
+
+# 10. Avaliação – TESTE
+y_te_pred = best.predict(X_test)
+y_te_prob = best.predict_proba(X_test)[:,1]
+print("\n=== Métricas no TESTE ===")
+print(classification_report(y_test, y_te_pred, target_names=['Fica','Sai']))
+print("AUC test:", roc_auc_score(y_test, y_te_prob))
+cm_te = confusion_matrix(y_test, y_te_pred)
+sns.heatmap(cm_te, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Fica','Sai'], yticklabels=['Fica','Sai'])
+plt.title("Confusão (Teste)"); plt.show()
+
+# 11. Plot árvore limitada a 3 níveis
+plt.figure(figsize=(16,8))
+plot_tree(best,
+          feature_names=preproc.get_feature_names_out(),
+          class_names=['Fica','Sai'],
+          filled=True, rounded=True,
+          max_depth=3, fontsize=10)
+plt.title("Árvore de Decisão (max_depth=3, min_samples_leaf≥10)")
+plt.show()
+```
+## Relatório de Conclusão da atualização do modelo:
+
+### 1. Contexto
+- **Objetivo**: Prever a intenção de saída (`PretendeSair`) de profissionais de dados não-gestores.
+- **Dados**: Base refinada com colunas numéricas, categóricas binarizadas e variáveis derivadas (ex.: experiência prejudicada, satisfação, trabalho ideal).
+- **Tamanho**: 5.294 linhas originais → após remoção de NaNs e filtragem de gestores: ~4.654 linhas.
+
+---
+
+### 2. Pré-processamento
+1. **Seleção de colunas**:  
+   - Numéricas: `Idade`, `MediaFaixaSalarial`, `NivelOrdinal`.  
+   - Binárias/booleanas: `ExperienciaPrejudicada`, `Satisfeito`, `TrabalhoIdeal`.  
+   - Categórica nominal: `AgrupamentoCargos` (One-Hot Encoding).
+
+2. **Conversão de tipos**  
+   - Substituição de vírgulas por pontos em colunas numéricas.  
+   - Cast para `float` ou `int` conforme apropriado.
+
+3. **Divisão treino/teste**  
+   - 80% treino, 20% teste, estratificado por `PretendeSair`.
+
+4. **Balanceamento (SMOTE)**  
+   - Antes:  
+     - Classe “Sai” (1): 2.327  
+     - Classe “Fica” (0): 757  
+   - Depois SMOTE no treino:  
+     - Ambas as classes com 2.327 exemplos.
+
+---
+
+## 3. Baseline
+- **DummyClassifier (most_frequent)** no teste:
+  - Accuracy: 24,5%  
+  - Precision/Recall/F1: 0 → demonstra que prever sempre a classe majoritária não atende ao problema.
+
+---
+
+## 4. Treinamento & Tuning
+- **Modelo**: `DecisionTreeClassifier`  
+- **GridSearchCV** (5-fold) sobre:
+  - `criterion`: `['gini','entropy']`  
+  - `max_depth`: `[4,6,8,None]`  
+  - `min_samples_leaf`: `[1,5,10]`  
+  - `class_weight`: `[None, 'balanced']`
+
+- **Melhores parâmetros (SMOTE)**:  
+{
+`criterion`: `entropy`
+`max_depth`: `None`
+`min_samples_leaf`: 1
+`class_weight`: `balanced`
+}
+
+- **F1 CV médio**: 0.800
+
+---
+
+## 5. Avaliação
+
+### 5.1. Conjunto de Treino
+| Classe | Precision | Recall | F1-score | Support |
+|--------|-----------|--------|----------|---------|
+| Fica   | 0.93      | 0.96   | 0.94     | 2327    |
+| Sai    | 0.96      | 0.92   | 0.94     | 2327    |
+| **Accuracy** | **0.94** |       |          |         |
+| **AUC**      | 0.99   |       |          |         |
+
+> **Interpretação**: Excelente performance e balanceamento em treino – indicativo de possível _overfitting_.
+
+### 5.2. Conjunto de Teste
+| Classe | Precision | Recall | F1-score | Support |
+|--------|-----------|--------|----------|---------|
+| Fica   | 0.33      | 0.42   | 0.37     | 189     |
+| Sai    | 0.79      | 0.72   | 0.76     | 583     |
+| **Accuracy** | **0.65** |       |          |         |
+| **AUC**      | 0.57   |       |          |         |
+
+> **Interpretação**:  
+> - **Fica**: baixa precisão e recall – o modelo acerta menos da metade dos que realmente ficaram.  
+> - **Sai**: performance moderada, mas pior do que no treino.  
+> - **AUC 0.57**: discriminador fraco em dados não vistos.  
+
+---
+
+## 6. Diagnóstico
+- **Overfitting**: Treino (F1=0.94) × Teste (F1 médio=0.56)  
+- **Classe minoritária (“Fica”) mal detectada** apesar de SMOTE.  
+- **Árvore profunda + folhas pequenas** capturam ruído.
+
+---
+
+## 7. Pontos Fortes
+- Pipeline organizado de _preprocessing_ → SMOTE → Tuning.  
+- Baseline e métricas completas (accuracy, precision, recall, f1, AUC) em treino e teste.  
+- Visualização da árvore simplificada e matrizes de confusão.
+
+---
+
+## 8. Próximos Passos
+1. **Podar a árvore**: reduzir `max_depth` (ex.: 4 ou 5) e aumentar `min_samples_leaf` (ex.: 20+).  
+2. **Experimentar ensembles**: Random Forest / Gradient Boosting.  
+3. **Refinar features**: eliminar variáveis irrelevantes ou criar interações.  
+4. **Balanceamento alternativo**: SMOTE+Tomek, Borderline-SMOTE.  
+5. **Validar com CV mais extenso** (cv=10) para métricas mais estáveis.
+
+---
+
+> **Conclusão**: O modelo atual generaliza mal para a classe “Fica”. Ajustes de poda e uso de métodos ensemble devem melhorar o recall dessa classe e elevar o AUC no teste.
+---
+* Dito isso, alterei o código conforme o ponto 8, presente em 4.1:
+```
+# 📓 Notebook: v2.3 – Poda para Reduzir Overfitting
+
+# 1. Instalação (se necessário)
+!pip install scikit-learn imbalanced-learn matplotlib seaborn graphviz
+
+# 2. Imports
+import pandas as pd, numpy as np
+import matplotlib.pyplot as plt, seaborn as sns
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.tree import DecisionTreeClassifier, plot_tree, export_graphviz
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score,
+    f1_score, roc_auc_score, confusion_matrix, classification_report
+)
+from imblearn.over_sampling import SMOTE
+
+# 3. Carregar dados
+df = pd.read_csv('BASE SPRINT 4 VERSAO 2.1.csv', sep=';', encoding='latin1')
+df = df.rename(columns={
+    "('P1_a ', 'Idade')"     : "Idade",
+    "EXPERIÊNCIA PREJUDICADA SIM OU NAO":"ExperienciaPrejudicada",
+    "AGRUPAMENTO CARGOS"     : "AgrupamentoCargos",
+    "MÉDIA FAIXA SALARIAL"   : "MediaFaixaSalarial",
+    "NÍVEL COM NÚMEROS ORDINAIS":"NivelOrdinal",
+    "('P2_k ', 'Você está satisfeito na sua empresa atual?')":"Satisfeito",
+    "PRETENDE SAIR SIM OU NAO - TARGET":"PretendeSair",
+    "ESTOU NA FORMA DE TRABALHO IDEAL?":"TrabalhoIdeal"
+})
+df = df[['Idade','ExperienciaPrejudicada','AgrupamentoCargos',
+         'MediaFaixaSalarial','NivelOrdinal','Satisfeito','TrabalhoIdeal','PretendeSair']].dropna()
+
+# 4. Conversão de tipos
+df['Idade'] = df['Idade'].astype(str).str.replace(',','.').astype(float)
+df['MediaFaixaSalarial'] = df['MediaFaixaSalarial'].astype(str).str.replace(',','.').astype(float)
+df['NivelOrdinal'] = df['NivelOrdinal'].astype(float)
+df['Satisfeito'] = df['Satisfeito'].astype(int)
+df['TrabalhoIdeal'] = df['TrabalhoIdeal'].astype(int)
+df['PretendeSair'] = df['PretendeSair'].astype(int)
+
+# 5. One-Hot Encoding em AgrupamentoCargos
+preproc = ColumnTransformer([
+    ('ohe', OneHotEncoder(handle_unknown='ignore'), ['AgrupamentoCargos'])
+], remainder='passthrough')
+X = preproc.fit_transform(df.drop('PretendeSair', axis=1))
+y = df['PretendeSair']
+
+# 6. Divisão Treino/Teste
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# 7. Balanceamento com SMOTE
+sm = SMOTE(random_state=42)
+X_tr, y_tr = sm.fit_resample(X_train, y_train)
+
+print("Distribuição TREINO antes SMOTE:", y_train.value_counts().to_dict())
+print("Distribuição TREINO após SMOTE:", pd.Series(y_tr).value_counts().to_dict())
+
+# 8. GridSearchCV com poda mais forte
+param_grid = {
+    'criterion'       : ['entropy'],
+    'max_depth'       : [3, 4, 5],       # profundidades menores
+    'min_samples_leaf': [10, 20, 50],    # folhas maiores
+    'class_weight'    : ['balanced']
+}
+dt = DecisionTreeClassifier(random_state=42)
+grid = GridSearchCV(dt, param_grid, cv=5, scoring='f1', n_jobs=-1, verbose=1)
+grid.fit(X_tr, y_tr)
+
+best = grid.best_estimator_
+print("\n→ Melhores parâmetros (poda):", grid.best_params_)
+print("→ Melhor F1 CV:", grid.best_score_)
+
+# 9. Avaliação – TREINO
+y_tr_pred  = best.predict(X_tr)
+y_tr_prob  = best.predict_proba(X_tr)[:,1]
+print("\n=== Métricas no TREINO ===")
+print(classification_report(y_tr, y_tr_pred, target_names=['Fica','Sai']))
+print("AUC train:", roc_auc_score(y_tr, y_tr_prob))
+cm_tr = confusion_matrix(y_tr, y_tr_pred)
+sns.heatmap(cm_tr, annot=True, fmt='d', cmap='Greens',
+            xticklabels=['Fica','Sai'], yticklabels=['Fica','Sai'])
+plt.title("Confusão (Treino)"); plt.show()
+
+# 10. Avaliação – TESTE
+y_te_pred = best.predict(X_test)
+y_te_prob = best.predict_proba(X_test)[:,1]
+print("\n=== Métricas no TESTE ===")
+print(classification_report(y_test, y_te_pred, target_names=['Fica','Sai']))
+print("AUC test:", roc_auc_score(y_test, y_te_prob))
+cm_te = confusion_matrix(y_test, y_te_pred)
+sns.heatmap(cm_te, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Fica','Sai'], yticklabels=['Fica','Sai'])
+plt.title("Confusão (Teste)"); plt.show()
+
+# 11. Plot árvore limitada a 3 níveis
+plt.figure(figsize=(16,8))
+plot_tree(best,
+          feature_names=preproc.get_feature_names_out(),
+          class_names=['Fica','Sai'],
+          filled=True, rounded=True,
+          max_depth=3, fontsize=10)
+plt.title("Árvore de Decisão (max_depth=3, min_samples_leaf≥10)")
+plt.show()
+
+```
+##Tivemos então algumas melhoras:
+### Resultados da Versão v2.3 (Árvore Poda – max_depth=3, min_samples_leaf=10)
+
+#### Distribuição de Classes no Treino
+- Antes do SMOTE:
+  - Sai (1): 2 327  
+  - Fica (0):   757  
+- Após SMOTE:
+  - Sai (1): 2 327  
+  - Fica (0): 2 327  
+
+---
+
+### Hiperparâmetros Otimizados
+- criterion: `entropy`
+- max_depth': `3`
+- min_samples_leaf': `10`
+- class_weight': `balanced`
+* Melhor F1 CV (5-fold): 0.6939
+
+### Métricas no Conjunto de Treino
+|Classe  |	Precision|	Recall|	F1-score	|Support|
+|--------|-----------|--------|-----------|-------|
+|Fica	   |0.69	     |0.76    |	0.72    	|2327   |
+|Sai     |0.73	     |0.66	  |0.69       |	2327  |
+|Accuracy|0.71       |        |           |		    |	
+|AUC     |0.79       |        |           |			  |
+
+### Matriz de Confusão (Treino)
+
+|  |Modelo disse que saiu| Modelo disse que ficou|
+|--|---------------------|-----------------------|
+|Saiu|   1769    |  558 |
+|Ficou|  799     | 1528 |
+ 
+### Métricas no Conjunto de Teste
+|Classe  |	Precision|	Recall|	F1-score	|Support|
+|--------|-----------|--------|-----------|-------|
+|Fica	   |0.35	     |0.63    |	0.45    	|189   |
+|Sai     |0.84       |0.62	  |0.71       |	583  |
+|Accuracy|0.62       |        |           |		    |	
+|AUC     |0.68       |        |           |			  |
+
+
+### Matriz de Confusão (Teste)
+
+|  |Modelo disse que saiu| Modelo disse que ficou|
+|--|---------------------|-----------------------|
+|Saiu|   119    |  70 |
+|Ficou|  222     | 361 |
+
+### Principais Observações:
+- Recall “Fica” subiu de 0.42 → 0.63, melhorando em +0.21.
+- AUC avançou de 0.57 → 0.68, indicando melhor poder de discriminação.
+- Trade-off: leve queda em F1 “Sai” (0.76 → 0.71) e acurácia geral (0.65 → 0.62).
+---
+
+
 
