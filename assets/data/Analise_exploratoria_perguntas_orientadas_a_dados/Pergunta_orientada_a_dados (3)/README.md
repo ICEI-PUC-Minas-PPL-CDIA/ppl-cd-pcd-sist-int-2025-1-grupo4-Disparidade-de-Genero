@@ -934,7 +934,7 @@ plt.show()
 > **Conclusão**: O modelo atual generaliza mal para a classe “Fica”. Ajustes de poda e uso de métodos ensemble devem melhorar o recall dessa classe e elevar o AUC no teste.
 ---
 * Dito isso, alterei o código conforme o ponto 8, presente em 4.1:
-```
+```python
 # 📓 Notebook: v2.3 – Poda para Reduzir Overfitting
 
 # 1. Instalação (se necessário)
@@ -1102,6 +1102,7 @@ plt.show()
 - AUC avançou de 0.57 → 0.68, indicando melhor poder de discriminação.
 - Trade-off: leve queda em F1 “Sai” (0.76 → 0.71) e acurácia geral (0.65 → 0.62).
 ---
+
 # Planejamento da Sprint 5.
 # Sprint 5 – 2º Modelo Induzido: Rede Neural
 
@@ -1112,6 +1113,53 @@ plt.show()
   - Lida bem com variáveis numéricas e codificadas (idade, salário, ordinalidade, binárias).  
   - Capta relações não-lineares entre atributos (e.g. interações entre satisfação e experiência prejudicada).  
   - Permite ajustarmos arquitetura (camadas, neurônios) e regularização (dropout, batch-norm).
+
+## 1.1 Alterações na base de dados
+
+### 1.1.1 Conversão de Atributos Categóricos
+
+Algumas variáveis categóricas foram transformadas para formato numérico com o objetivo de permitir o uso em algoritmos de machine learning, que não operam diretamente com strings. As seguintes conversões foram aplicadas:
+
+---
+
+#### a) Gênero
+
+A coluna original `('P1_b ', 'Genero')` foi transformada na coluna binária `GENERO binário`, de acordo com a seguinte lógica:
+
+- `"Masculino"` → `1`
+- `"Feminino"` → `0`
+
+Essa conversão possibilita a utilização da variável de gênero como variável binária, simplificando o tratamento nos modelos supervisionados.
+
+---
+
+#### b) Agrupamento de Cargos
+
+A variável categórica `AGRUPAMENTO CARGOS` foi convertida em `CARGOS numericamente` através de um mapeamento manual, com base em categorias semânticas predefinidas. O mapeamento ficou da seguinte forma:
+
+| Categoria Original          | Valor Numérico |
+|----------------------------|----------------|
+| Acadêmico                  | 0              |
+| Análise de Dados           | 1              |
+| Científico/Quantitativo    | 2              |
+| Desenvolvimento            | 3              |
+| Engenharia de Dados        | 4              |
+| Infraestrutura             | 5              |
+| ML/IA                      | 6              |
+| Negócios                   | 7              |
+| Outras Engenharias         | 8              |
+| Outro                      | 9              |
+| Produto                    | 10             |
+
+Essa transformação foi realizada para garantir que os modelos possam trabalhar com essa variável como ordinal ou categórica codificada numericamente.
+
+---
+
+### 1.1.2 Justificativa
+
+Essas transformações foram necessárias para atender os pré-requisitos do algoritmo de machine learning supervisionado que usarei, redes neural, que exige entradas numéricas. Além disso, essa padronização facilita o tratamento de variáveis durante o pipeline de modelagem, validação e explicação dos resultados.
+
+Acesso à nova base:
 
 ## 2. Baseline
 
@@ -1298,6 +1346,48 @@ plt.show()
 
   * AUROC < 0.70 sugere melhorias no poder preditivo.
  
+## 6.1 Matriz de Confusão
+
+Abaixo está a matriz de confusão gerada pelo modelo de rede neural:
+
+![Matriz de confusao segundo modelo induzido 1 1](https://github.com/user-attachments/assets/06e5286d-25ba-4d26-8216-f3ff0de8e9bb)
+
+
+### Interpretação:
+
+- **Verdadeiros Positivos (VP - "Sai" predito corretamente)**: 537  
+  O modelo acertou **537 pessoas** que realmente **pretendiam sair**.
+
+- **Verdadeiros Negativos (VN - "Fica" predito corretamente)**: 26  
+  O modelo acertou **26 pessoas** que realmente **pretendiam ficar**.
+
+- **Falsos Positivos (FP - "Sai" predito, mas na verdade fica)**: 136  
+  O modelo previu que **136 pessoas sairiam**, mas **na verdade ficariam**.
+
+- **Falsos Negativos (FN - "Fica" predito, mas na verdade sai)**: 46  
+  O modelo previu que **46 pessoas ficariam**, mas **na verdade sairiam**.
+
+### Avaliação:
+
+- O modelo teve **bom desempenho em identificar quem vai sair (classe majoritária)**, com alta quantidade de acertos (537 VP).
+- Porém, apresenta **dificuldade em prever corretamente quem ficará (classe minoritária)**: apenas 26 VN contra 136 FP.
+- Esse comportamento é típico em datasets **desbalanceados**, onde a classe “Sai” é muito mais frequente do que “Fica”.
+
+### Implicações:
+
+- Apesar da acurácia global razoável, o modelo tende a **superestimar o risco de saída**, o que pode ser problemático em cenários de RH.
+- Para reduzir os falsos positivos, é possível:
+  - Aplicar **técnicas de balanceamento** (ex: SMOTE, undersampling).
+  - Ajustar o **threshold de decisão** (atualmente é 0.5).
+  - Usar **métricas específicas da minoria**, como _Recall_ para a classe “Fica”.
+
+---
+
+> **Resumo:** O modelo é eficaz para identificar potenciais desligamentos, mas ainda falha bastante em prever corretamente quem irá permanecer, o que limita sua utilidade prática em algumas decisões estratégicas.
+
+
+
+ 
 ## 7. Sugestões para Próxima Iteração
 
 * *Balanceamento*: usar SMOTE ou class weights para reforçar “Fica”.
@@ -1342,6 +1432,7 @@ plt.show()
 ---
 
 > **Resumo:** As curvas reforçam a análise quantitativa: o modelo aprende bem o padrão do treino, mas ainda não generaliza de forma robusta. É um bom ponto de partida, mas há margem para ajustes estruturais e de dados.
+
 
 
 ## Conclusão:
