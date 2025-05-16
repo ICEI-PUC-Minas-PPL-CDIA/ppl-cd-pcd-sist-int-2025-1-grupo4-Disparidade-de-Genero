@@ -6,7 +6,6 @@ Sendo feita por Vitor Martins
 
 ## Sumário
 
-1. 
 
 ## Dicionário de dados
 
@@ -30,9 +29,11 @@ Sendo feita por Vitor Martins
 | `Atuacao`                                  | Qualitativo  | Nominal        | Com que serviços o participante atua.                                            |'Ciência de Dados' = 0;<br> 'Análise de Dados' = 1;<br> 'Engenharia de Dados' = 2;<br> 'Outra atuação' = 3
 
 
+## 2 Análise Exploratória
 
 
-## Limpeza e Tratamento de Dados
+
+## 3 Limpeza e Tratamento de Dados
 
 Foram removidas todas as linhas que possuiam algum valor nulo nos campos selecionados acima exceto o atributo "Area de Formação"
 
@@ -41,5 +42,21 @@ No atributo `Area de Formação` foi colocado a moda nos valores nulos
 E  tipo da coluna `Oportunidade de Progressão de Carreira` foi modificado de float para int
 
 
+
+## Modelagem
+
+### Modelo 1
+
+
+### Modelo 2
+
+Para o modelo 2 eu fiz os seguintes prompts no ChatGPT:
+``"Olá, quero fazer um modelo com algoritmo para Machine Learning buscando classificar o que leva uma pessoa a ter a Progressão de Carreira prejudicada, quais algoritmos você me recomenda? Me explique detalhadamente cada um"``
+
+Onde ele me restornou diversos tipos de algoritmos, e dentre esses o algoritmo LightGGM foi o que mais me chamou a atenção
+
+``Irei usar o algoritmo LightGBM. Ja possuo a base de dados tratada Agora preciso montar um script python pelo Jupyter Notebook``
+
+Onde ele me retornou o codigo em arquivo .ipynb para execução da indução do modelo
 
 
