@@ -1159,7 +1159,8 @@ Essa transformação foi realizada para garantir que os modelos possam trabalhar
 
 Essas transformações foram necessárias para atender os pré-requisitos do algoritmo de machine learning supervisionado que usarei, redes neural, que exige entradas numéricas. Além disso, essa padronização facilita o tratamento de variáveis durante o pipeline de modelagem, validação e explicação dos resultados.
 
-Acesso à nova base:
+Acesso à nova base:  
+[BASE SPRINT 4 VERSAO 2 TODA NUMERICA(in).csv)](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/commit/a0d61a7739c08b5a2b6cd0e09188858860ae5490#diff-23212db9ecadfda8498670d8fdeb232b9233a1ebbaaf71a1b962074a55bf4c0e))
 
 ## 2. Baseline
 
