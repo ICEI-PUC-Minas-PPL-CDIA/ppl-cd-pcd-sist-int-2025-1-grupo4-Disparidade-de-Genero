@@ -1102,6 +1102,247 @@ plt.show()
 - AUC avançou de 0.57 → 0.68, indicando melhor poder de discriminação.
 - Trade-off: leve queda em F1 “Sai” (0.76 → 0.71) e acurácia geral (0.65 → 0.62).
 ---
+# Planejamento da Sprint 5.
+# Sprint 5 – 2º Modelo Induzido: Rede Neural
+
+## 1. Algoritmo Escolhido e Justificativa
+
+- **Algoritmo:** Rede Neural Feed-Forward (MLP)
+- **Justificativa:**  
+  - Lida bem com variáveis numéricas e codificadas (idade, salário, ordinalidade, binárias).  
+  - Capta relações não-lineares entre atributos (e.g. interações entre satisfação e experiência prejudicada).  
+  - Permite ajustarmos arquitetura (camadas, neurônios) e regularização (dropout, batch-norm).
+
+## 2. Baseline
+
+- **DummyClassifier (maior frequência):**  
+  - Accuracy ~ 0.76 (prevê sempre “Sai”).  
+  - Precision/Recall/F1 da classe “Fica” = 0.0.  
+- **Meta:** superar baseline em pelo menos uma métrica chave (F1 ou AUROC).
+
+## 3. Hiper-parâmetros Documentados
+
+| Parâmetro         | Valor usado           | Observações                                    |
+|-------------------|-----------------------|------------------------------------------------|
+| camadas ocultas   | [64, 32]              | Duas camadas densas de 64 e 32 neurônios       |
+| ativação ocultas  | `relu`                | Convergência mais rápida em deep learning      |
+| ativação saída    | `sigmoid`             | Binário (0/1)                                  |
+| otimizador        | `adam`                | Ajuste automático de learning rate             |
+| loss              | `binary_crossentropy` | Adequado para classificação binária            |
+| métricas          | `accuracy`, `AUC`     | Avalia tanto acurácia quanto separação de classes |
+| batch_size        | 32                    | Tamanho de mini-batch                          |
+| epochs            | 50                    | Early-stopping opcional (com validation_split) |
+| validation_split  | 0.1                   | 10% dos dados de treino para validação interna |
+
+## 4. Código Reproduzível (Usei Google Colab)
+
+```python 
+# 1. Instalação (se necessário)
+!pip install tensorflow scikit-learn pandas matplotlib seaborn
+
+# 2. Importações
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.dummy import DummyClassifier
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score,
+    f1_score, roc_auc_score, confusion_matrix, classification_report
+)
+
+import tensorflow as tf
+from tensorflow.keras import Input, Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.callbacks import EarlyStopping
+
+# 3. Carregar e preparar dados
+df = pd.read_csv('BASE_SPRINT5_REFINADA.csv', sep=';', encoding='latin1')
+
+# Renomear colunas para nomes limpos
+df.rename(columns={
+    "('P1_a ', 'Idade')": 'Idade',
+    'GENERO binário': 'Genero',
+    'EXPERIÊNCIA PREJUDICADA SIM OU NAO': 'ExperienciaPrejudicada',
+    'CARGOS numéricamente': 'AgrupamentoCargos', 
+    'MÉDIA FAIXA SALARIAL': 'MediaFaixaSalarial',
+    'NÍVEL COM NÚMEROS ORDINAIS': 'NivelOrdinal',
+    "('P2_k ', 'Você está satisfeito na sua empresa atual?')": 'Satisfeito',
+    'ESTOU NA FORMA DE TRABALHO IDEAL?': 'TrabalhoIdeal',
+    'PRETENDE SAIR SIM OU NAO - TARGET': 'PretendeSair'
+}, inplace=True)
+
+# Seleção de features e target; drop de missing
+features = [
+    'Idade','Genero','ExperienciaPrejudicada','AgrupamentoCargos',
+    'MediaFaixaSalarial','NivelOrdinal','Satisfeito','TrabalhoIdeal'
+]
+df = df[features + ['PretendeSair']].dropna()
+
+# Converter tipos
+df['Idade']                = df['Idade'].astype(float)
+df['MediaFaixaSalarial']   = df['MediaFaixaSalarial'].astype(float)
+df[['Genero','ExperienciaPrejudicada','NivelOrdinal','Satisfeito','TrabalhoIdeal','PretendeSair']] = \
+    df[['Genero','ExperienciaPrejudicada','NivelOrdinal','Satisfeito','TrabalhoIdeal','PretendeSair']].astype(int)
+
+# 4.1 Baseline Dummy
+X_base = df[features]
+y_base = df['PretendeSair']
+baseline = DummyClassifier(strategy='most_frequent', random_state=42)
+baseline.fit(X_base, y_base)
+y_base_pred = baseline.predict(X_base)
+print("Baseline Accuracy:", accuracy_score(y_base, y_base_pred))
+
+# 5. Split treino/teste
+X = df[features]
+y = df['PretendeSair']
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, stratify=y, random_state=42
+)
+
+# 6. Escalar numéricos
+num_cols = ['Idade','MediaFaixaSalarial','NivelOrdinal']
+scaler = StandardScaler()
+X_train[num_cols] = scaler.fit_transform(X_train[num_cols])
+X_test[num_cols]  = scaler.transform(X_test[num_cols])
+
+# 7. Construir Rede Neural
+model = Sequential([
+    Input(shape=(len(features),)),
+    Dense(64, activation='relu'),
+    Dense(32, activation='relu'),
+    Dense(1, activation='sigmoid'),
+])
+
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy', tf.keras.metrics.AUC(name='auroc')]
+)
+
+# Early stopping opcional
+es = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
+
+history = model.fit(
+    X_train, y_train,
+    validation_split=0.1,
+    epochs=50,
+    batch_size=32,
+    callbacks=[es],
+    verbose=1
+)
+
+# 8. Avaliação
+y_pred_prob = model.predict(X_test).ravel()
+y_pred      = (y_pred_prob > 0.5).astype(int)
+
+acc   = accuracy_score(y_test, y_pred)
+auc   = roc_auc_score(y_test, y_pred_prob)
+prec  = precision_score(y_test, y_pred)
+rec   = recall_score(y_test, y_pred)
+f1    = f1_score(y_test, y_pred)
+
+print(f"Accuracy: {acc:.4f}")
+print(f"AUC     : {auc:.4f}")
+print(f"Precision: {prec:.4f}")
+print(f"Recall   : {rec:.4f}")
+print(f"F1-score : {f1:.4f}")
+
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred, target_names=['Fica','Sai']))
+
+# 9. Matriz de Confusão
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Fica','Sai'], yticklabels=['Fica','Sai'])
+plt.title("Matriz de Confusão – Rede Neural v1.1")
+plt.xlabel("Previsto")
+plt.ylabel("Real")
+plt.show()
+```
+## 5. Métricas Chave e Interpretação (Teste)
+|Métrica	      |Valor    |
+|---------------|---------|
+|Accuracy       |	0.7293  |
+|AUROC          |	0.6929  |
+|Precision(Fica)|	0.36    |
+|Recall(Fica)   |	0.14    |
+|F1(Fica)      	|0.20     |
+|Precision(Sai) |	0.77    |
+|Recall(Sai)    |	0.92    |
+|F1(Sai)	      |0.84     |
+
+* Acurácia global (72.9 %) supera baseline (~76 % na base inteira, mas baseline “Sai” falha em “Fica”).
+
+* AUROC ~ 0.69 indica poder discriminativo moderado.
+
+* Modelo é forte em prever quem sai (alta recall = 92 %), mas ainda fraco em capturar quem fica (recall = 14 %).
+
+## 6. Pontos Fortes e Limitações
+* Pontos fortes:
+
+  * Supera baseline trivial em F1 geral.
+
+  * Alto recall na classe “Sai” (detecção de turnover).
+
+  * Arquitetura simples e treinamento estável.
+
+* Limitações:
+
+  * Desequilíbrio de classes persiste: fraco recall em “Fica”.
+
+  * Over/under-fitting leve (treino ~ 78 % vs teste ~ 73 %).
+
+  * AUROC < 0.70 sugere melhorias no poder preditivo.
+ 
+## 7. Sugestões para Próxima Iteração
+
+* *Balanceamento*: usar SMOTE ou class weights para reforçar “Fica”.
+
+* *Ajuste de threshold*: escolher ponto de corte que maximize F1 médio.
+
+* *Arquitetura*: experimentar mais camadas, dropout ou batch-norm.
+
+* *Novos atributos*: criar interações (e.g. idade × satisfação).
+
+* *Algoritmo adicional*: comparar com XGBoost / Random Forest para validar robustez.
+
+## 8. Análise das Curvas de Treinamento
+
+### Gráfico: Curva de Perda e Acurácia ao Longo das Épocas
+
+![graficos rede neural hipotese vai sair 2](https://github.com/user-attachments/assets/f62ba981-e8f5-4776-9910-eb4298b58ac2)
+
+### Interpretação
+
+#### Curva de Perda (Loss)
+- A **linha azul** representa a perda (erro) nos dados de **treinamento**, enquanto a **linha laranja** mostra a perda na **validação**.
+- Observamos que:
+  - A perda de **treinamento** segue diminuindo de forma suave.
+  - A perda de **validação** também decresce no início, mas apresenta **variações instáveis** a partir da 7ª época.
+  - Isso pode ser um **indício inicial de overfitting**, pois o modelo continua melhorando no treino, mas oscila na validação.
+
+#### Curva de Acurácia
+- A **linha azul** indica a acurácia nos dados de **treinamento**, e a **linha laranja**, a acurácia na **validação**.
+- Acurácia de **treinamento aumenta continuamente**, atingindo mais de 77%.
+- Já a **acurácia de validação oscila** e estabiliza por volta de 72–73%, sem grande melhora após a 6ª época.
+- Esse comportamento reforça a hipótese de que o modelo começa a **memorizar** o treino, mas **não generaliza tão bem** nos dados de validação.
+
+### Conclusão da Curva
+- O modelo teve um bom início de aprendizado, com melhora tanto em loss quanto em acurácia.
+- A partir de um certo ponto (época ~6 a 8), os ganhos de validação se estagnam ou oscilam, sugerindo a necessidade de:
+  - **Regularização** (ex: dropout, L2).
+  - **Early stopping** com base na validação.
+  - **Ajuste da arquitetura** (menos neurônios ou camadas).
+  - **Balanceamento de classes**, para melhorar a generalização, principalmente para a classe minoritária (“Fica”).
+
+---
+
+> **Resumo:** As curvas reforçam a análise quantitativa: o modelo aprende bem o padrão do treino, mas ainda não generaliza de forma robusta. É um bom ponto de partida, mas há margem para ajustes estruturais e de dados.
 
 
-
+## Conclusão:
+> O modelo de rede neural v1.1 validou a viabilidade de prever “PretendeSair” com performance melhor que baseline trivial. Há ganho modesto em recall da classe minoritária, mas ainda requer refinamentos de balanceamento e arquitetura para capturar quem fica com mais fidelidade.
