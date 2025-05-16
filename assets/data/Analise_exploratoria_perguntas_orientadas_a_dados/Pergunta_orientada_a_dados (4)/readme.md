@@ -249,3 +249,6 @@ files.download('base_princ_modificado.csv')
 Descrição:
 Este comando permite o download do arquivo CSV modificado diretamente para o computador do usuário, quando o código está sendo executado no Google Colab.
 A função files.download() baixa o arquivo 'base_princ_modificado.csv', que foi gerado na etapa anterior, tornando possível armazená-lo localmente para uso posterior ou compartilhamento.
+
+# Primeiro modelo Induzido (Árvore de Decisão)
+# Segundo modelo Induzido (K-Means)
