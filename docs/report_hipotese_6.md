@@ -5,7 +5,10 @@ Sendo feita por Vitor Martins
 # Como o gênero afeta na progressão de carreira no setor de dados
 
 ## Sumário
-
+Análise dos dados;
+Relatórios dos algoritmos;
+Motivos do uso de cada técnica;
+Apresentação e análise dos resultados alcançados.
 
 ## Dicionário de dados
 
