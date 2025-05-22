@@ -1,7 +1,9 @@
 # Análise Exploratória - Disparidade de Gênero no Mercado de Trabalho
 
-**Hipótese**: Investigar como a disparidade de gênero interfere na situação atual de trabalho conforme a região onde a pessoa mora.
+**Hipótese**: Classificar se a pessoa vai estar empregada ou desempregada conforme o gênero e a região onde ela mora.
 
+Objetivo do seu modelo
+Prever (classificar) a situação de trabalho com base em gênero e região — e com isso, entender como o gênero e a localização influenciam na desigualdade de emprego.
 ---
 
 ## 1. Importação de Bibliotecas
