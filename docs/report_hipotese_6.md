@@ -34,6 +34,47 @@ Apresentação e análise dos resultados alcançados.
 
 ## 2 Análise Exploratória
 
+### Visualizações
+Idade: Distribuição da idade dos participantes da pesquisa.
+![image](https://github.com/user-attachments/assets/4160bafa-4e81-43c5-9dd8-cd0b0e245e91)
+
+
+Gênero: Distribuição dos gêneros dos participantes da pesquisa.<br>
+![image](https://github.com/user-attachments/assets/02dd6ed4-f909-435f-ab3c-aaed06923b1c)
+
+
+Cor/Raça/Etnia: Distribuição de cor/raça/etnia dos participantes da pesquisa.<br>
+![image](https://github.com/user-attachments/assets/17cc32bc-8b67-4ebc-9f61-ad8c0bf813be)
+
+
+Estado onde mora: Estados onde moram os participantes da pesquisa.<br>
+![image](https://github.com/user-attachments/assets/ffd18491-e943-4d31-b6e5-d6862ea8bd7d)
+
+
+Região onde mora: Região onde moram os participantes da pesquisa.<br>
+![image](https://github.com/user-attachments/assets/0c15080a-a8cd-4ac2-ba00-db359e4b3057)
+
+
+Nível de ensino: Nível de ensino dos participantes da pesquisa.<br>
+![image](https://github.com/user-attachments/assets/a110e3d2-36a3-45d3-afd3-b69ad9523e06)
+
+
+Situação de trabalho: Atual situação de trabalho dos participantes da pesquisa.
+![image](https://github.com/user-attachments/assets/763580a0-a7fa-4c3a-80be-8d4e288de75c)
+
+
+Cargo: Atual cargo dos participantes da pesquisa.<br>
+![image](https://github.com/user-attachments/assets/ac06c19c-7666-49f4-a2aa-e56c481e7f3c)
+
+
+Forma de trabalho: Forma como os participantes da pesquisa atendem ao trabalho. <br>
+![image](https://github.com/user-attachments/assets/4d5e9719-4dfd-42be-bbde-434e96af294e)
+
+
+
+
+![image](https://github.com/user-attachments/assets/f9a2afd8-2b8c-4d2b-8dec-2d6c3280c2a4)
+
 
 
 ## 3 Limpeza e Tratamento de Dados
