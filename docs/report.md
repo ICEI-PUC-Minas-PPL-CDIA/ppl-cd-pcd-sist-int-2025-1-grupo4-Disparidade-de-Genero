@@ -267,10 +267,21 @@ Pergunta orientada a dados: Como as taxas de conclusão do ensino superior varia
 
 | Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
 |--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| ``                                       |   |         |                                      |
-
+| `Idade`                                    | Quantitativo | Nominal        | Idade do participante.                                                           |
+| `Gênero`                                   | Qualitativo  | Nominal        | Gênero do participante.                                                          |                                                                
+| `Cor/raca/etnia`                           | Qualitativo  | Nominal        | Cor/raca/etnia do participante.                                                  | 
+| `PCD`                                      | Qualitativo  | Nominal        | Se o particpante é PCD ou não.                                                   | 
+| `Oportunidades de progressão de carreira`  | Qualitativo  | Nominal        | Se o participante possui as oportunidades de progressão de carreira prejudicadas.| 
+| `uf onde mora`                             | Qualitativo  | Nominal        | UF/Estado onde a pessoa mora no momento da pesquisa.                             |
+| `Regiao onde mora`                         | Qualitativo  | Nominal        | Região onde a pessoa mora no momento da pesquisa.                                |
+| `Nivel de Ensino`                          | Qualitativo  | Ordinal        | Qual o nivel de ensino máximo que o partipante alcançou.                         |
+| `Area de Formação`                         | Qualitativo  | Nominal        | Em qual área do conhecimento o participante é formado ou está se formando.       |
+| `Qual sua situação atual de trabalho?`     | Qualitativo  | Nominal        | Qual a situação de trabalho do participante.                                     |
+| `Setor`                                    | Qualitativo  | Nominal        | Em qual setor o participante trabalha.                                           |
+| `Cargo`                                    | Qualitativo  | Nominal        | Qual cargo o participante ocupa no trabalho.                                     |
+| `Nivel`                                    | Qualitativo  | Nominal        | Qual o nivel de experiência do participante                                      |
+| `Forma de trabalho?`                       | Qualitativo  | Nominal        | Qual a forma de trabalho do particpante.                                         |
+| `Atuacao`                                  | Qualitativo  | Nominal        | Com que serviços o participante atua.                                            |
 #### Descrição da base
 O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
 
