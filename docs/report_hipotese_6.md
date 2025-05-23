@@ -41,25 +41,32 @@ Apresentação e análise dos resultados alcançados.
 Foram removidas todas as linhas que possuiam algum valor nulo nos campos selecionados acima exceto o atributo "Area de Formação"
 
 No atributo `Area de Formação` foi colocado a moda nos valores nulos
+O nome da coluna `Oportunidade de Progressão de Carreira` foi modificado para `progressao_prejudicada`
+Foi modificada a ordem das colunas, colocando `progressao_prejudicada` em ultimo para facilitar a separação do atributo alvo do resto das colunas
+E tipo de todas as colunas foi modificado de float para int
 
-E  tipo da coluna `Oportunidade de Progressão de Carreira` foi modificado de float para int
 
 
-
-## Modelagem
+## 4 Modelagem
 
 ### Modelo 1
-
+#### Árvore de Decisão
 
 ### Modelo 2
-
+#### Random Forest 
 Para o modelo 2 eu fiz os seguintes prompts no ChatGPT:
 ``"Olá, quero fazer um modelo com algoritmo para Machine Learning buscando classificar o que leva uma pessoa a ter a Progressão de Carreira prejudicada, quais algoritmos você me recomenda? Me explique detalhadamente cada um"``
 
-Onde ele me restornou diversos tipos de algoritmos, e dentre esses o algoritmo LightGGM foi o que mais me chamou a atenção
+Onde ele me restornou diversos tipos de algoritmos, e dentre esses o algoritmo RandomForest foi o que mais me chamou a atenção
 
-``Irei usar o algoritmo LightGBM. Ja possuo a base de dados tratada Agora preciso montar um script python pelo Jupyter Notebook``
+``Faça um script Jupyter Notebook com a aplicação completa do algoritmo de Random Forest para a base State of Data Brazil 2023``
 
 Onde ele me retornou o codigo em arquivo .ipynb para execução da indução do modelo
 
+Relatório de Classificação <br>
+![image](https://github.com/user-attachments/assets/1331531b-d61f-472d-9e0f-c49948d5796f)
 
+
+
+Esse foi o resultado da matriz de confusão <br>
+![image](https://github.com/user-attachments/assets/bc969730-2516-405c-a16c-2b689de0630e)
