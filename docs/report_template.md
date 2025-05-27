@@ -1,18 +1,26 @@
-# TITULO DO PROJETO
+# Disparidade de Gênero no Setor da Tecnologia
 
 
-**Nome completo do Aluno 1, email do aluno 1**
+**Pedro Lansdowne Oliveira, pedro.lansdowne@sga.pucminas.br**
 
-**Nome completo do Aluno 2, email do aluno 2**
+**Leonardo Andrade Caetano Dornelas, lacdornelas@sga.pucminas.br**
 
-**Nome completo do Aluno 3, email do aluno 3**
+**Augusto Henrique Gonçalves Valbonetti, ahgvalbonetti@sga.pucminas.br**
+
+**Eduardo Fraga Fonseca Gomes, eduardo.fonseca@sga.pucminas.br**
+
+**Vitor Martins Gonçalves, vitor.goncalves@sga.pucminas.br**
+
+**Gustavo Bacellar Nunes Soares, gbnsoares@sga.pucminas.br**
+
 
 ---
 
 Professores:
 
-** Prof. Nome do Prof 1 **
-** Prof. Nome do Prof 2 **
+**Hugo Bastos de Paula**
+
+**Hayala Nepomuceno Curto**
 
 ---
 
@@ -22,87 +30,109 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_**Resumo**. Escrever aqui o resumo. O resumo deve contextualizar rapidamente o trabalho, descrever seu objetivo e, ao final, 
-mostrar algum resultado relevante do trabalho (até 10 linhas)._
+**Resumo**. 
+
+Este estudo investiga a disparidade de gênero no setor da tecnologia no Brasil, analisando os desafios enfrentados pelas mulheres. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres no mercado de trabalho de dados. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
 
 ---
 
 
 ## Introdução
 
-A introdução deve apresentar de dois a quatro parágrafos de contextualização do trabalho. 
+  É notório que o pensamento, tanto feminino quanto masculino, apresenta-se extremamente válido para o avanço tecnológico, inclusive no Setor da tecnologia no Brasil. Entretanto, tal realidade apresenta-se desvirtuada e validada por uma análise descritiva que pode ser realizada ao observar o banco de dados servindo como referência para esta pesquisa. Através de uma análise descritiva, esse estudo busca, primeiramente, validar tal infeliz realidade da disparidade (em todas as suas vertentes) de gênero no Setor da tecnologia no Brasil e então, propor alternativas válidas para a promoção da inclusão de gênero equalitária nesse nicho.  
+  
+  As causas que podem ser inferidas para esse desafio são várias e serão abordadas abaixo. Dentre elas, observa-se o imaginário social enraizado de que mulheres não são tão ábeis em tecnologia quanto os homens, além haver uma ausência de representatividade feminina nesse nicho, fora a dupla-jornada de trabalho que,normalmente, mulheres enfrentam, limitando ainda mais sua capacidade de cresimento, contribuição e evolução nesse ramo.  
+
+  Essa pesquisa é importante uma vez que, com sua validação e correta execução, mais mulheres poderão ter lugar e espaço no Setor da tecnologia no Brasil. Com isso, além de fornecer mais rotatividade de empregos no mercado, mais vidas serão positivamente contribuídas pelo trabalho, com o incentivo, mesmo que sutil, a mais mulheres ingressando nesse ramo, sem haver disparidades, desigualdades ou destratamentos, haverão mais mentes pensantes dentro desse mercado, contribuindo para mais avanços científicos úteis para o mundo e o futuro, os quais podem estar sendo retardados pela presença de desvalorização da força feminina dentro desse mercado, tema pelo qual abordaremos com mais detalhes a seguir.
 
 ###    Contextualização
 
-Na **contextualização**, o aluno deve dizer do que se trata o trabalho, em que área ou contexto se insere. 
-A **contextualização** deve ser desenvolvida de algo mais genérico para algo mais específico. 
-A citação de pesquisas quantitativas é bem aceita aqui (corretamente referenciadas).
+A área de ciência de dados cresce a passos largos, movimentando bilhões e influenciando decisões no mundo todo. Mas, quando olhamos para quem está por trás dessas análises e algoritmos, percebemos uma realidade preocupante: a disparidade de gênero ainda é grande. As mulheres continuam sub-representadas no setor, enfrentando barreiras que vão desde a entrada no mercado até a progressão na carreira.
+Os números refletem essa realidade. Pesquisas mostram que a presença feminina na ciência de dados ainda é muito menor do que a masculina, e as chances de ocupar cargos de liderança são ainda mais reduzidas. Entender essa disparidade e buscar soluções para torná-la coisa do passado não é apenas uma questão de justiça – é também uma maneira de tornar o setor mais diverso, inovador e eficiente.
 
 ###    Problema
 
-Nesse momento você deve apresentar o problema que seu agente pretende resolver. 
-No entanto, não é a hora de comentar sobre a aplicação.
-Descreva também o contexto em que essa aplicação será usada, se  houver: 
-empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, 
-pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+No Brasil, as mulheres que trabalham em setores da Tecnologia são prejudicadas por haver, intrinsicamente, uma disparidade de gênero em seu setor laboral. Tal problema ocorre por um viés social, por exemplo, por meio de esteriótipos sobre empregos ou, também, por um viés econômico, em que as mulheres perdem oportunidades de empregos ou de salários melhores para homens.
+Dito isso, observa-se uma notória discrepância de gênero em um mercado de trabalho na área da computação.
 
-O **problema** pode ser algo vivido em uma empresa específica. Neste caso, o aluno deve 
-sucintamente apresentar o cenário de problema da empresa. A empresa só deve ser citada 
-explicitamente se o aluno tiver autorização para tal.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
 
 
 ###    Objetivo geral
 
-Nesta seção deve-se escrever um pequeno parágrafo ou frase com o **objetivo geral** 
-do trabalho. O objetivo deve ser bem direto, específico e definido com verbos de 
-ação (elaborar, propor, avaliar, comparar etc.). No caso deste projeto, o objetivo é
-"desenvolver um sistema inteligente para ...". O seu objetivo geral deve ser uma
-pergunta orientada a dados. Ou seja, ela deve incluir de forma geral os dados em que
-os modelos irão se basear para atingir o objetivo.
+Nesta seção deve-se escrever um pequeno parágrafo ou frase com o objetivo geral do trabalho. O objetivo deve ser bem direto, específico e definido com verbos de ação (elaborar, propor, avaliar, comparar etc.). No caso deste projeto, o objetivo é "desenvolver um sistema inteligente para ...". O seu objetivo geral deve ser uma pergunta orientada a dados. Ou seja, ela deve incluir de forma geral os dados em que os modelos irão se basear para atingir o objetivo.
 
 ####    Objetivos específicos
 
-Apresente também alguns (pelo menos 2) **objetivos específicos** dependendo de onde 
-você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar 
-no seu trabalho.
+1- Analisar a distribuição de gênero entre os profissionais do setor de tecnologia
 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+2-Comparar os salários médios entre homens e mulheres no setor de dados
+
+3- Comparar as oportunidades de crescimento entre homens e mulheres no setor de dados
+
+4- Identificar os principais desafios enfrentados por mulheres no setor de dados
+
+5- Comparar a representatividade feminina em cargos de liderança no setor de dados
+
+6- Examinar a relação entre nível de escolaridade e empregabilidade de mulheres no setor
+
+7- Estudar a presença de viés de gênero nos processos seletivos do setor de tecnologia
+
 
 
 ###    Justificativas
 
-Mostre também as **justificativas** para o  desenvolvimento do seu trabalho e, caso deseje, 
-destaque alguma contribuição do trabalho.
-
-A justific ativa deve descrever a importância ou a motivação para o desenvolvimento do 
-sistema inteligente escolhido. Indique as razões pelas quais você escolheu seus objetivos 
-específicos ou as razões para aprofundar em certos aspectos do software.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+A razão pela a escolha do tema Disparidade de gênero no setor de T.I vem da necessidade de apoiar a igualdade entre gêneros no mercado de dados, 
+um lugar que ainda mostra diferenças grandes entre homens e mulheres. Ao olharmos para a diferença por gênero, 
+tentamos achar as causas dessas desigualdades e dar números que podem ajudar políticas e ações de inclusão. 
 
 
 
 ##    Público alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. 
-O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários 
-na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos 
-usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O nosso público-alvo são gerentes de empresa que buscam uma menor disparidade de mulheres nos diversos setores da tecnologia, como gerentes de RH e chefes de setor de tecnologia.
+Temos como público alvo diretores e coordenadores de instiruições de ensino da área, ja que podemos observar uma grande falta de mulheres nos cursos da área. Além de estudantes que buscam se graduar na área de tecnologia.
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, 
-diagramas de personas e mapa de stakeholders.
+###  Personas
 
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+1️⃣ Persona: Desenvolvedora Plena em Tecnologia
+
+- Nome: Carla Nunes
+
+- Idade: 29 anos
+
+- Objetivo: Entender se está sendo remunerada de forma justa em comparação aos colegas homens com funções similares.
+
+- Desafios: Dificuldade em acessar dados transparentes e atualizados sobre salários com recorte de gênero.
+
+2️⃣ Persona: Coordenadora de Diversidade e Inclusão
+
+- Nome: Priscila Duarte
+
+- Idade: 35 anos
+
+- Objetivo: Desenvolver políticas internas que reduzam a desigualdade salarial de gênero.
+
+- Desafios: Falta de indicadores específicos sobre mulheres em cargos técnicos e de liderança na empresa.
+
+3️⃣ Persona: Engenheiro de Software Sênior
+
+- Nome: Rafael Lima
+
+- Idade: 41 anos
+
+- Objetivo: Apoiar iniciativas de equidade de gênero no setor, incluindo revisão salarial.
+
+- Desafios: Não tem acesso a comparativos salariais por gênero que possam embasar ações efetivas.
+
+4️⃣ Persona: Consultora de Igualdade de Gênero em ONGs
+
+- Nome: Sônia Ferreira
+
+- Idade: 47 anos
+
+- Objetivo: Promover ações públicas e privadas que eliminem a diferença salarial entre homens e mulheres na tecnologia.
+
+- Desafios: Precisa de estudos aprofundados com dados desagregados por cargo, gênero, região e senioridade.
 
 
 ## Análise exploratórida dos dados
