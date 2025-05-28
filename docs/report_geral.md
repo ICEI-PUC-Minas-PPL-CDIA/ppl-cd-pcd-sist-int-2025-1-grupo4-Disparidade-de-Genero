@@ -141,7 +141,6 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 
 ## Análise exploratória dos dados
 
-
 ###    Dicionário de dados da base principal - State of Data Brazil 2023
 
 
@@ -203,85 +202,9 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 | `Situação de Trabalho`                     | Qualitativo  | Nominal        | Vínculo empregatício (CLT, PJ, Autônomo, Desempregado).                  |
 | `Cor/Raça/Etnia`                           | Qualitativo  | Nominal        | Autodeclaração racial (Branco, Preto, Pardo, Amarelo, Indígena).         |
 
-# - Atributos relevantes da base de dados principal para 2ª pergunta orientada
-
-**Pergunta orientada a dados:**  *Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?*
-
-Pergunta destrinchada em duas: 
-- Mulheres e homens têm taxas de contratação iguais no setor de tecnologia, considerando as mesmas qualificações, área de formação e nível de experiência?
-- A quantidade de vagas recebidas por mulheres na área de dados é inferior à quantidade recebida por homens, especialmente em empresas localizadas em regiões com alta demanda tecnológica?
 
 
-#### Pergunta 1
 
-| Atributo                                                 | Tipo do Dado | Escala  | Descrição                                     |
-|----------------------------------------------------------|--------------|---------|------------------------------------------------|
-| `Genero`                                                 | Qualitativo  | Nominal | Identidade de gênero do participante.          |
-| `Cargo Atual`                                            | Qualitativo  | Nominal | Cargo atual do participante.                   |
-| `Quanto tempo de experiência na área de dados você tem?` | Quantitativo | Discreta| Tempo de experiência na área de dados em anos. |
-| `Nivel de Ensino`                                        | Qualitativo  | Ordinal | Nível de ensino do participante.               |
-| `Área de Formação`                                       | Qualitativo  | Nominal | Área de formação do participante.              |
-
-#### Pergunta 2
-
-| Atributo                                                                | Tipo do Dado | Escala  | Descrição                                                  |
-|-------------------------------------------------------------------------|--------------|---------|-------------------------------------------------------------|
-| `Genero`                                                                | Qualitativo  | Nominal | Identidade de gênero do participante.                       |
-| `Quantidade de oportunidades de emprego/vagas recebidas`                | Qualitativo  | Ordinal | Quantidade de oportunidades de emprego/vagas recebidas.     |
-| `Estado onde mora`                                                      | Qualitativo  | Nominal | Estado onde o participante reside.                          |
-| `Cargo Atual`                                                           | Qualitativo  | Nominal | Cargo atual do participante.                                |
-
-
-# - Atributos relevantes da base de dados principal para 3ª pergunta orientada
-
-Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
-
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| ``                                       |   |         |                                      |
-
-# - Atributos relevantes da base de dados principal para 4ª pergunta orientada
-
-Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
-
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| ``                                       |   |         |                                      |
-
-# - Atributos relevantes da base de dados principal para 5ª pergunta orientada
-
-Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
-
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| ``                                       |   |         |                                      |
-# - Atributos relevantes da base de dados principal para 6ª pergunta orientada
-
-Pergunta orientada a dados: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
-
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| `Idade`                                    | Quantitativo | Nominal        | Idade do participante.                                                           |
-| `Gênero`                                   | Qualitativo  | Nominal        | Gênero do participante.                                                          |                                                                
-| `Cor/raca/etnia`                           | Qualitativo  | Nominal        | Cor/raca/etnia do participante.                                                  | 
-| `PCD`                                      | Qualitativo  | Nominal        | Se o particpante é PCD ou não.                                                   | 
-| `Oportunidades de progressão de carreira`  | Qualitativo  | Nominal        | Se o participante possui as oportunidades de progressão de carreira prejudicadas.| 
-| `uf onde mora`                             | Qualitativo  | Nominal        | UF/Estado onde a pessoa mora no momento da pesquisa.                             |
-| `Regiao onde mora`                         | Qualitativo  | Nominal        | Região onde a pessoa mora no momento da pesquisa.                                |
-| `Nivel de Ensino`                          | Qualitativo  | Ordinal        | Qual o nivel de ensino máximo que o partipante alcançou.                         |
-| `Area de Formação`                         | Qualitativo  | Nominal        | Em qual área do conhecimento o participante é formado ou está se formando.       |
-| `Qual sua situação atual de trabalho?`     | Qualitativo  | Nominal        | Qual a situação de trabalho do participante.                                     |
-| `Setor`                                    | Qualitativo  | Nominal        | Em qual setor o participante trabalha.                                           |
-| `Cargo`                                    | Qualitativo  | Nominal        | Qual cargo o participante ocupa no trabalho.                                     |
-| `Nivel`                                    | Qualitativo  | Nominal        | Qual o nivel de experiência do participante                                      |
-| `Forma de trabalho?`                       | Qualitativo  | Nominal        | Qual a forma de trabalho do particpante.                                         |
-| `Atuacao`                                  | Qualitativo  | Nominal        | Com que serviços o participante atua.                                            |
 #### Descrição da base
 O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
 
