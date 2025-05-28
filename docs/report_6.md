@@ -135,50 +135,49 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 - Desafios: Precisa de estudos aprofundados com dados desagregados por cargo, gênero, região e senioridade.
 
 
-## Análise exploratórida dos dados
+## Análise exploratória dos dados
 
 ###    Dicionário de dados
 
-Apresente uma descrição das bases de dados a serem utilizadas. 
-Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
-com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
-
-Este projeto deve utilizar pelo menos duas fontes de dados. Uma fonte principal e 
-uma fonte para enriquecimentos dos dados principais.
+#### State of Data Brazil 2023
 
 | Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 	|
 |--------------------------------------------|--------------|----------------|----------------------------------------------------------------------------------|
-| `Idade`                                    | Quantitativo | Nominal        | Idade do participante.                                                           |
-| `Gênero`                                   | Qualitativo  | Nominal        | Gênero do participante.                                                          |                                                                
-| `Cor/raca/etnia`                           | Qualitativo  | Nominal        | Cor/raca/etnia do participante.                                                  | 
-| `PCD`                                      | Qualitativo  | Nominal        | Se o particpante é PCD ou não.                                                   | 
-| `Oportunidades de progressão de carreira`  | Qualitativo  | Nominal        | Se o participante possui as oportunidades de progressão de carreira prejudicadas.| 
-| `uf onde mora`                             | Qualitativo  | Nominal        | UF/Estado onde a pessoa mora no momento da pesquisa.                             |
-| `Regiao onde mora`                         | Qualitativo  | Nominal        | Região onde a pessoa mora no momento da pesquisa.                                |
-| `Nivel de Ensino`                          | Qualitativo  | Ordinal        | Qual o nivel de ensino máximo que o partipante alcançou.                         |
-| `Area de Formação`                         | Qualitativo  | Nominal        | Em qual área do conhecimento o participante é formado ou está se formando.       |
-| `Qual sua situação atual de trabalho?`     | Qualitativo  | Nominal        | Qual a situação de trabalho do participante.                                     |
-| `Setor`                                    | Qualitativo  | Nominal        | Em qual setor o participante trabalha.                                           |
-| `Cargo`                                    | Qualitativo  | Nominal        | Qual cargo o participante ocupa no trabalho.                                     |
-| `Nivel`                                    | Qualitativo  | Nominal        | Qual o nivel de experiência do participante                                      |
-| `Forma de trabalho?`                       | Qualitativo  | Nominal        | Qual a forma de trabalho do particpante.                                         |
-| `Atuacao`                                  | Qualitativo  | Nominal        | Com que serviços o participante atua.                                            |
+| `Idade`                                    | Inteiro 	    | Nominal        | Idade do participante.                                                           |
+| `Gênero`                                   | Categórico   | Nominal        | Gênero do participante.                                                          |                                                                
+| `Cor/raca/etnia`                           | Categórico   | Nominal        | Cor/raca/etnia do participante.                                                  | 
+| `PCD`                                      | Categórico   | Nominal        | Se o particpante é PCD ou não.                                                   | 
+| `Oportunidades de progressão de carreira`  | Categórico   | Nominal        | Se o participante possui as oportunidades de progressão de carreira prejudicadas.| 
+| `uf onde mora`                             | Categórico   | Nominal        | UF/Estado onde a pessoa mora no momento da pesquisa.                             |
+| `Regiao onde mora`                         | Categórico   | Nominal        | Região onde a pessoa mora no momento da pesquisa.                                |
+| `Nivel de Ensino`                          | Categórico   | Ordinal        | Qual o nivel de ensino máximo que o partipante alcançou.                         |
+| `Area de Formação`                         | Categórico   | Nominal        | Em qual área do conhecimento o participante é formado ou está se formando.       |
+| `Qual sua situação atual de trabalho?`     | Categórico   | Nominal        | Qual a situação de trabalho do participante.                                     |
+| `Setor`                                    | Categórico   | Nominal        | Em qual setor o participante trabalha.                                           |
+| `Cargo`                                    | Categórico   | Nominal        | Qual cargo o participante ocupa no trabalho.                                     |
+| `Nivel`                                    | Categórico   | Nominal        | Qual o nivel de experiência do participante                                      |
+| `Forma de trabalho?`                       | Categórico   | Nominal        | Qual a forma de trabalho do particpante.                                         |
+| `Atuacao`                                  | Categórico   | Nominal        | Com que serviços o participante atua.                                            |
 
 ###    Descrição de dados
+#### Análise descritiva
+##### dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
 
-Utilize a análise descritiva baseada em estatística de primeira ordem para descrever os dados.
-Como descrever dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
-Como descrever dados qualitativos (categóricos): moda (valor mais frequente), quantidade de valores distintos (categorias), distribuição das categorias (histograma), etc.
+##### dados qualitativos (categóricos): moda (valor mais frequente), quantidade de valores distintos (categorias), distribuição das categorias (histograma), etc.
+
 
 
 ## Preparação dos dados
+### Seleção dos atributos
+![image](https://github.com/user-attachments/assets/0065040e-8723-463a-9b64-a558e11e9d14)
 
-A preparação dos dados consiste dos seguintes passos:
+### Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
 
-> - Seleção dos atributos
-> - Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
-> - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
-> - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
+
+
+### Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
+
+### Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
 
 
 ## Indução de modelos
