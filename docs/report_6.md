@@ -172,12 +172,16 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 ![image](https://github.com/user-attachments/assets/0065040e-8723-463a-9b64-a558e11e9d14)
 
 ### Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
-
+![image](https://github.com/user-attachments/assets/1326683b-5b05-4121-b416-95e1fad4695b)
+![image](https://github.com/user-attachments/assets/b2116d62-9589-40c1-874c-0123d58540e5)
 
 
 ### Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
+Não houve tratamento de valores inconsistentes
 
 ### Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
+![image](https://github.com/user-attachments/assets/f66055f4-c694-43f8-8319-5c38da2751cf)
+![Uploading image.png…]()
 
 
 ## Indução de modelos
