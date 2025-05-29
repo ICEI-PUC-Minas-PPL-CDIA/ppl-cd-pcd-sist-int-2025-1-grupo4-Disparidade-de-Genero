@@ -359,14 +359,10 @@ Normalização:
 
 ## Indução de modelos
 
-### Modelo 1:
+### Modelo 1: Árvore de Decisao 
 
-Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
-Justifique a escolha do modelo.
-Apresente o processo utilizado para amostragem de dados (particionamento, cross-validation).
-Descreva os parâmetros utilizados. 
-Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta gráfica, apresente imagens
-com o fluxo de processamento.
+## Justificativa da escolha do modelo:
+A **Árvore de Decisão** foi escolhida como primeiro modelo porque é simples de entender e explica claramente como as decisões são tomadas. Ela funciona bem com dados como os seus, que têm informações numéricas (ex.: idade) e categóricas (ex.: região), sem precisar de tratamentos complexos. Além disso, mostra de forma visual quais fatores mais influenciam os resultados, ajudando a validar as regras do negócio
 
 ### Modelo 2: Algoritmo
 
