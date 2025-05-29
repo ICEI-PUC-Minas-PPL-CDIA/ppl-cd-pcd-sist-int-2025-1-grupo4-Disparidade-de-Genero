@@ -425,6 +425,14 @@ Moda: Análise de Dados<br>
 ![image](https://github.com/user-attachments/assets/0065040e-8723-463a-9b64-a558e11e9d14)
 
 ### Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
+
+Foram removidas todas as linhas que possuiam algum valor nulo nos campos selecionados acima exceto o atributo "Area de Formação"
+
+No atributo `Area de Formação` foi colocado a moda nos valores nulos
+O nome da coluna `Oportunidade de Progressão de Carreira` foi modificado para `progressao_prejudicada`
+Foi modificada a ordem das colunas, colocando `progressao_prejudicada` em ultimo para facilitar a separação do atributo alvo do resto das colunas
+E tipo de todas as colunas foi modificado de float para int
+
 ![image](https://github.com/user-attachments/assets/1326683b-5b05-4121-b416-95e1fad4695b)
 ![image](https://github.com/user-attachments/assets/b2116d62-9589-40c1-874c-0123d58540e5)
 
@@ -439,7 +447,7 @@ Não houve tratamento de valores inconsistentes
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
+### Modelo 1: Arvore de Decisão
 
 ##### Justificativa de escolha do modelo
 ...
@@ -454,9 +462,9 @@ Não houve tratamento de valores inconsistentes
 
 ##### Imagens com o fluxo de processamento.
 
-#### Random Forest 
+### Random Forest 
 
-##### Justificativa de escolha do modelo
+#### Justificativa de escolha do modelo
 Foi feira escolha desse modelo por ser um modelo de grande eficiência e atender à tarefa de classifciação bem
 
 ##### Processo utilizado para amostragem de dados (particionamento, cross-validation).
@@ -562,89 +570,9 @@ Dos artefatos (armazenado do repositório);
 
 Da apresentação final (armazenado no repositório);
 
-Do vídeo de apresentação (armazenado no repositório).# Disparidade de Gênero na Progressão de Carreira
-
-Sendo feita por Vitor Martins
-
-# Como o gênero afeta na progressão de carreira no setor de dados
-
-## Sumário
-Análise dos dados;
-Relatórios dos algoritmos;
-Motivos do uso de cada técnica;
-Apresentação e análise dos resultados alcançados.
-
-## Dicionário de dados
-
-
-
-
-
-## 2 Análise Exploratória
-
-### Visualizações
-Idade: Distribuição da idade dos participantes da pesquisa.
-![image](https://github.com/user-attachments/assets/4160bafa-4e81-43c5-9dd8-cd0b0e245e91)
-
-
-Gênero: Distribuição dos gêneros dos participantes da pesquisa.<br>
-![image](https://github.com/user-attachments/assets/02dd6ed4-f909-435f-ab3c-aaed06923b1c)
-
-
-Cor/Raça/Etnia: Distribuição de cor/raça/etnia dos participantes da pesquisa.<br>
-![image](https://github.com/user-attachments/assets/17cc32bc-8b67-4ebc-9f61-ad8c0bf813be)
-
-
-Estado onde mora: Estados onde moram os participantes da pesquisa.<br>
-![image](https://github.com/user-attachments/assets/ffd18491-e943-4d31-b6e5-d6862ea8bd7d)
-
-
-Região onde mora: Região onde moram os participantes da pesquisa.<br>
-![image](https://github.com/user-attachments/assets/0c15080a-a8cd-4ac2-ba00-db359e4b3057)
-
-
-Nível de ensino: Nível de ensino dos participantes da pesquisa.<br>
-![image](https://github.com/user-attachments/assets/a110e3d2-36a3-45d3-afd3-b69ad9523e06)
-
-
-Situação de trabalho: Atual situação de trabalho dos participantes da pesquisa.
-![image](https://github.com/user-attachments/assets/763580a0-a7fa-4c3a-80be-8d4e288de75c)
-
-
-Cargo: Atual cargo dos participantes da pesquisa.<br>
-![image](https://github.com/user-attachments/assets/ac06c19c-7666-49f4-a2aa-e56c481e7f3c)
-
-
-Forma de trabalho: Forma como os participantes da pesquisa atendem ao trabalho. <br>
-![image](https://github.com/user-attachments/assets/4d5e9719-4dfd-42be-bbde-434e96af294e)
-
-
-
-
-![image](https://github.com/user-attachments/assets/f9a2afd8-2b8c-4d2b-8dec-2d6c3280c2a4)
+Do vídeo de apresentação (armazenado no repositório).
 
 
 
 ## 3 Limpeza e Tratamento de Dados
 
-Foram removidas todas as linhas que possuiam algum valor nulo nos campos selecionados acima exceto o atributo "Area de Formação"
-
-No atributo `Area de Formação` foi colocado a moda nos valores nulos
-O nome da coluna `Oportunidade de Progressão de Carreira` foi modificado para `progressao_prejudicada`
-Foi modificada a ordem das colunas, colocando `progressao_prejudicada` em ultimo para facilitar a separação do atributo alvo do resto das colunas
-E tipo de todas as colunas foi modificado de float para int
-
-
-
-## 4 Modelagem
-
-### Modelo 1
-#### Árvore de Decisão
-
-### Modelo 2
-
-
-
-
-Esse foi o resultado da matriz de confusão <br>
-![image](https://github.com/user-attachments/assets/bc969730-2516-405c-a16c-2b689de0630e)
