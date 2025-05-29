@@ -145,13 +145,15 @@ com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
 
 Este projeto deve utilizar pelo menos duas fontes de dados. Uma fonte principal e 
 uma fonte para enriquecimentos dos dados principais.
-
-
-###    Descrição de dados
-
-Utilize a análise descritiva baseada em estatística de primeira ordem para descrever os dados.
-Como descrever dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
-Como descrever dados qualitativos (categóricos): moda (valor mais frequente), quantidade de valores distintos (categorias), distribuição das categorias (histograma), etc.
+ |     Código        |      Coluna             | Tipo de dado | Atributos correspondentes |
+  | -----------|---------------------|----------------------------|------------------------|
+   | 'P1_a_1'|        idade | Qualitativo intervalar |17-21 <br>22-24<br>25-29<br>30-34<br>35-39<br>40-44<br>45-49<br>50-54<br>55+ |
+  |  'P1_b'  |       Gênero |  Qualitativo | Feminino<br>Masculino<br>Outro<br>Prefiro não informar |
+   |  'P1_e'  |      experiencia_profissional_prejudicada |  Qualitativo | Sim, acredito que a minha a experiência profissional seja afetada devido a minha identidade de gênero<br>Não acredito que minha experiência profissional seja afetada devido a esses fatores|
+  |  'P2_f'   |      Cargo Atual | Qualitativo | Analista de BI/BI Analyst<br>Analista de Dados/Data Analyst<br>Analista de Inteligência de Mercado/Market Intelligence<br>Analista de Negócios/Business Analyst<br>Analista de Suporte/Analista Técnico<br>Analytics Engineer<br>Cientista de Dados/Data Scientist<br>Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO)<br>DBA/Administrador de Banco de Dados<br>Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas<br>Economista<br>Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect<br>Engenheiro de Machine Learning/ML Engineer/AI Engineer<br>Estatístico<br>Outra Opção<br>Outras Engenharias (não inclui dev)<br>Professor/Pesquisador<br>(vazio) |
+  |  'P2_g'   |     Nível | Qualitativo |Júnior<br>Pleno<br>Sênior<br>(vazio) |
+  |  'P2_h'   |     Faixa salarial | Qualitativo intervalar | Acima de R$ 40.001/mês<br>de R$ 1.001/mês a R$ 2.000/mês<br>de R$ 1001/mês a R$ 2.000/mês<br>de R$ 12.001/mês a R$ 16.000/mês<br>de R$ 16.001/mês a R$ 20.000/mês<br>de R$ 2.001/mês a R$ 3.000/mês<br>de R$ 20.001/mês a R$ 25.000/mês<br>de R$ 25.001/mês a R$ 30.000/mês<br>de R$ 3.001/mês a R$ 4.000/mês<br>de R$ 30.001/mês a R$ 40.000/mês<br>de R$ 4.001/mês a R$ 6.000/mês<br>de R$ 6.001/mês a R$ 8.000/mês<br>de R$ 8.001/mês a R$ 12.000/mês<br>Menos de R$ 1.000/mês<br>(vazio) |
+  |  'P2_k'   |     Satisfação empresa | Bool | 0<br>1<br>(vazio) |
 
 
 ## Preparação dos dados
@@ -166,7 +168,7 @@ A preparação dos dados consiste dos seguintes passos:
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
+### Modelo 1: Árvore de decisão
 
 Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
 Justifique a escolha do modelo.
