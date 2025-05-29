@@ -1,5 +1,3 @@
-`State of Data 2023 atributos selecionados.csv`
+`State_of_data_BR_2023_limpa (1)`
 Base State of Data com atributos selecionados
 
-``dados_processados.csv``
-base state of Data com dados limpos e tratados
