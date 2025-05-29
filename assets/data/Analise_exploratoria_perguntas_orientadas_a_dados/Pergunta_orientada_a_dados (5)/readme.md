@@ -36,7 +36,8 @@ A base original foi fornecida em formato .csv contendo 5294 linhas e 550 colunas
   |  'P2_k'   |     Satisfação empresa | Bool | 0<br>1<br>(vazio) |
 
 ### 3.0 Matriz de confusão
-![image](https://github.com/user-attachments/assets/63b5c906-5829-4c54-aecc-a4dea76b33c7)
+![matriz de confusão](https://github.com/user-attachments/assets/0c459528-cdd1-49ee-bb16-e9051ee57134)
+
 
 ### 3.1 Código da Matriz de confusão
 import pandas as pd
@@ -110,7 +111,8 @@ plt.title('Matriz de Confusão - Satisfação no Trabalho')
 plt.show()
 
 ## 4.0 Árvore de decisão
-![image](https://github.com/user-attachments/assets/f6ca23ac-3ef5-4eef-a36a-adad975fe8fd)
+![arvore de decisao](https://github.com/user-attachments/assets/c8cfcab9-9e79-4a84-976b-fa6e92286bd9)
+
 
 ### 5.0 Análise descritiva
 Idade dos Respondentes:
