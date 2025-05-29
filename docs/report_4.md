@@ -437,7 +437,161 @@ Para facilitar a análise e a aplicação de métodos estatísticos, as variáve
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
+### Modelo 1: Árvore de Decisão
+
+## Justificativa da escolha do modelo:
+
+A **Árvore de Decisão** é uma escolha adequada para este problema devido à sua interpretabilidade e relativa simplicidade. Ela permite visualizar o processo de tomada de decisão do modelo, o que facilita a explicação dos resultados. Além disso, a Árvore de Decisão é capaz de lidar com dados categóricos e numéricos, o que parece ser o caso dos seus dados.
+
+## Processo utilizado para amostragem de dados:
+
+Você utilizou a técnica de **particionamento** para dividir seus dados. Especificamente, o conjunto de dados original foi dividido em conjuntos de treino e teste utilizando a função `train_test_split` da biblioteca `sklearn.model_selection`. A proporção utilizada foi de **75%** dos dados para treino (`X_treino`, `y_treino`) e **25%** para teste (`X_teste`, `y_teste`). O parâmetro `random_state=42` garante que a divisão seja consistente a cada execução, tornando os resultados reproduzíveis.
+
+Para a otimização de hiperparâmetros com `GridSearchCV`, você empregou **validação cruzada (cross-validation)** com `cv=5`. Isso significa que o conjunto de treino foi dividido em 5 partes (folds). O modelo foi treinado em 4 partes e avaliado na parte restante, repetindo esse processo 5 vezes, cada vez utilizando uma parte diferente para avaliação. Essa abordagem fornece uma estimativa mais robusta do desempenho do modelo e ajuda a mitigar o overfitting.
+
+## Parâmetros utilizados:
+
+No modelo inicial (`modelo`), você utilizou os seguintes parâmetros:
+
+* `criterion='gini'`: Define a função para medir a qualidade de uma divisão, utilizando o índice Gini como medida de impureza.
+* `max_depth=5`: Limita a profundidade máxima da árvore para ajudar a prevenir o overfitting.
+* `min_samples_leaf=5`: Define o número mínimo de amostras necessárias para estar em um nó folha.
+* `min_samples_split=10`: Especifica o número mínimo de amostras necessárias para dividir um nó interno.
+* `random_state=42`: Garante a reproduzibilidade dos resultados ao fixar o gerador de números aleatórios.
+
+No processo de otimização com `GridSearchCV`, você explorou a seguinte grade de parâmetros para encontrar a melhor combinação:
+
+* `criterion`: `['gini', 'entropy']` (Índice Gini ou Ganho de Informação).
+* `max_depth`: `[3, 5, 7, 9, 11, None]` (Diferentes profundidades máximas, incluindo a opção de não ter limite).
+* `min_samples_leaf`: `[1, 3, 5, 10]` (Diferentes números mínimos de amostras em um nó folha).
+* `min_samples_split`: `[5, 15, 25]` (Diferentes números mínimos de amostras para dividir um nó).
+* `class_weight`: `[None, 'balanced', {0: 1, 1: 5}, {0: 1, 1: 10}]` (Pesos para as classes, útil para lidar com conjuntos de dados desbalanceados).
+
+O `GridSearchCV` identificou os `best_params_` (melhores hiperparâmetros), que foram impressos na saída do seu código.
+
+## Trechos de código utilizados comentados:
+
+```python
+# Importação de bibliotecas essenciais para manipulação de dados e machine learning
+import pandas as pd  # Para trabalhar com DataFrames
+import seaborn as sns  # Para visualizações estatísticas (não usado diretamente para o modelo, mas útil para EDA)
+from sklearn import tree  # Módulo para árvores de decisão
+import matplotlib.pyplot as plt  # Para gerar gráficos
+
+# Módulos específicos do scikit-learn para o modelo de árvore de decisão, divisão de dados e avaliação
+from sklearn.tree import DecisionTreeClassifier, plot_tree  # Classe para a árvore e função para plotar
+from sklearn.model_selection import train_test_split, GridSearchCV  # Funções para dividir dados e otimização
+from sklearn.preprocessing import LabelEncoder  # Para codificar rótulos (não usado diretamente no código compartilhado, mas comum)
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix, make_scorer, f1_score  # Métricas de avaliação
+
+# Módulo para visualização da matriz de confusão de forma mais interativa
+from yellowbrick.classifier import ConfusionMatrix
+
+# Carregamento dos dados a partir de um arquivo CSV
+base_treino = pd.read_csv("base_princ_modificado.csv")
+
+# Exibindo as primeiras linhas e estatísticas descritivas para entender os dados
+print("Primeiras linhas do DataFrame:")
+display(base_treino.head())
+
+print("\nEstatísticas descritivas do DataFrame:")
+display(base_treino.describe())
+
+# Verificando a distribuição da variável alvo para identificar desbalanceamento
+print("\nDistribuição das classes na variável alvo:")
+print(base_treino['Situação de trabalho'].value_counts())
+
+# Separando as features (X) e a variável alvo (y)
+X = base_treino.drop(columns=['Situação de trabalho'])  # Remove a coluna alvo para obter as features
+y = base_treino['Situação de trabalho']  # Seleciona a coluna alvo
+
+# Dividindo os dados em conjuntos de treino e teste (75% treino, 25% teste)
+X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.25, random_state=42)
+
+# Inicializando o modelo de Árvore de Decisão com parâmetros iniciais
+modelo = DecisionTreeClassifier(criterion='gini', max_depth=5, min_samples_leaf=5, min_samples_split=10, random_state=42)
+
+# Treinando o modelo com os dados de treino
+modelo.fit(X_treino, y_treino)
+
+# Realizando previsões no conjunto de teste
+previsoes = modelo.predict(X_teste)
+
+# Avaliando o desempenho do modelo inicial utilizando métricas comuns
+print("Acurácia do modelo inicial:", accuracy_score(y_teste, previsoes))
+print("\nRelatório de Classificação do modelo inicial:")
+print(classification_report(y_teste, previsoes))
+print("\nMatriz de Confusão do modelo inicial:")
+print(confusion_matrix(y_teste, previsoes))
+
+# Visualizando a Matriz de Confusão usando a biblioteca Yellowbrick
+cm = ConfusionMatrix(modelo)
+cm.fit(X_treino, y_treino)
+cm.score(X_teste, y_teste)
+plt.title("Matriz de Confusão (Modelo Inicial)")
+plt.show()
+
+# --- Seção para Otimização de Hiperparâmetros com GridSearchCV ---
+
+print("\n--- Abordagem: Ajuste de Hiperparâmetros com GridSearchCV ---")
+
+# Definindo a grade de parâmetros a serem testados no GridSearchCV
+param_grid = {
+    'criterion': ['gini', 'entropy'],  # Funções de critério
+    'max_depth': [3, 5, 7, 9, 11, None],  # Profundidades máximas
+    'min_samples_leaf': [1, 3, 5, 10],  # Mínimo de amostras em um nó folha
+    'min_samples_split': [5, 15, 25],  # Mínimo de amostras para dividir um nó
+    'class_weight': [None, 'balanced', {0: 1, 1: 5}, {0: 1, 1: 10}]  # Pesos para as classes
+}
+
+# Criando um scorer personalizado para focar na métrica F1-score da classe 1
+f1_classe1_scorer = make_scorer(f1_score, labels=[1], average='weighted')
+
+# Inicializando o GridSearchCV com o modelo base, a grade de parâmetros, validação cruzada e o scorer personalizado
+grid_search = GridSearchCV(DecisionTreeClassifier(random_state=42), param_grid, cv=5, scoring=f1_classe1_scorer)
+
+# Executando a busca em grade para encontrar a melhor combinação de parâmetros
+grid_search.fit(X_treino, y_treino)
+
+# Imprimindo os melhores parâmetros encontrados pelo GridSearchCV
+print("\nMelhores hiperparâmetros encontrados (foco na classe 1):", grid_search.best_params_)
+
+# Obtendo o melhor modelo encontrado pelo GridSearchCV
+melhor_modelo_grid = grid_search.best_estimator_
+
+# Avaliando o melhor modelo nos conjuntos de treino e teste
+previsoes_grid = melhor_modelo_grid.predict(X_teste)
+print("\nAcurácia do melhor modelo (GridSearchCV - Treino):", accuracy_score(y_treino, melhor_modelo_grid.predict(X_treino)))
+print("\nAcurácia do melhor modelo (GridSearchCV - Teste):", accuracy_score(y_teste, previsoes_grid))
+print("\nAvaliação do melhor modelo (GridSearchCV - foco na classe 1):")
+print(f"Acurácia: {accuracy_score(y_teste, previsoes_grid)}")
+print("\nRelatório de Classificação:")
+print(classification_report(y_teste, previsoes_grid))
+print("\nMatriz de Confusão:")
+print(confusion_matrix(y_teste, previsoes_grid))
+
+# Visualizando a Matriz de Confusão do melhor modelo com Yellowbrick
+cm_grid = ConfusionMatrix(melhor_modelo_grid)
+cm_grid.fit(X_treino, y_treino)
+cm_grid.score(X_teste, y_teste)
+plt.title("Matriz de Confusão (GridSearchCV - Foco Classe 1)")
+plt.show()
+
+# Visualizando a árvore de decisão do melhor modelo encontrado pelo GridSearchCV
+previsores_grid = X_treino.columns  # Nomes das features
+class_names_grid = [str(c) for c in melhor_modelo_grid.classes_]  # Nomes das classes
+
+figura_grid, eixos_grid = plt.subplots(nrows=1, ncols=1, figsize=(30, 20))  # Cria uma figura para plotar
+tree.plot_tree(melhor_modelo_grid, feature_names=previsores_grid, class_names = class_names_grid, filled=True, fontsize=10);  # Plota a árvore
+plt.title("Árvore de Decisão (GridSearchCV - Foco Classe 1)")  # Título do gráfico
+plt.show()  # Exibe o gráfico
+
+# Avaliando a acurácia do modelo inicial nos conjuntos de treino e teste novamente para comparação
+acuracia_treino = accuracy_score(y_treino, modelo.predict(X_treino))
+print(f"\nAcurácia do modelo no conjunto de treino: {acuracia_treino:.4f}")
+
+acuracia_teste = accuracy_score(y_teste, previsoes)
+print(f"Acurácia do modelo no conjunto de teste: {acuracia_teste:.4f}")
 
 Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
 Justifique a escolha do modelo.
@@ -445,6 +599,7 @@ Apresente o processo utilizado para amostragem de dados (particionamento, cross-
 Descreva os parâmetros utilizados. 
 Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta gráfica, apresente imagens
 com o fluxo de processamento.
+```
 
 ### Modelo 2: Algoritmo
 
@@ -454,11 +609,69 @@ Repita os passos anteriores para o segundo modelo.
 ## Resultados
 
 ### Resultados obtidos com o modelo 1.
+Observação: Fiz duas avaliações utilizando métricas diferentes, com isso obtive diferentes resultados:
+Primeira métrica eu obtive uma maior acurácia e precisão e recall em ambas as classes(Empregado(a) e Desempregado(a)). Porém percebi que o modelo estava priorizando mais a classe majoritária(Empregado(a)), por haver cerca de 10 vezes mais dados em relação a outra. Segue as duas avaliações...
 
-Apresente aqui os resultados obtidos com a indução do modelo 1. 
-Apresente uma matriz de confusão quando pertinente. Apresente as medidas de performance
-apropriadas para o seu problema. 
-Por exemplo, no caso de classificação: precisão, revocação, F-measure, acurácia.
+## Avaliação 01:
+
+![download](https://github.com/user-attachments/assets/5115c49f-02eb-401a-bcdf-45a15cb8fd97)
+
+![image](https://github.com/user-attachments/assets/1be4f89d-eb49-439d-a813-07189919b766)
+
+## Acurácia do Modelo Inicial:
+
+`0.9115537848605577`
+
+## Relatório de Classificação do Modelo Inicial:
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.91      | 1.00   | 0.95     | 1146    |
+| 1             | 0.33      | 0.02   | 0.03     | 109     |
+| **accuracy** |           |        | **0.91** | **1255**|
+| **macro avg** | 0.62      | 0.51   | 0.49     | 1255    |
+| **weighted avg**| 0.86      | 0.91   | 0.87     | 1255    |
+
+## Acurácia nos Conjuntos de Treino e Teste:
+
+* **Acurácia de treino:** `0.9133`
+* **Acurácia de teste:** `0.9116`
+
+
+## Avaliação 02:
+
+Utilizei muitos hiperparâmetros para tentar balancear os dados e fornecer uma maior importância para a classe minoritária, tendo como resultado um maior balanceameno dos dados. porém o resultado(acurácia) diminuiu significadamente, e a classificação preditiva de meus dados não foram satisfatórias. Nesse quesito, utilizei LLM para me sugerir mudanças, e por fim, elas me sugeriram testar com um novo modelo, como a Random Forest, o qual foi utilizado no modelo 2.
+
+![download](https://github.com/user-attachments/assets/103ff659-4ef6-4e01-89d5-78b794261d50)
+
+![download](https://github.com/user-attachments/assets/7634ae46-a069-44f1-be2a-9fdd646e07ba)
+
+## --- Abordagem: Ajuste de Hiperparâmetros com GridSearchCV ---
+
+**Melhores hiperparâmetros encontrados (foco na classe 1):**
+{'class_weight': {0: 1, 1: 10}, 'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 5, 'min_samples_split': 5}
+
+
+**Acurácia do melhor modelo (GridSearchCV - Treino):** `0.7102604997341839`
+
+**Acurácia do melhor modelo (GridSearchCV - Teste):** `0.6772908366533864`
+
+**Avaliação do melhor modelo (GridSearchCV - foco na classe 1):**
+Acurácia: 0.6772908366533864
+
+
+**Relatório de Classificação:**
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.93      | 0.70   | 0.80     | 1146    |
+| 1             | 0.13      | 0.47   | 0.20     | 109     |
+| **accuracy** |           |        | **0.68** | **1255**|
+| **macro avg** | 0.53      | 0.58   | 0.50     | 1255    |
+| **weighted avg**| 0.86      | 0.68   | 0.75     | 1255    |
+
+Ao otimizar o modelo com o f1_score ponderado para a classe 1 no GridSearchCV, você estava explicitamente instruindo o algoritmo a encontrar parâmetros que equilibrassem a precisão e o recall da classe "Desempregadas", dando maior peso à capacidade do modelo de identificar todas as instâncias dessa classe. Os resultados mostram que, embora o recall da classe 1 tenha melhorado em relação a um modelo puramente focado na acurácia geral, ainda há um trade-off com a precisão dessa classe.
+
 
 ### Interpretação do modelo 1
 
