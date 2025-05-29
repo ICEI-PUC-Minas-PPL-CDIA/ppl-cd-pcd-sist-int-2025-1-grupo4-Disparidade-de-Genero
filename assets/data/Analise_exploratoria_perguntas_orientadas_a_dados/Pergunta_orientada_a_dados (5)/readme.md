@@ -111,3 +111,119 @@ plt.show()
 
 ## 4.0 Árvore de decisão
 ![image](https://github.com/user-attachments/assets/f6ca23ac-3ef5-4eef-a36a-adad975fe8fd)
+
+### 5.0 Análise descritiva
+Idade dos Respondentes:
+Média: 31.9 anos
+Mediana: 30.0 anos
+Moda: 27 anos
+Desvio Padrão: 7.4 anos
+Mínimo: 18 anos
+Máximo: 64 anos
+Assimetria: 1.01
+Curtose: 1.16
+
+Distribuição de Gênero:
+genero
+Masculino        52.4%
+Feminino         46.7%
+Não informado     0.6%
+Outro             0.3%
+Name: proportion, dtype: object
+
+Distribuição de Satisfação:
+satisfeito_empresa
+Satisfeito      70.6%
+Insatisfeito    29.4%
+Name: proportion, dtype: object
+
+======================================================================
+ANÁLISE DESCRITIVA POR GÊNERO
+======================================================================
+
+--- Feminino ---
+
+Idade:
+Média: 32.0 anos
+Mediana: 31.0 anos
+Moda: 27 anos
+Desvio Padrão: 7.2 anos
+Intervalo: 18 - 64 anos
+
+Satisfação no Trabalho:
+Satisfeitos: 69.9%
+Insatisfeitos: 30.1%
+
+Teste de Shapiro-Wilk para normalidade da idade (p-valor): 0.0000
+Distribuição não normal (rejeita H0)
+
+--- Masculino ---
+
+Idade:
+Média: 31.8 anos
+Mediana: 30.0 anos
+Moda: 28 anos
+Desvio Padrão: 7.5 anos
+Intervalo: 18 - 63 anos
+
+Satisfação no Trabalho:
+Satisfeitos: 71.8%
+Insatisfeitos: 28.2%
+
+Teste de Shapiro-Wilk para normalidade da idade (p-valor): 0.0000
+Distribuição não normal (rejeita H0)
+
+--- Outro ---
+
+Idade:
+Média: 26.6 anos
+Mediana: 28.0 anos
+Moda: 25 anos
+Desvio Padrão: 3.6 anos
+Intervalo: 19 - 30 anos
+
+Satisfação no Trabalho:
+Satisfeitos: 14.3%
+Insatisfeitos: 85.7%
+
+--- Não informado ---
+
+Idade:
+Média: 35.1 anos
+Mediana: 36.0 anos
+Moda: 36 anos
+Desvio Padrão: 7.2 anos
+Intervalo: 23 - 51 anos
+
+Satisfação no Trabalho:
+Satisfeitos: 46.2%
+Insatisfeitos: 53.8%
+
+======================================================================
+COMPARAÇÃO ESTATÍSTICA ENTRE GÊNEROS (MASCULINO vs. FEMININO)
+======================================================================
+
+Teste t para diferença de idade entre gêneros:
+Masculino (Média: 31.8, N: 1424)
+Feminino (Média: 32.0, N: 1270)
+t = -0.496, p = 0.6202
+Sem diferença estatisticamente significativa (p ≥ 0.05)
+
+Teste de Mann-Whitney U para idade:
+U = 880508.5, p = 0.2384
+
+======================================================================
+ANÁLISE DE SATISFAÇÃO POR GÊNERO
+======================================================================
+
+Tabela de Contingência:
+satisfeito_empresa  Insatisfeito  Satisfeito
+genero                                      
+Feminino                     328         763
+Masculino                    361         919
+
+Proporções por Gênero:
+satisfeito_empresa  Insatisfeito  Satisfeito
+genero                                      
+Feminino                    30.1        69.9
+Masculino                   28.2        71.8
