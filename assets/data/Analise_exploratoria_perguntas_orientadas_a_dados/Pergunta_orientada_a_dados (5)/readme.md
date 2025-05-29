@@ -112,6 +112,8 @@ plt.show()
 
 ## 4.0 Árvore de decisão
 ![arvore de decisao](https://github.com/user-attachments/assets/c8cfcab9-9e79-4a84-976b-fa6e92286bd9)
+![image](https://github.com/user-attachments/assets/02cb7b6a-4164-4d6e-8583-e4bb6cf2dbcd)
+
 
 
 ### 5.0 Análise descritiva
