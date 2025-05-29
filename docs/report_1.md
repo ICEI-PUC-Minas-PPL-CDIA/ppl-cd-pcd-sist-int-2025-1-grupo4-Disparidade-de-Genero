@@ -229,7 +229,7 @@ Esta seção detalha as transformações aplicadas às colunas da base de dados 
 | 5                 | 4              |
 
 
-###    Descrição de dados Numéricos 
+##    Descrição de dados Numéricos 
 
 Para dados numéricos, as estatísticas de primeira ordem incluem:
 
@@ -300,17 +300,66 @@ Para dados numéricos, as estatísticas de primeira ordem incluem:
 
 ## Preparação dos dados
 
-A preparação dos dados consiste dos seguintes passos:
+### Seleção dos Atributos
 
-> - Seleção dos atributos
-> - Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
-> - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
-> - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
+Com base no objetivo da análise e na hipótese a ser investigada, foi realizada a seleção manual dos atributos relevantes do dataset original. Os atributos selecionados para compor a base de dados principal foram:
+
+* Id
+* Idade
+* Genero
+* Nível de Ensino
+* Área de Formação
+* Regiao onde mora
+* Código da Região
+* Estado onde mora
+
+### 1. Seleção dos Atributos
+ Foram mantidos atributos relevantes para análise, como:
+
+* **Variáveis numéricas: Idade, Código da Região, e a variável com média 250.5 (possivelmente um identificador ou score).**
+* **Variáveis categóricas: Gênero, Nível de Ensino, Área de Formação, Região/Estado onde mora.**
+* **Atributos com alta cardinalidade (ex.: Estado onde mora com 27 valores únicos) foram avaliados para agregação ou simplificação.**
+
+### 2. Tratamento de Valores Faltantes ou Omissos
+Análise inicial: Verificação de missing values em todas as colunas.
+
+Estratégias adotadas:
+* **Para variáveis numéricas (ex.: Idade), valores faltantes poderiam ser substituídos pela mediana (37.0) devido à robustez contra outliers.**
+* **Para categóricas (ex.: Gênero), a moda (Feminino) seria usada para preenchimento.**
+
+ Se houvesse muitos valores omissos em uma coluna, considerou-se a remoção da coluna.
+
+### 3. Tratamento de Valores Inconsistentes e Duplicados
+* **Dados duplicados: Remoção de entradas repetidas (ex.: mesma Idade, Gênero e Região).**
+
+  Inconsistências:
+
+* **Valores fora do range esperado (ex.: Idade com mínimo 18 e máximo 60) foram validados ou corrigidos.**
+* **Código da Região (valores de 1 a 5) foi verificado para garantir correspondência com a Região onde mora.**
+
+ Outliers:
+
+* **Na variável com média 250.5 e desvio padrão alto (144.48), outliers poderiam ser tratados com Winsorization ou remoção (ex.: valores abaixo de 1 ou acima de 500).**
+
+### 4. Conversão de Dados
+Numérico para Categórico:
+
+* **Idade poderia ser categorizada em faixas (ex.: "18-25", "26-35", etc.).**
+* **Código da Região (apesar de numérico) foi tratado como categórico ordinal.**
+
+Categórico para Binário:
+
+* **Variáveis como Gênero (2 valores únicos) poderiam ser convertidas em 0/1 (One-Hot Encoding).**
+* **Nível de Ensino (7 categorias) poderia ser transformado em variáveis dummy.**
+
+Normalização:
+
+* **Variáveis numéricas com escalas diferentes (ex.: Idade vs. variável com média 250.5) poderiam ser padronizadas (Z-score).**
 
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
+### Modelo 1:
 
 Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
 Justifique a escolha do modelo.
