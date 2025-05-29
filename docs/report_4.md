@@ -59,7 +59,8 @@ Dito isso, observa-se uma notória discrepância de gênero em um mercado de tra
 
 ###    Objetivo geral
 
-Nesta seção deve-se escrever um pequeno parágrafo ou frase com o objetivo geral do trabalho. O objetivo deve ser bem direto, específico e definido com verbos de ação (elaborar, propor, avaliar, comparar etc.). No caso deste projeto, o objetivo é "desenvolver um sistema inteligente para ...". O seu objetivo geral deve ser uma pergunta orientada a dados. Ou seja, ela deve incluir de forma geral os dados em que os modelos irão se basear para atingir o objetivo.
+ Desenvolver um sistema inteligente para classificar se a pessoa vai estar empregada ou desempregada conforme o gênero e a região onde ela mora.
+
 
 ####    Objetivos específicos
 
