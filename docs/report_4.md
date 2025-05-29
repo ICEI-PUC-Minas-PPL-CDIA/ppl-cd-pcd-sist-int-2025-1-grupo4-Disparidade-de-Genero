@@ -135,33 +135,304 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 - Desafios: Precisa de estudos aprofundados com dados desagregados por cargo, gênero, região e senioridade.
 
 
-## Análise exploratórida dos dados
+# Análise Exploratória - Disparidade de Gênero no Mercado de Trabalho
+
+**Hipótese**: Investigar como a disparidade de gênero interfere na situação atual de trabalho conforme a região onde a pessoa mora.
+
+---
 
 ###    Dicionário de dados
 
-Apresente uma descrição das bases de dados a serem utilizadas. 
-Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
-com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
+## Análise de Dados da Pesquisa State of Data BR 2023
 
-Este projeto deve utilizar pelo menos duas fontes de dados. Uma fonte principal e 
-uma fonte para enriquecimentos dos dados principais.
+## 1. Base de Dados Principal
+
+* **Fonte:** Arquivo CSV 'State_of_data_BR_2023_Kaggle - df_survey_2023.csv' (processado no notebook).
+* **Descrição:** Esta base de dados contém informações sobre profissionais e estudantes da área de dados no Brasil em 2023. Os dados foram processados para facilitar a análise, incluindo a seleção de colunas relevantes e a codificação de variáveis categóricas.
+
+## 2. Dicionário de Dados da Base Principal
+
+| Atributo             | Significado                                     | Tipo        |
+|----------------------|-------------------------------------------------|-------------|
+| Idade                | Idade do respondente.                          | Inteiro     |
+| Genero               | Gênero do respondente (codificado).             | Categórico  |
+| Cor/raca/etnia       | Cor/raça/etnia do respondente (codificado).     | Categórico  |
+| PCD                  | Indica se o respondente é Pessoa com Deficiência (codificado). | Categórico  |
+| UF                   | Unidade Federativa onde o respondente mora (codificado). | Categórico  |
+| Regiao onde mora     | Região do Brasil onde o respondente mora (codificado). | Categórico  |
+| Nível de Ensino      | Nível de ensino do respondente (codificado).    | Categórico  |
+| Área de formação     | Área de formação acadêmica do respondente (codificado). | Categórico  |
+| Situação de trabalho | Situação atual de trabalho do respondente (codificado). | Categórico  |
+
+**Observação:** No código, as colunas categóricas foram transformadas em tipos `int`. No entanto, do ponto de vista conceitual do dicionário de dados, elas representam categorias, embora armazenadas como números após o processamento.
 
 
-###    Descrição de dados
+##  Resumo das Transformações em `base_princ`
 
-Utilize a análise descritiva baseada em estatística de primeira ordem para descrever os dados.
-Como descrever dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
-Como descrever dados qualitativos (categóricos): moda (valor mais frequente), quantidade de valores distintos (categorias), distribuição das categorias (histograma), etc.
+Esta seção detalha as transformações aplicadas às colunas da base de dados `base_princ` para converter variáveis categóricas em numéricas.
+
+### 1. Gênero
+
+| Classe Original        | Valor Numérico |
+|------------------------|----------------|
+| Masculino              | 0              |
+| Feminino               | 1              |
+| Outro                  | Removido       |
+
+*Linhas com valor “Outro” foram removidas do DataFrame.*
+
+### 2. Cor/Raça/Etnia
+
+| Classe Original        | Valor Numérico |
+|------------------------|----------------|
+| Branca                 | 0              |
+| Preta                  | 1              |
+| Amarela                | 2              |
+| Parda                  | 3              |
+| Indígena               | 4              |
+| Prefiro não informar   | 5              |
+| Outra                  | 6              |
+
+### 3. PCD (Pessoa com Deficiência)
+
+| Classe Original        | Valor Numérico |
+|------------------------|----------------|
+| Sim                    | 1              |
+| Não                    | 0              |
+| Prefiro não informar   | Removido       |
+
+*Linhas com valor “Prefiro não informar” foram removidas do DataFrame.*
+
+### 4. Região onde mora
+
+| Classe Original   | Valor Numérico |
+|-------------------|----------------|
+| Norte             | 0              |
+| Nordeste          | 1              |
+| Sudeste           | 2              |
+| Sul               | 3              |
+| Centro-oeste      | 4              |
+
+### 5. UF (Unidade da Federação)
+
+| UF | Valor Numérico | | UF | Valor Numérico |   | UF | Valor Numérico |   | UF | Valor Numérico |
+|----|----------------|---|----|----------------|---|----|----------------|---|----|----------------|
+| AC | 0              |   | AL | 1              |   | AP | 2              |   | AM | 3              |
+| BA | 4              |   | CE | 5              |   | DF | 6              |   | ES | 7              |
+| GO | 8              |   | MA | 9              |   | MT | 10             |   | MS | 11             |
+| MG | 12             |   | PA | 13             |   | PB | 14             |   | PR | 15             |
+| PE | 16             |   | PI | 17             |   | RJ | 18             |   | RN | 19             |
+| RS | 20             |   | RO | 21             |   | RR | 22             |   | SC | 23             |
+| SP | 24             |   | SE | 25             |   | TO | 26             |   |    |                |
+
+### 6. Nível de Ensino
+
+| Classe Original             | Valor Numérico |
+|-----------------------------|----------------|
+| Não tenho graduação formal  | 0              |
+| Estudante de Graduação      | 1              |
+| Graduação/Bacharelado       | 2              |
+| Pós-graduação               | 3              |
+| Mestrado                    | 4              |
+| Doutorado ou PhD            | 5              |
+| Prefiro não informar        | 6              |
+
+### 7. Área de Formação
+
+| Classe Original                                                                | Valor Numérico |
+|--------------------------------------------------------------------------------|----------------|
+| Computação / Engenharia / Sistemas de Informação / TI                            | 0              |
+| Economia / Administração / Contabilidade / Finanças / Negócios                   | 1              |
+| Outras Engenharias                                       | 2 / 8          |
+| Química / Física                                                               | 3              |
+| Estatística / Matemática / Ciências Atuariais                                  | 4              |
+| Marketing / Publicidade / Comunicação / Jornalismo                             | 5              |
+| Ciências Sociais                                                               | 6              |
+| Ciências Biológicas / Farmácia / Medicina / Área da Saúde                      | 7              |
+| Outra opção                                                                    | 0  |
+
+ **Observações:**
+
+* A categoria "Outras Engenharias" foi removida, pois não há dados nessa classe; 'nan' - nulos.
+* "Outra opção" recebeu o mesmo valor que "Computação / Engenharia / Sistemas de Informação / TI" (0), pois a moda da àrea de fomação era a classe '0', então atribui 'Outra opção' a essa classe.
+* Linhas com valores NaN nesta coluna foram removidas durante o processamento.
+
+### 8. Situação de Trabalho
+
+| Classe Original                                                                 | Valor Final      | Valor Numérico |
+|---------------------------------------------------------------------------------|------------------|----------------|
+| Empregado (CLT)                                                                 | Empregado(a)     | 0              |
+| Empreendedor ou Empregado (CNPJ)                                                | Empregado(a)     | 0              |
+| Estagiário                                                                      | Empregado(a)     | 0              |
+| Trabalho na área Acadêmica/Pesquisador                                          | Empregado(a)     | 0              |
+| Servidor Público                                                                | Empregado(a)     | 0              |
+| Vivo no Brasil e trabalho remoto para empresa de fora do Brasil                 | Empregado(a)     | 0              |
+| Vivo fora do Brasil e trabalho para empresa de fora do Brasil                   | Empregado(a)     | 0              |
+| Freelancer                                                                      | Empregado(a)     | 0              |
+| Desempregado, buscando recolocação                                              | Desempregado(a)  | 1              |
+| Desempregado e não estou buscando recolocação                                   | Desempregado(a)  | 1              |
+| Somente Estudante (graduação ou pós-graduação)                                  | Desempregado(a)  | 1              |
+| Prefiro não informar                                                            | Desempregado(a)  | 1              |
 
 
-## Preparação dos dados
 
-A preparação dos dados consiste dos seguintes passos:
+## 3. Análise Descritiva dos Dados utilizando Estatísticas de Primeira Ordem
 
-> - Seleção dos atributos
-> - Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
-> - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
-> - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
+* **Descrição:** Esta seção apresenta uma análise descritiva das colunas da base de dados processada (`base_princ`), utilizando estatísticas de primeira ordem para descrever a distribuição e as características dos dados.
+
+## Descrição de Dados Numéricos
+
+As colunas na base de dados processada foram convertidas para o tipo `int` após a codificação das variáveis categóricas. Embora representem categorias, sua análise estatística descritiva pode fornecer insights sobre a distribuição dos valores codificados. A coluna 'Idade' é a única numérica original antes do processamento extenso das demais colunas.
+
+Para dados numéricos, as estatísticas de primeira ordem incluem:
+
+* **Média:** Medida de tendência central.
+* **Mediana:** Valor central dos dados ordenados.
+* **Moda:** Valor mais frequente nos dados.
+* **Desvio Padrão:** Medida de dispersão dos dados em torno da média.
+* **Variância:** Quadrado do desvio padrão, outra medida de dispersão.
+* **Mínimo e Máximo:** Limites inferior e superior dos dados.
+* **Quartis:** Valores que dividem os dados em quatro partes iguais (25%, 50% - mediana, 75%).
+
+Considerando a saída do seu código para a análise estatística, podemos descrever cada coluna:
+
+### Análise da Coluna 'Idade'
+
+* **Média:** 31.96 anos.
+* **Mediana:** 30.00 anos.
+* **Moda:** 27.00 anos (o valor mais frequente de idade).
+* **Desvio Padrão:** 7.55 anos (indica a dispersão das idades em torno da média).
+* **Mínimo:** 18.00 anos.
+* **Máximo:** 73.00 anos.
+* **Quartis:** 25% dos respondentes têm 27 anos ou menos, 50% têm 30 anos ou menos, e 75% têm 36 anos ou menos.
+
+### Análise da Coluna 'Genero'
+
+* **Média:** 0.25 (considerando a codificação, indica a proporção relativa entre os gêneros).
+* **Mediana:** 0.00.
+* **Moda:** 1.00 (o gênero com maior frequência na codificação).
+* **Desvio Padrão:** 0.43.
+* **Mínimo:** 0.00.
+* **Máximo:** 1.00.
+* **Quartis:** 75% dos valores codificados de gênero são 0.
+
+### Análise da Coluna 'Cor/raca/etnia'
+
+* **Média:** 0.91 (valor médio da codificação da cor/raça/etnia).
+* **Mediana:** 0.00.
+* **Moda:** 3.00 (a cor/raça/etnia com maior frequência na codificação).
+* **Desvio Padrão:** 1.34.
+* **Mínimo:** 0.00.
+* **Máximo:** 6.00.
+* **Quartis:** 75% dos valores codificados de cor/raça/etnia são 3 ou menos.
+
+### Análise da Coluna 'PCD'
+
+* **Média:** 0.02 (indica a proporção de respondentes que se identificam como PCD na codificação).
+* **Mediana:** 0.00.
+* **Moda:** 1.00 (a categoria de PCD com maior frequência na codificação).
+* **Desvio Padrão:** 0.14.
+* **Mínimo:** 0.00.
+* **Máximo:** 1.00.
+* **Quartis:** 75% dos valores codificados para PCD são 0.
+
+### Análise da Coluna 'UF'
+
+* **Média:** 17.87 (valor médio da codificação da Unidade Federativa).
+* **Mediana:** 20.00.
+* **Moda:** 24.00 (a UF com maior frequência na codificação).
+* **Desvio Padrão:** 6.71.
+* **Mínimo:** 1.00.
+* **Máximo:** 26.00.
+* **Quartis:** 25% dos respondentes moram em UFs codificadas como 12 ou menos, 50% em UFs codificadas como 20 ou menos, e 75% em UFs codificadas como 24 ou menos.
+
+### Análise da Coluna 'Regiao onde mora'
+
+* **Média:** 2.17 (valor médio da codificação da região).
+* **Mediana:** 2.00.
+* **Moda:** 2.00 (a região com maior frequência na codificação).
+* **Desvio Padrão:** 0.77.
+* **Mínimo:** 0.00.
+* **Máximo:** 4.00.
+* **Quartis:** 75% dos respondentes moram em regiões codificadas como 3 ou menos.
+
+### Análise da Coluna 'Nível de Ensino'
+
+* **Média:** 2.59 (valor médio da codificação do nível de ensino).
+* **Mediana:** 3.00.
+* **Moda:** 3.00 (o nível de ensino com maior frequência na codificação).
+* **Desvio Padrão:** 1.00.
+* **Mínimo:** 1.00.
+* **Máximo:** 5.00.
+* **Quartis:** 75% dos respondentes têm nível de ensino codificado como 3 ou menos.
+
+### Análise da Coluna 'Área de formação'
+
+* **Média:** 1.32 (valor médio da codificação da área de formação).
+* **Mediana:** 1.00.
+* **Moda:** 2.00 (a área de formação com maior frequência na codificação).
+* **Desvio Padrão:** 1.72.
+* **Mínimo:** 0.00.
+* **Máximo:** 7.00.
+* **Quartis:** 75% dos respondentes têm área de formação codificada como 2 ou menos.
+
+### Análise da Coluna 'Situação de trabalho'
+
+* **Média:** 0.09 (indica a proporção de respondentes em uma das categorias de situação de trabalho na codificação).
+* **Mediana:** 0.00.
+* **Moda:** 1.00 (a situação de trabalho com maior frequência na codificação).
+* **Desvio Padrão:** 0.28.
+* **Mínimo:** 0.00.
+* **Máximo:** 1.00.
+* **Quartis:** 75% dos valores codificados para situação de trabalho são 0.
+
+**Observação:** É crucial lembrar que a interpretação dessas estatísticas para as colunas codificadas deve ser feita com cautela, pois os números representam categorias e não possuem uma escala numérica inerente. A análise é mais útil para entender a distribuição dos códigos dentro de cada coluna. Para a coluna 'Idade', a interpretação é direta, pois se trata de uma variável numérica contínua.
+
+
+
+## Preparação dos Dados
+
+A fase de preparação dos dados é crucial para garantir a qualidade e adequação do dataset para a análise. Neste projeto, a preparação dos dados consistiu nos seguintes passos:
+
+### Seleção dos Atributos
+
+Com base no objetivo da análise e na hipótese a ser investigada, foi realizada a seleção manual dos atributos relevantes do dataset original. Os atributos selecionados para compor a base de dados principal foram:
+
+* Idade
+* Genero
+* Cor/raca/etnia
+* PCD (Pessoa com Deficiência)
+* UF (Unidade Federativa)
+* Regiao onde mora
+* Nível de Ensino
+* Área de formação
+* Situação de trabalho
+
+Estes atributos foram considerados essenciais para explorar as relações entre gênero, situação de trabalho e localização geográfica, além de fornecerem contexto demográfico e educacional dos respondentes.
+
+### Tratamento dos Valores Faltantes ou Omissos
+
+A presença de valores faltantes ou omissos nos dados pode impactar a análise. No processo de preparação, identificamos e tratamos esses valores:
+
+* **Identificação de Nulos:** Foi realizada a contagem de valores nulos em cada coluna para entender a extensão do problema.
+* **Remoção de Nulos na Coluna 'UF':** A coluna 'UF' (Unidade Federativa) é fundamental para a análise regional da hipótese. Dada a importância dessa informação, optou-se por remover as linhas que apresentavam valores nulos nesta coluna.
+
+### Tratamento dos Valores Inconsistentes
+
+Valores inconsistentes podem distorcer os resultados da análise. Foram realizados tratamentos específicos para lidar com inconsistências identificadas:
+
+* **Tratamento na Coluna 'Genero':** As categorias 'Outro' e 'Prefiro não informar' na coluna 'Genero' foram identificadas como inconsistentes para a análise de disparidade de gênero binária. Essas linhas foram removidas do dataset.
+* **Tratamento na Coluna 'PCD':** Similarmente, as linhas onde a coluna 'PCD' apresentava o valor 'Prefiro não informar' foram removidas, pois não era possível inferir a informação de deficiência a partir desse valor.
+* **Tratamento na Coluna 'Área de formação':** Foram identificados valores nulos (NaN) na coluna 'Área de formação' após o mapeamento, o que indicava a falta de informação para algumas entradas. As linhas com valores nulos nesta coluna também foram removidas.
+* **Agrupamento na Coluna 'Situação de trabalho':** As diversas categorias de situação de trabalho foram agrupadas em duas categorias principais: 'Empregado(a)' e 'Desempregado(a)'. Este agrupamento simplifica a análise e foca na dicotomia emprego/desemprego. (É importante verificar e corrigir quaisquer erros de digitação durante este agrupamento).
+* **Tratamento de Mapeamentos Duplicados/Inconsistentes:** Durante a codificação de variáveis categóricas, foi observado que a categoria 'Outras Engenharias' na coluna 'Área de formação' foi mapeada para dois valores diferentes (2 e 8), e 'Outra opção' foi mapeada para o mesmo valor que 'Computação / Engenharia...' (0). Embora o código original mostre esses mapeamentos, para uma análise precisa, estes devem ser revisados e corrigidos para garantir a unicidade dos códigos para cada categoria.
+
+### Conversão de Dados
+
+Para facilitar a análise e a aplicação de métodos estatísticos, as variáveis categóricas foram convertidas para um formato numérico:
+
+* **Codificação Manual:** As categorias em colunas como 'Genero', 'Cor/raca/etnia', 'PCD', 'UF', 'Regiao onde mora', 'Nível de Ensino', 'Área de formação' e 'Situação de trabalho' foram mapeadas manualmente para valores inteiros específicos. Esta abordagem preserva a informação de qual número corresponde a qual categoria original.
+* **Conversão para Tipo Numérico:** Após o mapeamento manual, as colunas foram convertidas para o tipo de dado inteiro (`int`) para que pudessem ser tratadas como dados numéricos em análises posteriores.
 
 
 ## Indução de modelos
