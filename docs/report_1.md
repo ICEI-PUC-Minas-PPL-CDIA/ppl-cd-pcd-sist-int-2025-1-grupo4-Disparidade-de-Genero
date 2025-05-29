@@ -134,16 +134,99 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 - Desafios: Precisa de estudos aprofundados com dados desagregados por cargo, gênero, região e senioridade.
 
 
-## Análise exploratórida dos dados
+# Análise Exploratória - Disparidade de Gênero no Mercado de Trabalho
 
-###    Dicionário de dados
+**Hipótese**: Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?
 
-Apresente uma descrição das bases de dados a serem utilizadas. 
-Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
-com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
+---
 
-Este projeto deve utilizar pelo menos duas fontes de dados. Uma fonte principal e 
-uma fonte para enriquecimentos dos dados principais.
+## Análise de Dados da Pesquisa State of Data BR 2023
+
+## 1. Base de Dados Principal
+
+* **Fonte:** Arquivo CSV 'State_of_data_BR_2023_Kaggle - dados_limpos.csv'
+* **Descrição:** Esta base de dados contém informações demográficas e socioeducacionais de 500 indivíduos, abrangendo características como gênero, idade, nível de ensino, área de formação, região e estado de residência, além de um código de região associado.
+
+## 2. Dicionário de Dados da Base Principal
+
+| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
+|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
+| `ID`                                       | Qualitativo  | Nominal        | Identificador único do participante.                                     |
+| `Idade`                                    | Quantitativo | Discreta       | Idade do participante em anos completos.                                 |
+| `Gênero`                                   | Qualitativo  | Nominal        | Identidade de gênero do participante.                                    |
+| `Nível de Ensino`                          | Qualitativo  | Ordinal        | Nível mais alto de escolaridade concluído (ex: ensino médio, graduação, etc). |
+| `Área de Formação`                         | Qualitativo  | Nominal        | Área do conhecimento da formação principal (ex: exatas, humanas, biológicas). |
+| `Região onde mora`                         | Qualitativo  | Nominal        | Região do país onde o participante reside (ex: Norte, Sudeste, Sul, etc.).    |
+| `Código da Região`                         | Qualitativo  | Nominal        | Código numérico ou categórico da região geográfica.                      |
+| `Estado onde mora`                         | Qualitativo  | Ordinal        | Unidade Federativa (estado) de residência atual.                         |
+
+##  Resumo das Transformações em `base_princ`
+
+Esta seção detalha as transformações aplicadas às colunas da base de dados `base_principal` para converter variáveis categóricas em numéricas.
+
+### 2.1 Gênero
+
+| Classe Original        | Valor Numérico |
+|------------------------|----------------|
+| Masculino              | 0              |
+| Feminino               | 1              |
+| Outro                  | Removido       |
+
+### 2.2 Nível de Ensino
+
+| Classe Original        | Valor Numérico |
+|------------------------|----------------|
+| Fundamental Completo   | 0              |
+| Ensino Médio           | 1              |
+| Graduação	         | 2              |
+| Pós Graduação	         | 3              |
+| Mestrado	         | 4              |
+| Doutorado	         | 5              |
+
+### 2.3 Área de Formação
+
+| Classe Original        | Valor Numérico |
+|------------------------|----------------|
+| Engenharias            | 0              |
+| Exatas                 | 1              |
+| Ciências Sociais 	 | 2              |
+| Humanas	         | 3              |
+| Saúde 	         | 4              |
+
+### 2.4 Região onde mora
+
+| Classe Original   | Valor Numérico |
+|-------------------|----------------|
+| Norte             | 0              |
+| Nordeste          | 1              |
+| Sudeste           | 2              |
+| Sul               | 3              |
+| Centro-oeste      | 4              |
+
+### 2.5 Estado onde mora (Exemplo para alguns estados presentes nos dados)
+
+| Classe Original   | Valor Numérico |
+|-------------------|----------------|
+| PE                | 0              |
+| RS                | 1              |
+| RJ                | 2              |
+| MG                | 3              |
+| SP                | 4              |
+| BA                | 5              |
+| AM                | 6              |
+| PR                | 7              |
+| CE                | 8              |
+| PA                | 9              |
+| Outros            | Removido       |
+
+### 2.6 Código da Região
+| Classe Original   | Valor Numérico |
+|-------------------|----------------|
+| 1                 | 0              |
+| 2                 | 1              |
+| 3                 | 2              |
+| 4                 | 3              |
+| 5                 | 4              |
 
 
 ###    Descrição de dados
