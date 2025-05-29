@@ -867,9 +867,9 @@ plt.grid()
 plt.show()
 ```
 
-## Resultados
 
-### Resultados obtidos com o modelo 1.
+
+# Resultados obtidos com o modelo 1 (Árvore de decisão).
 Observação: Fiz duas avaliações utilizando métricas diferentes, com isso obtive diferentes resultados:
 Primeira métrica eu obtive uma maior acurácia e precisão e recall em ambas as classes(Empregado(a) e Desempregado(a)). Porém percebi que o modelo estava priorizando mais a classe majoritária(Empregado(a)), por haver cerca de 10 vezes mais dados em relação a outra. Segue as duas avaliações...
 
@@ -964,7 +964,7 @@ Seu modelo de Árvore de Decisão considera a **idade** e o **nível de ensino**
 
 
 
-### Resultados obtidos com o modelo 2.
+# Resultados obtidos com o modelo 2 (Random Forest).
 
 
 ### Avaliação 01:
