@@ -875,7 +875,8 @@ Primeira métrica eu obtive uma maior acurácia e precisão e recall em ambas as
 
 ## Avaliação 01:
 
-![download](https://github.com/user-attachments/assets/66769ba0-7097-4b6e-a08f-1092b27462c0)
+
+![2d52dec8-827e-4dae-8efe-1e85e52eb25d](https://github.com/user-attachments/assets/d2c22032-1f0a-4085-ad8f-1cecb2c0da41)
 
 ![image](https://github.com/user-attachments/assets/1be4f89d-eb49-439d-a813-07189919b766)
 
@@ -969,7 +970,7 @@ Seu modelo de Árvore de Decisão considera a **idade** e o **nível de ensino**
 
 ### Avaliação 01:
 
-![download](https://github.com/user-attachments/assets/5ab5f6c2-d17d-4685-879f-133a05abb3b5)
+![download](https://github.com/user-attachments/assets/5c253440-4bf8-465d-859e-fbb9ff592562)
 
 ## Melhores Parâmetros Encontrados:
 
@@ -998,7 +999,7 @@ Seu modelo de Árvore de Decisão considera a **idade** e o **nível de ensino**
 ### Avaliação 02:
 Utilizei novos parâmetros para análise, tentei equilibrar os resultados das classes, porém não consegui ter um valor satisfatório no recall e na precisão.
 
-![download](https://github.com/user-attachments/assets/5c253440-4bf8-465d-859e-fbb9ff592562)
+![download](https://github.com/user-attachments/assets/5ab5f6c2-d17d-4685-879f-133a05abb3b5)
 
 ## Avaliação com Limiar de Decisão de 0.5:
 
