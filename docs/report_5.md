@@ -169,13 +169,144 @@ A preparação dos dados consiste dos seguintes passos:
 ## Indução de modelos
 
 ### Modelo 1: Árvore de decisão
+## Justificativa da escolha do modelo:
 
-Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
-Justifique a escolha do modelo.
-Apresente o processo utilizado para amostragem de dados (particionamento, cross-validation).
-Descreva os parâmetros utilizados. 
-Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta gráfica, apresente imagens
-com o fluxo de processamento.
+A **Árvore de Decisão** é uma escolha adequada para este problema devido à sua interpretabilidade e relativa simplicidade. Ela permite visualizar o processo de tomada de decisão do modelo, o que facilita a explicação dos resultados. Além disso, a Árvore de Decisão é capaz de lidar com dados categóricos e numéricos, o que parece ser o caso dos seus dados.
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Configurações de visualização
+plt.style.use('ggplot')
+plt.rcParams['figure.figsize'] = (12, 8)
+sns.set_palette("pastel")
+
+# Carregar e preparar os dados
+df = pd.read_excel('State_of_data_BR_2023_limpa.xlsx', sheet_name='State_of_data_BR_2023')
+
+# Renomear colunas
+df.columns = [
+    'idade', 'faixa_etaria', 'genero', 'experiencia_prejudicada', 
+    'nao_acredita_afetada', 'prejudicada_genero', 'oportunidades_progressao',
+    'cargo_gestor', 'cargo_atual', 'nivel', 'faixa_salarial', 
+    'tempo_experiencia', 'satisfeito_empresa', 'motivo_insatisfacao'
+]
+
+# Limpeza e transformação dos dados
+df['satisfeito_empresa'] = df['satisfeito_empresa'].replace({1: 'Satisfeito', 0: 'Insatisfeito'})
+df['genero'] = df['genero'].replace({
+    'Masculino': 'Masculino', 
+    'Feminino': 'Feminino', 
+    'Outro': 'Outro', 
+    'Prefiro não informar': 'Não informado'
+})
+
+# Selecionar features relevantes e target
+features = ['idade', 'genero', 'nivel', 'faixa_salarial', 'tempo_experiencia', 'prejudicada_genero']
+target = 'satisfeito_empresa'
+
+# Filtrar dados completos
+df_model = df[features + [target]].dropna()
+
+# Codificar variáveis categóricas
+categorical_features = ['genero', 'nivel', 'faixa_salarial', 'tempo_experiencia']
+numeric_features = ['idade']
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', 'passthrough', numeric_features),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+    ])
+
+X = preprocessor.fit_transform(df_model[features])
+y = df_model[target]
+
+# Codificar o target
+le = LabelEncoder()
+y_encoded = le.fit_transform(y)
+
+# Dividir em treino e teste
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_encoded, test_size=0.3, random_state=42, stratify=y_encoded)
+
+# Criar e treinar a árvore de decisão
+clf = DecisionTreeClassifier(
+    max_depth=4,  # Limitar profundidade para evitar overfitting
+    min_samples_split=20,
+    min_samples_leaf=10,
+    random_state=42
+)
+clf.fit(X_train, y_train)
+
+# 1. Visualização da Árvore de Decisão
+plt.figure(figsize=(20, 12))
+feature_names = (numeric_features + 
+                list(preprocessor.named_transformers_['cat'].get_feature_names_out(categorical_features)))
+
+plot_tree(clf, 
+          feature_names=feature_names,
+          class_names=le.classes_,
+          filled=True,
+          rounded=True,
+          proportion=True,
+          impurity=False,
+          fontsize=10)
+plt.title("Árvore de Decisão para Predição de Satisfação no Trabalho", fontsize=16)
+plt.tight_layout()
+plt.show()
+
+# 2. Matriz de Confusão
+y_pred = clf.predict(X_test)
+
+# Calcular métricas
+print("\nRelatório de Classificação:")
+print(classification_report(y_test, y_pred, target_names=le.classes_))
+
+# Plotar matriz de confusão
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=le.classes_)
+disp.plot(cmap='Blues', values_format='d')
+plt.title("Matriz de Confusão - Satisfação no Trabalho", fontsize=16)
+plt.grid(False)
+plt.tight_layout()
+plt.show()
+
+# 3. Importância das Features
+importance = pd.DataFrame({
+    'Feature': feature_names,
+    'Importance': clf.feature_importances_
+}).sort_values('Importance', ascending=False)
+
+plt.figure(figsize=(12, 6))
+sns.barplot(x='Importance', y='Feature', data=importance)
+plt.title('Importância das Variáveis na Árvore de Decisão', fontsize=16)
+plt.xlabel('Importância', fontsize=12)
+plt.ylabel('Variável', fontsize=12)
+plt.tight_layout()
+plt.show()
+
+# 4. Análise por Gênero (opcional)
+# Adicionar previsões ao dataframe original para análise
+df_model['predicted'] = le.inverse_transform(clf.predict(X))
+gender_analysis = pd.crosstab(
+    index=df_model['genero'],
+    columns=[df_model['satisfeito_empresa'], df_model['predicted']],
+    margins=True,
+    margins_name="Total"
+)
+
+print("\nAnálise de Previsões por Gênero:")
+print(gender_analysis)
+![arvore de decisao](https://github.com/user-attachments/assets/1492a983-e2c6-410e-a96d-1008ad05f4dd)
+![matriz de confusão](https://github.com/user-attachments/assets/5032e515-544d-4816-bf6e-f423276e26b9)
+
 
 ### Modelo 2: Algoritmo
 
