@@ -1,6 +1,5 @@
-## ANALISE ESTASTISTICA 
-
-## ID:
+## ANALISE DESCRITIVA
+### ID:
 
 Média: 250.5
 
@@ -18,7 +17,7 @@ Máximo: 500
 
 Quartis: Q1=125.75, Q2=250.5, Q3=375.25
 
-## Idade:
+###  Idade:
 
 Média: 38.652
 
@@ -36,7 +35,7 @@ Máximo: 60
 
 Quartis: Q1=28.0, Q2=37.0, Q3=48.0
 
-## Código da Região:
+### Código da Região:
 
 Média: 3.14
 
@@ -63,7 +62,7 @@ Valores Únicos: 2
 
 Frequência da Moda: 263
 
-## Nível de Ensino:
+###  Nível de Ensino:
 
 Moda: Ensino Médio
 
@@ -71,7 +70,7 @@ Valores Únicos: 7
 
 Frequência da Moda: 118
 
-## Área de Formação:
+### Área de Formação:
 
 Moda: Ciências Sociais
 
@@ -79,7 +78,7 @@ Valores Únicos: 6
 
 Frequência da Moda: 136
 
-## Região onde mora:
+###  Região onde mora:
 
 Moda: Nordeste
 
@@ -87,7 +86,7 @@ Valores Únicos: 5
 
 Frequência da Moda: 142
 
-## Estado onde mora:
+###  Estado onde mora:
 
 Moda: SP
 
@@ -95,7 +94,7 @@ Valores Únicos: 27
 
 Frequência da Moda: 45
 
-## Observações Adicionais:
+###  Observações Adicionais:
 A distribuição de idade mostra que a maioria dos respondentes está entre 28 e 48 anos.
 
 Há mais mulheres (263) do que homens (237) na amostra.
