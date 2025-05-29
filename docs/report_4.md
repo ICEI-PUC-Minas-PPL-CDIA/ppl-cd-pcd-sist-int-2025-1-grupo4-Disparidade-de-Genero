@@ -478,64 +478,92 @@ import pandas as pd  # Para trabalhar com DataFrames
 import seaborn as sns  # Para visualizações estatísticas (não usado diretamente para o modelo, mas útil para EDA)
 from sklearn import tree  # Módulo para árvores de decisão
 import matplotlib.pyplot as plt  # Para gerar gráficos
+```
 
+```python
 # Módulos específicos do scikit-learn para o modelo de árvore de decisão, divisão de dados e avaliação
 from sklearn.tree import DecisionTreeClassifier, plot_tree  # Classe para a árvore e função para plotar
 from sklearn.model_selection import train_test_split, GridSearchCV  # Funções para dividir dados e otimização
 from sklearn.preprocessing import LabelEncoder  # Para codificar rótulos (não usado diretamente no código compartilhado, mas comum)
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix, make_scorer, f1_score  # Métricas de avaliação
+```
 
+```python
 # Módulo para visualização da matriz de confusão de forma mais interativa
 from yellowbrick.classifier import ConfusionMatrix
+```
 
+```python
 # Carregamento dos dados a partir de um arquivo CSV
 base_treino = pd.read_csv("base_princ_modificado.csv")
+```
 
+```python
 # Exibindo as primeiras linhas e estatísticas descritivas para entender os dados
 print("Primeiras linhas do DataFrame:")
 display(base_treino.head())
 
 print("\nEstatísticas descritivas do DataFrame:")
 display(base_treino.describe())
+```
 
+```python
 # Verificando a distribuição da variável alvo para identificar desbalanceamento
 print("\nDistribuição das classes na variável alvo:")
 print(base_treino['Situação de trabalho'].value_counts())
+```
 
+```python
 # Separando as features (X) e a variável alvo (y)
 X = base_treino.drop(columns=['Situação de trabalho'])  # Remove a coluna alvo para obter as features
 y = base_treino['Situação de trabalho']  # Seleciona a coluna alvo
+```
 
+```python
 # Dividindo os dados em conjuntos de treino e teste (75% treino, 25% teste)
 X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.25, random_state=42)
+```
 
+```python
 # Inicializando o modelo de Árvore de Decisão com parâmetros iniciais
 modelo = DecisionTreeClassifier(criterion='gini', max_depth=5, min_samples_leaf=5, min_samples_split=10, random_state=42)
+```
 
+```python
 # Treinando o modelo com os dados de treino
 modelo.fit(X_treino, y_treino)
+```
 
+```python
 # Realizando previsões no conjunto de teste
 previsoes = modelo.predict(X_teste)
+```
 
+```python
 # Avaliando o desempenho do modelo inicial utilizando métricas comuns
 print("Acurácia do modelo inicial:", accuracy_score(y_teste, previsoes))
 print("\nRelatório de Classificação do modelo inicial:")
 print(classification_report(y_teste, previsoes))
 print("\nMatriz de Confusão do modelo inicial:")
 print(confusion_matrix(y_teste, previsoes))
+```
 
+```python
 # Visualizando a Matriz de Confusão usando a biblioteca Yellowbrick
 cm = ConfusionMatrix(modelo)
 cm.fit(X_treino, y_treino)
 cm.score(X_teste, y_teste)
 plt.title("Matriz de Confusão (Modelo Inicial)")
 plt.show()
+```
 
+```python
 # --- Seção para Otimização de Hiperparâmetros com GridSearchCV ---
 
 print("\n--- Abordagem: Ajuste de Hiperparâmetros com GridSearchCV ---")
+```
 
+```python
 # Definindo a grade de parâmetros a serem testados no GridSearchCV
 param_grid = {
     'criterion': ['gini', 'entropy'],  # Funções de critério
@@ -544,22 +572,32 @@ param_grid = {
     'min_samples_split': [5, 15, 25],  # Mínimo de amostras para dividir um nó
     'class_weight': [None, 'balanced', {0: 1, 1: 5}, {0: 1, 1: 10}]  # Pesos para as classes
 }
+```
 
+```python
 # Criando um scorer personalizado para focar na métrica F1-score da classe 1
 f1_classe1_scorer = make_scorer(f1_score, labels=[1], average='weighted')
 
 # Inicializando o GridSearchCV com o modelo base, a grade de parâmetros, validação cruzada e o scorer personalizado
 grid_search = GridSearchCV(DecisionTreeClassifier(random_state=42), param_grid, cv=5, scoring=f1_classe1_scorer)
+```
 
+```python
 # Executando a busca em grade para encontrar a melhor combinação de parâmetros
 grid_search.fit(X_treino, y_treino)
+```
 
+```python
 # Imprimindo os melhores parâmetros encontrados pelo GridSearchCV
 print("\nMelhores hiperparâmetros encontrados (foco na classe 1):", grid_search.best_params_)
+```
 
+```python
 # Obtendo o melhor modelo encontrado pelo GridSearchCV
 melhor_modelo_grid = grid_search.best_estimator_
+```
 
+```python
 # Avaliando o melhor modelo nos conjuntos de treino e teste
 previsoes_grid = melhor_modelo_grid.predict(X_teste)
 print("\nAcurácia do melhor modelo (GridSearchCV - Treino):", accuracy_score(y_treino, melhor_modelo_grid.predict(X_treino)))
@@ -570,14 +608,18 @@ print("\nRelatório de Classificação:")
 print(classification_report(y_teste, previsoes_grid))
 print("\nMatriz de Confusão:")
 print(confusion_matrix(y_teste, previsoes_grid))
+```
 
+```python
 # Visualizando a Matriz de Confusão do melhor modelo com Yellowbrick
 cm_grid = ConfusionMatrix(melhor_modelo_grid)
 cm_grid.fit(X_treino, y_treino)
 cm_grid.score(X_teste, y_teste)
 plt.title("Matriz de Confusão (GridSearchCV - Foco Classe 1)")
 plt.show()
+```
 
+```python
 # Visualizando a árvore de decisão do melhor modelo encontrado pelo GridSearchCV
 previsores_grid = X_treino.columns  # Nomes das features
 class_names_grid = [str(c) for c in melhor_modelo_grid.classes_]  # Nomes das classes
@@ -586,7 +628,9 @@ figura_grid, eixos_grid = plt.subplots(nrows=1, ncols=1, figsize=(30, 20))  # Cr
 tree.plot_tree(melhor_modelo_grid, feature_names=previsores_grid, class_names = class_names_grid, filled=True, fontsize=10);  # Plota a árvore
 plt.title("Árvore de Decisão (GridSearchCV - Foco Classe 1)")  # Título do gráfico
 plt.show()  # Exibe o gráfico
+```
 
+```python
 # Avaliando a acurácia do modelo inicial nos conjuntos de treino e teste novamente para comparação
 acuracia_treino = accuracy_score(y_treino, modelo.predict(X_treino))
 print(f"\nAcurácia do modelo no conjunto de treino: {acuracia_treino:.4f}")
@@ -602,10 +646,226 @@ Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta
 com o fluxo de processamento.
 ```
 
-### Modelo 2: Algoritmo
+### Modelo 2: Random Forest
 
-Repita os passos anteriores para o segundo modelo.
+## Justificativa da escolha do modelo:
 
+Ao tentar utilizar a árvore de decisão, percebi que possuia limites quanto ao seu desempenho e aprofundamento, mesmo testando vários hiperparâmetros. Com isso, foi recomendado utilizar a árvore de decisão para a mesma hipótese, relacionado à classificação preditiva, no qual desejo classificar se uma pessoa vai estar empregada ou não, no mercado de dados, dependendo de seu gênero e região onde mora.
+
+## 1. Divisão dos Dados (Amostragem Inicial):
+
+**Processo:** Você utilizou a função `train_test_split` da biblioteca `sklearn.model_selection` para dividir seu conjunto de dados original em conjuntos de treino e teste.
+
+**Parâmetros utilizados:**
+
+* `X` e `y`: As variáveis independentes e a variável alvo do seu DataFrame.
+* `test_size=0.25`: Indica que 25% dos dados serão usados para o conjunto de teste e os 75% restantes para o conjunto de treino.
+* `stratify=y`: Garante que a distribuição da variável alvo (`y`) seja a mesma nos conjuntos de treino e teste. Isso é importante para lidar com conjuntos de dados desbalanceados, onde a proporção das classes é significativamente diferente.
+* `random_state=42`: Define uma semente para o gerador de números aleatórios, garantindo que a divisão dos dados seja a mesma sempre que o código for executado com a mesma semente.
+
+## 2. Balanceamento com ADASYN (Amostragem para o Treinamento):
+
+**Processo:** Você aplicou a técnica de oversampling ADASYN (Adaptive Synthetic Sampling) da biblioteca `imblearn.over_sampling` para balancear o conjunto de treino. O ADASYN gera amostras sintéticas para a classe minoritária, adaptando o número de amostras sintéticas geradas com base na densidade da distribuição da classe minoritária. Isso ajuda o modelo a aprender melhor as características da classe minoritária.
+
+**Parâmetros utilizados:**
+
+* `ADASYN(random_state=42)`: Você instanciou o objeto ADASYN.
+    * `random_state=42`: Define uma semente para o gerador de números aleatórios do ADASYN, garantindo a reprodutibilidade do processo de balanceamento.
+* `adasyn.fit_resample(X_train, y_train)`: Aplica a técnica ADASYN aos dados de treino. `fit_resample` combina as etapas de ajuste e reamostragem.
+
+## Em resumo:
+
+Primeiro, seus dados foram divididos em treino e teste de forma estratificada para manter a proporção das classes. Em seguida, o conjunto de treino foi balanceado usando o método ADASYN para criar amostras sintéticas da classe minoritária, tornando o conjunto de treino mais equilibrado para o treinamento do modelo. O conjunto de teste original (não balanceado) é utilizado para a avaliação final do modelo, pois ele reflete a distribuição real dos dados.
+
+## Trechos de código utilizados comentados:
+
+```python
+#Importação das bibliotecas necessárias
+from IPython.display import display
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import (
+    classification_report, confusion_matrix, precision_recall_curve, f1_score
+)
+
+from imblearn.over_sampling import ADASYN
+```
+
+```python
+# Carregamento e Visualização Inicial dos Dados
+df = pd.read_csv('base_princ_modificado.csv', sep=',', encoding='utf-8')
+print("Primeiras linhas do DataFrame:")
+display(df.head())
+```
+
+```python
+# Carregamento e Visualização Inicial dos Dados
+df = pd.read_csv('base_princ_modificado.csv', sep=',', encoding='utf-8')
+print("Primeiras linhas do DataFrame:")
+display(df.head())
+```
+
+```python
+#Mapeamento da Variável Alvo e Verificação de Classes
+print("\nPrimeiras linhas após o mapeamento:")
+display(df.head())
+
+print("\nDistribuição da variável alvo:")
+print(df['Situação de trabalho'].value_counts(dropna=False))
+```
+
+```python
+# Selecionar as variáveis independentes e dependente
+X = df[['Genero','UF', 'Regiao onde mora', 'Nível de Ensino', 'Área de formação', 'Cor/raca/etnia']]
+y = df['Situação de trabalho']
+
+# Codificação one-hot para variáveis categóricas
+X = pd.get_dummies(X)
+```
+
+```python
+# Divisão dos Dados em Treino e Teste
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, stratify=y, random_state=42
+)
+```
+
+```python
+#Balanceamento das classes com ADASYN
+adasyn = ADASYN(random_state=42)
+X_train_resampled, y_train_resampled = adasyn.fit_resample(X_train, y_train)
+```
+
+```python
+# Definir os parâmetros a serem testados
+param_grid = {
+    'n_estimators': [100],
+    'max_depth': [10, None],
+    'min_samples_split': [2],
+    'min_samples_leaf': [1],
+    'max_features': ['sqrt'],
+    'class_weight': ['balanced']
+}
+
+
+# Criar o Grid Search
+grid_search = GridSearchCV(
+    estimator=RandomForestClassifier(random_state=42, class_weight='balanced'),
+    param_grid=param_grid,
+    cv=5,  # 5 folds para validação cruzada
+    scoring='f1_macro'  # Métrica de avaliação
+)
+
+# Executar o Grid Search nos dados balanceados
+grid_search.fit(X_train_resampled, y_train_resampled)
+
+# Exibir os melhores parâmetros e a melhor pontuação
+print("Melhores parâmetros:", grid_search.best_params_)
+print("Melhor pontuação (F1-macro):", grid_search.best_score_)
+
+# Avaliar o modelo com os melhores parâmetros no conjunto de teste original
+best_model = grid_search.best_estimator_
+y_pred_best = best_model.predict(X_test)
+print("\nRelatório de classificação com melhores parâmetros:")
+print(classification_report(y_test, y_pred_best))
+```
+
+```python
+#Treinamento do Modelo (Random Forest)
+model = RandomForestClassifier(random_state=42, class_weight='balanced')
+model.fit(X_train_resampled, y_train_resampled)
+```
+
+```python
+#Avaliação com Múltiplos Limiares de Decisão
+y_proba = model.predict_proba(X_test)[:, 1]  # Probabilidades da classe 1
+
+# Função para avaliar diferentes limiares
+def avaliar_limiais(probas, y_real, thresholds=[0.5]):
+    for thresh in thresholds:
+        y_pred = (probas >= thresh).astype(int)
+        report = classification_report(y_real, y_pred, output_dict=True)
+        recall_0 = report['0']['recall']
+        precision_0 = report['0']['precision']
+        f1_0 = report['0']['f1-score']
+        print(f"\nLimiar: {thresh}")
+        print(f" - Recall classe 0: {recall_0:.2f}")
+        print(f" - Precision classe 0: {precision_0:.2f}")
+        print(f" - F1-score classe 0: {f1_0:.2f}")
+    return y_pred  # Retorna o último y_pred
+```
+
+```python
+#Aplicar Avaliação e Exibir Resultados
+y_pred = avaliar_limiais(y_proba, y_test)
+
+print("\nMatriz de confusão (último limiar avaliado):")
+print(confusion_matrix(y_test, y_pred))
+
+print("\nRelatório de classificação:")
+print(classification_report(y_test, y_pred))
+```
+
+```python
+# Gerar a acuracia de treino e de teste
+
+from sklearn.metrics import accuracy_score
+
+# Acurácia no conjunto de treino (balanceado)
+y_train_pred = best_model.predict(X_train_resampled)
+train_accuracy = accuracy_score(y_train_resampled, y_train_pred)
+print(f"Acurácia de treino: {train_accuracy:.4f}")
+
+# Acurácia no conjunto de teste (original)
+test_accuracy = accuracy_score(y_test, y_pred_best) # Usando as previsões do best_model no conjunto de teste original
+print(f"Acurácia de teste: {test_accuracy:.4f}")
+```
+
+```python
+# Gráfico da matriz de confusão
+
+import seaborn as sns
+
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Classe 0', 'Classe 1'], yticklabels=['Classe 0', 'Classe 1'])
+plt.xlabel('Previsão')
+plt.ylabel('Real')
+plt.title('Matriz de Confusão')
+plt.show()
+```
+
+```python
+#Importância das Variáveis
+importances = model.feature_importances_
+feature_names = X_train.columns
+
+feat_imp = pd.Series(importances, index=feature_names).sort_values(ascending=False)
+feat_imp.plot(kind='bar', figsize=(10, 5), title='Importância das variáveis')
+plt.tight_layout()
+plt.show()
+```
+
+```python
+#Curvas de Precisão, Recall e F1 por Limiar
+precision, recall, thresholds = precision_recall_curve(y_test, y_proba)
+f1 = 2 * (precision * recall) / (precision + recall)
+
+plt.plot(thresholds, precision[:-1], label='Precisão')
+plt.plot(thresholds, recall[:-1], label='Recall')
+plt.plot(thresholds, f1[:-1], label='F1-score')
+plt.xlabel('Limiar de decisão')
+plt.ylabel('Score')
+plt.title('Scores por limiar de decisão')
+plt.legend()
+plt.grid()
+plt.show()
+```
 
 ## Resultados
 
@@ -615,7 +875,7 @@ Primeira métrica eu obtive uma maior acurácia e precisão e recall em ambas as
 
 ## Avaliação 01:
 
-![download](https://github.com/user-attachments/assets/5115c49f-02eb-401a-bcdf-45a15cb8fd97)
+![download](https://github.com/user-attachments/assets/66769ba0-7097-4b6e-a08f-1092b27462c0)
 
 ![image](https://github.com/user-attachments/assets/1be4f89d-eb49-439d-a813-07189919b766)
 
@@ -676,19 +936,154 @@ Ao otimizar o modelo com o f1_score ponderado para a classe 1 no GridSearchCV, v
 
 ### Interpretação do modelo 1
 
-Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
-processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
-o *feature importances* para tentar entender quais atributos o modelo se baseia no
-processo de tomada de decisão.
+![download](https://github.com/user-attachments/assets/88f497c9-c5ba-416b-8707-017f70fd520d)
+
+## Importância das Features na Árvore de Decisão
+
+**Idade: A Feature Mais Importante**
+
+O fato de "Idade" estar em primeiro lugar significa que, de todas as features consideradas pelo modelo, a idade da pessoa é a informação que mais impacta a decisão do modelo sobre a `Situação de trabalho`. O modelo encontra na idade padrões muito fortes que o ajudam a separar as diferentes classes da variável alvo. Isso sugere que há uma relação significativa entre a faixa etária e a situação de trabalho no seu conjunto de dados.
+
+**Nível de Ensino: A Segunda Feature Mais Importante**
+
+"Nível de Ensino" é a segunda feature mais importante. Isso indica que a escolaridade da pessoa também é uma informação crucial para o modelo. A Árvore de Decisão provavelmente usa o nível de ensino para criar divisões importantes nos seus nós, mostrando que o grau de instrução tem um forte poder preditivo sobre a situação de trabalho.
+
+**Região onde mora e Gênero: Importância Moderada**
+
+"Região onde mora" e "Gênero" aparecem depois de "Idade" e "Nível de Ensino". Isso sugere que, embora sejam importantes, a influência deles nas decisões do modelo é menor do que a idade e o nível de ensino. O modelo provavelmente utiliza essas informações para refinar as suas previsões dentro dos grupos já definidos pela idade e escolaridade.
+
+**UF, Cor/Raça/Etnia e Área de Formação: Features Menos Importantes**
+
+"UF", "Cor/Raça/Etnia" e "Área de Formação" são as features menos importantes na lista que você forneceu. Isso não significa que elas não tenham nenhuma importância, mas sim que, no contexto deste modelo específico e deste conjunto de dados, elas contribuíram menos para as decisões finais do que as features no topo da lista. A "Área de Formação" ser a menos importante pode indicar que, para este problema específico e a forma como os dados estão representados, essa informação não é tão discriminatória quanto as outras para determinar a situação de trabalho.
+
+**Em Resumo:**
+
+Seu modelo de Árvore de Decisão considera a **idade** e o **nível de ensino** como os fatores mais determinantes para prever a situação de trabalho. Features demográficas como **região**, **gênero**, **UF**, **cor/raça/etnia** e **área de formação** também são consideradas, mas com menor peso na tomada de decisão do modelo.
+
+![download](https://github.com/user-attachments/assets/b2e4b1b2-1df8-433b-b063-b03ba1ed065b)
+
 
 
 ### Resultados obtidos com o modelo 2.
 
+
+### Avaliação 01:
+
+![download](https://github.com/user-attachments/assets/5ab5f6c2-d17d-4685-879f-133a05abb3b5)
+
+## Melhores Parâmetros Encontrados:
+
+{'class_weight': 'balanced', 'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+
+
+## Melhor Pontuação (F1-macro) Obtida:
+
+`0.7106123941935574`
+
+## Acurácia de treino: 
+0.7817
+## Acurácia de teste: 
+0.7458
+
+## Relatório de Classificação com Melhores Parâmetros no Conjunto de Teste:
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.93      | 0.78   | 0.85     | 1144    |
+| 1             | 0.16      | 0.42   | 0.23     | 111     |
+| **accuracy** |           |        | **0.75** | **1255**|
+| **macro avg** | 0.54      | 0.60   | 0.54     | 1255    |
+| **weighted avg**| 0.86      | 0.75   | 0.79     | 1255    |
+
+### Avaliação 02:
+Utilizei novos parâmetros para análise, tentei equilibrar os resultados das classes, porém não consegui ter um valor satisfatório no recall e na precisão.
+
+![download](https://github.com/user-attachments/assets/5c253440-4bf8-465d-859e-fbb9ff592562)
+
+## Avaliação com Limiar de Decisão de 0.5:
+
+**Limiar:** `0.5`
+* **Recall classe 0:** `0.76`
+* **Precision classe 0:** `0.93`
+* **F1-score classe 0:** `0.84`
+
+**Matriz de Confusão (Limiar 0.5):**
+
+[[871 273]
+[ 63  48]]
+
+
+**Relatório de Classificação (Limiar 0.5):**
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.93      | 0.76   | 0.84     | 1144    |
+| 1             | 0.15      | 0.43   | 0.22     | 111     |
+| **accuracy** |           |        | **0.73** | **1255**|
+| **macro avg** | 0.54      | 0.60   | 0.53     | 1255    |
+| **weighted avg**| 0.86      | 0.73   | 0.78     | 1255    |
+
 Repita o passo anterior com os resultados do modelo 2.
+
+
+
+
 
 ### Interpretação do modelo 2
 
-Repita o passo anterior com os parâmetros do modelo 2.
+![download](https://github.com/user-attachments/assets/30568082-b86e-4478-acda-920538c83799)
+
+1-UF (Unidade Federativa): A variável mais importante, indicando que o estado de residência é o fator mais preditivo da situação de trabalho.
+
+2-Nível de Ensino: A segunda variável mais importante. O nível de escolaridade de uma pessoa tem uma forte influência na sua situação de trabalho.
+
+3-Área de formação: A área de formação é o terceiro fator mais importante, sugerindo que a área de estudo ou profissão também é um preditor relevante.
+
+4-Regiao onde mora: A região geográfica de residência tem uma influência menor que as três primeiras.
+
+5-Cor/raca/etnia: A cor, raça ou etnia apresenta uma importância ainda menor, mas não desprezível.
+
+6-Genero: O gênero é a variável com a menor importância relativa para o modelo.
+
+
+![download](https://github.com/user-attachments/assets/914d4929-d532-4b1c-98c6-895b7556a551)
+
+Recall Alto com Limiar Pequeno:
+
+Isso significa que quando você define um limiar baixo, o modelo tende a classificar mais observações como pertencentes à classe positiva (a classe que você está tentando prever com maior sensibilidade).
+Em outras palavras, o modelo está capturando uma grande proporção de todas as instâncias reais da classe positiva.
+A consequência é que você está incluindo mais verdadeiros positivos, mas também mais falsos positivos.
+
+Precisão e F1-score Baixos com Limiar Pequeno:
+
+A precisão baixa indica que, embora o modelo esteja encontrando muitos dos casos reais da classe positiva, ele também está classificando incorretamente muitas observações negativas como positivas.
+Há muitos falsos positivos, o que diminui a confiabilidade das previsões positivas.
+O F1-score baixo é uma consequência direta da baixa precisão, pois o F1-score é a média harmônica entre precisão e recall.
+
+Encontro dos Scores Próximo ao Limiar 0.8:
+
+O ponto onde a precisão, o recall e o F1-score se aproximam geralmente indica um ponto de equilíbrio.
+Nesse limiar, o modelo está encontrando um melhor compromisso entre classificar corretamente a maioria dos casos positivos e evitar falsos positivos.
+Esse limiar pode ser considerado um ponto "ótimo" para este modelo e conjunto de dados.
+
+O Que Isso Quer Dizer na Prática?
+
+Trade-off: Seu gráfico ilustra claramente o trade-off entre precisão e recall.
+Se você precisa capturar o máximo possível de casos positivos (alto recall), você terá que aceitar uma precisão mais baixa.
+Se você precisa ter alta confiança em suas previsões positivas (alta precisão), você pode perder alguns casos positivos.
+Desbalanceamento: A situação descrita sugere que seus dados podem estar desbalanceados, com uma classe sendo muito mais frequente que a outra. Modelos tendem a ter mais dificuldade em prever a classe minoritária.
+
+Aplicação: A escolha do limiar depende do contexto da sua aplicação.
+Se o custo de um falso negativo for alto, você pode preferir um limiar mais baixo para maximizar o recall.
+Se o custo de um falso positivo for alto, você pode preferir um limiar mais alto para maximizar a precisão.
+
+Exemplo:
+
+Imagine que você está tentando prever se pacientes têm uma doença rara.
+
+Se você usar um limiar baixo, você identificará a maioria dos pacientes doentes (alto recall), mas também classificará erroneamente muitos pacientes saudáveis como doentes (baixa precisão). Isso pode levar a mais testes e ansiedade desnecessários.
+Se você usar um limiar alto, você terá alta confiança de que os pacientes que você identifica como doentes realmente têm a doença, mas você pode perder alguns pacientes doentes que precisam de tratamento.
+No seu caso, a classe "Desempregado" é geralmente a classe minoritária. Se for muito importante identificar o máximo de pessoas desempregadas para oferecer ajuda, você pode trabalhar com um limiar mais baixo, mesmo que isso signifique que algumas pessoas empregadas sejam classificadas como desempregadas.
 
 
 ## Análise comparativa dos modelos
