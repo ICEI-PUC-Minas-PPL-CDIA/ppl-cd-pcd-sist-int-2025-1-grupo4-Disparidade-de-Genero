@@ -422,7 +422,7 @@ Moda: Análise de Dados<br>
 
 ## Preparação dos dados
 ### Seleção dos atributos
-![image](https://github.com/user-attachments/assets/0065040e-8723-463a-9b64-a558e11e9d14)
+![image](https://github.com/user-attachments/assets/945e57e2-531e-45d9-b336-20ea7bceafe5)
 
 ### Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
 
@@ -438,11 +438,14 @@ E tipo de todas as colunas foi modificado de float para int
 
 
 ### Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
-Não houve tratamento de valores inconsistentes
+![image](https://github.com/user-attachments/assets/e5dddda9-b92a-435d-a5fc-922f400fdf7f)
+
+![image](https://github.com/user-attachments/assets/7a7dcee6-f241-41c2-bded-e1305f333ec7)
 
 ### Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
-![image](https://github.com/user-attachments/assets/f66055f4-c694-43f8-8319-5c38da2751cf)
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/38605241-a6f7-4384-8517-3888321906a3)
+
+![image](https://github.com/user-attachments/assets/4dcc5da2-912b-4bb5-b7a9-767bdf8594fc)
 
 
 ## Indução de modelos
