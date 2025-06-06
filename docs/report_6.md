@@ -471,7 +471,8 @@ E tipo de todas as colunas foi modificado de float para int
 Foi feira escolha desse modelo por ser um modelo de grande eficiência e atender à tarefa de classifciação bem
 
 ##### Processo utilizado para amostragem de dados (particionamento, cross-validation).
-...
+![image](https://github.com/user-attachments/assets/23ff986d-5726-4a31-9cac-cba2945ec941)
+
 
 ##### Parâmetros utilizados. 
 
