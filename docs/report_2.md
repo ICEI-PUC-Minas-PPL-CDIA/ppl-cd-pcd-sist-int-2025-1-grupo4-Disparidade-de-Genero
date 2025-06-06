@@ -167,14 +167,9 @@ A preparação dos dados consiste dos seguintes passos:
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
-
-Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
-Justifique a escolha do modelo.
-Apresente o processo utilizado para amostragem de dados (particionamento, cross-validation).
-Descreva os parâmetros utilizados. 
-Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta gráfica, apresente imagens
-com o fluxo de processamento.
+### Modelo 1: Árvore de decisão e matriz de confusão
+![image](https://github.com/user-attachments/assets/68f9ff44-5044-40dd-b935-8ced7f54c250)
+![image](https://github.com/user-attachments/assets/b29e5fbc-691b-4173-8685-4f25e199e915)
 
 ### Modelo 2: Algoritmo
 
