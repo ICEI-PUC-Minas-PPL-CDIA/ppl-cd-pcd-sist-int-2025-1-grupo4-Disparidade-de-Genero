@@ -392,16 +392,28 @@ Média Ponderada      0.76      0.76      0.75      1059
 ![Code_Generated_Image (4)](https://github.com/user-attachments/assets/a34f9a0a-6f2f-43a2-9379-5becb9b6a13a)
 
 
-## Resultados
+# Análise Preditiva de Satisfação no Trabalho com Base em Gênero
 
-#Resultados
-#Resultados obtidos com o modelo 1 (Árvore de Decisão)
-O primeiro modelo, uma Árvore de Decisão, foi treinado para classificar a satisfação no trabalho (Satisfeito/Insatisfeito) com base unicamente no atributo "gênero".
+Este projeto utiliza um subconjunto do dataset [State of Data Brazil 2023](https://www.kaggle.com/datasets/data-hackers/state-of-data-brazil-2023) para investigar se o gênero de um profissional de dados influencia seu nível de satisfação no trabalho.
 
-A matriz de confusão a seguir, baseada na imagem fornecida, demonstra o desempenho do modelo nos dados de teste. As etiquetas foram melhoradas para maior clareza.
+Dois modelos de classificação foram treinados e avaliados:
+1.  **Árvore de Decisão:** Um modelo simples e altamente interpretável.
+2.  **Random Forest:** Um modelo de conjunto (ensemble) mais robusto e preciso.
 
-Para uma análise mais profunda, apresentamos as principais medidas de performance:
+O objetivo é não apenas construir um sistema inteligente, mas também analisar criticamente seus resultados, limitações e o poder preditivo do atributo "gênero" de forma isolada.
 
+## 1. Resultados
+
+### Resultados obtidos com o Modelo 1 (Árvore de Decisão)
+
+O primeiro modelo, uma Árvore de Decisão, foi treinado para classificar a satisfação no trabalho. A matriz de confusão abaixo demonstra o desempenho do modelo nos dados de teste.
+
+**Matriz de Confusão (Modelo 1)**
+![Matriz de Confusão do Modelo 1](./caminho/para/sua/confusion_matrix_dt.png)
+
+As principais métricas de performance do modelo foram:
+
+```text
 Relatório de Classificação - Árvore de Decisão
 
                 Precisão   Recall   F1-Score   Suporte
@@ -412,31 +424,35 @@ Relatório de Classificação - Árvore de Decisão
     Acurácia                             0.68      1059
    Média Macro       0.63      0.64      0.63      1059
 Média Ponderada      0.68      0.68      0.68      1059
-Acurácia (Accuracy): O modelo acertou a classificação em 68% dos casos.
-Precisão (Precision): Para a classe "Insatisfeito", o modelo teve 49% de precisão (de todos que ele previu como insatisfeitos, 49% realmente estavam). Para "Satisfeito", a precisão foi de 78%.
-Revocação (Recall): O modelo conseguiu identificar corretamente 50% de todos os funcionários realmente insatisfeitos.
-F-measure (F1-Score): A média ponderada entre precisão e revocação resultou em 0.49 para "Insatisfeito" e 0.78 para "Satisfeito", indicando um desequilíbrio na capacidade de predição entre as classes.
-Interpretação do modelo 1
-O modelo de Árvore de Decisão é altamente interpretável. Seus parâmetros são as regras que ele cria para dividir os dados. A imagem abaixo, que você forneceu, mostra exatamente essas regras.
+```
+- **Acurácia (Accuracy):** O modelo acertou a classificação em **68%** dos casos.
+- **Revocação (Recall):** O modelo conseguiu identificar corretamente **50%** de todos os funcionários realmente insatisfeitos.
 
-Como o modelo "raciocina":
-A árvore é lida de cima para baixo. Cada "nó" é uma pergunta sobre um atributo.
+### Interpretação do Modelo 1
 
-Nó Raiz (Topo): A primeira pergunta é sobre o gênero.
-Ramos: Dependendo da resposta (se o gênero pertence a uma categoria ou outra), o modelo segue por um ramo.
-Nós Folha (Base): Os nós na base da árvore representam a decisão final (a previsão de "Satisfeito" ou "Insatisfeito"). O gini representa a impureza do nó (0.0 significa que todos os exemplos naquele nó pertencem à mesma classe).
-Como estamos usando apenas um atributo ("gênero"), a árvore é muito simples. A medida de importância do atributo (feature importance) para este modelo é:
+A grande vantagem da Árvore de Decisão é sua interpretabilidade. A imagem abaixo mostra exatamente as regras que o modelo aprendeu para tomar suas decisões.
 
-gênero: 1.0
-Isso significa que 100% da decisão do modelo se baseia no gênero, pois não há outros atributos para considerar.
+**Visualização da Árvore de Decisão (Modelo 1)**
+![Árvore de Decisão Gerada](./caminho/para/sua/decision_tree.png)
 
-Resultados obtidos com o modelo 2 (Random Forest)
-O segundo modelo, um Random Forest, é um conjunto de múltiplas árvores de decisão. Ele tende a ser mais robusto e preciso.
+**Como o modelo "raciocina":**
+O modelo utiliza o atributo "gênero" para dividir os dados. Como este é o único atributo disponível, a medida de **importância do atributo (feature importance)** para o modelo é:
+- `gênero`: 1.0 (ou 100%)
 
-A matriz de confusão para este modelo é a seguinte:
+Isso confirma que 100% da lógica de decisão do modelo se baseia nesta única variável.
 
-As medidas de performance para o Random Forest foram superiores às do primeiro modelo:
+---
 
+### Resultados obtidos com o Modelo 2 (Random Forest)
+
+O segundo modelo, um Random Forest, agrega a "sabedoria" de múltiplas árvores de decisão para melhorar a performance.
+
+**Matriz de Confusão (Modelo 2)**
+![Matriz de Confusão do Modelo 2](./caminho/para/sua/confusion_matrix_rf_corrected.png)
+
+As métricas de performance para o Random Forest foram superiores:
+
+```text
 Relatório de Classificação - Random Forest
 
                 Precisão   Recall   F1-Score   Suporte
@@ -447,49 +463,88 @@ Relatório de Classificação - Random Forest
     Acurácia                             0.76      1059
    Média Macro       0.75      0.70      0.71      1059
 Média Ponderada      0.76      0.76      0.75      1059
-Acurácia: O modelo atingiu 76% de acertos, uma melhoria em relação à Árvore de Decisão.
-Precisão e Recall: Houve uma melhora significativa na precisão para a classe "Insatisfeito" (de 49% para 71%) e no recall para a classe "Satisfeito" (de 77% para 90%).
-#Interpretação do modelo 2
-Interpretar um modelo Random Forest não é tão direto quanto uma única árvore, pois ele é composto por centenas de árvores (por padrão, n_estimators=100). Não há um conjunto único de regras, mas sim uma "votação" entre todas as árvores para chegar a uma decisão final.
+```
+- **Acurácia:** O modelo atingiu **76%** de acertos.
+- **Revocação (Recall):** Houve uma melhora significativa no recall para a classe "Satisfeito", que subiu para **90%**.
 
-Seus principais parâmetros são o número de árvores na floresta e a profundidade máxima de cada árvore. O "raciocínio" é a sabedoria coletiva do conjunto.
+### Interpretação do Modelo 2
 
-Assim como no modelo 1, a importância do atributo é:
+Interpretar um Random Forest é mais complexo, pois ele é uma "caixa-preta" que consiste em centenas de árvores. A decisão final é uma média dos votos de todas as árvores. Assim como no primeiro modelo, a **importância do atributo** é:
+- `gênero`: 1.0 (100%)
 
-gênero: 1.0
-Novamente, isso ocorre porque o gênero é o único preditor disponível. O modelo atribui 100% de sua lógica decisória a ele.
+---
 
-## Análise comparativa dos modelos
+## 2. Análise Comparativa dos Modelos
 
-Modelo	Forças	Fragilidades
-Árvore de Decisão (Modelo 1)	- Alta interpretabilidade: Fácil de visualizar e explicar as regras. &lt;br> - Rapidez: Rápido para treinar e prever.	- Instabilidade: Pequenas mudanças nos dados podem gerar uma árvore completamente diferente. &lt;br> - Propensão a Overfitting: Tende a se ajustar demais aos dados de treino, perdendo poder de generalização.
-Random Forest (Modelo 2)	- Maior precisão e robustez: Geralmente supera a performance de uma única árvore. &lt;br> - Menor risco de overfitting: A agregação de várias árvores reduz o vício do modelo.	- "Caixa-preta" (Black Box): Difícil de interpretar as razões exatas por trás de uma previsão específica. &lt;br> - Custo computacional: Mais lento e exige mais memória para treinar.
+| Modelo                     | Forças                                                                          | Fragilidades                                                                        |
+| :------------------------- | :------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------- |
+| **Árvore de Decisão** | - **Alta interpretabilidade:** Fácil de visualizar e explicar.<br>- **Rapidez:** Rápido para treinar. | - **Instabilidade:** Sensível a pequenas mudanças nos dados.<br>- **Propensão a Overfitting.** |
+| **Random Forest** | - **Maior precisão e robustez.**<br>- **Menor risco de overfitting.** | - **"Caixa-preta":** Difícil de interpretar decisões individuais.<br>- **Mais lento para treinar.** |
 
+> **Quando usar cada modelo?**
+> - **Árvore de Decisão:** Ideal para cenários onde a **explicabilidade** da decisão é crucial (ex: análise de crédito).
+> - **Random Forest:** Ideal para cenários onde a **performance preditiva** é a prioridade máxima (ex: sistemas de recomendação).
 
-Quando um modelo se sairia melhor que o outro?
+A análise sugere que a satisfação profissional é um fenômeno complexo demais para ser explicado por uma única variável como o gênero.
 
-Use a Árvore de Decisão quando a prioridade máxima for explicar a decisão. Por exemplo, um sistema de análise de crédito que precisa justificar legalmente por que um empréstimo foi negado. As regras claras são essenciais.
-Use o Random Forest quando a prioridade máxima for a performance preditiva. Por exemplo, em um sistema de recomendação de produtos, onde o objetivo é acertar a recomendação o máximo possível, e a explicação do porquê não é tão crucial para o usuário final.
-Extrapolação dos dados: Os resultados modestos de ambos os modelos sugerem fortemente que o gênero, isoladamente, não é um bom preditor da satisfação no trabalho. A verdadeira lição aqui é que a satisfação profissional é um fenômeno complexo, influenciado por múltiplos fatores como salário, nível de cargo, tempo de experiência e cultura da empresa, todos presentes no dataset original e que deveriam ser incluídos em um modelo mais sofisticado.
+---
 
+## 3. Distribuição do Modelo (Opcional)
 
+Para colocar o modelo em produção, podemos criar um pacote de distribuição simples.
 
-### Distribuição do modelo (opcional)
+**1. Salvar o modelo treinado em um arquivo:**
+```python
+import joblib
 
-Tende criar um pacote de distribuição para o modelo construído, para ser aplicado 
-em um sistema inteligente.
+# Supondo que 'rf_classifier' é o seu modelo Random Forest treinado
+joblib.dump(rf_classifier, 'modelo_satisfacao_rf.joblib')
+```
 
+**2. Criar um script de aplicação (`app.py`):**
+Este script carrega o modelo salvo e o utiliza para fazer novas previsões.
+```python
+import joblib
 
-## 8. Conclusão
+def prever_satisfacao(genero_codificado: int):
+    """
+    Carrega o modelo treinado e faz uma previsão de satisfação.
+    Gênero codificado: 0 para uma classe, 1 para a outra, etc.
+    """
+    try:
+        modelo = joblib.load('modelo_satisfacao_rf.joblib')
+        previsao_codificada = modelo.predict([[genero_codificado]])
+        
+        # Mapeia o resultado para um texto claro
+        return "Provavelmente Satisfeito" if previsao_codificada[0] == 1 else "Provavelmente Insatisfeito"
+            
+    except FileNotFoundError:
+        return "Erro: Arquivo do modelo 'modelo_satisfacao_rf.joblib' não encontrado."
 
-Apresente aqui a conclusão do seu trabalho. Discussão dos resultados obtidos no trabalho, 
-onde se verifica as observações pessoais de cada aluno.
+# --- Exemplo de uso ---
+# Supondo que no encoder, 'Feminino' foi 0 e 'Masculino' foi 1
+genero_teste = 1 
+resultado = prever_satisfacao(genero_teste)
+print(f"Para o gênero codificado como '{genero_teste}', o resultado é: {resultado}")
+```
 
-Uma conclusão deve ter 3 partes:
+---
 
-   * Breve resumo do que foi desenvolvido
-	 * Apresenação geral dos resultados obtidos com discussão das vantagens e desvantagens do sistema inteligente
-	 * Limitações e possibilidades de melhoria
+## 4. Conclusão
+
+### Breve Resumo do que Foi Desenvolvido
+Este trabalho desenvolveu e avaliou dois modelos de classificação (Árvore de Decisão e Random Forest) para prever a satisfação no trabalho com base no gênero, utilizando dados da pesquisa "State of Data Brazil 2023".
+
+### Apresentação Geral dos Resultados
+O Random Forest (acurácia de 76%) superou a Árvore de Decisão (68%), mas ambos os modelos demonstraram performance modesta. A principal **vantagem** dos sistemas é sua simplicidade, enquanto a principal **desvantagem** é o baixo poder preditivo, confirmando que gênero, de forma isolada, não é um fator determinante para a satisfação profissional.
+
+### Limitações e Possibilidades de Melhoria
+A **principal limitação** é a análise unidimensional do problema. Para evoluir o trabalho, as seguintes melhorias são recomendadas:
+1.  **Engenharia de Atributos:** Incluir mais variáveis do dataset, como `Faixa salarial`, `Nivel`, `Cargo Atual` e `Tempo de experiência`.
+2.  **Modelos Mais Complexos:** Testar algoritmos como Gradient Boosting (XGBoost) para capturar relações mais complexas entre os dados.
+3.  **Análise de Interação:** Investigar como a interação entre diferentes atributos (ex: gênero e salário) afeta a satisfação.
+
+O sistema atual é um ponto de partida valioso, cujo principal insight é a necessidade de uma abordagem mais completa e multivariada para entender a satisfação no trabalho.
 
 
 # REFERÊNCIAS
