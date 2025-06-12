@@ -408,8 +408,6 @@ O objetivo é não apenas construir um sistema inteligente, mas também analisar
 
 O primeiro modelo, uma Árvore de Decisão, foi treinado para classificar a satisfação no trabalho. A matriz de confusão abaixo demonstra o desempenho do modelo nos dados de teste.
 
-**Matriz de Confusão (Modelo 1)**
-![Matriz de Confusão do Modelo 1](./caminho/para/sua/confusion_matrix_dt.png)
 
 As principais métricas de performance do modelo foram:
 
@@ -432,8 +430,6 @@ Média Ponderada      0.68      0.68      0.68      1059
 
 A grande vantagem da Árvore de Decisão é sua interpretabilidade. A imagem abaixo mostra exatamente as regras que o modelo aprendeu para tomar suas decisões.
 
-**Visualização da Árvore de Decisão (Modelo 1)**
-![Árvore de Decisão Gerada](./caminho/para/sua/decision_tree.png)
 
 **Como o modelo "raciocina":**
 O modelo utiliza o atributo "gênero" para dividir os dados. Como este é o único atributo disponível, a medida de **importância do atributo (feature importance)** para o modelo é:
@@ -448,7 +444,6 @@ Isso confirma que 100% da lógica de decisão do modelo se baseia nesta única v
 O segundo modelo, um Random Forest, agrega a "sabedoria" de múltiplas árvores de decisão para melhorar a performance.
 
 **Matriz de Confusão (Modelo 2)**
-![Matriz de Confusão do Modelo 2](./caminho/para/sua/confusion_matrix_rf_corrected.png)
 
 As métricas de performance para o Random Forest foram superiores:
 
