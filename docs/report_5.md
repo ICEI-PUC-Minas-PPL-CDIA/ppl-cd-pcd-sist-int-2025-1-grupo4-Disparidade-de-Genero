@@ -378,7 +378,7 @@ plt.ylabel('Valor Verdadeiro', fontsize=12)
 plt.savefig('confusion_matrix_corrected.png')
 plt.show()
 
-*Relatório de Classificação - Random Forest*
+##Relatório de Classificação - Random Forest
 
                 Precisão   Recall   F1-Score   Suporte
 ---------------------------------------------------------
@@ -461,9 +461,17 @@ Novamente, isso ocorre porque o gênero é o único preditor disponível. O mode
 
 ## Análise comparativa dos modelos
 
-Discuta sobre as forças e fragilidades de cada modelo. Exemplifique casos em que um
-modelo se sairia melhor que o outro. Nesta seção é possível utilizar a sua imaginação
-e extrapolar um pouco o que os dados sugerem.
+Modelo	Forças	Fragilidades
+Árvore de Decisão (Modelo 1)	- Alta interpretabilidade: Fácil de visualizar e explicar as regras. &lt;br> - Rapidez: Rápido para treinar e prever.	- Instabilidade: Pequenas mudanças nos dados podem gerar uma árvore completamente diferente. &lt;br> - Propensão a Overfitting: Tende a se ajustar demais aos dados de treino, perdendo poder de generalização.
+Random Forest (Modelo 2)	- Maior precisão e robustez: Geralmente supera a performance de uma única árvore. &lt;br> - Menor risco de overfitting: A agregação de várias árvores reduz o vício do modelo.	- "Caixa-preta" (Black Box): Difícil de interpretar as razões exatas por trás de uma previsão específica. &lt;br> - Custo computacional: Mais lento e exige mais memória para treinar.
+
+
+Quando um modelo se sairia melhor que o outro?
+
+Use a Árvore de Decisão quando a prioridade máxima for explicar a decisão. Por exemplo, um sistema de análise de crédito que precisa justificar legalmente por que um empréstimo foi negado. As regras claras são essenciais.
+Use o Random Forest quando a prioridade máxima for a performance preditiva. Por exemplo, em um sistema de recomendação de produtos, onde o objetivo é acertar a recomendação o máximo possível, e a explicação do porquê não é tão crucial para o usuário final.
+Extrapolação dos dados: Os resultados modestos de ambos os modelos sugerem fortemente que o gênero, isoladamente, não é um bom preditor da satisfação no trabalho. A verdadeira lição aqui é que a satisfação profissional é um fenômeno complexo, influenciado por múltiplos fatores como salário, nível de cargo, tempo de experiência e cultura da empresa, todos presentes no dataset original e que deveriam ser incluídos em um modelo mais sofisticado.
+
 
 
 ### Distribuição do modelo (opcional)
