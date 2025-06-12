@@ -389,6 +389,7 @@ plt.show()
    Média Macro       0.75      0.70      0.71      1059
 Média Ponderada      0.76      0.76      0.75      1059
 
+![Code_Generated_Image (4)](https://github.com/user-attachments/assets/a34f9a0a-6f2f-43a2-9379-5becb9b6a13a)
 
 
 ## Resultados
