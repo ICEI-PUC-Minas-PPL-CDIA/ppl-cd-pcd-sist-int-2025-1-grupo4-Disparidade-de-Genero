@@ -310,7 +310,85 @@ print(gender_analysis)
 
 ### Modelo 2: Algoritmo
 
-Repita os passos anteriores para o segundo modelo.
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+from sklearn.preprocessing import LabelEncoder
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Carregar o dataset
+df = pd.read_csv('State_of_data_BR_2023_limpa (1).xlsx - State_of_data_BR_2023.csv')
+
+# Renomear colunas
+df.rename(columns={
+    "('P1_b ', 'Genero')": 'gender',
+    "('P2_k ', 'Você está satisfeito na sua empresa atual?')": 'job_satisfaction'
+}, inplace=True)
+
+# Preparar os dados
+df_subset = df[['gender', 'job_satisfaction']].copy()
+df_subset.dropna(inplace=True)
+
+# Codificar as variáveis
+gender_le = LabelEncoder()
+satisfaction_le = LabelEncoder()
+
+df_subset['gender_encoded'] = gender_le.fit_transform(df_subset['gender'])
+df_subset['job_satisfaction_str'] = df_subset['job_satisfaction'].astype(str)
+df_subset['job_satisfaction_encoded'] = satisfaction_le.fit_transform(df_subset['job_satisfaction_str'])
+
+# Definir features (X) e alvo (y)
+X = df_subset[['gender_encoded']]
+y = df_subset['job_satisfaction_encoded']
+
+# Dividir os dados
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Treinar o modelo Random Forest
+rf_classifier = RandomForestClassifier(random_state=42)
+rf_classifier.fit(X_train, y_train)
+
+# Fazer previsões
+y_pred_rf = rf_classifier.predict(X_test)
+
+# Mapear os rótulos de 0/1 para nomes descritivos
+# satisfaction_le.classes_ mostra que '0.0' é a primeira classe e '1.0' a segunda.
+# Assumindo 0 = Insatisfeito, 1 = Satisfeito.
+new_labels = ['Insatisfeito', 'Satisfeito']
+
+# Gerar e imprimir o relatório de classificação
+report = classification_report(y_test, y_pred_rf, target_names=new_labels)
+print("Relatório de Classificação - Random Forest\n")
+print(report)
+
+
+# Gerar e visualizar a matriz de confusão corrigida
+cm_rf = confusion_matrix(y_test, y_pred_rf)
+
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm_rf, annot=True, fmt='d', cmap='Blues',
+            xticklabels=new_labels,
+            yticklabels=new_labels,
+            annot_kws={"size": 14}) # Aumenta o tamanho da fonte dos números
+plt.title('Matriz de Confusão Corrigida - Random Forest', fontsize=16)
+plt.xlabel('Valor Previsto', fontsize=12)
+plt.ylabel('Valor Verdadeiro', fontsize=12)
+plt.savefig('confusion_matrix_corrected.png')
+plt.show()
+
+*Relatório de Classificação - Random Forest*
+
+                Precisão   Recall   F1-Score   Suporte
+---------------------------------------------------------
+ Insatisfeito      0.71      0.50      0.58       349
+   Satisfeito      0.78      0.90      0.84       710
+---------------------------------------------------------
+    Acurácia                             0.76      1059
+   Média Macro       0.75      0.70      0.71      1059
+Média Ponderada      0.76      0.76      0.75      1059
+
 
 
 ## Resultados
