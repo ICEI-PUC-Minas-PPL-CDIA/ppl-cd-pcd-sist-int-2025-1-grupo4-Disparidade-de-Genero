@@ -394,29 +394,70 @@ Média Ponderada      0.76      0.76      0.75      1059
 
 ## Resultados
 
-### Resultados obtidos com o modelo 1.
+#Resultados
+#Resultados obtidos com o modelo 1 (Árvore de Decisão)
+O primeiro modelo, uma Árvore de Decisão, foi treinado para classificar a satisfação no trabalho (Satisfeito/Insatisfeito) com base unicamente no atributo "gênero".
 
-Apresente aqui os resultados obtidos com a indução do modelo 1. 
-Apresente uma matriz de confusão quando pertinente. Apresente as medidas de performance
-apropriadas para o seu problema. 
-Por exemplo, no caso de classificação: precisão, revocação, F-measure, acurácia.
+A matriz de confusão a seguir, baseada na imagem fornecida, demonstra o desempenho do modelo nos dados de teste. As etiquetas foram melhoradas para maior clareza.
 
-### Interpretação do modelo 1
+Para uma análise mais profunda, apresentamos as principais medidas de performance:
 
-Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
-processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
-o *feature importances* para tentar entender quais atributos o modelo se baseia no
-processo de tomada de decisão.
+Relatório de Classificação - Árvore de Decisão
 
+                Precisão   Recall   F1-Score   Suporte
+---------------------------------------------------------
+ Insatisfeito      0.49      0.50      0.49       349
+   Satisfeito      0.78      0.77      0.78       710
+---------------------------------------------------------
+    Acurácia                             0.68      1059
+   Média Macro       0.63      0.64      0.63      1059
+Média Ponderada      0.68      0.68      0.68      1059
+Acurácia (Accuracy): O modelo acertou a classificação em 68% dos casos.
+Precisão (Precision): Para a classe "Insatisfeito", o modelo teve 49% de precisão (de todos que ele previu como insatisfeitos, 49% realmente estavam). Para "Satisfeito", a precisão foi de 78%.
+Revocação (Recall): O modelo conseguiu identificar corretamente 50% de todos os funcionários realmente insatisfeitos.
+F-measure (F1-Score): A média ponderada entre precisão e revocação resultou em 0.49 para "Insatisfeito" e 0.78 para "Satisfeito", indicando um desequilíbrio na capacidade de predição entre as classes.
+Interpretação do modelo 1
+O modelo de Árvore de Decisão é altamente interpretável. Seus parâmetros são as regras que ele cria para dividir os dados. A imagem abaixo, que você forneceu, mostra exatamente essas regras.
 
-### Resultados obtidos com o modelo 2.
+Como o modelo "raciocina":
+A árvore é lida de cima para baixo. Cada "nó" é uma pergunta sobre um atributo.
 
-Repita o passo anterior com os resultados do modelo 2.
+Nó Raiz (Topo): A primeira pergunta é sobre o gênero.
+Ramos: Dependendo da resposta (se o gênero pertence a uma categoria ou outra), o modelo segue por um ramo.
+Nós Folha (Base): Os nós na base da árvore representam a decisão final (a previsão de "Satisfeito" ou "Insatisfeito"). O gini representa a impureza do nó (0.0 significa que todos os exemplos naquele nó pertencem à mesma classe).
+Como estamos usando apenas um atributo ("gênero"), a árvore é muito simples. A medida de importância do atributo (feature importance) para este modelo é:
 
-### Interpretação do modelo 2
+gênero: 1.0
+Isso significa que 100% da decisão do modelo se baseia no gênero, pois não há outros atributos para considerar.
 
-Repita o passo anterior com os parâmetros do modelo 2.
+Resultados obtidos com o modelo 2 (Random Forest)
+O segundo modelo, um Random Forest, é um conjunto de múltiplas árvores de decisão. Ele tende a ser mais robusto e preciso.
 
+A matriz de confusão para este modelo é a seguinte:
+
+As medidas de performance para o Random Forest foram superiores às do primeiro modelo:
+
+Relatório de Classificação - Random Forest
+
+                Precisão   Recall   F1-Score   Suporte
+---------------------------------------------------------
+ Insatisfeito      0.71      0.50      0.58       349
+   Satisfeito      0.78      0.90      0.84       710
+---------------------------------------------------------
+    Acurácia                             0.76      1059
+   Média Macro       0.75      0.70      0.71      1059
+Média Ponderada      0.76      0.76      0.75      1059
+Acurácia: O modelo atingiu 76% de acertos, uma melhoria em relação à Árvore de Decisão.
+Precisão e Recall: Houve uma melhora significativa na precisão para a classe "Insatisfeito" (de 49% para 71%) e no recall para a classe "Satisfeito" (de 77% para 90%).
+#Interpretação do modelo 2
+Interpretar um modelo Random Forest não é tão direto quanto uma única árvore, pois ele é composto por centenas de árvores (por padrão, n_estimators=100). Não há um conjunto único de regras, mas sim uma "votação" entre todas as árvores para chegar a uma decisão final.
+
+Seus principais parâmetros são o número de árvores na floresta e a profundidade máxima de cada árvore. O "raciocínio" é a sabedoria coletiva do conjunto.
+
+Assim como no modelo 1, a importância do atributo é:
+
+gênero: 1.0
+Novamente, isso ocorre porque o gênero é o único preditor disponível. O modelo atribui 100% de sua lógica decisória a ele.
 
 ## Análise comparativa dos modelos
 
