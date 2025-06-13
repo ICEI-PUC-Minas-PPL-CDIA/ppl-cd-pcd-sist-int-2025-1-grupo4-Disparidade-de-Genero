@@ -453,10 +453,11 @@ E tipo de todas as colunas foi modificado de float para int
 ### Modelo 1: Arvore de Decisão
 
 ##### Justificativa de escolha do modelo
-...
+Foi feira escolha desse modelo por ser um modelo de grande eficiência e atender bem à tarefa de classificação e devido a alta interpretabilidade
 
 ##### Processo utilizado para amostragem de dados (particionamento, cross-validation).
-...
+![image](https://github.com/user-attachments/assets/c8590f7d-22e9-4119-ab7b-0687f4f51c68)
+
 
 ##### Parâmetros utilizados. 
 
@@ -468,13 +469,14 @@ E tipo de todas as colunas foi modificado de float para int
 ### Random Forest 
 
 #### Justificativa de escolha do modelo
-Foi feira escolha desse modelo por ser um modelo de grande eficiência e atender à tarefa de classifciação bem
+Foi feira escolha desse modelo por ser um modelo de grande eficiência e atender bem à tarefa de classificação, e a alta eficiência
 
 ##### Processo utilizado para amostragem de dados (particionamento, cross-validation).
-![image](https://github.com/user-attachments/assets/23ff986d-5726-4a31-9cac-cba2945ec941)
+![image](https://github.com/user-attachments/assets/6f09c686-bd5f-4b36-88e4-75805b9eb729)
 
 
 ##### Parâmetros utilizados. 
+Melhores parâmetros encontrados: {'rf__max_depth': 20, 'rf__min_samples_leaf': 2, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
 
 ##### Trechos do código utilizado comentados. 
 ...
