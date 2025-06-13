@@ -364,7 +364,7 @@ Normalização:
 ## Justificativa da escolha do modelo:
 A **Árvore de Decisão** foi escolhida como primeiro modelo porque é simples de entender e explica claramente como as decisões são tomadas. Ela funciona bem com dados como os seus, que têm informações numéricas (ex.: idade) e categóricas (ex.: região), sem precisar de tratamentos complexos. Além disso, mostra de forma visual quais fatores mais influenciam os resultados, ajudando a validar as regras do negócio
 
-### Modelo 2: Algoritmo
+### Modelo 2: RandomForest
 
 Repita os passos anteriores para o segundo modelo.
 
@@ -373,10 +373,102 @@ Repita os passos anteriores para o segundo modelo.
 
 ### Resultados obtidos com o modelo 1.
 
-Apresente aqui os resultados obtidos com a indução do modelo 1. 
-Apresente uma matriz de confusão quando pertinente. Apresente as medidas de performance
-apropriadas para o seu problema. 
-Por exemplo, no caso de classificação: precisão, revocação, F-measure, acurácia.
+Resultados Obtidos
+O modelo 1 foi uma Árvore de Decisão com o parâmetro class_weight='balanced' para lidar com o desbalanceamento das classes. O hiperparâmetro max_depth foi otimizado através de um grid search, testando valores de 2 a 15. O melhor desempenho foi alcançado com max_depth=2, obtendo um F1-score de 0.2903.
+
+Matriz de Confusão
+A matriz de confusão para o melhor modelo (max_depth=2) foi:
+
+|                     Previsto Não Concluiu | Previsto Concluiu | 
+|   Real Não Concluiu |          47	    |         36        | 
+|   Real Concluiu  |	          8	    |          9        | 
+Métricas de Performance
+As principais métricas de performance para o modelo foram:
+
+* **Acurácia:** 56.00%
+
+* **Precisão:**  (Não Concluiu): 85%
+
+* **Recall:**  (Não Concluiu): 57%
+
+* **F1-score:**  (Não Concluiu): 68%
+
+* **Precisão:**  (Concluiu): 20%
+
+* **Recall:**  (Concluiu): 53%
+
+* **F1-score:**  (Concluiu): 29%
+
+```python
+print("Relatório de Classificação:")
+print(classification_report(y_test, y_pred_best, target_names=['Não Concluiu', 'Concluiu'], zero_division=0))
+
+print("\nMatriz de Confusão:")
+cm_best = confusion_matrix(y_test, y_pred_best)
+plt.figure(figsize=(6, 5))
+sns.heatmap(cm_best, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Não Concluiu', 'Concluiu'],
+            yticklabels=['Não Concluiu', 'Concluiu'])
+plt.xlabel('Previsto')
+plt.ylabel('Real')
+plt.title(f'Matriz de Confusão (Melhor Modelo, max_depth={best_depth})')
+plt.show()
+Interpretação do Modelo
+Parâmetros do Modelo
+Os principais parâmetros da Árvore de Decisão otimizada foram:
+
+max_depth: 2
+
+class_weight: 'balanced'
+
+random_state: 42
+```
+Feature Importances
+A importância das features no modelo foi:
+
+```python
+importances = best_model_pipeline.named_steps['classifier'].feature_importances_
+features = best_model_pipeline.named_steps['preprocessor'].get_feature_names_out()
+
+plt.figure(figsize=(10, 6))
+plt.barh(features, importances)
+plt.title('Importância das Features na Árvore de Decisão')
+plt.xlabel('Importância')
+plt.ylabel('Feature')
+plt.show()
+```
+As features mais importantes para o modelo foram:
+
+Idade: A idade foi o atributo mais relevante na decisão da árvore, com aproximadamente 60% de importância.
+
+Região onde mora: A região onde o indivíduo mora teve cerca de 25% de importância.
+
+Gênero e Área de Formação: Tiveram menor influência, com cerca de 10% e 5% respectivamente.
+
+Regras de Decisão
+Podemos visualizar a estrutura da árvore para entender as regras de decisão:
+
+```python
+plt.figure(figsize=(20, 10))
+plot_tree(best_model_pipeline.named_steps['classifier'], 
+          feature_names=features,
+          class_names=['Não Concluiu', 'Concluiu'],
+          filled=True, rounded=True)
+plt.title('Estrutura da Árvore de Decisão (max_depth=2)')
+plt.show()
+```
+A árvore com profundidade máxima 2 criou as seguintes regras principais:
+
+Primeira divisão: Se a idade for menor ou igual a ~35 anos, vai para o lado esquerdo, caso contrário, para o direito.
+
+Segunda divisão (nó esquerdo): Se a região for 'Sudeste', classifica como 'Concluiu', senão como 'Não Concluiu'.
+
+Segunda divisão (nó direito): Se a idade for menor ou igual a ~57 anos, classifica como 'Não Concluiu', senão como 'Concluiu'.
+
+Conclusão
+O modelo apresentou uma acurácia moderada (56%), mas mostrou dificuldade em prever corretamente a classe minoritária ('Concluiu'), como evidenciado pelo baixo F1-score (0.29). A árvore se baseou principalmente na idade e região para tomar decisões, o que faz sentido intuitivamente, já que essas características podem estar correlacionadas com oportunidades educacionais.
+
+Apesar do uso de class_weight='balanced', o desempenho na classe minoritária ainda foi limitado, sugerindo que outras técnicas como oversampling, undersampling ou modelos alternativos poderiam ser testados para melhorar o equilíbrio das previsões.
 
 ### Interpretação do modelo 1
 
