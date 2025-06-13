@@ -493,26 +493,25 @@ Relatório de Classificação <br>
 
 ### Resultados obtidos com o modelo 1.
 
-Apresente aqui os resultados obtidos com a indução do modelo 1. 
-Apresente uma matriz de confusão quando pertinente. Apresente as medidas de performance
-apropriadas para o seu problema. 
-Por exemplo, no caso de classificação: precisão, revocação, F-measure, acurácia.
+![image](https://github.com/user-attachments/assets/1613d03f-fd0d-4d7b-aa88-268732790f15)
+![image](https://github.com/user-attachments/assets/fd180789-25cf-407d-be3c-76e3815326f7)
+A Medida de perfomance apropriada para meu problema é a precisão
+
+
 
 ### Interpretação do modelo 1
-
-Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
-processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
-o *feature importances* para tentar entender quais atributos o modelo se baseia no
-processo de tomada de decisão.
+![image](https://github.com/user-attachments/assets/81ead349-3115-49bb-a314-c5ddbbb61328)
 
 
 ### Resultados obtidos com o modelo 2.
 
-Repita o passo anterior com os resultados do modelo 2.
+![image](https://github.com/user-attachments/assets/894ebc8c-d726-460d-98d9-8e44ac41344b)
+![image](https://github.com/user-attachments/assets/9cbe2264-24e1-41bf-8016-4f14f46ee888)
+A Medida de perfomance apropriada para meu problema é a precisão
 
 ### Interpretação do modelo 2
 
-Repita o passo anterior com os parâmetros do modelo 2.
+![image](https://github.com/user-attachments/assets/ba5558f5-6ed7-4969-99f7-e0ba5152c32e)
 
 
 ## Análise comparativa dos modelos
@@ -571,8 +570,10 @@ Por exemplo:
 **Colocar link:**
 
 Do código (armazenado no repositório);
+[src/hipoteses/hipotese_6](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/ac3b33b1205277670f0ffcb1c141408853742a57/src/hipoteses/hipotese_6)
 
 Dos artefatos (armazenado do repositório);
+https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/ac3b33b1205277670f0ffcb1c141408853742a57/assets
 
 Da apresentação final (armazenado no repositório);
 
