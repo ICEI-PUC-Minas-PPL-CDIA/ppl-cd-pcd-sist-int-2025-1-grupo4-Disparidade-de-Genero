@@ -45,6 +45,16 @@ Este estudo investiga a disparidade de gênero no setor da tecnologia no Brasil,
 
   Essa pesquisa é importante uma vez que, com sua validação e correta execução, mais mulheres poderão ter lugar e espaço no Setor da tecnologia no Brasil. Com isso, além de fornecer mais rotatividade de empregos no mercado, mais vidas serão positivamente contribuídas pelo trabalho, com o incentivo, mesmo que sutil, a mais mulheres ingressando nesse ramo, sem haver disparidades, desigualdades ou destratamentos, haverão mais mentes pensantes dentro desse mercado, contribuindo para mais avanços científicos úteis para o mundo e o futuro, os quais podem estar sendo retardados pela presença de desvalorização da força feminina dentro desse mercado, tema pelo qual abordaremos com mais detalhes a seguir.
 
+  **Objetivo desta hipótese:**  
+Prever a **intenção de saída** de colaboradores nos próximos 6 meses, auxiliando equipes de RH a identificar riscos de turnover.
+
+**Utilidade do modelo:**  
+- Antecipar demandas de retenção  
+- Apoiar decisões de programas de engajamento  
+- Reduzir custos de substituição e treinamento
+
+---
+
 ###    Contextualização
 
 A área de ciência de dados cresce a passos largos, movimentando bilhões e influenciando decisões no mundo todo. Mas, quando olhamos para quem está por trás dessas análises e algoritmos, percebemos uma realidade preocupante: a disparidade de gênero ainda é grande. As mulheres continuam sub-representadas no setor, enfrentando barreiras que vão desde a entrada no mercado até a progressão na carreira.
