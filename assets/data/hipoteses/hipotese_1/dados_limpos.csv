@@ -1,0 +1,501 @@
+ID;Idade;Gênero;Nível de Ensino;Área de Formação;Região onde mora;Estado onde mora;Código da Região
+1;28;Feminino;Graduação;Engenharias;Nordeste;PE;2
+2;35;Feminino;Pós-graduação;Exatas;Sudeste;RS;4
+3;31;Feminino;Pós-graduação;Ciências Sociais;Centro-Oeste;RJ;3
+4;37;Feminino;Ensino Médio;Engenharias;Sul;MG;5
+5;57;Masculino;Fundamental Completo;Ciências Sociais;Sul;SP;5
+6;40;Feminino;Pós-graduação;Engenharias;Nordeste;RS;2
+7;29;Masculino;Doutorado;Humanas;Centro-Oeste;PE;3
+8;49;Feminino;Doutorado;Ciências Sociais;Sudeste;BA;4
+9;37;Feminino;Ensino Médio;Ciências Sociais;Norte;RJ;1
+10;36;Masculino;Pós-graduação;Exatas;Sul;RS;5
+11;24;Masculino;Ensino Médio;Exatas;Centro-Oeste;PE;3
+12;43;Feminino;Mestrado;Engenharias;Norte;AM;1
+13;59;Masculino;Pós-graduação;Humanas;Sudeste;BA;4
+14;39;Feminino;Doutorado;Humanas;Nordeste;CE;2
+15;57;Feminino;Ensino Médio;Exatas;Nordeste;AM;2
+16;45;Masculino;Pós-graduação;Exatas;Sul;MG;5
+17;35;Masculino;Pós-graduação;Saúde;Sul;SP;5
+18;23;Feminino;Fundamental Completo;Humanas;Norte;RS;1
+19;44;Feminino;Pós-graduação;Exatas;Nordeste;SP;2
+20;46;Masculino;Fundamental Completo;Ciências Sociais;Sul;SP;5
+21;37;Masculino;Mestrado;Saúde;Nordeste;CE;2
+22;23;Feminino;Doutorado;Exatas;Norte;PR;1
+23;36;Masculino;Fundamental Completo;Saúde;Centro-Oeste;PA;3
+24;44;Masculino;Mestrado;Humanas;Nordeste;SP;2
+25;35;Masculino;Mestrado;Humanas;Sul;AM;5
+26;44;Feminino;Ensino Médio;Saúde;Norte;PE;1
+27;55;Masculino;Ensino Médio;Humanas;Sudeste;PR;4
+28;28;Feminino;Ensino Médio;Ciências Sociais;Centro-Oeste;BA;3
+29;22;Feminino;Graduação;Humanas;Sudeste;PR;4
+30;20;Masculino;Ensino Médio;Humanas;Sul;RS;5
+31;18;Feminino;Ensino Médio;Saúde;Sudeste;PE;4
+32;29;Feminino;Pós-graduação;Ciências Sociais;Nordeste;CE;2
+33;55;Masculino;Mestrado;Ciências Sociais;Sul;PR;5
+34;47;Feminino;Ensino Médio;Engenharias;Nordeste;RJ;2
+35;48;Feminino;Doutorado;Humanas;Sul;PA;5
+36;56;Masculino;Doutorado;Engenharias;Sul;SP;5
+37;21;Masculino;Ensino Médio;Engenharias;Sul;BA;5
+38;52;Masculino;Fundamental Completo;Saúde;Sul;SP;5
+39;25;Masculino;Doutorado;Engenharias;Sul;PR;5
+40;46;Masculino;Doutorado;Ciências Sociais;Sul;SP;5
+41;24;Feminino;Mestrado;Exatas;Sudeste;PE;4
+42;52;Masculino;Ensino Médio;Saúde;Centro-Oeste;PA;3
+43;29;Masculino;Doutorado;Ciências Sociais;Centro-Oeste;PA;3
+44;23;Feminino;Doutorado;Humanas;Centro-Oeste;SP;3
+45;37;Masculino;Pós-graduação;Engenharias;Sul;CE;5
+46;45;Feminino;Graduação;Ciências Sociais;Sudeste;BA;4
+47;19;Feminino;Graduação;Engenharias;Norte;RJ;1
+48;44;Feminino;Fundamental Completo;Humanas;Norte;RS;1
+49;36;Feminino;Mestrado;Engenharias;Sul;SP;5
+50;27;Masculino;Fundamental Completo;Ciências Sociais;Sudeste;AM;4
+51;36;Feminino;Doutorado;Saúde;Sul;RS;5
+52;37;Feminino;Ensino Médio;Saúde;Sul;RS;5
+53;21;Feminino;Graduação;Exatas;Sudeste;PA;4
+54;52;Masculino;Ensino Médio;Ciências Sociais;Norte;PE;1
+55;45;Feminino;Pós-graduação;Exatas;Centro-Oeste;RS;3
+56;54;Masculino;Fundamental Completo;Engenharias;Centro-Oeste;PA;3
+57;60;Feminino;Fundamental Completo;Saúde;Sul;PA;5
+58;22;Feminino;Fundamental Completo;Ciências Sociais;Nordeste;RS;2
+59;56;Feminino;Ensino Médio;Humanas;Nordeste;AM;2
+60;22;Masculino;Ensino Médio;Engenharias;Sul;RJ;5
+61;49;Feminino;Pós-graduação;Exatas;Centro-Oeste;PA;3
+62;52;Feminino;Graduação;Humanas;Nordeste;AM;2
+63;31;Feminino;Mestrado;Exatas;Centro-Oeste;PA;3
+64;23;Masculino;Graduação;Exatas;Centro-Oeste;CE;3
+65;18;Masculino;Graduação;Humanas;Centro-Oeste;AM;3
+66;23;Feminino;Graduação;Saúde;Sudeste;RJ;4
+67;40;Feminino;Pós-graduação;Ciências Sociais;Nordeste;RS;2
+68;26;Masculino;Ensino Médio;Exatas;Sul;PE;5
+69;35;Feminino;Graduação;Ciências Sociais;Norte;RS;1
+70;46;Feminino;Graduação;Engenharias;Sudeste;AM;4
+71;19;Feminino;Graduação;Ciências Sociais;Norte;PE;1
+72;26;Feminino;Ensino Médio;Humanas;Norte;AM;1
+73;24;Feminino;Pós-graduação;Exatas;Sul;MG;5
+74;60;Feminino;Doutorado;Exatas;Nordeste;PE;2
+75;21;Masculino;Ensino Médio;Saúde;Norte;CE;1
+76;25;Feminino;Doutorado;Humanas;Nordeste;BA;2
+77;29;Feminino;Fundamental Completo;Exatas;Norte;RJ;1
+78;31;Masculino;Ensino Médio;Exatas;Nordeste;MG;2
+79;28;Masculino;Doutorado;Humanas;Sul;SP;5
+80;36;Masculino;Doutorado;Humanas;Sul;RS;5
+81;58;Masculino;Fundamental Completo;Exatas;Centro-Oeste;PR;3
+82;28;Masculino;Mestrado;Saúde;Sudeste;PR;4
+83;27;Feminino;Graduação;Engenharias;Centro-Oeste;MG;3
+84;49;Masculino;Fundamental Completo;Exatas;Norte;PR;1
+85;38;Feminino;Doutorado;Humanas;Norte;BA;1
+86;31;Masculino;Doutorado;Ciências Sociais;Norte;PR;1
+87;23;Feminino;Doutorado;Engenharias;Sul;AM;5
+88;34;Feminino;Ensino Médio;Saúde;Centro-Oeste;PA;3
+89;49;Feminino;Graduação;Exatas;Centro-Oeste;BA;3
+90;42;Masculino;Mestrado;Humanas;Centro-Oeste;RS;3
+91;19;Feminino;Pós-graduação;Exatas;Sudeste;SP;4
+92;34;Masculino;Mestrado;Exatas;Norte;CE;1
+93;21;Masculino;Fundamental Completo;Humanas;Norte;CE;1
+94;56;Masculino;Mestrado;Humanas;Norte;CE;1
+95;25;Feminino;Graduação;Humanas;Sul;PA;5
+96;42;Feminino;Pós-graduação;Ciências Sociais;Nordeste;RS;2
+97;54;Feminino;Pós-graduação;Ciências Sociais;Nordeste;PR;2
+98;26;Masculino;Pós-graduação;Ciências Sociais;Sudeste;BA;4
+99;39;Masculino;Ensino Médio;Humanas;Sudeste;RJ;4
+100;54;Feminino;Ensino Médio;Saúde;Nordeste;PA;2
+101;32;Feminino;Fundamental Completo;Humanas;Centro-Oeste;CE;3
+102;53;Feminino;Doutorado;Exatas;Nordeste;SP;2
+103;40;Feminino;Doutorado;Ciências Sociais;Norte;RJ;1
+104;26;Feminino;Ensino Médio;Exatas;Centro-Oeste;SP;3
+105;32;Feminino;Doutorado;Ciências Sociais;Centro-Oeste;CE;3
+106;34;Feminino;Graduação;Humanas;Nordeste;MG;2
+107;43;Masculino;Fundamental Completo;Engenharias;Norte;RS;1
+108;45;Masculino;Graduação;Ciências Sociais;Centro-Oeste;RS;3
+109;56;Feminino;Doutorado;Humanas;Norte;PR;1
+110;21;Feminino;Mestrado;Engenharias;Nordeste;SP;2
+111;45;Masculino;Graduação;Saúde;Sudeste;CE;4
+112;23;Feminino;Mestrado;Engenharias;Sul;BA;5
+113;24;Feminino;Pós-graduação;Ciências Sociais;Centro-Oeste;CE;3
+114;26;Feminino;Pós-graduação;Engenharias;Sudeste;PA;4
+115;33;Feminino;Ensino Médio;Humanas;Sudeste;SP;4
+116;44;Feminino;Graduação;Ciências Sociais;Sul;SP;5
+117;37;Masculino;Graduação;Ciências Sociais;Centro-Oeste;PE;3
+118;36;Masculino;Mestrado;Engenharias;Sul;CE;5
+119;23;Masculino;Mestrado;Engenharias;Norte;MG;1
+120;18;Masculino;Ensino Médio;Engenharias;Nordeste;PE;2
+121;45;Feminino;Ensino Médio;Saúde;Centro-Oeste;CE;3
+122;41;Masculino;Ensino Médio;Humanas;Sudeste;SP;4
+123;46;Masculino;Pós-graduação;Exatas;Sudeste;RJ;4
+124;32;Masculino;Doutorado;Engenharias;Sudeste;CE;4
+125;57;Masculino;Doutorado;Engenharias;Sudeste;PR;4
+126;30;Masculino;Fundamental Completo;Humanas;Centro-Oeste;BA;3
+127;44;Feminino;Mestrado;Exatas;Nordeste;PA;2
+128;46;Feminino;Doutorado;Engenharias;Nordeste;RS;2
+129;48;Masculino;Mestrado;Humanas;Norte;MG;1
+130;48;Feminino;Fundamental Completo;Engenharias;Centro-Oeste;PE;3
+131;58;Feminino;Fundamental Completo;Humanas;Sul;AM;5
+132;24;Feminino;Doutorado;Ciências Sociais;Norte;CE;1
+133;45;Feminino;Mestrado;Exatas;Sul;RS;5
+134;40;Masculino;Mestrado;Engenharias;Centro-Oeste;SP;3
+135;32;Feminino;Ensino Médio;Humanas;Nordeste;SP;2
+136;37;Masculino;Fundamental Completo;Saúde;Sul;PA;5
+137;59;Masculino;Ensino Médio;Exatas;Centro-Oeste;MG;3
+138;53;Feminino;Ensino Médio;Humanas;Sul;RJ;5
+139;19;Masculino;Graduação;Humanas;Nordeste;AM;2
+140;50;Masculino;Graduação;Engenharias;Nordeste;PE;2
+141;35;Feminino;Mestrado;Saúde;Sul;PE;5
+142;33;Masculino;Mestrado;Humanas;Norte;RJ;1
+143;20;Masculino;Fundamental Completo;Saúde;Norte;SP;1
+144;37;Masculino;Fundamental Completo;Engenharias;Nordeste;BA;2
+145;40;Feminino;Graduação;Engenharias;Sudeste;BA;4
+146;51;Feminino;Pós-graduação;Ciências Sociais;Norte;BA;1
+147;56;Feminino;Doutorado;Exatas;Nordeste;SP;2
+148;42;Masculino;Fundamental Completo;Exatas;Sul;PA;5
+149;25;Feminino;Doutorado;Ciências Sociais;Norte;PA;1
+150;26;Feminino;Doutorado;Engenharias;Sudeste;SP;4
+151;32;Masculino;Graduação;Saúde;Centro-Oeste;PR;3
+152;27;Masculino;Ensino Médio;Saúde;Centro-Oeste;MG;3
+153;60;Feminino;Fundamental Completo;Saúde;Nordeste;CE;2
+154;59;Feminino;Pós-graduação;Exatas;Sul;SP;5
+155;53;Masculino;Ensino Médio;Engenharias;Norte;BA;1
+156;23;Masculino;Doutorado;Ciências Sociais;Nordeste;RJ;2
+157;39;Masculino;Doutorado;Saúde;Sul;BA;5
+158;55;Feminino;Ensino Médio;Humanas;Norte;SP;1
+159;23;Masculino;Pós-graduação;Saúde;Centro-Oeste;AM;3
+160;28;Masculino;Doutorado;Ciências Sociais;Centro-Oeste;PE;3
+161;22;Masculino;Pós-graduação;Saúde;Sul;BA;5
+162;48;Masculino;Doutorado;Engenharias;Centro-Oeste;PE;3
+163;42;Feminino;Ensino Médio;Exatas;Nordeste;PR;2
+164;33;Masculino;Ensino Médio;Ciências Sociais;Norte;RS;1
+165;46;Feminino;Doutorado;Exatas;Norte;BA;1
+166;46;Masculino;Graduação;Engenharias;Nordeste;RS;2
+167;21;Masculino;Mestrado;Ciências Sociais;Norte;RJ;1
+168;46;Masculino;Fundamental Completo;Ciências Sociais;Centro-Oeste;RJ;3
+169;29;Masculino;Ensino Médio;Engenharias;Norte;PE;1
+170;40;Feminino;Fundamental Completo;Exatas;Sudeste;MG;4
+171;32;Feminino;Mestrado;Ciências Sociais;Sudeste;PA;4
+172;21;Feminino;Doutorado;Saúde;Norte;RS;1
+173;18;Feminino;Fundamental Completo;Engenharias;Sul;RJ;5
+174;35;Masculino;Doutorado;Ciências Sociais;Nordeste;MG;2
+175;25;Feminino;Graduação;Engenharias;Sul;PE;5
+176;40;Masculino;Mestrado;Engenharias;Sul;RJ;5
+177;24;Masculino;Pós-graduação;Humanas;Centro-Oeste;AM;3
+178;52;Feminino;Doutorado;Humanas;Nordeste;RJ;2
+179;47;Masculino;Graduação;Engenharias;Norte;AM;1
+180;53;Feminino;Mestrado;Saúde;Centro-Oeste;SP;3
+181;46;Masculino;Doutorado;Engenharias;Norte;MG;1
+182;53;Feminino;Ensino Médio;Engenharias;Sudeste;RS;4
+183;51;Feminino;Mestrado;Humanas;Norte;MG;1
+184;43;Masculino;Mestrado;Ciências Sociais;Sul;AM;5
+185;39;Feminino;Ensino Médio;Humanas;Sudeste;PR;4
+186;55;Feminino;Fundamental Completo;Engenharias;Sul;BA;5
+187;32;Masculino;Fundamental Completo;Humanas;Sul;BA;5
+188;30;Masculino;Graduação;Humanas;Sudeste;PA;4
+189;19;Masculino;Doutorado;Exatas;Centro-Oeste;MG;3
+190;54;Feminino;Fundamental Completo;Saúde;Sudeste;PR;4
+191;59;Masculino;Pós-graduação;Saúde;Sul;RJ;5
+192;47;Masculino;Pós-graduação;Humanas;Sul;RS;5
+193;24;Feminino;Doutorado;Engenharias;Sul;AM;5
+194;41;Feminino;Fundamental Completo;Saúde;Sul;BA;5
+195;52;Masculino;Fundamental Completo;Exatas;Norte;RJ;1
+196;18;Feminino;Ensino Médio;Engenharias;Sudeste;BA;4
+197;46;Masculino;Fundamental Completo;Humanas;Sul;AM;5
+198;57;Masculino;Pós-graduação;Saúde;Centro-Oeste;AM;3
+199;20;Feminino;Graduação;Engenharias;Sul;PR;5
+200;48;Masculino;Fundamental Completo;Ciências Sociais;Norte;BA;1
+201;34;Feminino;Mestrado;Humanas;Centro-Oeste;SP;3
+202;25;Feminino;Fundamental Completo;Saúde;Sudeste;PE;4
+203;23;Masculino;Fundamental Completo;Engenharias;Nordeste;PR;2
+204;30;Feminino;Fundamental Completo;Saúde;Nordeste;RJ;2
+205;38;Masculino;Fundamental Completo;Exatas;Nordeste;MG;2
+206;43;Feminino;Pós-graduação;Exatas;Sudeste;RJ;4
+207;58;Masculino;Mestrado;Exatas;Sudeste;RS;4
+208;21;Feminino;Pós-graduação;Exatas;Nordeste;CE;2
+209;36;Masculino;Pós-graduação;Humanas;Centro-Oeste;CE;3
+210;37;Masculino;Fundamental Completo;Engenharias;Sul;RJ;5
+211;32;Feminino;Doutorado;Ciências Sociais;Sudeste;AM;4
+212;27;Feminino;Fundamental Completo;Engenharias;Nordeste;PR;2
+213;28;Feminino;Doutorado;Ciências Sociais;Nordeste;PA;2
+214;35;Feminino;Pós-graduação;Ciências Sociais;Nordeste;PA;2
+215;35;Feminino;Fundamental Completo;Saúde;Norte;MG;1
+216;32;Feminino;Ensino Médio;Ciências Sociais;Sul;BA;5
+217;26;Masculino;Graduação;Saúde;Norte;PR;1
+218;49;Feminino;Graduação;Ciências Sociais;Centro-Oeste;BA;3
+219;38;Masculino;Mestrado;Humanas;Norte;AM;1
+220;34;Feminino;Ensino Médio;Engenharias;Sudeste;CE;4
+221;33;Feminino;Pós-graduação;Exatas;Norte;BA;1
+222;60;Feminino;Fundamental Completo;Saúde;Nordeste;BA;2
+223;41;Feminino;Pós-graduação;Saúde;Sudeste;SP;4
+224;21;Feminino;Pós-graduação;Humanas;Sudeste;AM;4
+225;32;Feminino;Pós-graduação;Exatas;Centro-Oeste;PR;3
+226;35;Feminino;Fundamental Completo;Humanas;Sudeste;AM;4
+227;40;Masculino;Graduação;Exatas;Nordeste;SP;2
+228;51;Masculino;Ensino Médio;Saúde;Nordeste;SP;2
+229;48;Feminino;Graduação;Saúde;Nordeste;CE;2
+230;40;Masculino;Pós-graduação;Engenharias;Norte;PR;1
+231;54;Masculino;Ensino Médio;Ciências Sociais;Centro-Oeste;PE;3
+232;21;Feminino;Ensino Médio;Engenharias;Sudeste;PE;4
+233;59;Feminino;Pós-graduação;Saúde;Sudeste;PR;4
+234;38;Feminino;Fundamental Completo;Humanas;Sudeste;RS;4
+235;30;Masculino;Graduação;Ciências Sociais;Sul;RS;5
+236;52;Masculino;Doutorado;Engenharias;Norte;CE;1
+237;23;Masculino;Fundamental Completo;Engenharias;Nordeste;RJ;2
+238;45;Feminino;Fundamental Completo;Exatas;Centro-Oeste;PE;3
+239;40;Masculino;Graduação;Exatas;Centro-Oeste;BA;3
+240;58;Feminino;Graduação;Saúde;Nordeste;PA;2
+241;21;Masculino;Doutorado;Exatas;Centro-Oeste;PA;3
+242;25;Masculino;Ensino Médio;Ciências Sociais;Norte;MG;1
+243;42;Feminino;Graduação;Exatas;Norte;RS;1
+244;21;Masculino;Graduação;Ciências Sociais;Sudeste;PA;4
+245;20;Feminino;Fundamental Completo;Exatas;Sudeste;PE;4
+246;22;Feminino;Fundamental Completo;Humanas;Nordeste;AM;2
+247;37;Masculino;Ensino Médio;Saúde;Norte;AM;1
+248;54;Masculino;Mestrado;Ciências Sociais;Sul;RS;5
+249;54;Masculino;Graduação;Saúde;Sudeste;PA;4
+250;39;Feminino;Ensino Médio;Ciências Sociais;Norte;RJ;1
+251;33;Feminino;Mestrado;Saúde;Centro-Oeste;RJ;3
+252;51;Masculino;Ensino Médio;Ciências Sociais;Sudeste;BA;4
+253;51;Feminino;Fundamental Completo;Engenharias;Sul;AM;5
+254;40;Masculino;Pós-graduação;Engenharias;Centro-Oeste;PA;3
+255;57;Masculino;Doutorado;Ciências Sociais;Centro-Oeste;PA;3
+256;31;Masculino;Fundamental Completo;Saúde;Sul;BA;5
+257;38;Masculino;Graduação;Engenharias;Norte;PA;1
+258;36;Masculino;Ensino Médio;Exatas;Nordeste;SP;2
+259;30;Feminino;Mestrado;Humanas;Centro-Oeste;AM;3
+260;53;Masculino;Mestrado;Ciências Sociais;Sudeste;SP;4
+261;29;Feminino;Ensino Médio;Humanas;Sul;AM;5
+262;21;Feminino;Mestrado;Ciências Sociais;Centro-Oeste;CE;3
+263;31;Masculino;Pós-graduação;Humanas;Centro-Oeste;PA;3
+264;57;Masculino;Fundamental Completo;Engenharias;Centro-Oeste;RJ;3
+265;49;Masculino;Fundamental Completo;Engenharias;Norte;PE;1
+266;53;Masculino;Pós-graduação;Humanas;Centro-Oeste;PR;3
+267;59;Masculino;Ensino Médio;Saúde;Sul;BA;5
+268;48;Masculino;Fundamental Completo;Ciências Sociais;Centro-Oeste;MG;3
+269;44;Masculino;Graduação;Saúde;Centro-Oeste;MG;3
+270;30;Masculino;Graduação;Exatas;Sul;SP;5
+271;42;Masculino;Doutorado;Humanas;Nordeste;AM;2
+272;53;Feminino;Graduação;Engenharias;Centro-Oeste;AM;3
+273;31;Feminino;Ensino Médio;Ciências Sociais;Sul;RS;5
+274;18;Masculino;Mestrado;Saúde;Norte;CE;1
+275;26;Feminino;Mestrado;Saúde;Sudeste;PR;4
+276;53;Feminino;Mestrado;Engenharias;Nordeste;PR;2
+277;54;Feminino;Mestrado;Saúde;Norte;PR;1
+278;28;Masculino;Graduação;Saúde;Nordeste;CE;2
+279;42;Masculino;Fundamental Completo;Engenharias;Sudeste;PA;4
+280;25;Feminino;Fundamental Completo;Exatas;Nordeste;RS;2
+281;30;Masculino;Mestrado;Exatas;Nordeste;PA;2
+282;18;Feminino;Mestrado;Exatas;Sul;AM;5
+283;27;Masculino;Mestrado;Humanas;Nordeste;RJ;2
+284;47;Masculino;Fundamental Completo;Engenharias;Norte;CE;1
+285;40;Feminino;Graduação;Ciências Sociais;Sudeste;RS;4
+286;55;Feminino;Graduação;Humanas;Centro-Oeste;SP;3
+287;36;Masculino;Graduação;Engenharias;Norte;RS;1
+288;33;Masculino;Ensino Médio;Exatas;Sudeste;MG;4
+289;33;Feminino;Mestrado;Saúde;Sudeste;PR;4
+290;31;Masculino;Pós-graduação;Saúde;Nordeste;RJ;2
+291;29;Feminino;Pós-graduação;Ciências Sociais;Nordeste;BA;2
+292;57;Masculino;Fundamental Completo;Engenharias;Sul;BA;5
+293;52;Masculino;Doutorado;Ciências Sociais;Sudeste;PR;4
+294;46;Masculino;Pós-graduação;Ciências Sociais;Nordeste;RS;2
+295;25;Masculino;Mestrado;Engenharias;Sudeste;PA;4
+296;26;Masculino;Fundamental Completo;Saúde;Sul;RJ;5
+297;57;Feminino;Ensino Médio;Ciências Sociais;Nordeste;PE;2
+298;57;Feminino;Graduação;Humanas;Norte;PE;1
+299;47;Feminino;Pós-graduação;Ciências Sociais;Nordeste;RS;2
+300;52;Feminino;Mestrado;Humanas;Centro-Oeste;CE;3
+301;26;Feminino;Pós-graduação;Saúde;Nordeste;MG;2
+302;55;Feminino;Graduação;Engenharias;Nordeste;PA;2
+303;34;Feminino;Graduação;Ciências Sociais;Centro-Oeste;PR;3
+304;59;Masculino;Graduação;Ciências Sociais;Centro-Oeste;PE;3
+305;25;Masculino;Fundamental Completo;Engenharias;Nordeste;PA;2
+306;36;Feminino;Pós-graduação;Ciências Sociais;Nordeste;AM;2
+307;46;Masculino;Graduação;Saúde;Sudeste;RS;4
+308;49;Feminino;Pós-graduação;Engenharias;Sudeste;SP;4
+309;38;Feminino;Pós-graduação;Saúde;Nordeste;CE;2
+310;41;Feminino;Graduação;Exatas;Centro-Oeste;PA;3
+311;46;Masculino;Mestrado;Exatas;Sul;SP;5
+312;55;Masculino;Ensino Médio;Saúde;Sudeste;CE;4
+313;20;Masculino;Ensino Médio;Ciências Sociais;Norte;PA;1
+314;36;Masculino;Pós-graduação;Ciências Sociais;Sul;PR;5
+315;51;Feminino;Pós-graduação;Humanas;Nordeste;PR;2
+316;31;Masculino;Pós-graduação;Humanas;Centro-Oeste;AM;3
+317;52;Masculino;Mestrado;Humanas;Sudeste;PE;4
+318;35;Masculino;Pós-graduação;Engenharias;Nordeste;PA;2
+319;39;Feminino;Ensino Médio;Exatas;Norte;PR;1
+320;56;Masculino;Pós-graduação;Engenharias;Norte;AM;1
+321;46;Masculino;Doutorado;Humanas;Sudeste;BA;4
+322;58;Feminino;Fundamental Completo;Humanas;Sul;CE;5
+323;55;Masculino;Fundamental Completo;Engenharias;Sudeste;RS;4
+324;35;Feminino;Doutorado;Ciências Sociais;Centro-Oeste;RS;3
+325;56;Feminino;Pós-graduação;Humanas;Centro-Oeste;CE;3
+326;20;Feminino;Pós-graduação;Saúde;Norte;RS;1
+327;59;Masculino;Fundamental Completo;Ciências Sociais;Norte;PA;1
+328;30;Feminino;Fundamental Completo;Engenharias;Norte;PA;1
+329;31;Feminino;Fundamental Completo;Exatas;Sudeste;AM;4
+330;58;Masculino;Mestrado;Humanas;Sudeste;SP;4
+331;33;Feminino;Mestrado;Exatas;Sudeste;RJ;4
+332;42;Feminino;Doutorado;Saúde;Nordeste;MG;2
+333;49;Masculino;Doutorado;Saúde;Norte;RS;1
+334;59;Feminino;Ensino Médio;Saúde;Norte;SP;1
+335;20;Masculino;Mestrado;Exatas;Norte;PE;1
+336;58;Masculino;Fundamental Completo;Engenharias;Sudeste;PE;4
+337;37;Feminino;Fundamental Completo;Humanas;Centro-Oeste;MG;3
+338;43;Feminino;Graduação;Saúde;Nordeste;RJ;2
+339;49;Feminino;Graduação;Saúde;Norte;RS;1
+340;19;Masculino;Doutorado;Ciências Sociais;Sudeste;RJ;4
+341;30;Masculino;Graduação;Ciências Sociais;Sul;SP;5
+342;45;Masculino;Graduação;Engenharias;Sul;PR;5
+343;32;Masculino;Mestrado;Saúde;Nordeste;PE;2
+344;47;Masculino;Ensino Médio;Engenharias;Sudeste;AM;4
+345;54;Masculino;Fundamental Completo;Exatas;Nordeste;AM;2
+346;54;Masculino;Doutorado;Ciências Sociais;Norte;CE;1
+347;51;Masculino;Mestrado;Ciências Sociais;Sudeste;CE;4
+348;43;Feminino;Graduação;Humanas;Norte;RJ;1
+349;32;Feminino;Ensino Médio;Saúde;Sul;PE;5
+350;20;Feminino;Pós-graduação;Humanas;Sudeste;SP;4
+351;58;Feminino;Fundamental Completo;Saúde;Sul;AM;5
+352;54;Feminino;Fundamental Completo;Engenharias;Sul;PE;5
+353;21;Feminino;Mestrado;Engenharias;Nordeste;PE;2
+354;24;Masculino;Mestrado;Ciências Sociais;Centro-Oeste;BA;3
+355;57;Feminino;Ensino Médio;Exatas;Norte;SP;1
+356;35;Feminino;Graduação;Saúde;Sul;MG;5
+357;24;Feminino;Ensino Médio;Saúde;Sul;RJ;5
+358;51;Masculino;Doutorado;Engenharias;Sul;SP;5
+359;25;Feminino;Mestrado;Engenharias;Norte;PA;1
+360;33;Feminino;Doutorado;Exatas;Centro-Oeste;SP;3
+361;47;Masculino;Graduação;Exatas;Centro-Oeste;PE;3
+362;49;Feminino;Doutorado;Saúde;Norte;PE;1
+363;60;Masculino;Pós-graduação;Humanas;Sudeste;BA;4
+364;25;Feminino;Doutorado;Ciências Sociais;Sul;RJ;5
+365;57;Feminino;Fundamental Completo;Ciências Sociais;Sul;SP;5
+366;50;Feminino;Doutorado;Humanas;Sul;PE;5
+367;30;Feminino;Fundamental Completo;Ciências Sociais;Nordeste;AM;2
+368;23;Masculino;Doutorado;Humanas;Sudeste;MG;4
+369;46;Masculino;Fundamental Completo;Ciências Sociais;Sudeste;PA;4
+370;25;Masculino;Doutorado;Saúde;Norte;PE;1
+371;24;Masculino;Ensino Médio;Ciências Sociais;Sul;AM;5
+372;26;Feminino;Ensino Médio;Humanas;Sul;SP;5
+373;25;Feminino;Graduação;Humanas;Centro-Oeste;MG;3
+374;36;Feminino;Fundamental Completo;Humanas;Norte;SP;1
+375;40;Feminino;Doutorado;Saúde;Centro-Oeste;PA;3
+376;44;Masculino;Doutorado;Humanas;Centro-Oeste;RS;3
+377;41;Feminino;Graduação;Engenharias;Nordeste;CE;2
+378;18;Masculino;Fundamental Completo;Saúde;Nordeste;MG;2
+379;27;Masculino;Fundamental Completo;Engenharias;Nordeste;AM;2
+380;39;Feminino;Doutorado;Humanas;Sul;PR;5
+381;53;Masculino;Pós-graduação;Saúde;Norte;PE;1
+382;46;Masculino;Pós-graduação;Humanas;Sul;RS;5
+383;32;Feminino;Graduação;Humanas;Norte;MG;1
+384;18;Feminino;Doutorado;Humanas;Centro-Oeste;AM;3
+385;59;Masculino;Fundamental Completo;Engenharias;Sul;SP;5
+386;39;Masculino;Doutorado;Engenharias;Nordeste;MG;2
+387;20;Feminino;Doutorado;Exatas;Norte;CE;1
+388;20;Feminino;Ensino Médio;Exatas;Centro-Oeste;PR;3
+389;28;Feminino;Graduação;Saúde;Sul;PE;5
+390;39;Masculino;Graduação;Exatas;Norte;PE;1
+391;49;Masculino;Graduação;Saúde;Sul;PR;5
+392;23;Feminino;Ensino Médio;Ciências Sociais;Nordeste;SP;2
+393;27;Feminino;Fundamental Completo;Engenharias;Sul;PR;5
+394;25;Masculino;Doutorado;Humanas;Sul;RJ;5
+395;55;Masculino;Fundamental Completo;Humanas;Nordeste;AM;2
+396;42;Masculino;Fundamental Completo;Ciências Sociais;Centro-Oeste;RS;3
+397;57;Feminino;Doutorado;Humanas;Norte;PR;1
+398;51;Masculino;Pós-graduação;Ciências Sociais;Nordeste;PE;2
+399;54;Feminino;Ensino Médio;Ciências Sociais;Nordeste;MG;2
+400;43;Masculino;Pós-graduação;Humanas;Sudeste;PE;4
+401;49;Masculino;Graduação;Exatas;Norte;PR;1
+402;60;Masculino;Fundamental Completo;Exatas;Nordeste;PE;2
+403;28;Feminino;Doutorado;Ciências Sociais;Centro-Oeste;PA;3
+404;60;Masculino;Fundamental Completo;Exatas;Nordeste;CE;2
+405;26;Masculino;Fundamental Completo;Saúde;Nordeste;MG;2
+406;40;Masculino;Graduação;Saúde;Norte;PR;1
+407;42;Feminino;Graduação;Ciências Sociais;Norte;CE;1
+408;46;Feminino;Graduação;Exatas;Centro-Oeste;RJ;3
+409;40;Masculino;Graduação;Humanas;Norte;AM;1
+410;34;Feminino;Fundamental Completo;Ciências Sociais;Sudeste;PE;4
+411;57;Feminino;Ensino Médio;Ciências Sociais;Nordeste;PR;2
+412;56;Masculino;Doutorado;Ciências Sociais;Sudeste;PE;4
+413;53;Feminino;Mestrado;Exatas;Sul;CE;5
+414;56;Feminino;Graduação;Engenharias;Sul;PE;5
+415;40;Feminino;Graduação;Ciências Sociais;Sudeste;BA;4
+416;58;Masculino;Pós-graduação;Humanas;Norte;SP;1
+417;48;Feminino;Pós-graduação;Ciências Sociais;Norte;BA;1
+418;44;Feminino;Fundamental Completo;Engenharias;Sul;AM;5
+419;23;Masculino;Fundamental Completo;Engenharias;Sul;PE;5
+420;28;Masculino;Graduação;Humanas;Centro-Oeste;BA;3
+421;26;Masculino;Doutorado;Ciências Sociais;Centro-Oeste;BA;3
+422;27;Feminino;Fundamental Completo;Exatas;Sul;BA;5
+423;27;Masculino;Pós-graduação;Humanas;Sudeste;PR;4
+424;26;Feminino;Graduação;Saúde;Nordeste;RS;2
+425;45;Feminino;Ensino Médio;Ciências Sociais;Nordeste;CE;2
+426;26;Masculino;Ensino Médio;Humanas;Sudeste;RS;4
+427;39;Feminino;Ensino Médio;Ciências Sociais;Norte;SP;1
+428;39;Feminino;Fundamental Completo;Saúde;Sul;RS;5
+429;27;Feminino;Fundamental Completo;Ciências Sociais;Norte;AM;1
+430;22;Feminino;Ensino Médio;Ciências Sociais;Nordeste;PA;2
+431;58;Masculino;Mestrado;Humanas;Sudeste;PE;4
+432;35;Feminino;Graduação;Ciências Sociais;Sul;AM;5
+433;30;Feminino;Pós-graduação;Humanas;Sudeste;CE;4
+434;50;Feminino;Doutorado;Saúde;Nordeste;PE;2
+435;50;Feminino;Doutorado;Ciências Sociais;Sudeste;RS;4
+436;42;Masculino;Pós-graduação;Saúde;Sul;MG;5
+437;28;Feminino;Mestrado;Humanas;Centro-Oeste;BA;3
+438;49;Feminino;Mestrado;Humanas;Sul;MG;5
+439;22;Masculino;Ensino Médio;Exatas;Centro-Oeste;AM;3
+440;21;Masculino;Doutorado;Humanas;Sul;PE;5
+441;37;Masculino;Mestrado;Ciências Sociais;Sudeste;PR;4
+442;32;Feminino;Graduação;Engenharias;Sudeste;PR;4
+443;50;Feminino;Pós-graduação;Ciências Sociais;Sul;CE;5
+444;55;Feminino;Graduação;Exatas;Norte;RJ;1
+445;19;Feminino;Pós-graduação;Engenharias;Centro-Oeste;BA;3
+446;30;Masculino;Mestrado;Humanas;Sudeste;RJ;4
+447;42;Feminino;Ensino Médio;Saúde;Nordeste;AM;2
+448;54;Masculino;Doutorado;Ciências Sociais;Sudeste;PE;4
+449;42;Masculino;Pós-graduação;Ciências Sociais;Norte;AM;1
+450;44;Masculino;Graduação;Humanas;Sudeste;RS;4
+451;45;Masculino;Fundamental Completo;Humanas;Nordeste;MG;2
+452;27;Feminino;Pós-graduação;Ciências Sociais;Nordeste;MG;2
+453;49;Feminino;Pós-graduação;Saúde;Sudeste;AM;4
+454;31;Masculino;Fundamental Completo;Saúde;Sul;RS;5
+455;55;Feminino;Doutorado;Humanas;Nordeste;CE;2
+456;47;Masculino;Doutorado;Ciências Sociais;Norte;PE;1
+457;55;Masculino;Mestrado;Exatas;Norte;PE;1
+458;57;Masculino;Graduação;Saúde;Centro-Oeste;MG;3
+459;47;Feminino;Fundamental Completo;Engenharias;Nordeste;PA;2
+460;35;Masculino;Fundamental Completo;Engenharias;Nordeste;RJ;2
+461;48;Masculino;Mestrado;Humanas;Nordeste;RS;2
+462;25;Masculino;Ensino Médio;Engenharias;Sul;BA;5
+463;34;Masculino;Ensino Médio;Engenharias;Norte;BA;1
+464;26;Masculino;Fundamental Completo;Ciências Sociais;Centro-Oeste;BA;3
+465;23;Feminino;Doutorado;Saúde;Nordeste;PR;2
+466;58;Feminino;Graduação;Saúde;Sudeste;RJ;4
+467;38;Masculino;Ensino Médio;Exatas;Sudeste;BA;4
+468;43;Feminino;Ensino Médio;Ciências Sociais;Nordeste;PR;2
+469;45;Masculino;Doutorado;Exatas;Sudeste;RS;4
+470;45;Feminino;Doutorado;Exatas;Sudeste;SP;4
+471;36;Masculino;Pós-graduação;Engenharias;Nordeste;PA;2
+472;21;Feminino;Pós-graduação;Exatas;Centro-Oeste;RS;3
+473;28;Masculino;Ensino Médio;Humanas;Sul;AM;5
+474;39;Masculino;Doutorado;Ciências Sociais;Nordeste;BA;2
+475;45;Masculino;Ensino Médio;Exatas;Centro-Oeste;AM;3
+476;32;Masculino;Ensino Médio;Saúde;Sudeste;PR;4
+477;51;Feminino;Graduação;Saúde;Nordeste;PE;2
+478;48;Feminino;Pós-graduação;Saúde;Sudeste;CE;4
+479;47;Masculino;Pós-graduação;Ciências Sociais;Sudeste;BA;4
+480;27;Masculino;Doutorado;Humanas;Sul;CE;5
+481;47;Masculino;Fundamental Completo;Saúde;Centro-Oeste;PR;3
+482;28;Masculino;Ensino Médio;Ciências Sociais;Sudeste;RJ;4
+483;35;Masculino;Pós-graduação;Ciências Sociais;Centro-Oeste;BA;3
+484;47;Masculino;Graduação;Ciências Sociais;Nordeste;AM;2
+485;47;Masculino;Graduação;Humanas;Norte;CE;1
+486;38;Masculino;Doutorado;Ciências Sociais;Norte;PE;1
+487;53;Masculino;Mestrado;Exatas;Sul;PE;5
+488;59;Feminino;Pós-graduação;Engenharias;Sudeste;PR;4
+489;27;Masculino;Mestrado;Saúde;Nordeste;PR;2
+490;25;Feminino;Fundamental Completo;Humanas;Sul;RS;5
+491;45;Masculino;Ensino Médio;Ciências Sociais;Centro-Oeste;PA;3
+492;41;Masculino;Pós-graduação;Engenharias;Centro-Oeste;BA;3
+493;51;Masculino;Mestrado;Engenharias;Centro-Oeste;PE;3
+494;33;Masculino;Ensino Médio;Ciências Sociais;Sudeste;PE;4
+495;34;Feminino;Pós-graduação;Engenharias;Sul;SP;5
+496;52;Feminino;Fundamental Completo;Exatas;Norte;CE;1
+497;50;Masculino;Graduação;Humanas;Centro-Oeste;CE;3
+498;48;Feminino;Doutorado;Ciências Sociais;Sul;RS;5
+499;57;Feminino;Graduação;Exatas;Nordeste;BA;2
+500;42;Masculino;Pós-graduação;Ciências Sociais;Sul;RS;5
