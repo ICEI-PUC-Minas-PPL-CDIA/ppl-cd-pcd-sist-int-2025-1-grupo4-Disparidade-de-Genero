@@ -2,9 +2,5 @@
 
 Este diretório mantém os artefatos relatório à modelagem de dados do projeto. 
 
-
-* `bases_originais`
-	* bases originais.
-
-* `hipoteses`
-	* separação de processamentos por hipótese
+* `/bases_originais` - Pasta com as bases originais.
+* `/models` - Pasta com os processamentos por hipótese
