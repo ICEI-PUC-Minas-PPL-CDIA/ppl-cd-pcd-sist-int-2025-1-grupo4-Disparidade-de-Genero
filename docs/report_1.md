@@ -666,9 +666,31 @@ O modelo Random Forest foi configurado com os seguintes parâmetros:
 
 ## Análise comparativa dos modelos
 
-Discuta sobre as forças e fragilidades de cada modelo. Exemplifique casos em que um
-modelo se sairia melhor que o outro. Nesta seção é possível utilizar a sua imaginação
-e extrapolar um pouco o que os dados sugerem.
+## Comparativo entre Árvore de Decisão e Random Forest
+
+**Árvore de Decisão:**
+
+* **Acurácia (Teste):** 0.56
+* **Precisão (Classe 0 - Não Concluiu):** 0.85
+* **Precisão (Classe 1 - Concluiu):** 0.20
+* **Recall (Classe 0 - Não Concluiu):** 0.57
+* **Recall (Classe 1 - Concluiu):** 0.53
+* **F1-Score (Classe 0 - Não Concluiu):** 0.68
+* **F1-Score (Classe 1 - Concluiu):** 0.29
+* **Interpretabilidade:** Alta. A estrutura da árvore é clara e permite rastrear as decisões através dos nós e regras, facilitando a compreensão dos critérios utilizados para classificação.
+* **Importância das Features:** Idade > Área de Formação > Região onde mora > Gênero (conforme análise implícita nos dados).
+
+**Random Forest:**
+
+* **Acurácia (Teste):** 0.76 (com limiar de 0.5)
+* **Precisão (Classe 0 -  Não Concluiu):**  0.84
+* **Precisão (Classe 1 - Concluiu):** 0.23
+* **Recall (Classe 0 -  Não Concluiu):** 0.88
+* **Recall (Classe 1 - Concluiu):** 0.18
+* **F1-Score (Classe 0 -  Não Concluiu):** 0.86
+* **F1-Score (Classe 1 - Concluiu):** 0.20
+* **Interpretabilidade:** Baixa. O modelo Random Forest é composto por múltiplas árvores de decisão, o que dificulta a interpretação das decisões individuais de forma isolada. Embora seja possível avaliar a importância global das features (como "Idade", "Gênero", "Área de Formação" e "Região onde mora") para o modelo como um todo.´´
+* **Importância das Features:** Idade > Área de Formação > Região onde mora > Gênero (conforme análise implícita nos dados).
 
 
 ### Distribuição do modelo (opcional)
@@ -679,15 +701,65 @@ em um sistema inteligente.
 
 ## 8. Conclusão
 
-Apresente aqui a conclusão do seu trabalho. Discussão dos resultados obtidos no trabalho, 
-onde se verifica as observações pessoais de cada aluno.
+### Arvore de Decisao 
 
-Uma conclusão deve ter 3 partes:
+O trabalho consistiu na implementação de um modelo de Árvore de Decisão para prever se um indivíduo concluiu o ensino superior com base em características como idade, gênero, área de formação e região onde mora. O conjunto de dados utilizado foi pré-processado, codificado e dividido em conjuntos de treino e teste. O modelo foi otimizado por meio do ajuste do hiperparâmetro max_depth e da utilização de class_weight='balanced' para lidar com o desbalanceamento das classes. A avaliação do modelo incluiu métricas como acurácia, F1-score e matriz de confusão.
 
-   * Breve resumo do que foi desenvolvido
-	 * Apresenação geral dos resultados obtidos com discussão das vantagens e desvantagens do sistema inteligente
-	 * Limitações e possibilidades de melhoria
+**Apresentação geral dos resultados e discussão**
 
+O modelo obteve uma acurácia de 56% e um F1-score de 0.29 para a classe minoritária ("Concluiu"), indicando que o desempenho foi modesto, especialmente na identificação correta dessa classe. A matriz de confusão mostrou que o modelo teve dificuldade em prever a classe positiva, com muitos falsos positivos e negativos.
+
+### Vantagens do sistema inteligente:
+
+- Simplicidade e interpretabilidade da Árvore de Decisão.
+
+- Capacidade de lidar com dados categóricos e numéricos sem necessidade de normalização extensiva.
+
+- Uso de class_weight='balanced' para mitigar o desbalanceamento das classes.
+
+### Desvantagens:
+
+- Baixo desempenho na classe minoritária, evidenciado pelo F1-score reduzido.
+
+- Sensibilidade ao desbalanceamento dos dados, mesmo com técnicas de balanceamento.
+
+- Possível overfitting devido à profundidade limitada da árvore (melhor resultado com max_depth=2).
+
+### Limitações e possibilidades de melhoria: 
+
+- O conjunto de dados pode ser pequeno ou pouco representativo, afetando a generalização do modelo.
+
+- As features utilizadas podem não capturar suficientemente os fatores determinantes para a conclusão do ensino superior.
+
+### Random Forest 
+
+**Breve Resumo do que foi Desenvolvido**
+
+Neste trabalho, foi desenvolvido um modelo de classificação utilizando o algoritmo Random Forest para prever se um indivíduo concluiu o ensino superior com base em características como idade, gênero, área de formação e região onde mora. O projeto incluiu etapas de pré-processamento dos dados, codificação de variáveis categóricas, divisão dos dados em conjuntos de treino e teste, treinamento do modelo e avaliação de seu desempenho por meio de métricas como acurácia, relatório de classificação e matriz de confusão.
+
+**Apresentação Geral dos Resultados e Discussão**
+
+O modelo Random Forest alcançou uma acurácia de aproximadamente 76%, demonstrando uma capacidade razoável de classificação. No entanto, ao analisar o relatório de classificação, observa-se que o modelo teve um desempenho significativamente melhor na classe "Não Concluiu" (precision: 0.84, recall: 0.88) em comparação com a classe "Concluiu" (precision: 0.23, recall: 0.18). Isso sugere um desequilíbrio nas classes, onde a classe minoritária ("Concluiu") foi menos representada e, portanto, mais difícil de ser classificada corretamente.
+
+### Vantagens do Sistema Inteligente:
+
+- Robustez: O Random Forest é conhecido por lidar bem com dados não lineares e relações complexas entre variáveis.
+
+- Redução de Overfitting: O uso de múltiplas árvores de decisão reduz o risco de overfitting, tornando o modelo mais generalizável.
+
+- Interpretabilidade: A importância das variáveis pode ser analisada, fornecendo insights sobre quais características mais influenciam a previsão.
+
+### Desvantagens do Sistema Inteligente:
+
+- Desequilíbrio de Classes: O modelo teve dificuldade em classificar a classe minoritária, o que é comum em conjuntos de dados desbalanceados.
+
+- Complexidade Computacional: O treinamento de múltiplas árvores pode ser computacionalmente intensivo, especialmente com grandes volumes de dados.
+
+- Hiperparâmetros Sensíveis: O desempenho do modelo depende da escolha adequada de hiperparâmetros, como o número de árvores e a profundidade máxima.
+
+### Limitações e Possibilidades de Melhoria:
+
+- Variáveis Limitadas: O modelo foi treinado com um número limitado de variáveis, o que pode não capturar toda a complexidade do problema.
 
 # REFERÊNCIAS
 
