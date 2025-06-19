@@ -364,16 +364,9 @@ Normalização:
 ## Justificativa da escolha do modelo:
 A **Árvore de Decisão** foi escolhida como primeiro modelo porque é simples de entender e explica claramente como as decisões são tomadas. Ela funciona bem com dados como os seus, que têm informações numéricas (ex.: idade) e categóricas (ex.: região), sem precisar de tratamentos complexos. Além disso, mostra de forma visual quais fatores mais influenciam os resultados, ajudando a validar as regras do negócio
 
-### Modelo 2: RandomForest
+## Resultados obtidos com o modelo 1.
 
-Repita os passos anteriores para o segundo modelo.
-
-
-## Resultados
-
-### Resultados obtidos com o modelo 1.
-
-Resultados Obtidos
+### Resultados Obtidos
 O modelo 1 foi uma Árvore de Decisão com o parâmetro class_weight='balanced' para lidar com o desbalanceamento das classes. O hiperparâmetro max_depth foi otimizado através de um grid search, testando valores de 2 a 15. O melhor desempenho foi alcançado com max_depth=2, obtendo um F1-score de 0.2903.
 
 Matriz de Confusão
@@ -439,11 +432,11 @@ plt.show()
 ```
 As features mais importantes para o modelo foram:
 
-Idade: A idade foi o atributo mais relevante na decisão da árvore, com aproximadamente 60% de importância.
+- Idade: A idade foi o atributo mais relevante na decisão da árvore, com aproximadamente 60% de importância.
 
-Região onde mora: A região onde o indivíduo mora teve cerca de 25% de importância.
-
-Gênero e Área de Formação: Tiveram menor influência, com cerca de 10% e 5% respectivamente.
+- Região onde mora: A região onde o indivíduo mora teve cerca de 25% de importância.
+ 
+- Gênero e Área de Formação: Tiveram menor influência, com cerca de 10% e 5% respectivamente.
 
 Regras de Decisão
 Podemos visualizar a estrutura da árvore para entender as regras de decisão:
@@ -459,24 +452,81 @@ plt.show()
 ```
 A árvore com profundidade máxima 2 criou as seguintes regras principais:
 
-Primeira divisão: Se a idade for menor ou igual a ~35 anos, vai para o lado esquerdo, caso contrário, para o direito.
+- Primeira divisão: Se a idade for menor ou igual a ~35 anos, vai para o lado esquerdo, caso contrário, para o direito.
+  
+- Segunda divisão (nó esquerdo): Se a região for 'Sudeste', classifica como 'Concluiu', senão como 'Não Concluiu'.
+  
+- Segunda divisão (nó direito): Se a idade for menor ou igual a ~57 anos, classifica como 'Não Concluiu', senão como 'Concluiu'.
 
-Segunda divisão (nó esquerdo): Se a região for 'Sudeste', classifica como 'Concluiu', senão como 'Não Concluiu'.
-
-Segunda divisão (nó direito): Se a idade for menor ou igual a ~57 anos, classifica como 'Não Concluiu', senão como 'Concluiu'.
-
-Conclusão
+## Conclusão
 O modelo apresentou uma acurácia moderada (56%), mas mostrou dificuldade em prever corretamente a classe minoritária ('Concluiu'), como evidenciado pelo baixo F1-score (0.29). A árvore se baseou principalmente na idade e região para tomar decisões, o que faz sentido intuitivamente, já que essas características podem estar correlacionadas com oportunidades educacionais.
 
 Apesar do uso de class_weight='balanced', o desempenho na classe minoritária ainda foi limitado, sugerindo que outras técnicas como oversampling, undersampling ou modelos alternativos poderiam ser testados para melhorar o equilíbrio das previsões.
 
 ### Interpretação do modelo 1
 
-Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
-processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
-o *feature importances* para tentar entender quais atributos o modelo se baseia no
-processo de tomada de decisão.
+## Parâmetros do Modelo Obtido
+O modelo de Árvore de Decisão foi configurado com os seguintes parâmetros principais:
 
+- Profundidade máxima (max_depth): 2 (limitada para evitar overfitting)
+- Balanceamento de classes (class_weight): 'balanced' (para lidar com o desequilíbrio entre classes)
+- Critério de divisão: provavelmente 'gini' (padrão para classificação)
+- random_state: 42 (para reprodutibilidade)
+
+## Processo de Raciocínio da Árvore
+**A árvore toma decisões através de uma série de regras binárias baseadas nos atributos dos dados:**
+
+## Estrutura Hierárquica de Decisão
+**Primeira decisão (nó raiz):**
+
+- Condição: Idade ≤ 35 anos
+- Se Verdadeiro: segue para a esquerda
+- Se Falso: segue para a direita
+
+**Segunda decisão (ramo esquerdo):**
+
+- Condição: Região é Sudeste?
+- Se Verdadeiro: classifica como "Concluiu Ensino Superior"
+- Se Falso: classifica como "Não Concluiu"
+
+**Segunda decisão (ramo direito):**
+
+- Condição: Idade ≤ 57 anos
+- Se Verdadeiro: classifica como "Não Concluiu"
+- Se Falso: classifica como "Concluiu"
+
+## Feature Importances (Importância dos Atributos)
+**A análise de importância das features revela:** 
+
+1- Idade (60% de importância):
+
+* **O atributo mais decisivo, aparecendo em dois nós da árvore**
+* **Sugere que a idade é o fator mais discriminativo para prever conclusão do ensino superior**
+
+2- Região onde mora (25% de importância):
+
+* **Segundo atributo mais relevante**
+* **Especialmente importante para indivíduos mais jovens (≤35 anos)**
+
+3- Gênero (10% de importância) e Área de Formação (5% de importância):
+
+* **Tiveram influência menor na decisão final**
+* **Não aparecem nos primeiros níveis da árvore**
+
+## Análise do Comportamento do Modelo
+ **Padrões Identificados**
+
+1- Para indivíduos mais jovens (≤35 anos):
+
+* **A região de moradia torna-se um fator decisivo**
+* **Moradores do Sudeste têm maior probabilidade de conclusão**
+
+2- Para indivíduos mais velhos (>35 anos):
+
+* **A idade continua sendo o fator principal**
+* **Acima de 57 anos, há maior probabilidade de conclusão**
+
+### Modelo 2: RandomForest
 
 ### Resultados obtidos com o modelo 2.
 
