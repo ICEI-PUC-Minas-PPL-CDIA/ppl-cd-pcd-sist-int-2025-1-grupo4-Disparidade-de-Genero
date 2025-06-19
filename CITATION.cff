@@ -1,11 +1,34 @@
-cff-version: 1.0.1
+cff-version: 1.0.0
 message: Por favor, cite o repositório utilizando estes metadados.
-title: Repositório modelo para a disciplina de Projeto em Ciência de Dados I - Sistemas Inteligentes.
+title: Disparidade de gênero
 authors:
-   - name-suffix: Professor
+   - name-suffix: Estudante
     affiliation: PUC Minas
-    family-names: de Paula
-    given-names: Hugo
+    family-names: Gonçalves Valbonetti
+    given-names: Augusto Henrique
+   - name-suffix: Estudante
+    affiliation: PUC Minas
+    family-names: Fraga Fonseca Gomes
+    given-names: Eduardo
+   - name-suffix: Estudante
+    affiliation: PUC Minas
+    family-names: Bacellar Nunes Soares
+    given-names: Gustavo
+   - name-suffix: Estudante
+    affiliation: PUC Minas
+    family-names: Andrade Caetano Dornelas
+    given-names: Leonardo
+   - name-suffix: Estudante
+    affiliation: PUC Minas
+    family-names: Lansdowne Oliveira
+    given-names: Pedro
+   - name-suffix: Estudante
+    affiliation: PUC Minas
+    family-names: Martins Gonçalves 
+    given-names: Vitor
+
+
+
 keywords:
   - Ciência de Dados
   - Jupyter Notebooks
