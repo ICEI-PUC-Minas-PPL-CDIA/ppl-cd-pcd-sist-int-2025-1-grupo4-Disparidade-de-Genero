@@ -1,0 +1,207 @@
+# Import the pandas library for data manipulation and analysis.
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
+
+# --- 1. Carregamento e Preparação dos Dados ---
+# Load the dataset from the specified CSV file into a pandas DataFrame.
+# The file "dados tratados FINAL - dados_tratados_e_limpos.csv" contains cleaned and preprocessed data.
+df = pd.read_csv("/content/dados tratados FINAL - dados_tratados_e_limpos.csv")
+
+# Display the first 5 rows of the DataFrame to get a glimpse of the data structure and content.
+print("--- Head of the Dataset ---")
+display(df.head())
+
+# Print concise information about the DataFrame.
+# This includes the index dtype and column dtypes, non-null values, and memory usage.
+# This helps in understanding the data types and identifying missing values quickly.
+print("\n--- Dataset Info ---")
+df.info()
+
+
+# --- 2. Análise Exploratória dos Dados (AED) ---
+# Display descriptive statistics for all columns, including object type columns.
+# This provides an overview of the data distribution, central tendency, and dispersion.
+print("\n--- Descriptive Statistics ---")
+display(df.describe(include='all'))
+
+# Display the value counts for the 'genero' column.
+# This shows the distribution of individuals across different gender categories.
+print("\n--- Gender Distribution ---")
+display(df['genero'].value_counts())
+
+# Display the value counts for the 'empregado' column.
+# This shows the distribution of individuals based on their employment status (hired or not hired).
+print("\n--- Employment Status Distribution ---")
+display(df['empregado'].value_counts())
+
+# Create a count plot to visualize the relationship between 'genero' and 'empregado'.
+# This plot shows the number of individuals in each gender category, broken down by their employment status.
+# 'hue='empregado'' creates separate bars for each employment status within each gender.
+plt.figure(figsize=(8, 5)) # Set the figure size for better readability.
+sns.countplot(data=df, x='genero', hue='empregado', palette='viridis') # Create the count plot.
+plt.title('Relação entre Gênero e Status de Emprego') # Set the title of the plot.
+plt.xlabel('Gênero') # Set the label for the x-axis.
+plt.ylabel('Contagem') # Set the label for the y-axis.
+plt.legend(title='Empregado', labels=['Não', 'Sim']) # Add a legend to distinguish employment status.
+plt.show() # Display the plot.
+
+# Convert 'salario_medio' and 'experiencia_anos' columns to numeric type.
+# These columns were initially loaded as 'object' due to commas as decimal separators.
+# .str.replace(',', '.', regex=False) replaces commas with periods.
+# .astype(float) converts the cleaned string to a float type.
+# errors='coerce' will turn any values that cannot be converted into NaN, though based on df.info() there are no missing values here.
+df['salario_medio'] = df['salario_medio'].astype(str).str.replace(',', '.', regex=False).astype(float)
+df['experiencia_anos'] = df['experiencia_anos'].astype(str).str.replace(',', '.', regex=False).astype(float)
+
+
+# Create a box plot to visualize the distribution of 'salario_medio' by 'empregado' status and 'genero'.
+# Box plots help in comparing the median, quartiles, and potential outliers of the salary for different groups.
+plt.figure(figsize=(12, 6)) # Set the figure size.
+sns.boxplot(data=df, x='empregado', y='salario_medio', hue='genero', palette='viridis') # Create the box plot.
+plt.title('Salário Médio por Status de Emprego e Gênero') # Set the title.
+plt.xlabel('Empregado (1=Sim, 0=Não)') # Set the x-axis label, indicating the meaning of 0 and 1.
+plt.ylabel('Salário Médio') # Set the y-axis label.
+plt.xticks([0, 1], ['Não Empregado', 'Empregado']) # Set custom tick labels for the x-axis.
+plt.show() # Display the plot.
+
+# Create a box plot to visualize the distribution of 'experiencia_anos' by 'empregado' status and 'genero'.
+# This plot helps in understanding how work experience varies across gender and employment status.
+plt.figure(figsize=(12, 6)) # Set the figure size.
+sns.boxplot(data=df, x='empregado', y='experiencia_anos', hue='genero', palette='viridis') # Create the box plot.
+plt.title('Anos de Experiência por Status de Emprego e Gênero') # Set the title.
+plt.xlabel('Empregado (1=Sim, 0=Não)') # Set the x-axis label.
+plt.ylabel('Anos de Experiência') # Set the y-axis label.
+plt.xticks([0, 1], ['Não Empregado', 'Empregado']) # Set custom tick labels for the x-axis.
+plt.show() # Display the plot.
+
+
+# --- 3. Pré-processamento para Machine Learning ---
+# Define the list of categorical features to be one-hot encoded.
+# These are identified as object type columns from the df.info() output, excluding the target variable.
+categorical_features = ['genero', 'situacao_trabalho', 'tempo_busca', 'dificuldade_busca', 'nivel_hierarquico', 'faixa_salarial', 'faixa_etaria', 'experiencia_dados', 'educacao']
+
+# Define the target variable (y) and features (X).
+# The target variable 'empregado' is dropped from the features set X.
+X = df.drop('empregado', axis=1)
+y = df['empregado']
+
+# Create a column transformer to apply one-hot encoding to the specified categorical features.
+# 'onehot' is the name of the transformer.
+# OneHotEncoder(handle_unknown='ignore') handles unseen categories in the test set by ignoring them.
+# categorical_features is the list of columns to apply one-hot encoding to.
+# remainder='passthrough' keeps all other columns (numerical ones) as they are.
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('onehot', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+    ],
+    remainder='passthrough' # Keep the remaining numerical columns
+)
+
+# Create a pipeline. In this step, the pipeline only contains the preprocessor.
+# This ensures that the preprocessing steps are applied consistently to the data.
+pipeline = Pipeline(steps=[('preprocessor', preprocessor)])
+
+# Apply the preprocessing steps to the features data X.
+# fit_transform learns the encoding from the data and then transforms it.
+X_processed = pipeline.fit_transform(X)
+
+# Split the processed data into training and testing sets.
+# X_processed is the feature set after one-hot encoding.
+# y is the target variable.
+# test_size=0.2 allocates 20% of the data to the test set and 80% to the training set.
+# random_state=42 ensures reproducibility of the split.
+X_train, X_test, y_train, y_test = train_test_split(X_processed, y, test_size=0.2, random_state=42)
+
+# Print the shapes of the original, processed, training, and testing sets.
+# This helps verify that the preprocessing and splitting were done correctly.
+print("\n--- Data Shapes after Preprocessing and Splitting ---")
+print("Shape of original features:", X.shape)
+print("Shape of processed features:", X_processed.shape)
+print("Shape of X_train:", X_train.shape)
+print("Shape of X_test:", X_test.shape)
+print("Shape of y_train:", y_train.shape)
+print("Shape of y_test:", y_test.shape)
+
+
+# --- 4. Indução de Modelos de Machine Learning ---
+# Instantiate the machine learning models to be used for prediction.
+# random_state=42 is set for reproducibility.
+# solver='liblinear' is specified for Logistic Regression as it works well for small datasets and L1 penalty.
+log_reg = LogisticRegression(random_state=42, solver='liblinear')
+rf_clf = RandomForestClassifier(random_state=42)
+gb_clf = GradientBoostingClassifier(random_state=42)
+
+# Train the instantiated models using the training data.
+# The models learn the relationship between the features (X_train) and the target variable (y_train).
+log_reg.fit(X_train, y_train)
+rf_clf.fit(X_train, y_train)
+gb_clf.fit(X_train, y_train)
+
+print("\nModels trained successfully.")
+
+
+# --- 5. Avaliação dos Modelos ---
+# Create a dictionary to store the trained models with their names.
+# This allows for easy iteration and evaluation of each model.
+models = {'Logistic Regression': log_reg, 'Random Forest': rf_clf, 'Gradient Boosting': gb_clf}
+
+# Iterate through each trained model in the 'models' dictionary.
+print("\n--- Model Evaluation Results ---")
+for name, model in models.items():
+    # Make predictions on the test set (X_test) using the current model.
+    y_pred = model.predict(X_test)
+
+    # Calculate the evaluation metrics using the true labels (y_test) and the predicted labels (y_pred).
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+
+    # Print the evaluation metrics for the current model.
+    print(f"--- {name} ---")
+    print(f"Accuracy: {accuracy:.4f}") # Format to 4 decimal places.
+    print(f"Precision: {precision:.4f}") # Format to 4 decimal places.
+    print(f"Recall: {recall:.4f}") # Format to 4 decimal places.
+    print(f"F1-score: {f1:.4f}") # Format to 4 decimal places.
+    print("-" * (len(name) + 6)) # Print a separator line.
+
+    # Calculate the confusion matrix.
+    # This matrix shows the counts of true positive, true negative, false positive, and false negative predictions.
+    cm = confusion_matrix(y_test, y_pred)
+
+    # Create a heatmap visualization of the confusion matrix.
+    plt.figure(figsize=(6, 4)) # Set the figure size.
+    # sns.heatmap plots the matrix.
+    # annot=True displays the count numbers on the heatmap.
+    # fmt='d' formats the annotation as integers.
+    # cmap='Blues' sets the color map to shades of blue.
+    # xticklabels and yticklabels set the labels for the x and y axes to be more descriptive.
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Não Empregado', 'Empregado'], yticklabels=['Não Empregado', 'Empregado'])
+    plt.title(f'Confusion Matrix - {name}') # Set the title of the heatmap.
+    plt.xlabel('Predicted Label') # Set the x-axis label.
+    plt.ylabel('True Label') # Set the y-axis label.
+    plt.show() # Display the heatmap.
+
+# --- 6. Análise da Influência do Gênero ---
+# (This analysis is primarily based on interpreting the EDA visualizations and potentially model insights,
+# which are described in the markdown summary. No new code is generated for this interpretation step itself.)
+
+# --- 7. Explicação do Código ---
+# (Detailed comments have been added to each section of the code above to explain each step.)
+
+# --- 8. Preparação para o GitHub & 9. Refinamento e Documentação ---
+# (These steps involve organizing files, writing READMEs, etc., which are outside the scope of code execution.
+# The markdown cells in the notebook provide the necessary documentation and summary.)
+
+# --- 10. Finish task ---
+# The analysis is complete, models are trained and evaluated, and code is commented for GitHub.
+print("\nAnalysis complete and code prepared for GitHub.")
