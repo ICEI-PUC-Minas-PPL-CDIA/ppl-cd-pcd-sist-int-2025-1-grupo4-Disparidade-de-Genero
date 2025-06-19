@@ -673,15 +673,6 @@ Considerando a saída do seu código para a análise estatística, podemos descr
 * **Máximo:** 1.00.
 * **Quartis:** 75% dos valores codificados para PCD são 0.
 
-### Análise da Coluna 'UF'
-
-* **Média:** 17.87 (valor médio da codificação da Unidade Federativa).
-* **Mediana:** 20.00.
-* **Moda:** 24.00 (a UF com maior frequência na codificação).
-* **Desvio Padrão:** 6.71.
-* **Mínimo:** 1.00.
-* **Máximo:** 26.00.
-* **Quartis:** 25% dos respondentes moram em UFs codificadas como 12 ou menos, 50% em UFs codificadas como 20 ou menos, e 75% em UFs codificadas como 24 ou menos.
 
 ### Análise da Coluna 'Regiao onde mora'
 
@@ -771,64 +762,17 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```
 ### 2. Validação Cruzada (Cross-Validation)
 
-Para o ajuste de hiperparâmetros e avaliação do modelo, foi utilizada a Validação Cruzada com 5 folds (`cv=5`). Este método divide o conjunto de treinamento em 5 partes (folds). O modelo é treinado 5 vezes, usando 4 folds para treino e 1 para validação em cada iteração. A performance final é a média dos resultados das 5 iterações.
+Para o ajuste de hiperparâmetros e avaliação do modelo, foi utilizada a **Validação Cruzada com 5 folds (`cv=5`)**. Este método divide o conjunto de treinamento em 5 partes (folds). O modelo é treinado 5 vezes, usando 4 folds para treino e 1 para validação em cada iteração. A performance final é a média dos resultados das 5 iterações.
 
 Isso proporciona uma estimativa mais estável e confiável da performance do modelo, reduzindo o risco de que o resultado seja apenas uma coincidência de uma única divisão de dados.
 
 ### 3. Balanceamento de Classes com SMOTE dentro de um Pipeline
 
-O código identifica um potencial desbalanceamento de classes e utiliza a técnica SMOTE (Synthetic Minority Over-sampling Technique) para lidar com isso. O SMOTE cria novas amostras sintéticas da classe minoritária, balanceando o conjunto de dados de treinamento.
+O código identifica um potencial desbalanceamento de classes e utiliza a técnica **SMOTE (Synthetic Minority Over-sampling Technique)** para lidar com isso. O SMOTE cria novas amostras sintéticas da classe minoritária, balanceando o conjunto de dados de treinamento.
 
-Para evitar o vazamento de dados, onde informações do conjunto de validação "vazam" para o treinamento, o SMOTE foi aplicado corretamente dentro de um `Pipeline`. O `Pipeline` garante que o SMOTE seja aplicado apenas nos dados de treinamento de cada fold da validação cruzada. O conjunto de validação (e o conjunto de teste final) permanece inalterado, simulando um ambiente real.
+Para evitar o **vazamento de dados**, onde informações do conjunto de validação "vazam" para o treinamento, o SMOTE foi aplicado corretamente dentro de um **Pipeline**. O `Pipeline` garante que o SMOTE seja aplicado apenas nos dados de treinamento de cada fold da validação cruzada. O conjunto de validação (e o conjunto de teste final) permanece inalterado, simulando um ambiente real.
 
-O código inclui uma ferramenta de verificação (`DataChecker`) para provar que o SMOTE está sendo aplicado corretamente dentro do fluxo.
-
-```python
-# -*- coding: utf-8 -*-
-# Criação do Pipeline para o GridSearch
-# O Pipeline encadeia os passos de pré-processamento e o modelo
-pipeline_for_grid = Pipeline([
-    # 1º Passo: Aplica o SMOTE para balancear as classes (apenas nos dados de treino de cada fold)
-    ('smote', SMOTE(random_state=42)),
-    # Passo de verificação para confirmar a aplicação do SMOTE
-    ('data_checker', DataChecker()),
-    # 2º Passo: Treina o modelo de Árvore de Decisão
-    ('rf', DecisionTreeClassifier(random_state=42))
-])
-
-# Definição do GridSearchCV com o pipeline
-# cv=5 indica a validação cruzada de 5 folds
-grid_search = GridSearchCV(
-    estimator=pipeline_for_grid,
-    param_grid=param_grid,
-    cv=5,
-    scoring='precision',
-    n_jobs=-1,
-    verbose=2
-)
-
-# O grid_search.fit aplica o pipeline (com SMOTE) e a validação cruzada
-grid_search.fit(X_train, y_train)
-
-Com certeza! O texto que você enviou está sem a formatação correta do Markdown. Eu vou reescrevê-lo completamente, aplicando a estrutura de títulos, listas e blocos de código para que fique pronto para ser copiado e colado no seu arquivo README.md no GitHub.
-
-Aqui está o conteúdo corrigido:
-
-Markdown
-
-### 2. Validação Cruzada (Cross-Validation)
-
-Para o ajuste de hiperparâmetros e avaliação do modelo, foi utilizada a Validação Cruzada com 5 folds (`cv=5`). Este método divide o conjunto de treinamento em 5 partes (folds). O modelo é treinado 5 vezes, usando 4 folds para treino e 1 para validação em cada iteração. A performance final é a média dos resultados das 5 iterações.
-
-Isso proporciona uma estimativa mais estável e confiável da performance do modelo, reduzindo o risco de que o resultado seja apenas uma coincidência de uma única divisão de dados.
-
-### 3. Balanceamento de Classes com SMOTE dentro de um Pipeline
-
-O código identifica um potencial desbalanceamento de classes e utiliza a técnica SMOTE (Synthetic Minority Over-sampling Technique) para lidar com isso. O SMOTE cria novas amostras sintéticas da classe minoritária, balanceando o conjunto de dados de treinamento.
-
-Para evitar o vazamento de dados, onde informações do conjunto de validação "vazam" para o treinamento, o SMOTE foi aplicado corretamente dentro de um `Pipeline`. O `Pipeline` garante que o SMOTE seja aplicado apenas nos dados de treinamento de cada fold da validação cruzada. O conjunto de validação (e o conjunto de teste final) permanece inalterado, simulando um ambiente real.
-
-O código inclui uma ferramenta de verificação (`DataChecker`) para provar que o SMOTE está sendo aplicado corretamente dentro do fluxo.
+O código inclui uma ferramenta de verificação **(`DataChecker`)** para provar que o SMOTE está sendo aplicado corretamente dentro do fluxo.
 
 ```python
 # -*- coding: utf-8 -*-
@@ -858,15 +802,91 @@ grid_search = GridSearchCV(
 grid_search.fit(X_train, y_train)
 ```
 
-Descrição dos Parâmetros Utilizados
+### Descrição dos Parâmetros Utilizados
 A otimização do modelo foi realizada com GridSearchCV, que testa sistematicamente uma combinação de diferentes hiperparâmetros para encontrar a melhor configuração.
 
-Parâmetros da Árvore de Decisão (DecisionTreeClassifier)
-No processo de otimização, a seguinte grade de parâmetros foi explorada:
+**Parâmetros da Árvore de Decisão (DecisionTreeClassifier)**
 
-max_depth: [None, 10, 20] (Controla a profundidade máxima da árvore).
-min_samples_split: [2, 5] (Define o número mínimo de amostras para dividir um nó interno).
-min_samples_leaf: [1, 2] (Define o número mínimo de amostras que um nó folha deve ter).
+Os seguintes hiperparâmetros do modelo foram otimizados:
+
+* **max_depth:** Controla a profundidade máxima da árvore. Os valores testados foram [None, 10, 20]. None permite que a árvore cresça até que todas as folhas sejam puras. Limitar a profundidade ajuda a prevenir o overfitting.
+ 
+* **min_samples_split:** Define o número mínimo de amostras necessárias para dividir um nó interno. Os valores testados foram [2, 5]. Valores maiores podem prevenir a criação de divisões que se baseiam em poucas amostras, tornando o modelo mais geral.
+  
+* **min_samples_leaf:** Define o número mínimo de amostras que uma folha (um nó terminal) deve ter. Os valores testados foram [1, 2]. Assim como o min_samples_split, este parâmetro ajuda a suavizar o modelo e evitar o overfitting.
+
+
+```python
+# -*- coding: utf-8 -*-
+# Definição da grade de parâmetros a ser testada
+# A notação 'rf__<parametro>' informa ao GridSearchCV para aplicar
+# o parâmetro ao passo nomeado 'rf' no pipeline.
+param_grid = {
+    'rf__max_depth': [None, 10, 20],
+    'rf__min_samples_split': [2, 5],
+    'rf__min_samples_leaf': [1, 2]
+}
+
+```
+
+**Parâmetros do GridSearchCV**
+* **estimator:** O objeto que será otimizado, que neste caso é o pipeline_for_grid.
+* **param_grid:** O dicionário com os hiperparâmetros a serem testados.
+* **cv:** O número de folds para a validação cruzada (definido como 5).
+* **scoring:** A métrica usada para avaliar qual combinação de parâmetros é a melhor. Foi escolhida a precision (precisão). Isso sugere que o objetivo principal do modelo é minimizar os falsos positivos (ou seja, quando o modelo prevê "Desempregado(a)", ele deve estar muito certo disso).
+* **n_jobs=-1:** Utiliza todos os processadores disponíveis para paralelizar a busca, acelerando o processo.
+ 
+### Fluxo de Processamento e Visualizações
+O código gera várias visualizações para diagnosticar, avaliar e interpretar o modelo.
+
+**1. Curva de Aprendizagem:** Este gráfico (gerado no início) ajuda a diagnosticar se o modelo sofre de alto viés (underfitting) ou alta variância (overfitting). Ele plota a performance do modelo nos dados de treino e de validação cruzada à medida que o número de amostras de treinamento aumenta.
+
+
+* **Resultado esperado:** Idealmente, as duas curvas (treino e validação) convergem para um score alto. Se a curva de validação permanece baixa enquanto a de treino é alta, há overfitting.
+ 
+**2. Curva de Precisão-Recall vs. Limiar de Decisão:** Modelos de classificação retornam probabilidades. O limiar de decisão (padrão 0.5) converte essa probabilidade em uma classe (0 ou 1). Este gráfico permite escolher um limiar otimizado. No código, ele é gerado para ambas as classes, mostrando como a precisão e o recall de cada uma mudam conforme o limiar varia. Isso é fundamental para ajustar o comportamento do modelo às necessidades do negócio (por exemplo, aumentar o recall da classe "Desempregado" mesmo que a precisão diminua um pouco).
+
+
+**3. Matrizes de Confusão:** Apresentam um resumo visual da performance do modelo. Elas mostram os verdadeiros positivos, verdadeiros negativos, falsos positivos e falsos negativos. O código gera matrizes para os conjuntos de treino e teste, permitindo comparar a performance e verificar se há overfitting.
+
+
+```python
+# -*- coding: utf-8 -*-
+# Matriz de Confusão do Teste com o novo limiar
+print("\nMatriz de Confusão Final:")
+cm = confusion_matrix(y_test, y_pred_novo_limiar)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.xlabel("Previsto")
+plt.ylabel("Real")
+plt.title(f"Matriz de Confusão com Limiar = {novo_limiar}")
+plt.show()
+```
+
+
+**Visualização da Árvore de Decisão:** Esta é a principal vantagem do modelo. O código plota a estrutura completa da árvore final, mostrando as regras de decisão em cada nó, o número de amostras e a distribuição das classes.
+
+
+* **Como ler:** A partir do nó raiz (topo), cada nó faz uma pergunta sobre uma feature. Se a condição for verdadeira, segue-se para um lado; se for falsa, para o outro. O processo continua até chegar a uma folha, que determina a previsão da classe.
+**Importância das Features:** Este gráfico de barras mostra quais características (features) foram mais importantes para o modelo tomar suas decisões. A importância é calculada com base em quanto cada feature contribui para reduzir a impureza nos nós da árvore. Isso ajuda a entender quais variáveis são mais preditivas para determinar a situação de trabalho de um indivíduo.
+```python
+# -*- coding: utf-8 -*-
+# Acessar o passo do modelo de Árvore de Decisão DENTRO do pipeline
+rf_step = final_model.named_steps['rf']
+importances = rf_step.feature_importances_
+
+# Criar um DataFrame para visualização
+feature_importance_df = pd.DataFrame({'Feature': X.columns, 'Importance': importances})
+top_20_features = feature_importance_df.sort_values(by='Importance', ascending=False).head(20)
+
+# Gerar o gráfico de barras
+plt.figure(figsize=(12, 10))
+sns.barplot(x='Importance', y='Feature', data=top_20_features, palette='viridis')
+plt.title('Top 20 Features Mais Importantes (Modelo Otimizado via Pipeline)', fontsize=18)
+plt.xlabel('Importância', fontsize=14)
+plt.ylabel('Feature', fontsize=14)
+plt.tight_layout()
+plt.show()
+```
 
 
 
