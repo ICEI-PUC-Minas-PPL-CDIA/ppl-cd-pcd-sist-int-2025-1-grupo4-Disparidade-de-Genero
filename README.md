@@ -19,11 +19,6 @@ O projeto tem como objetivo desenvolver um sistema inteligente para analisar a d
 
 ## Instruções de utilização
 
-Aqui está o README completo com **todos os tópicos**, bem estruturado e formatado em Markdown:
-
-````markdown
-# Instruções de Execução do Projeto
-
 ## 1. Requisitos do Sistema
 
 Antes de iniciar, verifique os seguintes pré-requisitos:
@@ -48,7 +43,7 @@ Se estiver no Google Colab, execute também:
 
 ## 3. Upload da Base de Dados
 
-O modelo foi construído sobre a base `base_final_combinada_kaggle_caged_corrigida_ok.csv`.
+O modelo foi construído sobre a base `[Uploading base_processada_enriquecida.csv…]`
 
 **Atenção:** É fundamental que a base siga este formato:
 
