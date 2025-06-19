@@ -372,10 +372,12 @@ O modelo 1 foi uma Árvore de Decisão com o parâmetro class_weight='balanced' 
 Matriz de Confusão
 A matriz de confusão para o melhor modelo (max_depth=2) foi:
 
-|                     Previsto Não Concluiu | Previsto Concluiu | 
-|   Real Não Concluiu |          47	    |         36        | 
-|   Real Concluiu  |	          8	    |          9        | 
-Métricas de Performance
+|                     | Previsto Não Concluiu | Previsto Concluiu |                 
+|---------------------|-----------------------|-------------------|
+|   Real Não Concluio |          47	      |         36        | 
+|   Real Concluiu     |	          8	      |          9        | 
+
+## Métricas de Performance
 As principais métricas de performance para o modelo foram:
 
 * **Acurácia:** 56.00%
@@ -527,14 +529,139 @@ O modelo de Árvore de Decisão foi configurado com os seguintes parâmetros pri
 * **Acima de 57 anos, há maior probabilidade de conclusão**
 
 ### Modelo 2: RandomForest
+O Random Forest mantém as vantagens interpretáveis da Árvore de Decisão enquanto supera suas principais limitações, especialmente em lidar com overfitting e dados desbalanceados. Será um avanço natural no seu fluxo de modelagem, permitindo comparar os resultados diretamente com o modelo anterior enquanto potencialmente obtém ganhos significativos de performance.
 
-### Resultados obtidos com o modelo 2.
+## Resultados obtidos com o modelo 2.
 
-Repita o passo anterior com os resultados do modelo 2.
+### Matriz de Confusão
+A matriz de confusão para o modelo Random Forest é a seguinte:
 
+|                   | Previsto: Não Concluiu  | Previsto: Concluiu|
+|-------------------|-------------------------|-------------------|
+|Real: Não Concluiu |	     73 (TN)	      |     10 (FP)       |
+|Real: Concluiu     |	     14 (FN)	      |     3 (TP)        |
+
+* **TN (True Negative): 83 casos foram corretamente classificados como "Não Concluiu".**
+
+* **FP (False Positive): 17 casos foram erroneamente classificados como "Concluiu".**
+
+* **FN (False Negative): 14 casos foram erroneamente classificados como "Não Concluiu".**
+
+* **TP (True Positive): 3 casos foram corretamente classificados como "Concluiu".**
+
+## Métricas de Performance
+As métricas calculadas para o modelo foram:
+
+1- Acurácia:
+- 76.00%
+(Proporção de previsões corretas em relação ao total).
+
+2- Precisão (para a classe "Concluiu"):
+
+- 23%
+(Dos previstos como "Concluiu", apenas 23% estavam corretos).
+
+3- Revocação (Recall para a classe "Concluiu"):
+
+- 18%
+(Dos casos reais de "Concluiu", apenas 18% foram identificados).
+
+4- F1-Score (para a classe "Concluiu"):
+
+- 20%
+(Média harmônica entre precisão e revocação).
+
+5- Macro Avg (média aritmética das métricas por classe):
+
+- Precisão: 53%
+- Revocação: 53%
+- F1-Score: 53%.
+
+6- Weighted Avg (média ponderada pelas instâncias de cada classe):
+
+- Precisão: 74%
+- Revocação: 76%
+- F1-Score: 75%.
+
+## Análise dos Resultados
+O modelo teve um desempenho moderado (acurácia de 76%), mas com dificuldade em prever a classe minoritária ("Concluiu"):
+
+- Baixa revocação (18%): O modelo não conseguiu capturar a maioria dos casos positivos.
+- Baixa precisão (23%): Muitas previsões positivas estavam incorretas.
+
+- O desequilíbrio de classes é evidente (414 casos "Não Concluiu" vs. 86 "Concluiu" no treino), o que explica a baixa performance para a classe minoritária.
+- A F1-Score (20%) reforça que o modelo não está equilibrado entre precisão e revocação para a classe positiva.
+  
+## Código das Métricas (Resumo)
+```python
+from sklearn.metrics import classification_report, confusion_matrix
+
+print(f"Acurácia: {accuracy_score(y_test, y_pred_rf):.4f}")
+print("\nRelatório de Classificação:")
+print(classification_report(y_test, y_pred_rf, target_names=['Não Concluiu', 'Concluiu'], zero_division=0))
+
+print("\nMatriz de Confusão:")
+cm_rf = confusion_matrix(y_test, y_pred_rf)
+sns.heatmap(cm_rf, annot=True, fmt='d', cmap='Blues', 
+            xticklabels=['Não Concluiu', 'Concluiu'], 
+            yticklabels=['Não Concluiu', 'Concluiu'])
+plt.show()
+```
 ### Interpretação do modelo 2
 
-Repita o passo anterior com os parâmetros do modelo 2.
+## Parâmetros do Modelo
+
+O modelo Random Forest foi configurado com os seguintes parâmetros:
+
+- n_estimators=100: O modelo utiliza 100 árvores de decisão para tomar decisões.
+- max_depth=10: Cada árvore tem profundidade máxima de 10, limitando o crescimento para evitar overfitting.
+- random_state=42: Garante reprodutibilidade dos resultados.
+- class_weight='balanced': Ajusta os pesos das classes para lidar com o desbalanceamento no conjunto de dados (414 instâncias da classe 0 e 86 da classe 1).
+
+**Métricas de Avaliação** 
+- Acurácia: 0.7600 (76%).
+
+### **Relatório de Classificação:**
+
+**Classe "Não Concluiu" (0):**
+
+- Precisão: 0.84 (84% das previsões positivas estão corretas).
+- Recall: 0.88 (88% dos casos reais foram identificados).
+- F1-score: 0.86 (média harmônica entre precisão e recall).
+
+**Classe "Concluiu" (1):**
+
+- Precisão: 0.23 (23% das previsões positivas estão corretas).
+- Recall: 0.18 (18% dos casos reais foram identificados).
+- F1-score: 0.20.
+
+### Matriz de Confusão:
+
+* **Verdadeiros positivos (TP): 73 (classe 0 corretamente prevista).**
+
+* **Falsos positivos (FP): 14 (classe 0 prevista incorretamente como classe 1).**
+
+* **Falsos negativos (FN): 10 (classe 1 prevista incorretamente como classe 0).**
+
+* **Verdadeiros negativos (TN): 3 (classe 1 corretamente prevista).**
+
+### Feature Importances
+**Embora o código não mostre explicitamente as importâncias das features, podemos inferir com base nas features utilizadas:**
+
+1- Idade: Provavelmente a feature mais importante, pois variáveis numéricas como idade costumam ter grande influência em modelos de decisão.
+  
+2- Gênero: Pode ter alguma relevância, especialmente se houver diferenças significativas entre gêneros na conclusão do ensino superior.
+
+3- Área de Formação: Áreas específicas podem estar correlacionadas com a conclusão do ensino superior.
+
+4- Região onde mora: Pode influenciar indiretamente, dependendo das oportunidades educacionais por região.
+
+### Regras de Raciocínio
+**O Random Forest combina múltiplas árvores de decisão, cada uma criando regras como:**
+
+- Exemplo de regra: Se Idade > 30 e Área de Formação == Engenharias, então maior probabilidade de concluir o ensino superior.
+
+- O modelo usa a média ou votação das árvores para tomar decisões finais, melhorando a robustez.
 
 
 ## Análise comparativa dos modelos
