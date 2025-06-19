@@ -43,29 +43,20 @@ Se estiver no Google Colab, execute também:
 
 ## 3. Upload da Base de Dados
 
-O modelo foi construído sobre a base `[Uploading base_processada_enriquecida.csv…]`
+O modelo foi construído sobre a base `[base_processada_enriquecida.csv…]`
 
-**Atenção:** É fundamental que a base siga este formato:
-
-* Colunas `cor_raca` e `nivel_ensino` sem inconsistências (letras minúsculas, sem espaços extras)
-* Coluna `vinculo_formal` com valores binários: `1` (formal) e `0` (não formal)
-* Ausência de valores nulos (`NaN`)
-* Nomes das colunas preservados conforme o código
-
-## 4. Pré-processamento Obrigatório
-
-Se estiver usando uma base nova, execute o seguinte:
+# Selecionamos apenas as colunas de interesse para criar nosso DataFrame de trabalho
 
 ```python
-df['cor_raca'] = df['cor_raca'].astype(str).str.lower().str.strip()
-df['nivel_ensino'] = df['nivel_ensino'].astype(str).str.lower().str.strip()
-df = df.dropna()
-df = df[df['vinculo_formal'].isin([0, 1])]
+colunas_interesse = [
+    "Idade", "Genero", "Cor/raca/etnia", "PCD", "Região onde mora", "Área de formação em tecnologia", "Situação de trabalho" , "Nível de Ensino"
 ```
+## 4. Execução do Modelo
 
-Esse tratamento garante que os dados estejam compatíveis com o pipeline do modelo.
 
-## 5. Execução do Modelo
+ Para executar a análise e treinar o modelo de árvore de decisão, rode o script principal a partir da pasta raiz do projeto
+ Após a execução, os resultados, como a acurácia do modelo e a matriz de confusão, serão exibidos no terminal. Gráficos gerados serão salvos na pasta /resultados.
+
 
 Siga a ordem dos blocos de código conforme estruturado no notebook/colab:
 
