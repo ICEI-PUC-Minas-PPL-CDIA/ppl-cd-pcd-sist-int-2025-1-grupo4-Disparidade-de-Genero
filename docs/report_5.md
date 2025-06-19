@@ -484,48 +484,7 @@ A análise sugere que a satisfação profissional é um fenômeno complexo demai
 
 ---
 
-## 3. Distribuição do Modelo (Opcional)
-
-Para colocar o modelo em produção, podemos criar um pacote de distribuição simples.
-
-**1. Salvar o modelo treinado em um arquivo:**
-```python
-import joblib
-
-# Supondo que 'rf_classifier' é o seu modelo Random Forest treinado
-joblib.dump(rf_classifier, 'modelo_satisfacao_rf.joblib')
-```
-
-**2. Criar um script de aplicação (`app.py`):**
-Este script carrega o modelo salvo e o utiliza para fazer novas previsões.
-```python
-import joblib
-
-def prever_satisfacao(genero_codificado: int):
-    """
-    Carrega o modelo treinado e faz uma previsão de satisfação.
-    Gênero codificado: 0 para uma classe, 1 para a outra, etc.
-    """
-    try:
-        modelo = joblib.load('modelo_satisfacao_rf.joblib')
-        previsao_codificada = modelo.predict([[genero_codificado]])
-        
-        # Mapeia o resultado para um texto claro
-        return "Provavelmente Satisfeito" if previsao_codificada[0] == 1 else "Provavelmente Insatisfeito"
-            
-    except FileNotFoundError:
-        return "Erro: Arquivo do modelo 'modelo_satisfacao_rf.joblib' não encontrado."
-
-# --- Exemplo de uso ---
-# Supondo que no encoder, 'Feminino' foi 0 e 'Masculino' foi 1
-genero_teste = 1 
-resultado = prever_satisfacao(genero_teste)
-print(f"Para o gênero codificado como '{genero_teste}', o resultado é: {resultado}")
-```
-
----
-
-## 4. Conclusão
+## 3. Conclusão
 
 ### Breve Resumo do que Foi Desenvolvido
 Este trabalho desenvolveu e avaliou dois modelos de classificação (Árvore de Decisão e Random Forest) para prever a satisfação no trabalho com base no gênero, utilizando dados da pesquisa "State of Data Brazil 2023".
