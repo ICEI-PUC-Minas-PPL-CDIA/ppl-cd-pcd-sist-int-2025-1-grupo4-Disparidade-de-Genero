@@ -5,12 +5,12 @@ O projeto tem como objetivo desenvolver um sistema inteligente para analisar a d
 
 ## Integrantes
 
-* Pedro Lansdowne Oliveira
-* Leonardo Andrade Caetano Dornelas
 * Augusto Henrique Gonçalves Valbonetti
 * Eduardo Fraga Fonseca Gomes
-* Vitor Martins Gonçalves
 * Gustavo Bacellar Nunes Soares
+* Leonardo Andrade Caetano Dornelas
+* Pedro Lansdowne Oliveira
+* Vitor Martins Gonçalves
 
 ## Professores
 
