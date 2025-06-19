@@ -30,7 +30,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_**Resumo**. 
+**Resumo**. 
 
 Este estudo investiga a disparidade de gênero no setor da tecnologia no Brasil, analisando os desafios enfrentados pelas mulheres. A pesquisa utiliza dados do State of Data Brazil 2023 para identificar diferenças na participação, salários e oportunidades de crescimento entre homens e mulheres no mercado de trabalho de dados. Um dos objetivos será  fornecer dados e insights que possam embasar políticas de inclusão, contribuindo para um mercado de trabalho mais diverso e inovador.
 
@@ -59,11 +59,8 @@ Dito isso, observa-se uma notória discrepância de gênero em um mercado de tra
 
 ###    Objetivo geral
 
-Avaliar a disparidade de gênero no setor da tecnologia no Brasil, analisando os dados do 
-"State of Data Brazil 2023" para identificar diferenças de participação, salários, 
-oportunidades de crescimento e desafios enfrentados por mulheres e homens nesse mercado. 
-O estudo busca entender como esses fatores impactam a equidade de gênero na área tecnológica e 
-propor soluções para promover a inclusão e a igualdade de oportunidades.
+ Desenvolver um sistema inteligente para classificar se a pessoa vai estar empregada ou desempregada conforme o gênero e a região onde ela mora.
+
 
 ####    Objetivos específicos
 
@@ -139,414 +136,1026 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 - Desafios: Precisa de estudos aprofundados com dados desagregados por cargo, gênero, região e senioridade.
 
 
-## Análise exploratória dos dados
-
-###    Dicionário de dados da base principal - State of Data Brazil 2023
-
-
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| `ID`                                       | Qualitativo  | Nominal        | Identificador único do participante.                                     |
-| `Idade`                                    | Quantitativo | Discreta       | Idade do participante em anos completos.                                 |
-| `Gênero`                                   | Qualitativo  | Nominal        | Identidade de gênero do participante.                                    |
-| `Cor/Raça/Etnia`                           | Qualitativo  | Nominal        | Cor, raça ou etnia autodeclarada pelo participante.                      |
-| `Experiência Profissional Prejudicada`     | Qualitativo  | Nominal        | Participante já teve a carreira prejudicada por algum fator pessoal.     |
-| `Experiência Prejudicada por Gênero`       | Qualitativo  | Nominal        | Identidade de gênero prejudicou a trajetória profissional.               |
-| `Aspectos Prejudicados`                    | Qualitativo  | Nominal        | Lista de aspectos profissionais afetados negativamente.                  |
-| `Oportunidades de vagas`                   | Qualitativo  | Ordinal        | Quantidade de oportunidades de emprego/vagas recebidas.                  |
-| `Senioridade das vagas`                    | Qualitativo  | Ordinal        | Senioridade das vagas recebidas em relação à experiência.                |
-| `Aprovação em entrevistas`                 | Qualitativo  | Ordinal        | Aprovação em processos seletivos/entrevistas.                            |
-| `Oportunidades de carreira`                | Qualitativo  | Ordinal        | Oportunidades de progressão de carreira.                                 |
-| `Velocidade de progressão`                 | Qualitativo  | Ordinal        | Velocidade de progressão de carreira.                                    |
-| `Cobrança/Estresse no trabalho`            | Qualitativo  | Ordinal        | Nível de cobrança ou estresse no ambiente de trabalho.                   |
-| `Atenção às ideias`                        | Qualitativo  | Ordinal        | Atenção dada às opiniões e ideias do participante.                       |
-| `Relação no trabalho`                      | Qualitativo  | Ordinal        | Relação com membros da empresa durante o trabalho.                       |
-| `Relação fora do trabalho`                 | Qualitativo  | Ordinal        | Relação com membros da empresa fora do ambiente de trabalho.             |
-| `Estado onde mora`                         | Qualitativo  | Nominal        | Unidade Federativa (estado) de residência atual.                         |
-| `Código da Região`                         | Qualitativo  | Nominal        | Código identificador da região geográfica.                               |
-| `Região onde mora`                         | Qualitativo  | Nominal        | Região do país onde reside.                                              |
-| `Nível de Ensino`                          | Qualitativo  | Ordinal        | Nível mais alto de escolaridade concluído.                               |
-| `Área de Formação`                         | Qualitativo  | Nominal        | Área do conhecimento da formação principal.                              |
-| `Situação de trabalho`                     | Qualitativo  | Nominal        | Tipo de vínculo atual com o mercado de trabalho.                         |
-| `Cargo Atual`                              | Qualitativo  | Nominal        | Cargo atual do participante na área de dados.                            |
-| `Nível`                                    | Qualitativo  | Ordinal        | Nível hierárquico do cargo (Júnior, Pleno, Sênior etc.).                 |
-| `Faixa Salarial`                           | Quantitativo | Contínuo       | Intervalo de remuneração mensal do participante.                         |
-| `Salário De`                               | Quantitativo | Contínuo       | Valor mínimo da faixa salarial.                                          |
-| `Salário Até`                              | Quantitativo | Contínuo       | Valor máximo da faixa salarial.                                          |
-| `Média Faixa Salarial`                     | Quantitativo | Contínuo       | Valor médio entre o salário mínimo e o máximo.                           |
-| `Experiência na área de dados (anos)`      | Quantitativo | Discreta       | Tempo de experiência na área de dados, em anos completos.                |
-| `Satisfação na empresa atual`              | Qualitativo  | Nominal        | Grau de satisfação do participante com sua empresa atual.                |
-| `Falta de oportunidade de crescimento`     | Qualitativo  | Nominal        | Participante aponta falta de oportunidades como motivo de insatisfação.  |
-| `Salário abaixo do mercado`                | Qualitativo  | Nominal        | Participante sente que está sendo mal remunerado.                        |
-| `Relação ruim com liderança`               | Qualitativo  | Nominal        | Problemas na relação com o gestor/líder.                                 |
-| `Desejo de mudar de área`                  | Qualitativo  | Nominal        | Participante deseja mudar de área de atuação.                            |
-| `Desejo de mais benefícios`                | Qualitativo  | Nominal        | Participante deseja mais benefícios da empresa.                          |
-| `Clima de trabalho ruim`                   | Qualitativo  | Nominal        | Percepção negativa do ambiente de trabalho.                              |
-| `Falta de maturidade analítica na empresa` | Qualitativo  | Nominal        | Participante percebe baixa maturidade analítica na organização.          |
-
-# - Atributos relevantes da base de dados principal para 1ª pergunta orientada
-
-**Pergunta orientada a dados:**  *Como as taxas de conclusão do ensino superior variam entre homens e mulheres, considerando a área de estudo e a região geográfica?*
-
-| Atributo                                   | Tipo do Dado | Escala         | Descrição                                                                 |
-|--------------------------------------------|--------------|----------------|---------------------------------------------------------------------------|
-| `ID`                                       | Qualitativo  | Nominal        | Identificador único do participante.                                     |
-| `Idade`                                    | Quantitativo | Discreta       | Idade do participante em anos completos.                                 |
-| `Gênero`                                   | Qualitativo  | Nominal        | Identidade de gênero do participante.                                    |
-| `Nível de Ensino`                          | Qualitativo  | Ordinal        | Nível mais alto de escolaridade concluído (ex: ensino médio, graduação, etc). |
-| `Área de Formação`                         | Qualitativo  | Nominal        | Área do conhecimento da formação principal (ex: exatas, humanas, biológicas). |
-| `Região onde mora`                         | Qualitativo  | Nominal        | Região do país onde o participante reside (ex: Norte, Sudeste, Sul, etc.).    |
-| `Código da Região`                         | Qualitativo  | Nominal        | Código numérico ou categórico da região geográfica.                      |
-| `Estado onde mora`                         | Qualitativo  | Ordinal        | Unidade Federativa (estado) de residência atual.                         |
-| `Experiência Prejudicada por Genero`       | Qualitativo  | Nominal        | Se o gênero prejudicou a trajetória profissiona.                         |
-| `Situação de Trabalho`                     | Qualitativo  | Nominal        | Vínculo empregatício (CLT, PJ, Autônomo, Desempregado).                  |
-| `Cor/Raça/Etnia`                           | Qualitativo  | Nominal        | Autodeclaração racial (Branco, Preto, Pardo, Amarelo, Indígena).         |
-
-
-
-
-#### Descrição da base
-O dataset “State of Data Brasil 2023” fornece uma cobertura detalhada da panorama da ciência de dados no Brasil. Aborda perfis profissionais, ferramentas com que trabalham, instituições acadêmicas, salários e os maiores problemas enfrentados pelas pessoas relacionadas a dados no Brasil.
-
-# 📊 Análise Exploratória de Dados (EDA) - State of Data Brazil 2023
-
-Este repositório contém uma análise exploratória de dados (EDA) realizada com a base **State of Data Brazil 2023**. Nesta análise, investigamos alguns atributos relevantes, como **idade** e **faixa salarial**, para entender melhor a distribuição dos dados.
-
-## 📌 Atributos Selecionados
-
-Foram analisados dois atributos principais:
-
-Idade  
-Gênero  
-Cor/raca/etnia Experiência profissional prejudicada (análise bi-variada) 
-Experiência prejudicada devido a minha identidade de gênero  
-Aspectos prejudicados  
-Quantidade de oportunidades de emprego/vagas recebidas  
-Senioridade das vagas recebidas em relação à sua experiência  
-Aprovação em processos seletivos/entrevistas  
-Oportunidades de progressão de carreira  
-Velocidade de progressão de carreira   
-Atenção dada diante das minhas opiniões e ideias  
-UF onde mora
-Região onde mora  
-Nível de Ensino  
-Área de Formação   
-Qual sua situação atual de trabalho?  
-Porcentagem de Pessoas com a mesma situação de trabalho na região  
-Cargo Atual
-Nível
-Faixa salarial  
-Quanto tempo de experiência na área de dados você tem?
-Você está satisfeito na sua empresa atual?  
-
-
+# Análise Exploratória - Disparidade de Gênero no Mercado de Trabalho
+
+**Hipótese**: Investigar como a disparidade de gênero interfere na situação atual de trabalho conforme a região onde a pessoa mora.
+
+---
+
+###    Dicionário de dados
+
+## Análise de Dados da Pesquisa State of Data BR 2023
+
+## 1. Base de Dados Principal
+
+* **Fonte:** Arquivo CSV 'State_of_data_BR_2023_Kaggle - df_survey_2023.csv' (processado no notebook).
+* **Descrição:** Esta base de dados contém informações sobre profissionais e estudantes da área de dados no Brasil em 2023. Os dados foram processados para facilitar a análise, incluindo a seleção de colunas relevantes e a codificação de variáveis categóricas.
+
+## 2. Dicionário de Dados da Base Principal
+
+Dicionário de dados base principal
+Claro. Peço desculpas pela resposta anterior que resumiu a saída.
+Aqui está o dicionário de dados completo no formato Markdown para todas as 399 colunas da base de dados, conforme solicitado.
+Markdown
+| Atributo | Descrição | Tipo |
+|---|---|---|
+| P1_a_Idade | Idade do respondente | Inteiro |
+| P1_b_Genero | Gênero do respondente | Textual |
+| P1_c_Cor_raca | Cor ou raça autodeclarada pelo respondente | Textual |
+| P1_d_PCD | Indica se o respondente é uma pessoa com deficiência | Textual |
+| P1_e_experiencia_profissional | Tempo de experiência profissional na área de dados | Textual |
+| P1_f_estado_onde_nasceu | Estado de nascimento do respondente | Textual |
+| P1_g_estado_onde_mora | Estado de residência atual do respondente | Textual |
+| P1_h_possui_graduacao | Indica se o respondente possui diploma de graduação | Textual |
+| P2_a_formacao_academica | Nível mais alto de formação acadêmica | Textual |
+| P2_b_area_formacao | Área de formação principal do respondente | Textual |
+| P2_c_foi_influenciado_a_entrar_na_area_de_dados | Nota de influência para entrar na área de dados | Inteiro |
+| P2_e_se_considera_data_literate | Nota de autoavaliação de alfabetização em dados | Inteiro |
+| P2_f_nivel_ingles | Nível de proficiência em inglês | Textual |
+| P3_a_situacao_trabalho_atual | Situação de trabalho atual na área de dados | Textual |
+| P4_a_cargo_atual | Cargo atual ou mais recente do respondente | Textual |
+| P4_b_escolaridade_recomendada_para_cargo | Escolaridade recomendada para o cargo atual | Textual |
+| P4_c_faixa_salarial | Faixa salarial mensal em Reais (R$) | Textual |
+| P4_d_media_salario_area | Percepção do salário em relação à média da área | Inteiro |
+| P4_e_pretensao_salarial_proximos_2_anos | Pretensão salarial para os próximos 2 anos | Textual |
+| P4_f_setor_empresa | Setor de atuação da empresa | Textual |
+| P4_g_tamanho_empresa | Porte da empresa onde trabalha | Textual |
+| P4_h_regiao_empresa | Região da empresa | Textual |
+| P4_i_modelo_trabalho | Modelo de trabalho (Presencial, Híbrido, Remoto) | Textual |
+| P4_j_ambiente_trabalho_preferido | Preferência de ambiente de trabalho | Textual |
+| P4_l_tipo_contrato_trabalho | Tipo de contrato de trabalho (CLT, PJ, etc.) | Textual |
+| P4_m_nivel_satisfacao_trabalho | Nível de satisfação com o trabalho atual | Inteiro |
+| P5_b_investe_em_educacao_continuada | Resposta sobre o investimento em educação continuada | Textual |
+| P5_c_horas_estudo_semanais | Horas de estudo dedicadas à área de dados por semana | Inteiro |
+| P6_a_preocupacao_ia_substituir_trabalho | Nível de preocupação sobre IA substituir seu trabalho | Inteiro |
+| P6_b_entendimento_ia_generativa | Nível de entendimento sobre IA Generativa | Inteiro |
+| P6_c_uso_ia_generativa_trabalho | Indica se utiliza IA Generativa no trabalho | Textual |
+| P6_e_opiniao_regulamentacao_ia | Opinião sobre a regulamentação do uso de IA | Textual |
+| P1_i_tipo_graduacao_Bacharelado | Resposta binária (0/1) para a opção 'Bacharelado' na pergunta 'Tipo de Graduação' | Inteiro |
+| P1_i_tipo_graduacao_Licenciatura | Resposta binária (0/1) para a opção 'Licenciatura' na pergunta 'Tipo de Graduação' | Inteiro |
+| P1_i_tipo_graduacao_Tecnólogo | Resposta binária (0/1) para a opção 'Tecnólogo' na pergunta 'Tipo de Graduação' | Inteiro |
+| P1_i_tipo_graduacao_Pós-graduação | Resposta binária (0/1) para a opção 'Pós-graduação' na pergunta 'Tipo de Graduação' | Inteiro |
+| P1_i_tipo_graduacao_Mestrado | Resposta binária (0/1) para a opção 'Mestrado' na pergunta 'Tipo de Graduação' | Inteiro |
+| P1_i_tipo_graduacao_Doutorado | Resposta binária (0/1) para a opção 'Doutorado' na pergunta 'Tipo de Graduação' | Inteiro |
+| P1_i_tipo_graduacao_Não conclui a graduação | Resposta binária (0/1) para a opção 'Não concluí a graduação' na pergunta 'Tipo de Graduação' | Inteiro |
+| P1_i_tipo_graduacao_Outro | Resposta binária (0/1) para a opção 'Outro' na pergunta 'Tipo de Graduação' | Inteiro |
+| P2_d_motivacao_area_dados_Gosto de programação | Resposta binária (0/1) para a opção 'Gosto de programação' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Gosto de matemática e estatística | Resposta binária (0/1) para a opção 'Gosto de matemática e estatística' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Estou fazendo uma transição de carreira | Resposta binária (0/1) para a opção 'Estou fazendo uma transição de carreira' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Oportunidade de trabalhar remotamente | Resposta binária (0/1) para a opção 'Oportunidade de trabalhar remotamente' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Área com boas oportunidades de crescimento | Resposta binária (0/1) para a opção 'Área com boas oportunidades de crescimento' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Bons salários | Resposta binária (0/1) para a opção 'Bons salários' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Sou novo no mercado de trabalho | Resposta binária (0/1) para a opção 'Sou novo no mercado de trabalho' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Já trabalhava com dados | Resposta binária (0/1) para a opção 'Já trabalhava com dados' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P2_d_motivacao_area_dados_Outra motivação | Resposta binária (0/1) para a opção 'Outra motivação' na pergunta 'Motivação para entrar na área' | Inteiro |
+| P3_b_principal_linguagem_programacao_Python | Resposta binária (0/1) para a opção 'Python' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_R | Resposta binária (0/1) para a opção 'R' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_SQL | Resposta binária (0/1) para a opção 'SQL' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_VBA | Resposta binária (0/1) para a opção 'VBA' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_SAS/Stata | Resposta binária (0/1) para a opção 'SAS/Stata' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_Java | Resposta binária (0/1) para a opção 'Java' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_C/C++/C# | Resposta binária (0/1) para a opção 'C/C++/C#' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_Javascript/Typescript | Resposta binária (0/1) para a opção 'Javascript/Typescript' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_PHP | Resposta binária (0/1) para a opção 'PHP' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_Não utilizo nenhuma linguagem | Resposta binária (0/1) para a opção 'Não utilizo nenhuma linguagem' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_b_principal_linguagem_programacao_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Principal linguagem de programação' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_Python | Resposta binária (0/1) para a opção 'Python' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_R | Resposta binária (0/1) para a opção 'R' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_SQL | Resposta binária (0/1) para a opção 'SQL' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_VBA | Resposta binária (0/1) para a opção 'VBA' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_SAS/Stata | Resposta binária (0/1) para a opção 'SAS/Stata' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_Java | Resposta binária (0/1) para a opção 'Java' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_C/C++/C# | Resposta binária (0/1) para a opção 'C/C++/C#' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_Javascript/Typescript | Resposta binária (0/1) para a opção 'Javascript/Typescript' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_PHP | Resposta binária (0/1) para a opção 'PHP' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_Não utilizo nenhuma linguagem | Resposta binária (0/1) para a opção 'Não utilizo nenhuma linguagem' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Linguagens mais usadas' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Power BI | Resposta binária (0/1) para a opção 'Power BI' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Tableau | Resposta binária (0/1) para a opção 'Tableau' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Qlik Sense/Qlik View | Resposta binária (0/1) para a opção 'Qlik' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Looker | Resposta binária (0/1) para a opção 'Looker' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Microstrategy | Resposta binária (0/1) para a opção 'Microstrategy' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Metabase | Resposta binária (0/1) para a opção 'Metabase' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Superset | Resposta binária (0/1) para a opção 'Superset' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Redash | Resposta binária (0/1) para a opção 'Redash' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_SAS Visual Analytics | Resposta binária (0/1) para a opção 'SAS VA' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Pentaho | Resposta binária (0/1) para a opção 'Pentaho' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Excel | Resposta binária (0/1) para a opção 'Excel' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Não utilizo ferramentas de BI | Resposta binária (0/1) para a opção 'Não utilizo' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Ferramentas de BI' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Amazon Web Services (AWS) | Resposta binária (0/1) para a opção 'AWS' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Google Cloud (GCP) | Resposta binária (0/1) para a opção 'GCP' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Microsoft Azure | Resposta binária (0/1) para a opção 'Azure' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Oracle | Resposta binária (0/1) para a opção 'Oracle' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_IBM | Resposta binária (0/1) para a opção 'IBM' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Hadoop | Resposta binária (0/1) para a opção 'Hadoop' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Cloudera | Resposta binária (0/1) para a opção 'Cloudera' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Databricks | Resposta binária (0/1) para a opção 'Databricks' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Snowflake | Resposta binária (0/1) para a opção 'Snowflake' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Não utilizo nenhuma | Resposta binária (0/1) para a opção 'Não utilizo' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Plataformas de Nuvem' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Apache Airflow | Resposta binária (0/1) para a opção 'Apache Airflow' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_AWS Glue | Resposta binária (0/1) para a opção 'AWS Glue' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Google Dataflow | Resposta binária (0/1) para a opção 'Google Dataflow' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Azure Data Factory | Resposta binária (0/1) para a opção 'Azure Data Factory' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_IBM DataStage | Resposta binária (0/1) para a opção 'IBM DataStage' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Oracle Data Integrator | Resposta binária (0/1) para a opção 'Oracle Data Integrator' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Talend | Resposta binária (0/1) para a opção 'Talend' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_SAP | Resposta binária (0/1) para a opção 'SAP' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Pentaho | Resposta binária (0/1) para a opção 'Pentaho' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Alteryx | Resposta binária (0/1) para a opção 'Alteryx' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_dbt | Resposta binária (0/1) para a opção 'dbt' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Não utilizo nenhuma | Resposta binária (0/1) para a opção 'Não utilizo' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Ferramentas de ETL' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_SQL | Resposta binária (0/1) para a opção 'SQL' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_Python | Resposta binária (0/1) para a opção 'Python' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_R | Resposta binária (0/1) para a opção 'R' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_SAS/Stata | Resposta binária (0/1) para a opção 'SAS/Stata' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_Excel/Google Sheets | Resposta binária (0/1) para a opção 'Excel/Sheets' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_MATLAB | Resposta binária (0/1) para a opção 'MATLAB' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_SPSS | Resposta binária (0/1) para a opção 'SPSS' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_Knime | Resposta binária (0/1) para a opção 'Knime' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_Alteryx | Resposta binária (0/1) para a opção 'Alteryx' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_Não utilizo nenhuma | Resposta binária (0/1) para a opção 'Não utilizo' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Ferramentas de Modelagem' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_MySQL | Resposta binária (0/1) para a opção 'MySQL' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_PostgreSQL | Resposta binária (0/1) para a opção 'PostgreSQL' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Microsoft SQL Server | Resposta binária (0/1) para a opção 'SQL Server' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Oracle Database | Resposta binária (0/1) para a opção 'Oracle' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_IBM DB2 | Resposta binária (0/1) para a opção 'DB2' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_SAP HANA | Resposta binária (0/1) para a opção 'SAP HANA' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Amazon Redshift | Resposta binária (0/1) para a opção 'Redshift' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Google BigQuery | Resposta binária (0/1) para a opção 'BigQuery' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Apache Hive | Resposta binária (0/1) para a opção 'Hive' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_MongoDB | Resposta binária (0/1) para a opção 'MongoDB' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Cassandra | Resposta binária (0/1) para a opção 'Cassandra' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Elasticsearch | Resposta binária (0/1) para a opção 'Elasticsearch' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Databricks/Delta Lake | Resposta binária (0/1) para a opção 'Databricks' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Snowflake | Resposta binária (0/1) para a opção 'Snowflake' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Não utilizo nenhum | Resposta binária (0/1) para a opção 'Não utilizo' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_Outro | Resposta binária (0/1) para a opção 'Outro' na pergunta 'Bancos de Dados' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Hadoop | Resposta binária (0/1) para a opção 'Hadoop' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Cloudera | Resposta binária (0/1) para a opção 'Cloudera' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Databricks | Resposta binária (0/1) para a opção 'Databricks' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Amazon EMR | Resposta binária (0/1) para a opção 'Amazon EMR' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Google Dataproc | Resposta binária (0/1) para a opção 'Google Dataproc' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Azure HDInsight | Resposta binária (0/1) para a opção 'Azure HDInsight' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Apache Spark | Resposta binária (0/1) para a opção 'Apache Spark' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Apache Flink | Resposta binária (0/1) para a opção 'Apache Flink' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Apache Kafka | Resposta binária (0/1) para a opção 'Apache Kafka' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_MongoDB | Resposta binária (0/1) para a opção 'MongoDB' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Cassandra | Resposta binária (0/1) para a opção 'Cassandra' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Elasticsearch | Resposta binária (0/1) para a opção 'Elasticsearch' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Não utilizo nenhuma | Resposta binária (0/1) para a opção 'Não utilizo' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Plataformas de Big Data' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_Scikit-learn | Resposta binária (0/1) para a opção 'Scikit-learn' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_TensorFlow | Resposta binária (0/1) para a opção 'TensorFlow' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_PyTorch | Resposta binária (0/1) para a opção 'PyTorch' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_Keras | Resposta binária (0/1) para a opção 'Keras' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_XGBoost | Resposta binária (0/1) para a opção 'XGBoost' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_LightGBM | Resposta binária (0/1) para a opção 'LightGBM' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_FastAI | Resposta binária (0/1) para a opção 'FastAI' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_Spacy | Resposta binária (0/1) para a opção 'Spacy' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_NLTK | Resposta binária (0/1) para a opção 'NLTK' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_HuggingFace | Resposta binária (0/1) para a opção 'HuggingFace' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_MLflow | Resposta binária (0/1) para a opção 'MLflow' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_Não utilizo nenhuma | Resposta binária (0/1) para a opção 'Não utilizo' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Bibliotecas de IA' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Aprender novas ferramentas e tecnologias | Resposta binária (0/1) para a opção 'Aprender novas ferramentas' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Mais desafios e responsabilidades | Resposta binária (0/1) para a opção 'Mais desafios' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Melhor equilíbrio entre vida pessoal e profissional | Resposta binária (0/1) para a opção 'Melhor equilíbrio' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Mudar de área de atuação | Resposta binária (0/1) para a opção 'Mudar de área' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Oportunidade de liderar pessoas | Resposta binária (0/1) para a opção 'Oportunidade de liderar' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Oportunidade de trabalhar em outra empresa | Resposta binária (0/1) para a opção 'Trabalhar em outra empresa' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Salário mais alto | Resposta binária (0/1) para a opção 'Salário mais alto' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Trabalhar remotamente | Resposta binária (0/1) para a opção 'Trabalhar remotamente' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Prioridade próxima oportunidade' | Inteiro |
+| P4_n_recebe_beneficios_Vale-alimentação | Resposta binária (0/1) para a opção 'Vale-alimentação' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Vale-refeição | Resposta binária (0/1) para a opção 'Vale-refeição' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Plano de saúde | Resposta binária (0/1) para a opção 'Plano de saúde' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Plano odontológico | Resposta binária (0/1) para a opção 'Plano odontológico' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Auxílio-creche | Resposta binária (0/1) para a opção 'Auxílio-creche' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Seguro de vida | Resposta binária (0/1) para a opção 'Seguro de vida' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Previdência privada | Resposta binária (0/1) para a opção 'Previdência privada' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_PLR | Resposta binária (0/1) para a opção 'PLR' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Horário flexível | Resposta binária (0/1) para a opção 'Horário flexível' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Auxílio home-office | Resposta binária (0/1) para a opção 'Auxílio home-office' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Auxílio educação/estudo | Resposta binária (0/1) para a opção 'Auxílio educação/estudo' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Ações da empresa (Stock Options) | Resposta binária (0/1) para a opção 'Ações da empresa' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Não recebo nenhum benefício | Resposta binária (0/1) para a opção 'Não recebo nenhum' na pergunta 'Benefícios recebidos' | Inteiro |
+| P4_n_recebe_beneficios_Outro | Resposta binária (0/1) para a opção 'Outro' na pergunta 'Benefícios recebidos' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Blogs/Artigos (Medium, Towards Data Science, etc) | Resposta binária (0/1) para a opção 'Blogs/Artigos' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Cursos online (Udemy, Coursera, etc) | Resposta binária (0/1) para a opção 'Cursos online' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Eventos/meetups/conferências | Resposta binária (0/1) para a opção 'Eventos/meetups' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Fóruns (Stack Overflow, Reddit, etc) | Resposta binária (0/1) para a opção 'Fóruns' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_LinkedIn | Resposta binária (0/1) para a opção 'LinkedIn' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Livros | Resposta binária (0/1) para a opção 'Livros' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Newsletters | Resposta binária (0/1) para a opção 'Newsletters' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Podcasts | Resposta binária (0/1) para a opção 'Podcasts' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Twitter | Resposta binária (0/1) para a opção 'Twitter' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Vídeos no YouTube | Resposta binária (0/1) para a opção 'Vídeos no YouTube' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Comunidades do WhatsApp/Telegram/Discord | Resposta binária (0/1) para a opção 'Comunidades' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_a_plataformas_conteudo_dados_Outro | Resposta binária (0/1) para a opção 'Outro' na pergunta 'Plataformas de conteúdo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Udemy | Resposta binária (0/1) para a opção 'Udemy' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Coursera | Resposta binária (0/1) para a opção 'Coursera' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_edX | Resposta binária (0/1) para a opção 'edX' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_DataCamp | Resposta binária (0/1) para a opção 'DataCamp' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Alura | Resposta binária (0/1) para a opção 'Alura' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Udacity | Resposta binária (0/1) para a opção 'Udacity' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_LinkedIn Learning | Resposta binária (0/1) para a opção 'LinkedIn Learning' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_YouTube | Resposta binária (0/1) para a opção 'YouTube' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Kaggle Learn | Resposta binária (0/1) para a opção 'Kaggle Learn' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Cursos de empresas de tecnologia (AWS, Google, Microsoft, etc) | Resposta binária (0/1) para a opção 'Cursos de empresas' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Cursos de escolas de dados (Data Science Academy, etc) | Resposta binária (0/1) para a opção 'Cursos de escolas de dados' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Não estudo por nenhuma plataforma | Resposta binária (0/1) para a opção 'Não estudo' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_d_plataformas_estudo_dados_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Plataformas de estudo' | Inteiro |
+| P5_e_desafios_carreira_dados_Falta de oportunidades de crescimento na minha empresa | Resposta binária (0/1) para a opção 'Falta de oportunidades' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Falta de maturidade da empresa em relação à cultura de dados | Resposta binária (0/1) para a opção 'Falta de maturidade da empresa' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Infraestrutura de dados inadequada | Resposta binária (0/1) para a opção 'Infraestrutura inadequada' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Qualidade dos dados ruins | Resposta binária (0/1) para a opção 'Qualidade dos dados ruins' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Comunicação com outras áreas da empresa | Resposta binária (0/1) para a opção 'Comunicação com outras áreas' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Burocracia para colocar projetos em produção | Resposta binária (0/1) para a opção 'Burocracia' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Falta de clareza ou definição de um plano de carreira | Resposta binária (0/1) para a opção 'Falta de clareza no plano de carreira' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Dificuldade em me manter atualizado | Resposta binária (0/1) para a opção 'Dificuldade em me manter atualizado' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Síndrome do Impostor | Resposta binária (0/1) para a opção 'Síndrome do Impostor' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Excesso de reuniões | Resposta binária (0/1) para a opção 'Excesso de reuniões' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Salário abaixo da média do mercado | Resposta binária (0/1) para a opção 'Salário abaixo da média' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Nenhum desafio | Resposta binária (0/1) para a opção 'Nenhum desafio' na pergunta 'Desafios na carreira' | Inteiro |
+| P5_e_desafios_carreira_dados_Outro | Resposta binária (0/1) para a opção 'Outro' na pergunta 'Desafios na carreira' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_ChatGPT | Resposta binária (0/1) para a opção 'ChatGPT' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Google Bard/Gemini | Resposta binária (0/1) para a opção 'Google Bard/Gemini' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Microsoft Copilot | Resposta binária (0/1) para a opção 'Microsoft Copilot' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Github Copilot | Resposta binária (0/1) para a opção 'Github Copilot' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Claude | Resposta binária (0/1) para a opção 'Claude' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Midjourney | Resposta binária (0/1) para a opção 'Midjourney' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_DALL-E | Resposta binária (0/1) para a opção 'DALL-E' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Notion AI | Resposta binária (0/1) para a opção 'Notion AI' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Nenhuma | Resposta binária (0/1) para a opção 'Nenhuma' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_Outra | Resposta binária (0/1) para a opção 'Outra' na pergunta 'Ferramentas de IA Generativa' | Inteiro |
+| P1_i_tipo_graduacao_nan | Resposta binária (0/1) indicando ausência de resposta para 'Tipo de Graduação' | Inteiro |
+| P2_d_motivacao_area_dados_nan | Resposta binária (0/1) indicando ausência de resposta para 'Motivação para entrar na área' | Inteiro |
+| P3_b_principal_linguagem_programacao_nan | Resposta binária (0/1) indicando ausência de resposta para 'Principal linguagem de programação' | Inteiro |
+| P3_c_linguagens_de_programacao_mais_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Linguagens mais usadas' | Inteiro |
+| P3_d_ferramentas_bi_mais_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Ferramentas de BI' | Inteiro |
+| P3_e_plataformas_nuvem_mais_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Plataformas de Nuvem' | Inteiro |
+| P3_f_ferramentas_etl_mais_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Ferramentas de ETL' | Inteiro |
+| P3_g_ferramentas_de_modelagem_de_dados_mais_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Ferramentas de Modelagem' | Inteiro |
+| P3_h_banco_de_dados_mais_usados_nan | Resposta binária (0/1) indicando ausência de resposta para 'Bancos de Dados' | Inteiro |
+| P3_i_plataformas_de_big_data_mais_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Plataformas de Big Data' | Inteiro |
+| P3_j_bibliotecas_de_ia_mais_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Bibliotecas de IA' | Inteiro |
+| P4_k_prioridade_proxima_oportunidade_nan | Resposta binária (0/1) indicando ausência de resposta para 'Prioridade próxima oportunidade' | Inteiro |
+| P4_n_recebe_beneficios_nan | Resposta binária (0/1) indicando ausência de resposta para 'Benefícios recebidos' | Inteiro |
+| P5_a_plataformas_conteudo_dados_nan | Resposta binária (0/1) indicando ausência de resposta para 'Plataformas de conteúdo' | Inteiro |
+| P5_d_plataformas_estudo_dados_nan | Resposta binária (0/1) indicando ausência de resposta para 'Plataformas de estudo' | Inteiro |
+| P5_e_desafios_carreira_dados_nan | Resposta binária (0/1) indicando ausência de resposta para 'Desafios na carreira' | Inteiro |
+| P6_d_ferramentas_ia_generativa_usadas_nan | Resposta binária (0/1) indicando ausência de resposta para 'Ferramentas de IA Generativa' | Inteiro |
+| cargo_atual_Analista de BI/BI Analyst | Resposta binária (0/1) para o cargo 'Analista de BI' | Inteiro |
+| cargo_atual_Analista de Dados/Data Analyst | Resposta binária (0/1) para o cargo 'Analista de Dados' | Inteiro |
+| cargo_atual_Cientista de Dados/Data Scientist | Resposta binária (0/1) para o cargo 'Cientista de Dados' | Inteiro |
+| cargo_atual_Engenheiro de Dados/Data Engineer | Resposta binária (0/1) para o cargo 'Engenheiro de Dados' | Inteiro |
+| cargo_atual_Engenheiro de Machine Learning/Machine Learning Engineer | Resposta binária (0/1) para o cargo 'Engenheiro de Machine Learning' | Inteiro |
+| cargo_atual_Engenheiro de Analytics/Analytics Engineer | Resposta binária (0/1) para o cargo 'Engenheiro de Analytics' | Inteiro |
+| cargo_atual_Especialista/Arquiteto(a) de Dados | Resposta binária (0/1) para o cargo 'Especialista/Arquiteto de Dados' | Inteiro |
+| cargo_atual_Líder Técnico/Tech Lead | Resposta binária (0/1) para o cargo 'Líder Técnico' | Inteiro |
+| cargo_atual_Coordenador/Manager | Resposta binária (0/1) para o cargo 'Coordenador/Manager' | Inteiro |
+| cargo_atual_Outro | Resposta binária (0/1) para o cargo 'Outro' | Inteiro |
+| cargo_atual_nan | Resposta binária (0/1) indicando ausência de resposta para 'Cargo Atual' | Inteiro |
+| area_formacao_Ciências da Computação, Engenharia de Software, Sistemas de Informação, etc. | Resposta binária (0/1) para a área de formação 'Computação' | Inteiro |
+| area_formacao_Engenharias (outras) | Resposta binária (0/1) para a área de formação 'Outras Engenharias' | Inteiro |
+| area_formacao_Estatística | Resposta binária (0/1) para a área de formação 'Estatística' | Inteiro |
+| area_formacao_Economia, Administração, Contabilidade, etc. | Resposta binária (0/1) para a área de formação 'Negócios' | Inteiro |
+| area_formacao_Ciências Sociais, Marketing, etc. | Resposta binária (0/1) para a área de formação 'Ciências Sociais/Marketing' | Inteiro |
+| area_formacao_Ciências Exatas (Matemática, Física, etc.) | Resposta binária (0/1) para a área de formação 'Ciências Exatas' | Inteiro |
+| area_formacao_Outra | Resposta binária (0/1) para a área de formação 'Outra' | Inteiro |
+| area_formacao_nan | Resposta binária (0/1) indicando ausência de resposta para 'Área de Formação' | Inteiro |
+| situacao_trabalho_atual_Empregado (CLT) | Resposta binária (0/1) para a situação 'Empregado (CLT)' | Inteiro |
+| situacao_trabalho_atual_Empregado (Servidor Público) | Resposta binária (0/1) para a situação 'Empregado (Servidor Público)' | Inteiro |
+| situacao_trabalho_atual_Contrato (PJ) | Resposta binária (0/1) para a situação 'Contrato (PJ)' | Inteiro |
+| situacao_trabalho_atual_Freelancer | Resposta binária (0/1) para a situação 'Freelancer' | Inteiro |
+| situacao_trabalho_atual_Estagiário | Resposta binária (0/1) para a situação 'Estagiário' | Inteiro |
+| situacao_trabalho_atual_Desempregado, buscando recolocação | Resposta binária (0/1) para a situação 'Desempregado' | Inteiro |
+| situacao_trabalho_atual_Apenas estudando | Resposta binária (0/1) para a situação 'Apenas estudando' | Inteiro |
+| situacao_trabalho_atual_Outra | Resposta binária (0/1) para a situação 'Outra' | Inteiro |
+| situacao_trabalho_atual_nan | Resposta binária (0/1) indicando ausência de resposta para 'Situação de Trabalho' | Inteiro |
+| faixa_salarial_Menos de R$ 1.000/mês | Resposta binária (0/1) para a faixa salarial 'Menos de R$ 1.000' | Inteiro |
+| faixa_salarial_de R$ 1.001/mês a R$ 2.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 1.001 a R$ 2.000' | Inteiro |
+| faixa_salarial_de R$ 2.001/mês a R$ 3.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 2.001 a R$ 3.000' | Inteiro |
+| faixa_salarial_de R$ 3.001/mês a R$ 4.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 3.001 a R$ 4.000' | Inteiro |
+| faixa_salarial_de R$ 4.001/mês a R$ 6.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 4.001 a R$ 6.000' | Inteiro |
+| faixa_salarial_de R$ 6.001/mês a R$ 8.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 6.001 a R$ 8.000' | Inteiro |
+| faixa_salarial_de R$ 8.001/mês a R$ 12.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 8.001 a R$ 12.000' | Inteiro |
+| faixa_salarial_de R$ 12.001/mês a R$ 16.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 12.001 a R$ 16.000' | Inteiro |
+| faixa_salarial_de R$ 16.001/mês a R$ 20.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 16.001 a R$ 20.000' | Inteiro |
+| faixa_salarial_de R$ 20.001/mês a R$ 25.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 20.001 a R$ 25.000' | Inteiro |
+| faixa_salarial_de R$ 25.001/mês a R$ 30.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 25.001 a R$ 30.000' | Inteiro |
+| faixa_salarial_de R$ 30.001/mês a R$ 40.000/mês | Resposta binária (0/1) para a faixa salarial 'R$ 30.001 a R$ 40.000' | Inteiro |
+| faixa_salarial_Mais de R$ 40.000/mês | Resposta binária (0/1) para a faixa salarial 'Mais de R$ 40.000' | Inteiro |
+| faixa_salarial_nan | Resposta binária (0/1) indicando ausência de resposta para 'Faixa Salarial' | Inteiro |
+| nivel_ingles_Nenhum | Resposta binária (0/1) para o nível de inglês 'Nenhum' | Inteiro |
+| nivel_ingles_Básico | Resposta binária (0/1) para o nível de inglês 'Básico' | Inteiro |
+| nivel_ingles_Intermediário | Resposta binária (0/1) para o nível de inglês 'Intermediário' | Inteiro |
+| nivel_ingles_Avançado | Resposta binária (0/1) para o nível de inglês 'Avançado' | Inteiro |
+| nivel_ingles_Fluente | Resposta binária (0/1) para o nível de inglês 'Fluente' | Inteiro |
+| nivel_ingles_nan | Resposta binária (0/1) indicando ausência de resposta para 'Nível de Inglês' | Inteiro |
+| experiencia_profissional_Sem experiência | Resposta binária (0/1) para a experiência 'Sem experiência' | Inteiro |
+| experiencia_profissional_Menos de 1 ano | Resposta binária (0/1) para a experiência 'Menos de 1 ano' | Inteiro |
+| experiencia_profissional_de 1 a 2 anos | Resposta binária (0/1) para a experiência 'de 1 a 2 anos' | Inteiro |
+| experiencia_profissional_de 2 a 3 anos | Resposta binária (0/1) para a experiência 'de 2 a 3 anos' | Inteiro |
+| experiencia_profissional_de 4 a 5 anos | Resposta binária (0/1) para a experiência 'de 4 a 5 anos' | Inteiro |
+| experiencia_profissional_de 6 a 10 anos | Resposta binária (0/1) para a experiência 'de 6 a 10 anos' | Inteiro |
+| experiencia_profissional_Mais de 10 anos | Resposta binária (0/1) para a experiência 'Mais de 10 anos' | Inteiro |
+| experiencia_profissional_nan | Resposta binária (0/1) indicando ausência de resposta para 'Experiência Profissional' | Inteiro |
+
+
+
+## Base auxiliar
+
+# Dicionário de Dados - RELAÇÃO ANUAL DE INFORMAÇÕES SOCIAIS – RAIS
+
+| Atributo | Descrição | Tipo |
+| :--- | :--- | :--- |
+| **Município** | Código do município (segundo o IBGE) onde o vínculo de trabalho está localizado. | Categórico |
+| **CNAE 2.0 Classe** | Código da atividade econômica principal do estabelecimento, com base na Classificação Nacional de Atividades Econômicas (CNAE 2.0). | Categórico |
+| **CBO Ocupação 2002** | Código da ocupação do trabalhador, com base na Classificação Brasileira de Ocupações (CBO), versão 2002. | Categórico |
+| **Faixa Etária** | Intervalo de idade em que o trabalhador se encontra. | Categórico |
+| **Escolaridade após 2005**| Nível de instrução formal do trabalhador. | Categórico |
+| **Raça Cor** | Raça ou cor autodeclarada pelo trabalhador, seguindo as categorias do IBGE. | Categórico |
+| **Sexo Trabalhador** | Sexo do trabalhador. | Categórico |
+| **Vl Remun Média (SM)** | Valor da remuneração média mensal do trabalhador, expressa em quantidade de salários mínimos (SM). | Real |
+| **Ind Trab Intermitente** | Indicador que aponta se o contrato de trabalho é do tipo intermitente (1 para Sim, 0 para Não). | Categórico |
+| **Ind Trab Parcial** | Indicador que aponta se o contrato de trabalho é em regime de tempo parcial (1 para Sim, 0 para Não). | Categórico |
+| **Tipo Vínculo** | Natureza do vínculo empregatício (ex: CLT, Estatutário). | Categórico |
+| **Qtd Vínculos** | Número total de vínculos de trabalho existentes para o agrupamento de características da respectiva linha. | Inteiro |
+
+### Observação: Agregamos à base principal usando o atributo Região onde mora, como atributo chave. 
+
+
+## Preparação dos Dados
+
+A fase de preparação dos dados é crucial para garantir a qualidade e adequação do dataset para a análise. Neste projeto, a preparação dos dados consistiu nos seguintes passos:
+
+### Seleção dos Atributos
+
+Com base no objetivo da análise e na hipótese a ser investigada, foi realizada a seleção manual dos atributos relevantes do dataset original. Os atributos selecionados para compor a base de dados principal foram:
+
+* Idade
+* Genero
+* Cor/raca/etnia
+* PCD (Pessoa com Deficiência)
+* Regiao onde mora
+* Nível de Ensino
+* Área de formação em dados
+* Situação de trabalho
+* Estoque de Emprego Região (base auxiliar)
+
+Estes atributos foram considerados essenciais para explorar as relações entre gênero, situação de trabalho e localização geográfica, além de fornecerem contexto demográfico e educacional dos respondentes.
+
+### Tratamento dos Valores Faltantes ou Omissos
+
+A presença de valores faltantes ou omissos nos dados pode impactar a análise. No processo de preparação, identificamos e tratamos esses valores:
+
+* A categoria "Outras Engenharias" foi removida, pois não há dados nessa classe; 'nan' - nulos.
+* "Outra opção" recebeu o mesmo valor que "Computação / Engenharia / Sistemas de Informação / TI" (0), pois a moda da àrea de fomação era a classe '0', então atribui 'Outra opção' a essa classe.
+* Linhas com valores NaN nesta coluna foram removidas durante o processamento.
+* *Linhas com valor “Prefiro não informar” em PCD foram removidas do DataFrame.*
+* *Linhas com valor “Outro” em gênero foram removidas do DataFrame.*
+
+### Tratamento dos Valores Inconsistentes
+
+Valores inconsistentes podem distorcer os resultados da análise. Foram realizados tratamentos específicos para lidar com inconsistências identificadas:
+
+* **Tratamento na Coluna 'Genero':** As categorias 'Outro' e 'Prefiro não informar' na coluna 'Genero' foram identificadas como inconsistentes para a análise de disparidade de gênero binária. Essas linhas foram removidas do dataset.
+* **Tratamento na Coluna 'PCD':** Similarmente, as linhas onde a coluna 'PCD' apresentava o valor 'Prefiro não informar' foram removidas, pois não era possível inferir a informação de deficiência a partir desse valor.
+* **Tratamento na Coluna 'Área de formação':** Foram identificados valores nulos (NaN) na coluna 'Área de formação' após o mapeamento, o que indicava a falta de informação para algumas entradas. As linhas com valores nulos nesta coluna também foram removidas.
+* **Agrupamento na Coluna 'Situação de trabalho':** As diversas categorias de situação de trabalho foram agrupadas em duas categorias principais: 'Empregado(a)' e 'Desempregado(a)'. Este agrupamento simplifica a análise e foca na dicotomia emprego/desemprego. (É importante verificar e corrigir quaisquer erros de digitação durante este agrupamento).
+* **Tratamento de Mapeamentos Duplicados/Inconsistentes:** Durante a codificação de variáveis categóricas, foi observado que a categoria 'Outras Engenharias' na coluna 'Área de formação' foi mapeada para dois valores diferentes (2 e 8), e 'Outra opção' foi mapeada para o mesmo valor que 'Computação / Engenharia...' (0). Embora o código original mostre esses mapeamentos, para uma análise precisa, estes devem ser revisados e corrigidos para garantir a unicidade dos códigos para cada categoria.
+
+
+##  Conversão de Dados em `base_princ`
+
+Esta seção detalha as transformações aplicadas às colunas da base de dados `base_princ` para converter todas as variáveis em categóricas
+-
+
+### **1. Discretização (*Binning*)**
+
+Esta transformação foi aplicada para converter a variável numérica contínua `Idade` em uma variável categórica ordinal.
+
+| Coluna Alvo | Transformação | Lógica | Novas Categorias (Rótulos) | Resultado |
+| :--- | :--- | :--- | :--- | :--- |
+| `Idade` | Agrupamento por Quartis (`pd.cut`) | A coluna foi dividida em 4 grupos de tamanho aproximadamente igual. | `Faixa_1_Idade`, `Faixa_2_Idade`, `Faixa_3_Idade`, `Faixa_4_Idade` | Criação da coluna `Faixa Etária` e remoção da coluna `Idade` original. |
+
+---
+
+### **2. Codificação por Rótulo (*Label Encoding*)**
+
+Aplicada para converter variáveis categóricas binárias ou ordinais em valores numéricos.
+
+| Coluna Alvo | Valor Original (Categoria) | Valor Novo (Numérico) |
+| :--- | :--- | :--- |
+| **Nível de Ensino** | `Não tenho graduação formal` | `0` |
+| | `Estudante de Graduação` | `1` |
+| | `Graduação/Bacharelado` | `2` |
+| | `Pós-graduação` | `3` |
+| | `Mestrado` | `4` |
+| | `Doutorado ou Phd` | `5` |
+| **Área de formação em tecnologia** | `Não` | `0` |
+| | `Sim` | `1` |
+| **Genero** | `Masculino` | `0` |
+| | `Feminino` | `1` |
+| **Situação de trabalho** | `Empregado(a)` | `0` |
+| | `Desempregado(a)` | `1` |
+| **PCD** | `Não` | `0` |
+| | `Sim` | `1` |
+
+**Observação:** Para as colunas `Genero`, `Situação de trabalho` e `PCD`, as linhas que não puderam ser mapeadas (por conterem valores nulos ou diferentes dos especificados) foram removidas da base (`dropna()`).
+
+---
+
+### **3. Codificação Fictícia (*One-Hot Encoding*)**
+
+Aplicada a todas as variáveis categóricas nominais restantes para convertê-las em um formato numérico binário, utilizando `pd.get_dummies()`.
+
+* **Função:** `pd.get_dummies(df, drop_first=False, dtype=int)`
+* **Lógica:** Para cada categoria única em uma coluna, uma nova coluna binária (com valores `0` ou `1`) é criada.
+
+| Colunas Afetadas (Exemplos) | Transformação | Exemplo de Novas Colunas Geradas |
+| :--- | :--- | :--- |
+| `Faixa Etária` | One-Hot Encoding | `Faixa Etária_Faixa_1_Idade`, `Faixa Etária_Faixa_2_Idade`, ... |
+| `Cor/raca/etnia` | One-Hot Encoding | `Cor/raca/etnia_Amarela`, `Cor/raca/etnia_Branca`, `Cor/raca/etnia_Parda`, ... |
+| `Região onde mora` | One-Hot Encoding | `Região onde mora_Centro-oeste`, `Região onde mora_Nordeste`, ... |
+
+
+
+## 2.2. Dicionário de Dados da base modificada(pré-processada)
+
+| Atributo | Qtde de Instâncias | Tipo do atributo |
+|---|---|---|
+| Genero | 5008 | Categórico |
+| PCD | 5008 | Categórico |
+| Área de formação em tecnologia | 5008 | Categórico |
+| Situação de trabalho | 5008 | Categórico |
+| Nível de Ensino | 5008 | Categórico |
+| Cor/raca/etnia_Amarela | 5008 | Categórico |
+| Cor/raca/etnia_Branca | 5008 | Categórico |
+| Cor/raca/etnia_Indígena | 5008 | Categórico |
+| Cor/raca/etnia_Outra | 5008 | Categórico |
+| Cor/raca/etnia_Parda | 5008 | Categórico |
+| Cor/raca/etnia_Prefiro não informar | 5008 | Categórico |
+| Cor/raca/etnia_Preta | 5008 | Categórico |
+| Região onde mora_Centro-oeste | 5008 | Categórico |
+| Região onde mora_Nordeste | 5008 | Categórico |
+| Região onde mora_Norte | 5008 | Categórico |
+| Região onde mora_Sudeste | 5008 | Categórico |
+| Região onde mora_Sul | 5008 | Categórico |
+| Faixa Etária_Faixa_1_Idade | 5008 | Categórico |
+| Faixa Etária_Faixa_2_Idade | 5008 | Categórico |
+| Faixa Etária_Faixa_3_Idade | 5008 | Categórico |
+| Faixa Etária_Faixa_4_Idade | 5008 | Categórico |
+
+
+## 3. Análise Descritiva dos Dados utilizando Estatísticas de Primeira Ordem
+
+* **Descrição:** Esta seção apresenta uma análise descritiva das colunas da base de dados processada (`base_princ`), utilizando estatísticas de primeira ordem para descrever a distribuição e as características dos dados.
+
+## Descrição de Dados Numéricos
+
+As colunas na base de dados processada foram convertidas para o tipo `int` após a codificação das variáveis categóricas. Embora representem categorias, sua análise estatística descritiva pode fornecer insights sobre a distribuição dos valores codificados. A coluna 'Idade' é a única numérica original antes do processamento extenso das demais colunas.
+
+Para dados numéricos, as estatísticas de primeira ordem incluem:
+
+* **Média:** Medida de tendência central.
+* **Mediana:** Valor central dos dados ordenados.
+* **Moda:** Valor mais frequente nos dados.
+* **Desvio Padrão:** Medida de dispersão dos dados em torno da média.
+* **Variância:** Quadrado do desvio padrão, outra medida de dispersão.
+* **Mínimo e Máximo:** Limites inferior e superior dos dados.
+* **Quartis:** Valores que dividem os dados em quatro partes iguais (25%, 50% - mediana, 75%).
+
+Considerando a saída do seu código para a análise estatística, podemos descrever cada coluna:
+
+### Análise da Coluna 'Idade'
+
+* **Média:** 31.96 anos.
+* **Mediana:** 30.00 anos.
+* **Moda:** 27.00 anos (o valor mais frequente de idade).
+* **Desvio Padrão:** 7.55 anos (indica a dispersão das idades em torno da média).
+* **Mínimo:** 18.00 anos.
+* **Máximo:** 73.00 anos.
+* **Quartis:** 25% dos respondentes têm 27 anos ou menos, 50% têm 30 anos ou menos, e 75% têm 36 anos ou menos.
+
+### Análise da Coluna 'Genero'
+
+* **Média:** 0.25 (considerando a codificação, indica a proporção relativa entre os gêneros).
+* **Mediana:** 0.00.
+* **Moda:** 1.00 (o gênero com maior frequência na codificação).
+* **Desvio Padrão:** 0.43.
+* **Mínimo:** 0.00.
+* **Máximo:** 1.00.
+* **Quartis:** 75% dos valores codificados de gênero são 0.
+
+### Análise da Coluna 'Cor/raca/etnia'
+
+* **Média:** 0.91 (valor médio da codificação da cor/raça/etnia).
+* **Mediana:** 0.00.
+* **Moda:** 3.00 (a cor/raça/etnia com maior frequência na codificação).
+* **Desvio Padrão:** 1.34.
+* **Mínimo:** 0.00.
+* **Máximo:** 6.00.
+* **Quartis:** 75% dos valores codificados de cor/raça/etnia são 3 ou menos.
+
+### Análise da Coluna 'PCD'
+
+* **Média:** 0.02 (indica a proporção de respondentes que se identificam como PCD na codificação).
+* **Mediana:** 0.00.
+* **Moda:** 1.00 (a categoria de PCD com maior frequência na codificação).
+* **Desvio Padrão:** 0.14.
+* **Mínimo:** 0.00.
+* **Máximo:** 1.00.
+* **Quartis:** 75% dos valores codificados para PCD são 0.
+
+### Análise da Coluna 'UF'
+
+* **Média:** 17.87 (valor médio da codificação da Unidade Federativa).
+* **Mediana:** 20.00.
+* **Moda:** 24.00 (a UF com maior frequência na codificação).
+* **Desvio Padrão:** 6.71.
+* **Mínimo:** 1.00.
+* **Máximo:** 26.00.
+* **Quartis:** 25% dos respondentes moram em UFs codificadas como 12 ou menos, 50% em UFs codificadas como 20 ou menos, e 75% em UFs codificadas como 24 ou menos.
+
+### Análise da Coluna 'Regiao onde mora'
+
+* **Média:** 2.17 (valor médio da codificação da região).
+* **Mediana:** 2.00.
+* **Moda:** 2.00 (a região com maior frequência na codificação).
+* **Desvio Padrão:** 0.77.
+* **Mínimo:** 0.00.
+* **Máximo:** 4.00.
+* **Quartis:** 75% dos respondentes moram em regiões codificadas como 3 ou menos.
+
+### Análise da Coluna 'Nível de Ensino'
+
+* **Média:** 2.59 (valor médio da codificação do nível de ensino).
+* **Mediana:** 3.00.
+* **Moda:** 3.00 (o nível de ensino com maior frequência na codificação).
+* **Desvio Padrão:** 1.00.
+* **Mínimo:** 1.00.
+* **Máximo:** 5.00.
+* **Quartis:** 75% dos respondentes têm nível de ensino codificado como 3 ou menos.
+
+### Análise da Coluna 'Área de formação'
+
+* **Média:** 1.32 (valor médio da codificação da área de formação).
+* **Mediana:** 1.00.
+* **Moda:** 2.00 (a área de formação com maior frequência na codificação).
+* **Desvio Padrão:** 1.72.
+* **Mínimo:** 0.00.
+* **Máximo:** 7.00.
+* **Quartis:** 75% dos respondentes têm área de formação codificada como 2 ou menos.
+
+### Análise da Coluna 'Situação de trabalho'
+
+* **Média:** 0.09 (indica a proporção de respondentes em uma das categorias de situação de trabalho na codificação).
+* **Mediana:** 0.00.
+* **Moda:** 1.00 (a situação de trabalho com maior frequência na codificação).
+* **Desvio Padrão:** 0.28.
+* **Mínimo:** 0.00.
+* **Máximo:** 1.00.
+* **Quartis:** 75% dos valores codificados para situação de trabalho são 0.
+
+**Observação:** É crucial lembrar que a interpretação dessas estatísticas para as colunas codificadas deve ser feita com cautela, pois os números representam categorias e não possuem uma escala numérica inerente. A análise é mais útil para entender a distribuição dos códigos dentro de cada coluna. Para a coluna 'Idade', a interpretação é direta, pois se trata de uma variável numérica contínua.
 
-## 📊 Estatísticas Descritivas
-
- 🔎 Metodologia
-
-1. **Limpeza dos dados**: Tratamento de valores nulos e conversão dos dados categóricos para quantitativos.
-2. **Cálculo dos quartis e estatísticas descritivas**: Usando fórmulas de quartil, média, desvio padrão, máximo e mínimo.
-3. **Transformação da faixa salarial**: Extração dos valores mínimo e máximo de cada faixa e cálculo da média dos extremos.
-4. **Geração de gráficos**: Criação de histogramas para melhor compreensão dos dados.
-
-A tabela a seguir apresenta as estatísticas descritivas calculadas para os dois atributos selecionados:
-
-| Estatística  | Idade | Faixa Salarial (R$) |
-|-------------|------|--------------------|
-| Quartil 3 (Q3) | 27   | 14.000,5 |
-| Quartil 1 (Q1) | 36   | 5.000,5  |
-| Mediana      | 30   | 10.000,5 |
-| Média        | 31,99 | 10.050,5 |
-| Desvio Padrão | 7,62  | 6.969,22 |
-| Máximo       | 73   | 35.000,5 |
-| Mínimo       | 18   | 1.050,5  |
-
-📊 Estatísticas Descritivas (State of Data Brazil 2023)
- Idade -
-Moda: A faixa etária mais comum entre os profissionais de dados é de 25 a 29 anos.
-
-Média: A idade média dos profissionais é de aproximadamente 30 anos.
-
-Mediana: A mediana da idade também se encontra na faixa de 25 a 29 anos.​
-
- Salário - 
-Moda: A faixa salarial mais frequente está entre R$ 4.000 e R$ 6.000 mensais.
-
-Média: O salário médio dos profissionais de dados é de cerca de R$ 7.000 por mês.
-
-Mediana: A mediana salarial também se encontra na faixa de R$ 7.000 mensais.​
-
- Gênero -
-Distribuição:
 
-Masculino: 76,2%
-
-Feminino: 23,8%
-
-Outros/Prefiro não informar: Dados não especificados
-
-## 📈 Visualizações
-
-Foram gerados histogramas para visualizar a distribuição dos dados:
-- **Idade**: Distribuição da idade dos participantes da pesquisa.
-![image](https://github.com/user-attachments/assets/0efa2c18-45bf-4f6f-8d4c-25fe2bf5a385)
-
-
-- **Faixa salarial**: Faixas salariais ajustadas para valores médios de intervalo.
-  ![Histograma atributo Faixa salarial](https://media.discordapp.net/attachments/1357513541300519082/1357546291776720946/image.png?ex=67f09901&is=67ef4781&hm=9ff84b0546890d33499084a70f2f69114d1afd4c54353bcd7d16ee8a4b6466dd&=&format=webp&quality=lossless)
-- **Gênero**: Distribuição dos gêneros dos participantes da pesquisa.
-  ![image](https://github.com/user-attachments/assets/bcf6299f-2d5d-4ace-a38b-f037d91b7e4b)
-- **Cor/Raça/Etnia**: Distribuição de cor/raça/etnia dos participantes da pesquisa.
-  ![image](https://github.com/user-attachments/assets/0fdafe5c-bbfb-49d6-a762-5162936f9143)
-- **Estado onde mora**: Estados onde moram os participantes da pesquisa.
-  ![image](https://github.com/user-attachments/assets/6c76a12d-4773-4da4-b23c-285ed66ba7fc)
-- **Região onde mora**: Região onde moram os participantes da pesquisa.
-  ![image](https://github.com/user-attachments/assets/0029fc00-b4bb-4bf5-875a-d0f5445924b6)
-- **Nível de ensino**: Nível de ensino dos participantes da pesquisa.
-  ![image](https://github.com/user-attachments/assets/260569ed-c489-4740-8ed6-e9814cb66580)
-- **Situação de trabalho**: Atual situação de trabalho dos participantes da pesquisa.
-  ![image](https://github.com/user-attachments/assets/088722a1-7b84-4ef6-b3a4-3dafa4082a08)
-- **Cargo**: Atual cargo dos participantes da pesquisa.
-  ![image](https://github.com/user-attachments/assets/df2c7c85-2038-4577-8e5e-71f386f47c7b)
-- **Experiência em anos**: Anos na área dos participantes da pesquisa.
-  
-  ![image](https://github.com/user-attachments/assets/92d7bc7f-31c2-41d0-9254-71089697fcee)
-- **Forma de trabalho**: Forma como os participantes da pesquisa atendem ao trabalho.
-  
-  ![image](https://github.com/user-attachments/assets/16faeda2-0a46-464b-a61a-063e360f63b7)
-- **Experiência profissional prejudicada**: Participantes que por alguma característica são afetados negativamente no ambiente de trabalho.
-  
-  ![image](https://github.com/user-attachments/assets/3ae5094d-c430-4d04-8db0-9ca17bad6631)
-  * Por que?:
-    
-  ![image](https://github.com/user-attachments/assets/3848134f-1ca2-4f3e-94cd-662f03d0e6ab)
-  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-- **Experiência pessoal prejudicada por gênero**:
-  
-  ![image](https://github.com/user-attachments/assets/19c16761-8478-49a3-9614-5562aea1b618)
-  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-- **Aspectos prejudicados**:
-  
-    ![image](https://github.com/user-attachments/assets/3755f20c-67e0-410c-a3ed-4b855675e63b)
-      *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-- **Oportunidade de emprego**:
-  
-    ![image](https://github.com/user-attachments/assets/37765b30-1dff-4e8b-9b78-6b52d0eee523)
-    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-- **Senioridade das vagas**:
-  
-  ![image](https://github.com/user-attachments/assets/31c46b10-5822-47a5-a687-4df2e4a0be26)
-    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-- **Aprovação em entrevistas**:
-  
-  ![image](https://github.com/user-attachments/assets/36a73d05-85b5-48f0-9ce8-848082779b99)
-  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-- **Oportunidade de progressão de carreira**:
-  
-  ![image](https://github.com/user-attachments/assets/baca44b6-67fc-416f-a0cd-d78b2ba50c78)
-  *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-
-- **Velocidade de progressão de carreira**:
-  ![image](https://github.com/user-attachments/assets/f6f3bbbf-7f2e-42ba-8d3a-2dcc84877db5)
-    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-  
-- **Stress no trabalho**:
-  ![image](https://github.com/user-attachments/assets/45c1145a-790b-4b00-91fc-26da5a57e248)
-    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-
-- **Atenção dada às ideias**:
-  ![image](https://github.com/user-attachments/assets/733da054-113a-45fa-b7d8-79cbd7dcbdac)
-    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-
-- **Relação com outros membros do trabalho**:
-  ![image](https://github.com/user-attachments/assets/56d78239-e4c8-429d-a635-18ec65c43219)
-    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-
-- **Relação com membros do trabalho fora da empresa**:
-  ![image](https://github.com/user-attachments/assets/2b3f8bb5-53dd-4d28-b177-d65622f20f51)
-    *As informações se referes apenas às pessoas que responderam "SIM" à pergunta "Experiência profissional prejudicada por gênero?".*
-
-
-
-
-
-  
-
-
-
-
-
-###    Dicionário de dados da base para enriquecimento 1 - Indicadores de Mercado de Trabalho por Região e Gênero – PNAD Contínua (2023 T3) IPEA
-
-| Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
-|------------------------|--------------|----------------|-------------------------------------------------------------------------------|
-| `Sigla`                |  Qualitativo | Nominal        | Sigla correspondente à região do Brasil.                                      |
-| `Código Região`        |  Qualitativo | Nominal        | Código numérico associado à região do Brasil.                                 |
-| `Região`               |  Qualitativo | Nominal        | Nome completo da região do Brasil (Centro-Oeste, Norte, Nordeste, Sul, Sudeste). |
-| `Ocupados `            |  Quantitativo| Contínuo       | Percentual de homens e mulheres ocupados na região no 3º trimestre de 2023.   |  
-| `Desocupados `         |  Quantitativo| Contínuo       | Percentual de homens e mulheres desocupados na região no 3º trimestre de 2023.| 
-| `Informalidade`        |  Quantitativo| Contínuo       | Percentual de trabalhadores informais do sexo masculino e feminino na região, de acordo com a PNAD Contínua|                   
-| `Força de trabalho Efetivo Trabalho Principal ` |  Quantitativo| Contínuo | Média de horas efetivamente trabalhadas no trabalho principal no 1º trimestre de 2023.  |  
-| `Força de trabalho Habitual Trabalho Principal `|  Quantitativo| Contínuo | Média de horas habitualmente trabalhadas no trabalho principal no 1º trimestre de 2023. |
-| `Força de trabalho Efetivo Todos Trabalhos `    |  Quantitativo| Contínuo | Média de horas efetivamente trabalhadas no trabalho principal no 1º trimestre de 2023.  |  
-| `Força de trabalho Habitual Todos Trabalhos `   |  Quantitativo| Contínuo | Média de horas habitualmente trabalhadas considerando todos os trabalhos no 1º trimestre de 2023. |  
-| `Média horas trabalhadas Efetiva ` |  Quantitativo| Contínuo   | Média de horas efetivamente trabalhadas por homens e mulheres no trabalho principal no 1º trimestre de 2023. |  
-| `Média horas trabalhadas Habitual` |  Quantitativo| Contínuo   | Média de horas habitualmente trabalhadas considerando todos os trabalhos no 1º trimestre de 2023. |  
-| `Rendimento médio real Efetivo`    |  Quantitativo| Contínuo   | Média do rendimento real efetivo no trabalho principal no 4º trimestre de 2023. |  
-| `Média de horas trabalhadas Habitual` |  Quantitativo| Contínuo| Média de horas habitualmente trabalhadas no trabalho principal no 4º trimestre de 2023.|  
-| `Taxa de Participaçao `| Quantitativo| Contínuo        | Percentual da população que faz parte da força de trabalho no 1º trimestre de 2023.|  
-| `Taxa de Desemprego `  | Quantitativo| Contínuo        | Percentual da população economicamente ativa que está desempregada no 1º trimestre de 2023.| 
-| `Taxa de subutilização da força de trabalho`    | Quantitativo | Contínuo | Percentual da força de trabalho subutilizada (desempregada, subocupada ou potencial) no 1º trimestre de 2023.|
-
-####   Descrição da base
-
-Como base secundária, utilizamos os microdados do IPEA, que tem como referencia os dados do IBGE e PNAD. Os dados estão separados por nível de região do Brasil, e retratam o mercado de trabalho em cada região separada por trimestre e gênero. A base está dividida entre dados qualitativos e quantitativos.
-
-*Dados qualitativos:*
-Sigla;
-Código região;
-
-*Dados quantitativos:*
-Ocupados;
-Desocupados;
-Informalidade;
-Força de trabalho efetivo trabalho principal;
-Força de trabalho habitual trabalho principal;
-Força de trabalho efetivo todos trabalhos;
-Força de trabalho habitual todos trabalhos;
-Média de horas trabalhadas efetiva;
-Média de horas trabalhadas habitual;
-Rendimento médio real efetivo;
-Taxa de participação;
-Taxa de desemprego;
-Taxa de subutilização da força de trabalho;
-
-
-###    Dicionário de dados da base para enriquecimento 2
-
-| Nome do Atributo       | Tipo do Dado | Escala do dado | Descrição                                                                     |
-|------------------------|--------------|----------------|-------------------------------------------------------------------------------|
-| ``                     |              |                |                                                                               |
-
-#### Descrição da base
-...
-
-
-
-## Preparação dos dados
-
-A preparação dos dados consiste dos seguintes passos:
-
-### State of Data 2023 - Atributos Selecionados e Processamento
-
-A partir da base State of Data 2023, realizamos a seleção dos atributos que consideramos mais relevantes para a abordagem do nosso tema. Para cada atributo selecionado, elaboramos uma descrição clara e definimos o respectivo tipo de dado.
-
-No que se refere à presença de ruídos na base — como dados omissos ou incompletos —, realizamos o preenchimento de parte dessas lacunas, com o objetivo de viabilizar a aplicação de um modelo de classificação binária.
-
-Adicionalmente, desenvolvemos um dicionário de dados com a finalidade de explicitar os códigos utilizados, garantindo maior transparência e compreensão na manipulação e análise da base. 
-
-| N  | Nome da Variável                                                                             | Descrição do Atributo                                                                                                                                                                                                                                                                                                                                                     |
-|----|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1  | ('P0', 'id')                                                                                 | Identidade                                                                                                                                                                                                                                                                                                                                                                |
-| 2  | ('P1_a ', 'Idade')                                                                           | 18 até 73 ANOS                                                                                                                                                                                                                                                                                                                                                            |
-| 3  | ('P1_b ', 'Genero')                                                                          | Masculino, Feminino, Prefiro não informar, Outro                                                                                                                                                                                                                                                                                                                          |
-| 4  | Cod Genero ( 0 a 3)                                                                          | "Masculino = 0;<br/> Feminino = 1;<br/> Outro = 2;<br/> Prefiro não informar  = 3;"                                                                                                                                                                                                                                                                                                      |
-| 5  | ('P1_c ', 'Cor/raca/etnia')                                                                  | Branca, Amarela, Parda, Preto                                                                                                                                                                                                                                                                                                                                             |
-| 6  | Cod Cor/raca/etnia                                                                           | "Branca = 0;<br/> Amarela = 1;<br/> Parda = 2;<br/> Preto = 3;<br/> Indígena = 4;<br/> Outra = 6;<br/> Prefiro não informar = 5;"                                                                                                                                                                                                                                                                                                                           |
-| 7  | ('P1_e ', 'experiencia_profissional_prejudicada')                                            | "Não acredito que minha experiência profissional seja afetada devido a esses fatores=0;<br/> Sim, acredito que a minha a experiência profissional seja afetada devido a minha identidade de gênero =1;<br/> Nada foi preenchido =2;"                                                                                                                                              |
-| 8  | ('P1_e_3 ', 'Experiencia prejudicada devido a minha identidade de gênero')                   | "Sim =1; Não = 0; Não foi preenchido = 2;"                                                                                                                                                                                                                                                                                                                                |
-| 9  | ('P1_f ', 'aspectos_prejudicados')                                                           | Concatenação da forma como as pessoas sentem-se prejudicadas                                                                                                                                                                                                                                                                                                              |
-| 10 | ('P1_f_1', 'Quantidade de oportunidades de emprego/vagas recebidas')                         | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                        |
-| 11 | ('P1_f_2', 'Senioridade das vagas recebidas em relação à sua experiência')                   | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                         |
-| 12 | ('P1_f_3', 'Aprovação em processos seletivos/entrevistas')                                  | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                         |
-| 13 | ('P1_f_4', 'Oportunidades de progressão de carreira')                                        | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                         |
-| 14 | ('P1_f_5', 'Velocidade de progressão de carreira')                                           | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                          |
-| 15 | ('P1_f_6', 'Nível de cobrança no trabalho/Stress no trabalho')                               | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                         |
-| 16 | ('P1_f_7', 'Atenção dada diante das minhas opiniões e ideias')                               | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                          |
-| 17 | ('P1_f_8', 'Relação com outros membros da empresa, em momentos de trabalho')                 | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                          |
-| 18 | ('P1_f_9', 'Relação com outros membros da empresa, em momentos de integração e outros momentos fora do trabalho') | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                                                                                         |
-| 19 | ('P1_i_1 ', 'uf onde mora')                                                                  | Sigla do estado                                                                                                                                                                                                                                                                                                                                                           |
-| 20 | Código Região                                                                                 | Número do código                                                                                                                                                                                                                                                                                                                                                          |
-| 21 | ('P1_i_2 ', 'Regiao onde mora')                                                              | Nome da região                                                                                                                                                                                                                                                                                                                                                            |
-| 22 | ('P1_l ', 'Nivel de Ensino')                                                                 | "Divididos em Não ter graduação formal, ser Estudante de Graduação, de, Pós-graduação, Graduação/Bacharelado, Mestrado ou Doutorado/Phd"                                                                                                                                                                                                                                 |
-| 23 | COD_Nível_Ensino                                                                             | "Não tenho graduação formal = 0;<br/> Estudante de Graduação = 1;<br/> Pós-graduação = 2;<br/> Graduação/Bacharelado = 3;<br/> Mestrado = 4;<br/> Doutorado ou Phd = 5;<br/> Não respodeu = 6;"                                                                                                                                                                                                          |
-| 24 | ('P1_m ', 'Área de Formação')                                                                | Ciências Biológicas/ Farmácia/ Medicina/ Área da Saúde; Ciências Sociais;<br/> Computação / Engenharia de Software / Sistemas de Informação/ TI;<br/> Economia/ Administração / Contabilidade / Finanças/ Negócios; Estatística/ Matemática/ Matemática computacional/ Ciências Atuariais;<br/> Marketing / Publicidade / Comunicação / Jornalismo;<br/> Outra opção;<br/> Outras Engenharias;<br/> Química / Física |
-| 25 | COD_Área_de_Formação                                                                         | "Ciências Biológicas/ Farmácia/ Medicina/ Área da Saúde = 0;<br/> Ciências Sociais = 1;<br/> Computação / Engenharia de Software / Sistemas de Informação/ TI = 2;<br/> Economia/ Administração / Contabilidade / Finanças/ Negócios =3;<br/> Estatística/ Matemática/ Matemática computacional/ Ciências Atuariais = 4;<br/> Marketing / Publicidade / Comunicação / Jornalismo = 5;<br/> Outra opção = 6;<br/> Outras Engenharias = 7;<br/> Química / Física = 8;<br/> Não respondeu = 9;" |
-| 26 | COD_OCUP                                                                                      | "Sim = 1; Não = 0;"                                                                                                                                                                                                                                                                                                                                                       |
-| 27 | ('P2_a ', 'Qual sua situação atual de trabalho?')                                            | Empregado (CLT); Empreendedor ou Empregado (CNPJ); Servidor Público; Desempregado e não estou buscando recolocação; Estagiário; Somente Estudante (pós-graduação); Desempregado, buscando recolocação; Somente Estudante (graduação); Trabalho na área Acadêmica/Pesquisador; Freelancer                                       |
-| 28 | COD_SIT_TRAB                                                                                 | "Empregado (CLT) = 3;<br/> Empreendedor ou Empregado (CNPJ) = 2;<br/> Servidor Público = 6;<br/> Desempregado e não estou buscando recolocação = 4;<br/> Estagiário = 0;<br/> Somente Estudante (pós-graduação) = 8;<br/> Desempregado, buscando recolocação = 1;<br/> Somente Estudante (graduação) = 7;<br/> Trabalho na área Acadêmica/Pesquisador = 9;<br/> Freelancer = 5;" |
-| 29 | Concat                                                                                       | Mesclagem de atributos de dados do IPEA e do State of Data                                                                                                                                                                                                                                                                                                                 |
-| 30 | Porcentagem de Pessoas com a mesma situação de trabalho na região                            | Valor em porcentagem referente                                                                                                                                                                                                                                                                                                                                            |
-| 31 | ('P2_f ', 'Cargo Atual')                                                                     | Analista de BI/BI Analyst;<br/> Analista de Dados/Data Analyst;<br/> Analista de Inteligência de Mercado/Market Inteligence;<br/> Analista de Negócios/Business Analyst;<br/> Analista de Suporte/Analista Técnico;<br/> Analytics Engineer;<br/> Cientista de Dados/Data Scientist;<br/> Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO);<br/> DBA/Administrador de Banco de Dados;<br/> Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas;<br/> Economista;<br/> Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect;<br/> Engenheiro de Machine Learning/ML Engineer/AI Engineer;<br/> Estatístico;<br/> Não informado;<br/> Outra opção;<br/> Outras Engenharias (não inclui dev);<br/> Professor/Pesquisador |
-| 32 | Cod Cargo Atual                                                                              | "Analista de BI/BI Analyst = 1;<br/> Analista de Dados/Data Analyst = 2;<br/> Analista de Inteligência de Mercado/Market Inteligence = 3;<br/> Analista de Negócios/Business Analyst = 4;<br/> Analista de Suporte/Analista Técnico = 5;<br/> Analytics Engineer = 6;<br/> Cientista de Dados/Data Scientist = 7;<br/> Data Product Manager/ Product Manager (PM/APM/DPM/GPM/PO) = 8;<br/> DBA/Administrador de Banco de Dados = 9;<br/> Desenvolvedor/ Engenheiro de Software/ Analista de Sistemas = 10;<br/> Economista = 11;<br/> Engenheiro de Dados/Arquiteto de Dados/Data Engineer/Data Architect = 12;<br/> Engenheiro de Machine Learning/ML Engineer/AI Engineer = 13;<br/> Estatístico = 14;<br/> Não informado = 0;<br/> Outra opção = 17;<br/> Outras Engenharias (não inclui dev) = 15;<br/> Professor/Pesquisador = 16;" |
-| 33 | ('P2_g ', 'Nivel')                                                                           | Dado faltante; Júnior; Pleno; Sênior                                                                                                                                                                                                                                                                                                                                      |
-| 34 | COD_Nivel                                                                                    | "Dado faltante = 3; Júnior = 1; Pleno = 2; Sênior = 0;"                                                                                                                                                                                                                                                                                                                    |
-| 35 | COD_SALARIO                                                                                  | "Dado faltante = 0;<br/> de R$ 1.001/mês a R$ 2.000/mês = 2;<br/> de R$ 12.001/mês a R$ 16.000/mês = 8; Menos de R$ 1.000/mês = 1; de R$ 16.001/mês a R$ 20.000/mês = 9; de R$ 25.001/mês a R$ 30.000/mês = 11; de R$ 30.001/mês a R$ 40.000/mês = 12; Acima de R$ 40.001/mês = 13;<br/> de R$ 2.001/mês a R$ 3.000/mês = 3;<br/> de R$ 20.001/mês a R$ 25.000/mês = 10;<br/> de R$ 3.001/mês a R$ 4.000/mês = 4;<br/> de R$ 4.001/mês a R$ 6.000/mês = 5;<br/> de R$ 6.001/mês a R$ 8.000/mês = 6;<br/> de R$ 8.001/mês a R$ 12.000/mês = 7;" |
-| 36 | ('P2_h ', 'Faixa salarial')                                                                  | Distribuído em: dado faltante;<br/> de R$ 1.001/mês a R$ 2.000/mês;<br/> de R$12.001/mês a R$ 16.000/mês;<br/> Menos de R$ 1.000/mês;<br/> de R$ 16.001/mês a R$ 20.000/mês;<br/> de R$ 25.001/mês a R$ 30.000/mês;<br/> de R$ 30.001/mês a R$ 40.000/mês;<br/> Acima de R$ 40.001/mês;<br/> de R$ 2.001/mês a R$ 3.000/mês;<br/> de R$ 20.001/mês a R$ 25.000/mês;<br/> de R$ 3.001/mês a R$ 4.000/mês;<br/> de R$ 4.001/mês a R$ 6.000/mês;<br/> de R$ 6.001/mês a R$ 8.000/mês;<br/> de R$ 8.001/mês a R$ 12.000/mês |
-| 40 | ('P2_l_1 ', 'Falta de oportunidade de crescimento no emprego atual')     | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-| 41 | ('P2_l_2 ', 'Salário atual não corresponde ao mercado')                  | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-| 42 | ('P2_l_3 ', 'Não tenho uma boa relação com meu líder/gestor')           | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-| 43 | ('P2_l_4 ', 'Gostaria de trabalhar em em outra área de atuação')        | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-| 44 | ('P2_l_5 ', 'Gostaria de receber mais benefícios')                      | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-| 45 | ('P2_l_6 ', 'O clima de trabalho/ambiente não é bom')                   | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-| 46 | ('P2_l_7 ', 'Falta de maturidade analítica na empresa')                | Sim = 1; Não = 0;                                                                                                                                                                                                                                                                    |
-> - Seleção dos atributos
-> - Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
-> - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
-> - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
 
 
 ## Indução de modelos
 
 ### Modelo 1: Árvore de Decisão
 
-Foi feita a escolha desse modelo devido ao nosso objetivo principal ser prever que fator é afetado pela disparidade de gênero no setor de dados.
+# Análise de Projeto de Classificação com Árvore de Decisão
 
-Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
-Justifique a escolha do modelo.
-Apresente o processo utilizado para amostragem de dados (particionamento, cross-validation).
-Descreva os parâmetros utilizados. 
-Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta gráfica, apresente imagens
-com o fluxo de processamento.
+Com base na análise do código Python fornecido, apresento uma descrição detalhada do projeto de classificação, abordando a escolha do modelo, o processo de amostragem, os parâmetros utilizados e os trechos de código mais relevantes.
 
-### Modelo 2: Algoritmo
+## Justificativa da Escolha do Modelo
 
-Repita os passos anteriores para o segundo modelo.
+O modelo escolhido para este problema de classificação foi a **Árvore de Decisão (`DecisionTreeClassifier`)**. Essa escolha é justificada por várias razões:
+
+* **Interpretabilidade**: As árvores de decisão são modelos de "caixa branca". Isso significa que a lógica por trás de suas previsões é fácil de entender e visualizar. Como o código demonstra ao final, é possível plotar a árvore inteira e seguir o caminho das decisões com base nas características (features) dos dados, tornando o resultado transparente.
+* **Tratamento de Dados Não-Lineares**: O modelo pode capturar relações não-lineares complexas entre as features e o alvo, sem a necessidade de transformações complexas dos dados de entrada.
+* **Requisitos Mínimos de Pré-processamento**: Árvores de decisão não exigem a normalização ou padronização dos dados numéricos, o que simplifica a fase de preparação.
+* **Base para Modelos Mais Complexos**: A Árvore de Decisão é o bloco de construção fundamental para algoritmos mais robustos como `Random Forest` e `Gradient Boosting`, tornando-a um excelente ponto de partida para um projeto de classificação.
+
+## Processo de Amostragem de Dados
+
+O tratamento e a amostragem dos dados foram realizados de forma robusta para garantir que o modelo seja treinado e avaliado corretamente, evitando problemas comuns como superestimação de performance (*overfitting*) e vazamento de dados (*data leakage*).
+
+### 1. Particionamento em Treino e Teste
+
+Inicialmente, o conjunto de dados foi dividido em dois subconjuntos: um para treino (85%) e outro para teste (15%). Foi utilizada a função `train_test_split`.
+
+* **Estratificação (`stratify=y`)**: A estratificação foi usada para garantir que a proporção das classes (ex: "Empregado" e "Desempregado") fosse a mesma tanto no conjunto de treino quanto no de teste. Isso é crucial em cenários com classes desbalanceadas, pois evita que um dos conjuntos tenha uma representação muito diferente do outro.
+* **Reprodutibilidade (`random_state=42`)**: A definição de um `random_state` garante que a divisão dos dados seja sempre a mesma em todas as execuções do código, permitindo a reprodutibilidade dos resultados.
+```python
+# -*- coding: utf-8 -*-
+# Separação da variável alvo (y) e das features (X)
+y = df['Situação de trabalho']
+X = df.drop('Situação de trabalho', axis=1)
+
+# Divisão dos dados em treino e teste
+# test_size=0.15 define que 15% dos dados serão para teste
+# stratify=y garante a proporção das classes nos dois conjuntos
+# random_state=42 garante a reprodutibilidade da divisão
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.15, stratify=y, random_state=42
+)
+```
+### 2. Validação Cruzada (Cross-Validation)
+
+Para o ajuste de hiperparâmetros e avaliação do modelo, foi utilizada a Validação Cruzada com 5 folds (`cv=5`). Este método divide o conjunto de treinamento em 5 partes (folds). O modelo é treinado 5 vezes, usando 4 folds para treino e 1 para validação em cada iteração. A performance final é a média dos resultados das 5 iterações.
+
+Isso proporciona uma estimativa mais estável e confiável da performance do modelo, reduzindo o risco de que o resultado seja apenas uma coincidência de uma única divisão de dados.
+
+### 3. Balanceamento de Classes com SMOTE dentro de um Pipeline
+
+O código identifica um potencial desbalanceamento de classes e utiliza a técnica SMOTE (Synthetic Minority Over-sampling Technique) para lidar com isso. O SMOTE cria novas amostras sintéticas da classe minoritária, balanceando o conjunto de dados de treinamento.
+
+Para evitar o vazamento de dados, onde informações do conjunto de validação "vazam" para o treinamento, o SMOTE foi aplicado corretamente dentro de um `Pipeline`. O `Pipeline` garante que o SMOTE seja aplicado apenas nos dados de treinamento de cada fold da validação cruzada. O conjunto de validação (e o conjunto de teste final) permanece inalterado, simulando um ambiente real.
+
+O código inclui uma ferramenta de verificação (`DataChecker`) para provar que o SMOTE está sendo aplicado corretamente dentro do fluxo.
+
+```python
+# -*- coding: utf-8 -*-
+# Criação do Pipeline para o GridSearch
+# O Pipeline encadeia os passos de pré-processamento e o modelo
+pipeline_for_grid = Pipeline([
+    # 1º Passo: Aplica o SMOTE para balancear as classes (apenas nos dados de treino de cada fold)
+    ('smote', SMOTE(random_state=42)),
+    # Passo de verificação para confirmar a aplicação do SMOTE
+    ('data_checker', DataChecker()),
+    # 2º Passo: Treina o modelo de Árvore de Decisão
+    ('rf', DecisionTreeClassifier(random_state=42))
+])
+
+# Definição do GridSearchCV com o pipeline
+# cv=5 indica a validação cruzada de 5 folds
+grid_search = GridSearchCV(
+    estimator=pipeline_for_grid,
+    param_grid=param_grid,
+    cv=5,
+    scoring='precision',
+    n_jobs=-1,
+    verbose=2
+)
+
+# O grid_search.fit aplica o pipeline (com SMOTE) e a validação cruzada
+grid_search.fit(X_train, y_train)
+
+Com certeza! O texto que você enviou está sem a formatação correta do Markdown. Eu vou reescrevê-lo completamente, aplicando a estrutura de títulos, listas e blocos de código para que fique pronto para ser copiado e colado no seu arquivo README.md no GitHub.
+
+Aqui está o conteúdo corrigido:
+
+Markdown
+
+### 2. Validação Cruzada (Cross-Validation)
+
+Para o ajuste de hiperparâmetros e avaliação do modelo, foi utilizada a Validação Cruzada com 5 folds (`cv=5`). Este método divide o conjunto de treinamento em 5 partes (folds). O modelo é treinado 5 vezes, usando 4 folds para treino e 1 para validação em cada iteração. A performance final é a média dos resultados das 5 iterações.
+
+Isso proporciona uma estimativa mais estável e confiável da performance do modelo, reduzindo o risco de que o resultado seja apenas uma coincidência de uma única divisão de dados.
+
+### 3. Balanceamento de Classes com SMOTE dentro de um Pipeline
+
+O código identifica um potencial desbalanceamento de classes e utiliza a técnica SMOTE (Synthetic Minority Over-sampling Technique) para lidar com isso. O SMOTE cria novas amostras sintéticas da classe minoritária, balanceando o conjunto de dados de treinamento.
+
+Para evitar o vazamento de dados, onde informações do conjunto de validação "vazam" para o treinamento, o SMOTE foi aplicado corretamente dentro de um `Pipeline`. O `Pipeline` garante que o SMOTE seja aplicado apenas nos dados de treinamento de cada fold da validação cruzada. O conjunto de validação (e o conjunto de teste final) permanece inalterado, simulando um ambiente real.
+
+O código inclui uma ferramenta de verificação (`DataChecker`) para provar que o SMOTE está sendo aplicado corretamente dentro do fluxo.
+
+```python
+# -*- coding: utf-8 -*-
+# Criação do Pipeline para o GridSearch
+# O Pipeline encadeia os passos de pré-processamento e o modelo
+pipeline_for_grid = Pipeline([
+    # 1º Passo: Aplica o SMOTE para balancear as classes (apenas nos dados de treino de cada fold)
+    ('smote', SMOTE(random_state=42)),
+    # Passo de verificação para confirmar a aplicação do SMOTE
+    ('data_checker', DataChecker()),
+    # 2º Passo: Treina o modelo de Árvore de Decisão
+    ('rf', DecisionTreeClassifier(random_state=42))
+])
+
+# Definição do GridSearchCV com o pipeline
+# cv=5 indica a validação cruzada de 5 folds
+grid_search = GridSearchCV(
+    estimator=pipeline_for_grid,
+    param_grid=param_grid,
+    cv=5,
+    scoring='precision',
+    n_jobs=-1,
+    verbose=2
+)
+
+# O grid_search.fit aplica o pipeline (com SMOTE) e a validação cruzada
+grid_search.fit(X_train, y_train)
+```
+
+Descrição dos Parâmetros Utilizados
+A otimização do modelo foi realizada com GridSearchCV, que testa sistematicamente uma combinação de diferentes hiperparâmetros para encontrar a melhor configuração.
+
+Parâmetros da Árvore de Decisão (DecisionTreeClassifier)
+No processo de otimização, a seguinte grade de parâmetros foi explorada:
+
+max_depth: [None, 10, 20] (Controla a profundidade máxima da árvore).
+min_samples_split: [2, 5] (Define o número mínimo de amostras para dividir um nó interno).
+min_samples_leaf: [1, 2] (Define o número mínimo de amostras que um nó folha deve ter).
 
 
-## Resultados
 
-### Resultados obtidos com o modelo 1.
 
-Apresente aqui os resultados obtidos com a indução do modelo 1. 
-Apresente uma matriz de confusão quando pertinente. Apresente as medidas de performance
-apropriadas para o seu problema. 
-Por exemplo, no caso de classificação: precisão, revocação, F-measure, acurácia.
+# Resultados obtidos com o modelo 1 (Árvore de decisão).
+Observação: Fiz duas avaliações utilizando métricas diferentes, com isso obtive diferentes resultados:
+Primeira métrica eu obtive uma maior acurácia e precisão e recall em ambas as classes(Empregado(a) e Desempregado(a)). Porém percebi que o modelo estava priorizando mais a classe majoritária(Empregado(a)), por haver cerca de 10 vezes mais dados em relação a outra. Segue as duas avaliações...
+
+## Avaliação 01:
+
+
+![2d52dec8-827e-4dae-8efe-1e85e52eb25d](https://github.com/user-attachments/assets/d2c22032-1f0a-4085-ad8f-1cecb2c0da41)
+
+![image](https://github.com/user-attachments/assets/1be4f89d-eb49-439d-a813-07189919b766)
+
+## Acurácia do Modelo Inicial:
+
+`0.9115537848605577`
+
+## Relatório de Classificação do Modelo Inicial:
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.91      | 1.00   | 0.95     | 1146    |
+| 1             | 0.33      | 0.02   | 0.03     | 109     |
+| **accuracy** |           |        | **0.91** | **1255**|
+| **macro avg** | 0.62      | 0.51   | 0.49     | 1255    |
+| **weighted avg**| 0.86      | 0.91   | 0.87     | 1255    |
+
+## Acurácia nos Conjuntos de Treino e Teste:
+
+* **Acurácia de treino:** `0.9133`
+* **Acurácia de teste:** `0.9116`
+
+
+## Avaliação 02:
+
+Utilizei muitos hiperparâmetros para tentar balancear os dados e fornecer uma maior importância para a classe minoritária, tendo como resultado um maior balanceameno dos dados. porém o resultado(acurácia) diminuiu significadamente, e a classificação preditiva de meus dados não foram satisfatórias. Nesse quesito, utilizei LLM para me sugerir mudanças, e por fim, elas me sugeriram testar com um novo modelo, como a Random Forest, o qual foi utilizado no modelo 2.
+
+![download](https://github.com/user-attachments/assets/103ff659-4ef6-4e01-89d5-78b794261d50)
+
+![download](https://github.com/user-attachments/assets/7634ae46-a069-44f1-be2a-9fdd646e07ba)
+
+## --- Abordagem: Ajuste de Hiperparâmetros com GridSearchCV ---
+
+**Melhores hiperparâmetros encontrados (foco na classe 1):**
+{'class_weight': {0: 1, 1: 10}, 'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 5, 'min_samples_split': 5}
+
+
+**Acurácia do melhor modelo (GridSearchCV - Treino):** `0.7102604997341839`
+
+**Acurácia do melhor modelo (GridSearchCV - Teste):** `0.6772908366533864`
+
+**Avaliação do melhor modelo (GridSearchCV - foco na classe 1):**
+Acurácia: 0.6772908366533864
+
+
+**Relatório de Classificação:**
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.93      | 0.70   | 0.80     | 1146    |
+| 1             | 0.13      | 0.47   | 0.20     | 109     |
+| **accuracy** |           |        | **0.68** | **1255**|
+| **macro avg** | 0.53      | 0.58   | 0.50     | 1255    |
+| **weighted avg**| 0.86      | 0.68   | 0.75     | 1255    |
+
+Ao otimizar o modelo com o f1_score ponderado para a classe 1 no GridSearchCV, você estava explicitamente instruindo o algoritmo a encontrar parâmetros que equilibrassem a precisão e o recall da classe "Desempregadas", dando maior peso à capacidade do modelo de identificar todas as instâncias dessa classe. Os resultados mostram que, embora o recall da classe 1 tenha melhorado em relação a um modelo puramente focado na acurácia geral, ainda há um trade-off com a precisão dessa classe.
+
 
 ### Interpretação do modelo 1
 
-Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
-processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
-o *feature importances* para tentar entender quais atributos o modelo se baseia no
-processo de tomada de decisão.
+![download](https://github.com/user-attachments/assets/88f497c9-c5ba-416b-8707-017f70fd520d)
+
+## Importância das Features na Árvore de Decisão
+
+**Idade: A Feature Mais Importante**
+
+O fato de "Idade" estar em primeiro lugar significa que, de todas as features consideradas pelo modelo, a idade da pessoa é a informação que mais impacta a decisão do modelo sobre a `Situação de trabalho`. O modelo encontra na idade padrões muito fortes que o ajudam a separar as diferentes classes da variável alvo. Isso sugere que há uma relação significativa entre a faixa etária e a situação de trabalho no seu conjunto de dados.
+
+**Nível de Ensino: A Segunda Feature Mais Importante**
+
+"Nível de Ensino" é a segunda feature mais importante. Isso indica que a escolaridade da pessoa também é uma informação crucial para o modelo. A Árvore de Decisão provavelmente usa o nível de ensino para criar divisões importantes nos seus nós, mostrando que o grau de instrução tem um forte poder preditivo sobre a situação de trabalho.
+
+**Região onde mora e Gênero: Importância Moderada**
+
+"Região onde mora" e "Gênero" aparecem depois de "Idade" e "Nível de Ensino". Isso sugere que, embora sejam importantes, a influência deles nas decisões do modelo é menor do que a idade e o nível de ensino. O modelo provavelmente utiliza essas informações para refinar as suas previsões dentro dos grupos já definidos pela idade e escolaridade.
+
+**UF, Cor/Raça/Etnia e Área de Formação: Features Menos Importantes**
+
+"UF", "Cor/Raça/Etnia" e "Área de Formação" são as features menos importantes na lista que você forneceu. Isso não significa que elas não tenham nenhuma importância, mas sim que, no contexto deste modelo específico e deste conjunto de dados, elas contribuíram menos para as decisões finais do que as features no topo da lista. A "Área de Formação" ser a menos importante pode indicar que, para este problema específico e a forma como os dados estão representados, essa informação não é tão discriminatória quanto as outras para determinar a situação de trabalho.
+
+**Em Resumo:**
+
+Seu modelo de Árvore de Decisão considera a **idade** e o **nível de ensino** como os fatores mais determinantes para prever a situação de trabalho. Features demográficas como **região**, **gênero**, **UF**, **cor/raça/etnia** e **área de formação** também são consideradas, mas com menor peso na tomada de decisão do modelo.
+
+![download](https://github.com/user-attachments/assets/b2e4b1b2-1df8-433b-b063-b03ba1ed065b)
 
 
-### Resultados obtidos com o modelo 2.
+
+# Resultados obtidos com o modelo 2 (Random Forest).
+
+
+### Avaliação 01:
+
+![download](https://github.com/user-attachments/assets/5c253440-4bf8-465d-859e-fbb9ff592562)
+
+## Melhores Parâmetros Encontrados:
+
+{'class_weight': 'balanced', 'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+
+
+## Melhor Pontuação (F1-macro) Obtida:
+
+`0.7106123941935574`
+
+## Acurácia de treino: 
+0.7817
+## Acurácia de teste: 
+0.7458
+
+## Relatório de Classificação com Melhores Parâmetros no Conjunto de Teste:
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.93      | 0.78   | 0.85     | 1144    |
+| 1             | 0.16      | 0.42   | 0.23     | 111     |
+| **accuracy** |           |        | **0.75** | **1255**|
+| **macro avg** | 0.54      | 0.60   | 0.54     | 1255    |
+| **weighted avg**| 0.86      | 0.75   | 0.79     | 1255    |
+
+### Avaliação 02:
+Utilizei novos parâmetros para análise, tentei equilibrar os resultados das classes, porém não consegui ter um valor satisfatório no recall e na precisão.
+
+![download](https://github.com/user-attachments/assets/5ab5f6c2-d17d-4685-879f-133a05abb3b5)
+
+## Avaliação com Limiar de Decisão de 0.5:
+
+**Limiar:** `0.5`
+* **Recall classe 0:** `0.76`
+* **Precision classe 0:** `0.93`
+* **F1-score classe 0:** `0.84`
+
+**Matriz de Confusão (Limiar 0.5):**
+
+[[871 273]
+[ 63  48]]
+
+
+**Relatório de Classificação (Limiar 0.5):**
+
+|               | precision | recall | f1-score | support |
+|---------------|-----------|--------|----------|---------|
+| 0             | 0.93      | 0.76   | 0.84     | 1144    |
+| 1             | 0.15      | 0.43   | 0.22     | 111     |
+| **accuracy** |           |        | **0.73** | **1255**|
+| **macro avg** | 0.54      | 0.60   | 0.53     | 1255    |
+| **weighted avg**| 0.86      | 0.73   | 0.78     | 1255    |
 
 Repita o passo anterior com os resultados do modelo 2.
 
+
+
+
+
 ### Interpretação do modelo 2
 
-Repita o passo anterior com os parâmetros do modelo 2.
+![download](https://github.com/user-attachments/assets/30568082-b86e-4478-acda-920538c83799)
+
+1-UF (Unidade Federativa): A variável mais importante, indicando que o estado de residência é o fator mais preditivo da situação de trabalho.
+
+2-Nível de Ensino: A segunda variável mais importante. O nível de escolaridade de uma pessoa tem uma forte influência na sua situação de trabalho.
+
+3-Área de formação: A área de formação é o terceiro fator mais importante, sugerindo que a área de estudo ou profissão também é um preditor relevante.
+
+4-Regiao onde mora: A região geográfica de residência tem uma influência menor que as três primeiras.
+
+5-Cor/raca/etnia: A cor, raça ou etnia apresenta uma importância ainda menor, mas não desprezível.
+
+6-Genero: O gênero é a variável com a menor importância relativa para o modelo.
+
+
+![download](https://github.com/user-attachments/assets/914d4929-d532-4b1c-98c6-895b7556a551)
+
+Recall Alto com Limiar Pequeno:
+
+Isso significa que quando você define um limiar baixo, o modelo tende a classificar mais observações como pertencentes à classe positiva (a classe que você está tentando prever com maior sensibilidade).
+Em outras palavras, o modelo está capturando uma grande proporção de todas as instâncias reais da classe positiva.
+A consequência é que você está incluindo mais verdadeiros positivos, mas também mais falsos positivos.
+
+Precisão e F1-score Baixos com Limiar Pequeno:
+
+A precisão baixa indica que, embora o modelo esteja encontrando muitos dos casos reais da classe positiva, ele também está classificando incorretamente muitas observações negativas como positivas.
+Há muitos falsos positivos, o que diminui a confiabilidade das previsões positivas.
+O F1-score baixo é uma consequência direta da baixa precisão, pois o F1-score é a média harmônica entre precisão e recall.
+
+Encontro dos Scores Próximo ao Limiar 0.8:
+
+O ponto onde a precisão, o recall e o F1-score se aproximam geralmente indica um ponto de equilíbrio.
+Nesse limiar, o modelo está encontrando um melhor compromisso entre classificar corretamente a maioria dos casos positivos e evitar falsos positivos.
+Esse limiar pode ser considerado um ponto "ótimo" para este modelo e conjunto de dados.
+
+O Que Isso Quer Dizer na Prática?
+
+Trade-off: Seu gráfico ilustra claramente o trade-off entre precisão e recall.
+Se você precisa capturar o máximo possível de casos positivos (alto recall), você terá que aceitar uma precisão mais baixa.
+Se você precisa ter alta confiança em suas previsões positivas (alta precisão), você pode perder alguns casos positivos.
+Desbalanceamento: A situação descrita sugere que seus dados podem estar desbalanceados, com uma classe sendo muito mais frequente que a outra. Modelos tendem a ter mais dificuldade em prever a classe minoritária.
+
+Aplicação: A escolha do limiar depende do contexto da sua aplicação.
+Se o custo de um falso negativo for alto, você pode preferir um limiar mais baixo para maximizar o recall.
+Se o custo de um falso positivo for alto, você pode preferir um limiar mais alto para maximizar a precisão.
+
+Exemplo:
+
+Imagine que você está tentando prever se pacientes têm uma doença rara.
+
+Se você usar um limiar baixo, você identificará a maioria dos pacientes doentes (alto recall), mas também classificará erroneamente muitos pacientes saudáveis como doentes (baixa precisão). Isso pode levar a mais testes e ansiedade desnecessários.
+Se você usar um limiar alto, você terá alta confiança de que os pacientes que você identifica como doentes realmente têm a doença, mas você pode perder alguns pacientes doentes que precisam de tratamento.
+No seu caso, a classe "Desempregado" é geralmente a classe minoritária. Se for muito importante identificar o máximo de pessoas desempregadas para oferecer ajuda, você pode trabalhar com um limiar mais baixo, mesmo que isso signifique que algumas pessoas empregadas sejam classificadas como desempregadas.
 
 
 ## Análise comparativa dos modelos
 
-Discuta sobre as forças e fragilidades de cada modelo. Exemplifique casos em que um
-modelo se sairia melhor que o outro. Nesta seção é possível utilizar a sua imaginação
-e extrapolar um pouco o que os dados sugerem.
+## Comparativo entre Árvore de Decisão e Random Forest
 
+Com base nas métricas e informações fornecidas, podemos comparar as forças e fragilidades dos modelos de Árvore de Decisão e Random Forest para a sua tarefa de prever a situação de trabalho.
+
+**Árvore de Decisão:**
+
+* **Acurácia (Teste):** 0.68
+* **Precisão (Classe 0 - Empregado):** 0.93
+* **Precisão (Classe 1 - Desempregado):** 0.13
+* **Recall (Classe 0 - Empregado):** 0.70
+* **Recall (Classe 1 - Desempregado):** 0.47
+* **F1-Score (Classe 0 - Empregado):** 0.80
+* **F1-Score (Classe 1 - Desempregado):** 0.20
+* **Interpretabilidade:** Alta. A estrutura da árvore pode ser visualizada e as decisões são facilmente rastreáveis através dos nós e regras.
+* **Importância das Features:** Idade > Nível de Ensino > Região onde mora > Gênero > UF > Cor/Raça/Etnia > Área de Formação (conforme sua análise anterior).
+
+**Random Forest:**
+
+* **Acurácia (Teste):** 0.73 (com limiar de 0.5)
+* **Precisão (Classe 0 - Empregado):** 0.93
+* **Precisão (Classe 1 - Desempregado):** 0.15
+* **Recall (Classe 0 - Empregado):** 0.76
+* **Recall (Classe 1 - Desempregado):** 0.43
+* **F1-Score (Classe 0 - Empregado):** 0.84
+* **F1-Score (Classe 1 - Desempregado):** 0.22
+* **Interpretabilidade:** Baixa. O modelo é um conjunto de muitas árvores, tornando a interpretação das decisões individuais complexa. A importância das features pode ser avaliada, mas o caminho decisório para uma única previsão não é tão claro.
+* **Importância das Features:** UF > Nível de Ensino > Área de formação > Região onde mora > Cor/raca/etnia > Genero (conforme sua análise anterior da Random Forest).
+
+**Forças e Fragilidades:**
+
+| Característica        | Árvore de Decisão                                     | Random Forest                                                |
+| :-------------------- | :---------------------------------------------------- | :----------------------------------------------------------- |
+| **Acurácia** | Menor (0.68)                                          | Maior (0.73)                                                 |
+| **Precisão (Classe 0)** | Similar (0.93)                                        | Similar (0.93)                                               |
+| **Precisão (Classe 1)** | Menor (0.13)                                          | Maior (0.15)                                                 |
+| **Recall (Classe 0)** | Menor (0.70)                                          | Maior (0.76)                                                 |
+| **Recall (Classe 1)** | Maior (0.47)                                          | Menor (0.43)                                                 |
+| **F1-Score (Classe 0)** | Menor (0.80)                                          | Maior (0.84)                                                 |
+| **F1-Score (Classe 1)** | Menor (0.20)                                          | Maior (0.22)                                                 |
+| **Interpretabilidade** | Alta                                                  | Baixa                                                        |
+| **Robustez a Overfitting** | Mais suscetível, especialmente árvores profundas      | Menos suscetível devido à agregação de múltiplas árvores      |
+| **Lida com Não Linearidades** | Bem                                                   | Bem                                                          |
+| **Estabilidade** | Pequenas variações nos dados podem mudar a estrutura | Mais estável, menos sensível a pequenas variações nos dados |
+
+**Casos em que um modelo se sairia melhor que o outro:**
+
+* **Cenário 1: Necessidade de Interpretabilidade para Ações Diretas**
+    * **Melhor Modelo:** Árvore de Decisão.
+    * **Exemplo:** Imagine que você precisa entender exatamente quais regras levam à previsão de desemprego para criar políticas públicas direcionadas. Uma árvore de decisão, com sua estrutura clara de regras "SE...ENTÃO...", pode fornecer insights diretos sobre combinações de idade, nível de ensino e região que estão fortemente associadas ao desemprego. Você pode visualizar o caminho que leva a essa previsão e identificar grupos específicos para intervenção. A interpretabilidade aqui é mais valiosa do que um pequeno ganho em acurácia.
+
+* **Cenário 2: Previsão com Foco na Robustez e Generalização em Dados Complexos**
+    * **Melhor Modelo:** Random Forest.
+    * **Exemplo:** Considere um cenário onde os fatores que influenciam a situação de trabalho são altamente não lineares e interagem de maneiras complexas (por exemplo, combinações sutis de área de formação, experiência profissional não capturada diretamente e fatores econômicos regionais). O Random Forest, ao agregar as decisões de muitas árvores treinadas em diferentes subconjuntos dos dados e features, tende a ser mais robusto a essas complexidades e generaliza melhor para novos dados não vistos durante o treinamento. Mesmo que você não consiga interpretar o caminho de cada previsão, a maior acurácia e a menor chance de overfitting podem ser cruciais para uma ferramenta de previsão em larga escala.
+
+* **Cenário 3: Desbalanceamento Extremo da Classe Alvo**
+    * **Consideração:** Ambos os modelos podem ter dificuldades com desbalanceamento extremo. No entanto, o Random Forest, com seus mecanismos de amostragem e a possibilidade de ajuste de `class_weight`, pode ser mais flexível para lidar com isso, especialmente se o foco for em métricas como F1-score para a classe minoritária. A Árvore de Decisão pode se tornar enviesada para a classe majoritária mais facilmente.
+    * **Exemplo:** Se a taxa de desemprego na sua amostra fosse extremamente baixa (por exemplo, apenas 5%), o Random Forest, com a sua capacidade de explorar diferentes subespaços de features e amostras, poderia capturar melhor os padrões da classe minoritária se bem ajustado.
+
+* **Cenário 4: Necessidade de Previsões Rápidas em Tempo Real**
+    * **Consideração:** Árvores de Decisão geralmente são mais rápidas para prever uma vez treinadas, pois envolvem percorrer uma única árvore. Random Forests exigem a agregação das previsões de muitas árvores, o que pode ser mais computacionalmente intensivo durante a previsão.
+    * **Exemplo:** Se você precisasse de um sistema de previsão em tempo real com baixíssima latência para classificar rapidamente candidatos a empregos ou pessoas em busca de assistência, uma Árvore de Decisão bem otimizada poderia ser preferível devido à sua velocidade de previsão.
+
+**Conclusão:**
+
+Ambos os modelos têm seus méritos e desvantagens. A escolha do melhor modelo depende fortemente dos seus objetivos específicos, da natureza dos seus dados e das prioridades do seu projeto (interpretabilidade, acurácia, robustez, velocidade). O Random Forest geralmente oferece melhor desempenho preditivo e robustez, enquanto a Árvore de Decisão brilha na interpretabilidade. Analisar as métricas detalhadas para a classe minoritária (desempregado) e considerar o custo de falsos positivos e falsos negativos em seu contexto específico ajudará a tomar a decisão mais informada.
 
 ### Distribuição do modelo (opcional)
 
@@ -603,7 +1212,3 @@ Dos artefatos (armazenado do repositório);
 Da apresentação final (armazenado no repositório);
 
 Do vídeo de apresentação (armazenado no repositório).
-
-
-
-
