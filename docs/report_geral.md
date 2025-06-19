@@ -892,99 +892,119 @@ plt.show()
 
 
 # Resultados obtidos com o modelo 1 (Árvore de decisão).
-Observação: Fiz duas avaliações utilizando métricas diferentes, com isso obtive diferentes resultados:
-Primeira métrica eu obtive uma maior acurácia e precisão e recall em ambas as classes(Empregado(a) e Desempregado(a)). Porém percebi que o modelo estava priorizando mais a classe majoritária(Empregado(a)), por haver cerca de 10 vezes mais dados em relação a outra. Segue as duas avaliações...
+O modelo foi desenvolvido com o objetivo principal de identificar pessoas em situação de desemprego, priorizando a sensibilidade (recall) da classe Desempregado(a). Em cenários sociais e políticos, como o mapeamento da vulnerabilidade no mercado de trabalho, é mais crítico deixar de identificar alguém desempregado do que cometer um falso positivo. Por isso, o foco foi maximizar a capacidade do modelo de não deixar desempregados passarem despercebidos.
 
-## Avaliação 01:
+## Treino:
+
+**Matriz de confusão Treino:**
+![025a981b-f341-4fbb-85e0-efe417b982f1](https://github.com/user-attachments/assets/8631f073-9661-46fe-a96e-762400972d48)
 
 
-![2d52dec8-827e-4dae-8efe-1e85e52eb25d](https://github.com/user-attachments/assets/d2c22032-1f0a-4085-ad8f-1cecb2c0da41)
+## Avaliação do Modelo Final no Conjunto de Treino
 
-![image](https://github.com/user-attachments/assets/1be4f89d-eb49-439d-a813-07189919b766)
+### [PROVA SMOTE]  
+**Shape dos dados após SMOTE:** `(3756, 16)`
 
-## Acurácia do Modelo Inicial:
+### Relatório de Classificação no Conjunto de Treino:
 
-`0.9115537848605577`
+| Classe           | Precision | Recall | F1-Score | Support |
+|------------------|-----------|--------|----------|---------|
+| Empregado(a)     | 0.94      | 0.65   | 0.77     | 3430    |
+| Desempregado(a)  | 0.14      | 0.59   | 0.22     | 326     |
+|------------------|-----------|--------|----------|---------|
+| Macro Avg        | 0.54      | 0.62   | 0.50     | 3756    |
+| Weighted Avg     | 0.87      | 0.65   | 0.72     | 3756    |
 
-## Relatório de Classificação do Modelo Inicial:
+**Accuracy:** `0.65` (base: 3756 amostras)
 
-|               | precision | recall | f1-score | support |
-|---------------|-----------|--------|----------|---------|
-| 0             | 0.91      | 1.00   | 0.95     | 1146    |
-| 1             | 0.33      | 0.02   | 0.03     | 109     |
-| **accuracy** |           |        | **0.91** | **1255**|
-| **macro avg** | 0.62      | 0.51   | 0.49     | 1255    |
-| **weighted avg**| 0.86      | 0.91   | 0.87     | 1255    |
+
+
+
+## Teste:
+**Matriz de confusão Teste:**
+![c6d84b5c-54f7-431b-9ffe-e717c29296ae](https://github.com/user-attachments/assets/d2df4018-e7b6-45ee-8ef6-80dee784565c)
+
+
+## Avaliação do Modelo Final no Conjunto de Teste
+
+### [PROVA SMOTE]  
+**Shape dos dados após SMOTE:** `(1252, 16)`
+
+### Relatório de Classificação no Conjunto de Teste:
+
+| Classe           | Precision | Recall | F1-Score | Support |
+|------------------|-----------|--------|----------|---------|
+| Empregado(a)     | 0.95      | 0.28   | 0.43     | 1144    |
+| Desempregado(a)  | 0.10      | 0.85   | 0.18     | 108     |
+|------------------|-----------|--------|----------|---------|
+| Macro Avg        | 0.53      | 0.57   | 0.31     | 1252    |
+| Weighted Avg     | 0.88      | 0.33   | 0.41     | 1252    |
+
+**Accuracy:** `0.33` (base: 1252 amostras)
+
 
 ## Acurácia nos Conjuntos de Treino e Teste:
 
-* **Acurácia de treino:** `0.9133`
-* **Acurácia de teste:** `0.9116`
+* **Acurácia de treino:** `0.65`
+* **Acurácia de teste:** `0.33`
 
+**Observações:** - _Análise de Overfitting_
 
-## Avaliação 02:
+Overfitting ocorre quando o modelo se ajusta excessivamente aos dados de treino, perdendo a capacidade de generalizar para novos dados. Um dos principais indícios de overfitting é a diferença significativa entre desempenho no treino e no teste — e isso aparece claramente aqui:
 
-Utilizei muitos hiperparâmetros para tentar balancear os dados e fornecer uma maior importância para a classe minoritária, tendo como resultado um maior balanceameno dos dados. porém o resultado(acurácia) diminuiu significadamente, e a classificação preditiva de meus dados não foram satisfatórias. Nesse quesito, utilizei LLM para me sugerir mudanças, e por fim, elas me sugeriram testar com um novo modelo, como a Random Forest, o qual foi utilizado no modelo 2.
+**Acurácia no treino: 0.65
+Acurácia no teste: 0.33**
 
-![download](https://github.com/user-attachments/assets/103ff659-4ef6-4e01-89d5-78b794261d50)
+Essa queda expressiva de 32 pontos percentuais indica que o modelo pode estar aprendendo padrões específicos demais do conjunto de treino, e falhando ao aplicar esse conhecimento em dados novos.
 
-![download](https://github.com/user-attachments/assets/7634ae46-a069-44f1-be2a-9fdd646e07ba)
+ **Interpretação**
+* Apesar do foco em maximizar o recall da classe Desempregado(a) (o que justifica quedas na acurácia geral), essa diferença entre treino e teste sugere sim presença de overfitting. O modelo está possivelmente:
 
-## --- Abordagem: Ajuste de Hiperparâmetros com GridSearchCV ---
+* Aprendendo padrões superficiais ou específicos demais do conjunto sintético (após SMOTE);
 
-**Melhores hiperparâmetros encontrados (foco na classe 1):**
-{'class_weight': {0: 1, 1: 10}, 'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 5, 'min_samples_split': 5}
+* Compensando recall com excesso de falsos positivos, prejudicando a generalização;
 
-
-**Acurácia do melhor modelo (GridSearchCV - Treino):** `0.7102604997341839`
-
-**Acurácia do melhor modelo (GridSearchCV - Teste):** `0.6772908366533864`
-
-**Avaliação do melhor modelo (GridSearchCV - foco na classe 1):**
-Acurácia: 0.6772908366533864
-
-
-**Relatório de Classificação:**
-
-|               | precision | recall | f1-score | support |
-|---------------|-----------|--------|----------|---------|
-| 0             | 0.93      | 0.70   | 0.80     | 1146    |
-| 1             | 0.13      | 0.47   | 0.20     | 109     |
-| **accuracy** |           |        | **0.68** | **1255**|
-| **macro avg** | 0.53      | 0.58   | 0.50     | 1255    |
-| **weighted avg**| 0.86      | 0.68   | 0.75     | 1255    |
-
-Ao otimizar o modelo com o f1_score ponderado para a classe 1 no GridSearchCV, você estava explicitamente instruindo o algoritmo a encontrar parâmetros que equilibrassem a precisão e o recall da classe "Desempregadas", dando maior peso à capacidade do modelo de identificar todas as instâncias dessa classe. Os resultados mostram que, embora o recall da classe 1 tenha melhorado em relação a um modelo puramente focado na acurácia geral, ainda há um trade-off com a precisão dessa classe.
+* Tendo dificuldade para manter equilíbrio entre sensibilidade e robustez fora da amostra de treino.
 
 
 ### Interpretação do modelo 1
 
-![download](https://github.com/user-attachments/assets/88f497c9-c5ba-416b-8707-017f70fd520d)
+
+**Plotagem da árvore de decisão:**
+![d174380a-3efb-4738-9704-dffa8e85ed1d](https://github.com/user-attachments/assets/5f792cd5-151c-4f5f-a978-1e531683a0eb)
+
 
 ## Importância das Features na Árvore de Decisão
 
-**Idade: A Feature Mais Importante**
+A análise da importância das variáveis no modelo final revela quais características mais influenciam a previsão da classe alvo (por exemplo, situação de emprego).
 
-O fato de "Idade" estar em primeiro lugar significa que, de todas as features consideradas pelo modelo, a idade da pessoa é a informação que mais impacta a decisão do modelo sobre a `Situação de trabalho`. O modelo encontra na idade padrões muito fortes que o ajudam a separar as diferentes classes da variável alvo. Isso sugere que há uma relação significativa entre a faixa etária e a situação de trabalho no seu conjunto de dados.
+### Principais Conclusões:
+**1. Nível de Ensino** é disparadamente a variável mais relevante, representando mais de 50% da importância total. Isso sugere que o grau de escolaridade tem forte relação com a probabilidade de estar empregado(a) ou desempregado(a).
 
-**Nível de Ensino: A Segunda Feature Mais Importante**
+**2. Área de Formação em Tecnologia** aparece como a segunda variável mais importante, indicando que a formação técnica ou tecnológica é um fator relevante na inserção profissional.
 
-"Nível de Ensino" é a segunda feature mais importante. Isso indica que a escolaridade da pessoa também é uma informação crucial para o modelo. A Árvore de Decisão provavelmente usa o nível de ensino para criar divisões importantes nos seus nós, mostrando que o grau de instrução tem um forte poder preditivo sobre a situação de trabalho.
+**3. Faixa Etária** (especialmente a Faixa 4, mais velha) também tem peso considerável, sugerindo que a idade influencia diretamente a situação de trabalho, possivelmente devido à experiência ou à dificuldade de reinserção.
 
-**Região onde mora e Gênero: Importância Moderada**
+**4. Região** de residência tem um papel significativo no modelo, especialmente as regiões Sul e Sudeste, o que pode refletir desigualdades regionais no acesso ao emprego.
 
-"Região onde mora" e "Gênero" aparecem depois de "Idade" e "Nível de Ensino". Isso sugere que, embora sejam importantes, a influência deles nas decisões do modelo é menor do que a idade e o nível de ensino. O modelo provavelmente utiliza essas informações para refinar as suas previsões dentro dos grupos já definidos pela idade e escolaridade.
+**5. Gênero** tem alguma importância, embora menor, indicando uma possível diferença de oportunidades entre homens e mulheres, ainda que não seja um dos fatores mais decisivos.
 
-**UF, Cor/Raça/Etnia e Área de Formação: Features Menos Importantes**
+**6. Cor/raça/etnia** teve baixa ou nenhuma relevância no modelo, com destaque para “Branca” e “Outra” com importância zero. Isso pode indicar que, no conjunto de dados analisado, essa variável não contribuiu para melhorar o desempenho do modelo — o que não significa ausência de desigualdade na realidade, mas sim limitação na sensibilidade do modelo ou na representatividade da base.
 
-"UF", "Cor/Raça/Etnia" e "Área de Formação" são as features menos importantes na lista que você forneceu. Isso não significa que elas não tenham nenhuma importância, mas sim que, no contexto deste modelo específico e deste conjunto de dados, elas contribuíram menos para as decisões finais do que as features no topo da lista. A "Área de Formação" ser a menos importante pode indicar que, para este problema específico e a forma como os dados estão representados, essa informação não é tão discriminatória quanto as outras para determinar a situação de trabalho.
+## **Interpretação Geral:**
+**Prioridade:** Maximizar o recall da classe Desempregado(a), ou seja, identificar o maior número possível de pessoas realmente desempregadas, mesmo que isso custe mais falsos positivos (empregados classificados incorretamente como desempregados).
 
-**Em Resumo:**
+ ### Alto Recall (Teste): 
+ O modelo cumpriu seu objetivo central, alcançando 0.85 de recall na classe Desempregado(a) no conjunto de teste. Isso indica que 85% das pessoas realmente desempregadas foram corretamente identificadas, o que é excelente sob o critério desejado.
 
-Seu modelo de Árvore de Decisão considera a **idade** e o **nível de ensino** como os fatores mais determinantes para prever a situação de trabalho. Features demográficas como **região**, **gênero**, **UF**, **cor/raça/etnia** e **área de formação** também são consideradas, mas com menor peso na tomada de decisão do modelo.
+ ### Baixa Precisão: 
+ A precisão foi muito baixa (0.10), o que significa que o modelo também classificou incorretamente muitos empregados como desempregados. Em outras palavras, entre todos os que o modelo disse estarem desempregados, apenas 10% realmente estavam.
 
-![download](https://github.com/user-attachments/assets/b2e4b1b2-1df8-433b-b063-b03ba1ed065b)
+ ### Trade-off esperado: 
+ Esse é um trade-off comum quando se prioriza recall, especialmente em situações com desequilíbrio de classes. Como a classe desempregado(a) é minoria, aumentar o recall normalmente leva à redução da precisão, o que o modelo de fato refletiu.
 
+ ### Baixa acurácia geral (33% no teste): 
+ Apesar do bom recall da classe minoritária, a acurácia global caiu. Isso é esperado, pois o modelo sacrificou o desempenho geral para favorecer uma classe específica.
 
 
 # Resultados obtidos com o modelo 2 (Random Forest).
