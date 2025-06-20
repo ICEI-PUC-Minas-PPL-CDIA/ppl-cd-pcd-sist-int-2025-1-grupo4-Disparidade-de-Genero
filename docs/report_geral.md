@@ -1334,7 +1334,7 @@ Por exemplo:
 
 [Do código (armazenado no repositório)](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/main/assets/models/hipoteses/hipotese_4);
 
-Dos artefatos (armazenado do repositório);
+[Dos artefatos (armazenado do repositório)](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/main/assets);
 
 Da apresentação final (armazenado no repositório);
 
