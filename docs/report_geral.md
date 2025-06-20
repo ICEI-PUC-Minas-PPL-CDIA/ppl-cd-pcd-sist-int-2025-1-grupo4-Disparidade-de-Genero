@@ -1010,192 +1010,215 @@ A análise da importância das variáveis no modelo final revela quais caracter�
 # Resultados obtidos com o modelo 2 (Random Forest).
 
 
-### Avaliação 01:
+## Treino:
 
-![download](https://github.com/user-attachments/assets/5c253440-4bf8-465d-859e-fbb9ff592562)
-
-## Melhores Parâmetros Encontrados:
-
-{'class_weight': 'balanced', 'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+**Matriz de confusão Treino:**
+![025a981b-f341-4fbb-85e0-efe417b982f1](https://github.com/user-attachments/assets/8631f073-9661-46fe-a96e-762400972d48)
 
 
-## Melhor Pontuação (F1-macro) Obtida:
+## Avaliação do Modelo Final no Conjunto de Treino
 
-`0.7106123941935574`
+### [PROVA SMOTE]  
+**Shape dos dados após SMOTE:** `(3756, 16)`
 
-## Acurácia de treino: 
-0.7817
-## Acurácia de teste: 
-0.7458
+### Relatório de Classificação no Conjunto de Treino
 
-## Relatório de Classificação com Melhores Parâmetros no Conjunto de Teste:
+|                    | precision | recall | f1-score | support |
+| :----------------- | :-------: | :----: | :------: | :-----: |
+| **Empregado(a)** |   0.96    |  0.80  |   0.87   |  3430   |
+| **Desempregado(a)**|   0.23    |  0.63  |   0.34   |   326   |
+|                    |           |        |          |         |
+| **accuracy** |           |        |   0.78   |  3756   |
+| **macro avg** |   0.59    |  0.72  |   0.61   |  3756   |
+| **weighted avg** |   0.90    |  0.78  |   0.83   |  3756   |
 
-|               | precision | recall | f1-score | support |
-|---------------|-----------|--------|----------|---------|
-| 0             | 0.93      | 0.78   | 0.85     | 1144    |
-| 1             | 0.16      | 0.42   | 0.23     | 111     |
-| **accuracy** |           |        | **0.75** | **1255**|
-| **macro avg** | 0.54      | 0.60   | 0.54     | 1255    |
-| **weighted avg**| 0.86      | 0.75   | 0.79     | 1255    |
-
-### Avaliação 02:
-Utilizei novos parâmetros para análise, tentei equilibrar os resultados das classes, porém não consegui ter um valor satisfatório no recall e na precisão.
-
-![download](https://github.com/user-attachments/assets/5ab5f6c2-d17d-4685-879f-133a05abb3b5)
-
-## Avaliação com Limiar de Decisão de 0.5:
-
-**Limiar:** `0.5`
-* **Recall classe 0:** `0.76`
-* **Precision classe 0:** `0.93`
-* **F1-score classe 0:** `0.84`
-
-**Matriz de Confusão (Limiar 0.5):**
-
-[[871 273]
-[ 63  48]]
-
-
-**Relatório de Classificação (Limiar 0.5):**
-
-|               | precision | recall | f1-score | support |
-|---------------|-----------|--------|----------|---------|
-| 0             | 0.93      | 0.76   | 0.84     | 1144    |
-| 1             | 0.15      | 0.43   | 0.22     | 111     |
-| **accuracy** |           |        | **0.73** | **1255**|
-| **macro avg** | 0.54      | 0.60   | 0.53     | 1255    |
-| **weighted avg**| 0.86      | 0.73   | 0.78     | 1255    |
-
-Repita o passo anterior com os resultados do modelo 2.
+**Accuracy:** `0.78` (base: 3756 amostras)
 
 
 
 
+## Teste:
+**Matriz de confusão Teste:**
+![6d714672-d5fc-44e5-8463-952e328f7f38](https://github.com/user-attachments/assets/d3074933-1312-487a-994d-292693ce9dc0)
+
+
+
+
+## Avaliação do Modelo Final no Conjunto de Teste
+
+### [PROVA SMOTE]  
+**Shape dos dados após SMOTE:** `(1252, 16)`
+
+### Relatório de Classificação no Conjunto de Teste:
+
+| Classe           | Precision | Recall | F1-Score | Support |
+|------------------|-----------|--------|----------|---------|
+| Empregado(a)     | 0.95      | 0.49   | 0.64     | 1144    |
+| Desempregado(a)  | 0.11      | 0.70   | 0.20     | 108     |
+|------------------|-----------|--------|----------|---------|
+| Macro Avg        | 0.53      | 0.59   | 0.42     | 1252    |
+| Weighted Avg     | 0.87      | 0.50   | 0.60     | 1252    |
+
+**Acurácia Total:** `0.50`
+
+
+## Acurácia nos Conjuntos de Treino e Teste:
+
+* **Acurácia de treino:** `0.78`
+* **Acurácia de teste:** `0.50`
+
+**Observações:** - _Análise de Overfitting_
+
+Overfitting ocorre quando o modelo se ajusta excessivamente aos dados de treino, perdendo a capacidade de generalizar para novos dados. Um dos principais indícios de overfitting é a diferença significativa entre desempenho no treino e no teste — e isso aparece claramente aqui:
+
+**Acurácia no treino: 0.78
+Acurácia no teste: 0.50**
+
+Essa queda expressiva de 28 pontos percentuais indica que o modelo pode estar aprendendo padrões específicos demais do conjunto de treino, e falhando ao aplicar esse conhecimento em dados novos.
+
+ **Interpretação**
+* Apesar do foco em maximizar o recall da classe Desempregado(a) (o que justifica quedas na acurácia geral), essa diferença entre treino e teste sugere sim presença de overfitting. O modelo está possivelmente:
+
+* Aprendendo padrões superficiais ou específicos demais do conjunto sintético (após SMOTE);
+
+* Compensando recall com excesso de falsos positivos, prejudicando a generalização;
+
+* Tendo dificuldade para manter equilíbrio entre sensibilidade e robustez fora da amostra de treino.
+
+
+## Importância das Features no Random Forest
+![19b49541-3611-48a5-87be-84918d6712aa](https://github.com/user-attachments/assets/252ab476-0411-407f-a00c-57042b4e53fe)
 
 ### Interpretação do modelo 2
+O modelo é extremamente agressivo e sensível para encontrar a classe minoritária (Desempregado(a)).
 
-![download](https://github.com/user-attachments/assets/30568082-b86e-4478-acda-920538c83799)
-
-1-UF (Unidade Federativa): A variável mais importante, indicando que o estado de residência é o fator mais preditivo da situação de trabalho.
-
-2-Nível de Ensino: A segunda variável mais importante. O nível de escolaridade de uma pessoa tem uma forte influência na sua situação de trabalho.
-
-3-Área de formação: A área de formação é o terceiro fator mais importante, sugerindo que a área de estudo ou profissão também é um preditor relevante.
-
-4-Regiao onde mora: A região geográfica de residência tem uma influência menor que as três primeiras.
-
-5-Cor/raca/etnia: A cor, raça ou etnia apresenta uma importância ainda menor, mas não desprezível.
-
-6-Genero: O gênero é a variável com a menor importância relativa para o modelo.
+**Ponto Forte Principal:** Alto Recall para "Desempregado(a)".
+Interpretação: Se uma pessoa está realmente desempregada, existe uma alta probabilidade (70% no conjunto de teste) de que o seu modelo a identifique corretamente. Ele foi treinado para "não deixar ninguém para trás" dessa categoria.
 
 
-![download](https://github.com/user-attachments/assets/914d4929-d532-4b1c-98c6-895b7556a551)
+**Falhas do modelo:**
 
-Recall Alto com Limiar Pequeno:
+Falha em Generalizar (Overfitting):
 
-Isso significa que quando você define um limiar baixo, o modelo tende a classificar mais observações como pertencentes à classe positiva (a classe que você está tentando prever com maior sensibilidade).
-Em outras palavras, o modelo está capturando uma grande proporção de todas as instâncias reais da classe positiva.
-A consequência é que você está incluindo mais verdadeiros positivos, mas também mais falsos positivos.
+A falha mais grave. O modelo decorou os dados de treino, mas não aprendeu a lógica por trás deles. Por isso, seu desempenho despenca de 78% de acurácia no treino para 50% no teste. Ele não sabe aplicar o que "aprendeu" em dados novos.
 
-Precisão e F1-score Baixos com Limiar Pequeno:
+**Precisão Inexistente :**
 
-A precisão baixa indica que, embora o modelo esteja encontrando muitos dos casos reais da classe positiva, ele também está classificando incorretamente muitas observações negativas como positivas.
-Há muitos falsos positivos, o que diminui a confiabilidade das previsões positivas.
-O F1-score baixo é uma consequência direta da baixa precisão, pois o F1-score é a média harmônica entre precisão e recall.
+O modelo "vê" desempregados em todos os lugares. No conjunto de teste, sua precisão para a classe Desempregado(a) foi de apenas 0.11.
+Interpretação Prática: A cada 100 pessoas que o seu modelo classifica como "Desempregado(a)", apenas 11 realmente estão. As outras 89 são Falsos Positivos — pessoas empregadas que foram classificadas incorretamente. Isso torna as previsões dessa classe completamente não confiáveis.
 
-Encontro dos Scores Próximo ao Limiar 0.8:
+**Prejuízo à Classe Majoritária:**
 
-O ponto onde a precisão, o recall e o F1-score se aproximam geralmente indica um ponto de equilíbrio.
-Nesse limiar, o modelo está encontrando um melhor compromisso entre classificar corretamente a maioria dos casos positivos e evitar falsos positivos.
-Esse limiar pode ser considerado um ponto "ótimo" para este modelo e conjunto de dados.
-
-O Que Isso Quer Dizer na Prática?
-
-Trade-off: Seu gráfico ilustra claramente o trade-off entre precisão e recall.
-Se você precisa capturar o máximo possível de casos positivos (alto recall), você terá que aceitar uma precisão mais baixa.
-Se você precisa ter alta confiança em suas previsões positivas (alta precisão), você pode perder alguns casos positivos.
-Desbalanceamento: A situação descrita sugere que seus dados podem estar desbalanceados, com uma classe sendo muito mais frequente que a outra. Modelos tendem a ter mais dificuldade em prever a classe minoritária.
-
-Aplicação: A escolha do limiar depende do contexto da sua aplicação.
-Se o custo de um falso negativo for alto, você pode preferir um limiar mais baixo para maximizar o recall.
-Se o custo de um falso positivo for alto, você pode preferir um limiar mais alto para maximizar a precisão.
-
-Exemplo:
-
-Imagine que você está tentando prever se pacientes têm uma doença rara.
-
-Se você usar um limiar baixo, você identificará a maioria dos pacientes doentes (alto recall), mas também classificará erroneamente muitos pacientes saudáveis como doentes (baixa precisão). Isso pode levar a mais testes e ansiedade desnecessários.
-Se você usar um limiar alto, você terá alta confiança de que os pacientes que você identifica como doentes realmente têm a doença, mas você pode perder alguns pacientes doentes que precisam de tratamento.
-No seu caso, a classe "Desempregado" é geralmente a classe minoritária. Se for muito importante identificar o máximo de pessoas desempregadas para oferecer ajuda, você pode trabalhar com um limiar mais baixo, mesmo que isso signifique que algumas pessoas empregadas sejam classificadas como desempregadas.
-
+Para ser tão sensível à classe Desempregado(a), o modelo sacrificou sua capacidade de identificar corretamente a classe Empregado(a). O recall para esta classe no teste foi de apenas 0.49.
+Interpretação Prática: O modelo errou a classificação de metade das pessoas que estavam de fato empregadas no conjunto de teste.
 
 ## Análise comparativa dos modelos
 
-## Comparativo entre Árvore de Decisão e Random Forest
+# Análise Comparativa: Árvore de Decisão vs. Random Forest para Identificação de Desemprego
 
-Com base nas métricas e informações fornecidas, podemos comparar as forças e fragilidades dos modelos de Árvore de Decisão e Random Forest para a sua tarefa de prever a situação de trabalho.
+##  Objetivo Principal do Projeto
 
-**Árvore de Decisão:**
+> O objetivo central é desenvolver um modelo de Machine Learning para identificar pessoas em situação de desemprego, priorizando a **sensibilidade (recall)**. Em um contexto de políticas sociais, é mais crítico deixar de identificar um desempregado (falso negativo) do que classificar erroneamente um empregado como desempregado (falso positivo).
 
-* **Acurácia (Teste):** 0.68
-* **Precisão (Classe 0 - Empregado):** 0.93
-* **Precisão (Classe 1 - Desempregado):** 0.13
-* **Recall (Classe 0 - Empregado):** 0.70
-* **Recall (Classe 1 - Desempregado):** 0.47
-* **F1-Score (Classe 0 - Empregado):** 0.80
-* **F1-Score (Classe 1 - Desempregado):** 0.20
-* **Interpretabilidade:** Alta. A estrutura da árvore pode ser visualizada e as decisões são facilmente rastreáveis através dos nós e regras.
-* **Importância das Features:** Idade > Nível de Ensino > Região onde mora > Gênero > UF > Cor/Raça/Etnia > Área de Formação (conforme sua análise anterior).
+---
 
-**Random Forest:**
+##  Modelo 1: Árvore de Decisão
 
-* **Acurácia (Teste):** 0.73 (com limiar de 0.5)
-* **Precisão (Classe 0 - Empregado):** 0.93
-* **Precisão (Classe 1 - Desempregado):** 0.15
-* **Recall (Classe 0 - Empregado):** 0.76
-* **Recall (Classe 1 - Desempregado):** 0.43
-* **F1-Score (Classe 0 - Empregado):** 0.84
-* **F1-Score (Classe 1 - Desempregado):** 0.22
-* **Interpretabilidade:** Baixa. O modelo é um conjunto de muitas árvores, tornando a interpretação das decisões individuais complexa. A importância das features pode ser avaliada, mas o caminho decisório para uma única previsão não é tão claro.
-* **Importância das Features:** UF > Nível de Ensino > Área de formação > Região onde mora > Cor/raca/etnia > Genero (conforme sua análise anterior da Random Forest).
+### Resultados no Conjunto de Teste
 
-**Forças e Fragilidades:**
+| Classe | Precision | Recall | F1-Score | Support |
+| :--- | :---: | :---: | :---: | :---: |
+| Empregado(a) | 0.95 | 0.28 | 0.43 | 1144 |
+| **Desempregado(a)** | **0.10** | **0.85** | **0.18** | **108** |
+| | | | | |
+| **Weighted Avg** | 0.88 | 0.33 | 0.41 | 1252 |
 
-| Característica        | Árvore de Decisão                                     | Random Forest                                                |
-| :-------------------- | :---------------------------------------------------- | :----------------------------------------------------------- |
-| **Acurácia** | Menor (0.68)                                          | Maior (0.73)                                                 |
-| **Precisão (Classe 0)** | Similar (0.93)                                        | Similar (0.93)                                               |
-| **Precisão (Classe 1)** | Menor (0.13)                                          | Maior (0.15)                                                 |
-| **Recall (Classe 0)** | Menor (0.70)                                          | Maior (0.76)                                                 |
-| **Recall (Classe 1)** | Maior (0.47)                                          | Menor (0.43)                                                 |
-| **F1-Score (Classe 0)** | Menor (0.80)                                          | Maior (0.84)                                                 |
-| **F1-Score (Classe 1)** | Menor (0.20)                                          | Maior (0.22)                                                 |
-| **Interpretabilidade** | Alta                                                  | Baixa                                                        |
-| **Robustez a Overfitting** | Mais suscetível, especialmente árvores profundas      | Menos suscetível devido à agregação de múltiplas árvores      |
-| **Lida com Não Linearidades** | Bem                                                   | Bem                                                          |
-| **Estabilidade** | Pequenas variações nos dados podem mudar a estrutura | Mais estável, menos sensível a pequenas variações nos dados |
+- **Acurácia de Teste:** `0.33`
 
-**Casos em que um modelo se sairia melhor que o outro:**
+### Análise de Overfitting
 
-* **Cenário 1: Necessidade de Interpretabilidade para Ações Diretas**
-    * **Melhor Modelo:** Árvore de Decisão.
-    * **Exemplo:** Imagine que você precisa entender exatamente quais regras levam à previsão de desemprego para criar políticas públicas direcionadas. Uma árvore de decisão, com sua estrutura clara de regras "SE...ENTÃO...", pode fornecer insights diretos sobre combinações de idade, nível de ensino e região que estão fortemente associadas ao desemprego. Você pode visualizar o caminho que leva a essa previsão e identificar grupos específicos para intervenção. A interpretabilidade aqui é mais valiosa do que um pequeno ganho em acurácia.
+- **Acurácia de Treino:** `0.65`
+- **Acurácia de Teste:** `0.33`
+- **Queda de Desempenho:** **-32 pontos percentuais**
 
-* **Cenário 2: Previsão com Foco na Robustez e Generalização em Dados Complexos**
-    * **Melhor Modelo:** Random Forest.
-    * **Exemplo:** Considere um cenário onde os fatores que influenciam a situação de trabalho são altamente não lineares e interagem de maneiras complexas (por exemplo, combinações sutis de área de formação, experiência profissional não capturada diretamente e fatores econômicos regionais). O Random Forest, ao agregar as decisões de muitas árvores treinadas em diferentes subconjuntos dos dados e features, tende a ser mais robusto a essas complexidades e generaliza melhor para novos dados não vistos durante o treinamento. Mesmo que você não consiga interpretar o caminho de cada previsão, a maior acurácia e a menor chance de overfitting podem ser cruciais para uma ferramenta de previsão em larga escala.
+A diferença expressiva entre as métricas de treino e teste indica um **forte overfitting**. O modelo decorou os padrões dos dados de treino e falhou em generalizar para dados novos.
 
-* **Cenário 3: Desbalanceamento Extremo da Classe Alvo**
-    * **Consideração:** Ambos os modelos podem ter dificuldades com desbalanceamento extremo. No entanto, o Random Forest, com seus mecanismos de amostragem e a possibilidade de ajuste de `class_weight`, pode ser mais flexível para lidar com isso, especialmente se o foco for em métricas como F1-score para a classe minoritária. A Árvore de Decisão pode se tornar enviesada para a classe majoritária mais facilmente.
-    * **Exemplo:** Se a taxa de desemprego na sua amostra fosse extremamente baixa (por exemplo, apenas 5%), o Random Forest, com a sua capacidade de explorar diferentes subespaços de features e amostras, poderia capturar melhor os padrões da classe minoritária se bem ajustado.
+### Interpretação do Modelo 1
 
-* **Cenário 4: Necessidade de Previsões Rápidas em Tempo Real**
-    * **Consideração:** Árvores de Decisão geralmente são mais rápidas para prever uma vez treinadas, pois envolvem percorrer uma única árvore. Random Forests exigem a agregação das previsões de muitas árvores, o que pode ser mais computacionalmente intensivo durante a previsão.
-    * **Exemplo:** Se você precisasse de um sistema de previsão em tempo real com baixíssima latência para classificar rapidamente candidatos a empregos ou pessoas em busca de assistência, uma Árvore de Decisão bem otimizada poderia ser preferível devido à sua velocidade de previsão.
+- **Ponto Forte:** Cumpriu o objetivo principal com excelência, alcançando **85% de recall** para a classe `Desempregado(a)`.
+- **Ponto Fraco:** A altíssima sensibilidade veio ao custo de uma precisão muito baixa (10%) e uma acurácia geral de apenas 33%. O modelo sacrifica completamente a performance na classe majoritária para focar na minoritária.
 
-**Conclusão:**
+---
 
-Ambos os modelos têm seus méritos e desvantagens. A escolha do melhor modelo depende fortemente dos seus objetivos específicos, da natureza dos seus dados e das prioridades do seu projeto (interpretabilidade, acurácia, robustez, velocidade). O Random Forest geralmente oferece melhor desempenho preditivo e robustez, enquanto a Árvore de Decisão brilha na interpretabilidade. Analisar as métricas detalhadas para a classe minoritária (desempregado) e considerar o custo de falsos positivos e falsos negativos em seu contexto específico ajudará a tomar a decisão mais informada.
+##  Modelo 2: Random Forest
+
+### Resultados no Conjunto de Teste
+
+| Classe | Precision | Recall | F1-Score | Support |
+| :--- | :---: | :---: | :---: | :---: |
+| Empregado(a) | 0.95 | 0.49 | 0.64 | 1144 |
+| **Desempregado(a)** | **0.11** | **0.70** | **0.20** | **108** |
+| | | | | |
+| **Weighted Avg** | 0.87 | 0.50 | 0.60 | 1252 |
+
+- **Acurácia de Teste:** `0.50`
+
+### Análise de Overfitting
+
+- **Acurácia de Treino:** `0.78`
+- **Acurácia de Teste:** `0.50`
+- **Queda de Desempenho:** **-28 pontos percentuais**
+
+O overfitting também está presente de forma significativa, embora ligeiramente menor que na Árvore de Decisão.
+
+### Interpretação do Modelo 2
+
+- **Ponto Forte:** Apresenta uma acurácia geral superior (50%) e um desempenho mais equilibrado na classe `Empregado(a)` (recall de 49%).
+- **Ponto Fraco:** O recall para a classe `Desempregado(a)` foi de **70%**, um valor bom, mas consideravelmente inferior ao da Árvore de Decisão, não atendendo ao objetivo principal com a mesma eficácia.
+
+---
+
+##  Análise Comparativa Direta
+
+### Tabela de Comparação (Métricas de Teste)
+
+| Métrica (Classe Desempregado(a)) | Modelo 1 (Árvore de Decisão) | Modelo 2 (Random Forest) | Vencedor (para o objetivo) |
+| :--- | :---: | :---: | :---: |
+| **Recall (Sensibilidade)** | **0.85** | 0.70 |  **Árvore de Decisão** |
+| Precisão | 0.10 | 0.11 | Empate (ambos ruins) |
+| F1-Score | 0.18 | 0.20 |  Random Forest |
+| **Acurácia Geral** | 0.33 | 0.50 |  Random Forest |
+| **Overfitting (Queda)** | -32 pts | -28 pts |  Random Forest |
+
+###  Veredito: Qual modelo é melhor?
+
+Considerando o objetivo principal de **maximizar a identificação de desempregados**, o **Modelo 1 (Árvore de Decisão) é superior**.
+
+Ele foi o único que alcançou um nível de recall (85%) que garante que a grande maioria da classe-alvo seja encontrada, mesmo que isso tenha um custo alto em outras métricas. O Random Forest, apesar de ser um modelo mais robusto em geral, não cumpriu a tarefa prioritária com a mesma eficiência.
+
+###  Pontos Críticos em Comum
+
+Ambos os modelos sofrem de duas falhas graves que os tornam inadequados para uso em produção no estado atual:
+
+1.  **Overfitting Severo:** A incapacidade de generalizar é o problema mais urgente. As previsões em dados novos não são confiáveis.
+2.  **Precisão Muito Baixa:** Com precisão de ~10%, ambos os modelos geram 9 falsos positivos para cada acerto na classe `Desempregado(a)`. Isso pode levar a um grande desperdício de recursos se usado para guiar ações práticas.
+
+##  Conclusão e Próximos Passos
+
+Apesar de o Modelo 1 ser o vencedor conceitual, nenhum dos modelos está pronto. A estratégia recomendada é:
+
+1.  **Combater o Overfitting (Prioridade #1):**
+    - **Ação:** Realizar a "poda" (pruning) da Árvore de Decisão.
+    - **Hiperparâmetros:** Focar em `max_depth` (profundidade máxima), `min_samples_leaf` (mínimo de amostras por folha) e `min_samples_split`. O objetivo é reduzir a diferença entre as métricas de treino e teste, mantendo o recall o mais alto possível.
+
+2.  **Otimizar o Equilíbrio (Recall vs. Precisão):**
+    - **Ação:** Após controlar o overfitting, ajustar os hiperparâmetros para encontrar um "ponto ideal". Um recall ligeiramente menor pode ser aceitável em troca de um aumento significativo na precisão. A métrica **F1-Score** é ideal para guiar essa otimização.
+
+3.  **Refinar o Modelo Vencedor:**
+    - **Ação:** Concentrar os esforços de otimização na **Árvore de Decisão**, pois ela demonstrou maior potencial para atingir o objetivo principal do projeto.
+
+4.  **Explorar Outros Modelos (Opcional):**
+    - **Ação:** Se a otimização não produzir um resultado satisfatório, considerar algoritmos como **Gradient Boosting (XGBoost, LightGBM)**, que são conhecidos por seu alto desempenho e podem oferecer um balanço superior entre recall e precisão.
 
 ### Distribuição do modelo (opcional)
 
