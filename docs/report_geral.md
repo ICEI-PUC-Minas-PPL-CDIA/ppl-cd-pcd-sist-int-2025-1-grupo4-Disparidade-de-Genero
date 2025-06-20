@@ -153,10 +153,6 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 
 ## 2. Dicionário de Dados da Base Principal
 
-Dicionário de dados base principal
-Claro. Peço desculpas pela resposta anterior que resumiu a saída.
-Aqui está o dicionário de dados completo no formato Markdown para todas as 399 colunas da base de dados, conforme solicitado.
-Markdown
 | Atributo | Descrição | Tipo |
 |---|---|---|
 | P1_a_Idade | Idade do respondente | Inteiro |
