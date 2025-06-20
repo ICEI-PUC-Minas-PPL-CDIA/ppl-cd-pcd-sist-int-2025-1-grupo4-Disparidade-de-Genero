@@ -1193,8 +1193,24 @@ A diferença expressiva entre as métricas de treino e teste indica um **forte o
 - **Ponto Fraco:** A altíssima sensibilidade veio ao custo de uma precisão muito baixa (10%) e uma acurácia geral de apenas 33%. O modelo sacrifica completamente a performance na classe majoritária para focar na minoritária.
 
 ---
+**## Indução do modelo 02:**
 
-##  Modelo 2: Random Forest
+### Modelo 2: Random Forest
+
+# Análise de Projeto de Classificação com Random Forest
+Com base na análise do código Python fornecido, apresento uma descrição detalhada do projeto de classificação, abordando a escolha do segundo modelo, o processo de amostragem, os parâmetros utilizados e os trechos de código mais relevantes.
+
+## Justificativa da Escolha do Modelo
+O segundo modelo escolhido para este problema de classificação foi o Random Forest (RandomForestClassifier). Essa escolha é justificada por ser uma evolução direta da Árvore de Decisão, projetada para superar algumas de suas principais limitações. As razões são:
+
+* **Redução de Overfitting e Maior Robustez:** Esta é a principal vantagem. O Random Forest é um modelo de ensemble que constrói múltiplas árvores de decisão durante o treinamento, cada uma em uma subamostra diferente dos dados e com um subconjunto aleatório de features. A decisão final é tomada por "votação" entre todas as árvores. Esse processo torna o modelo significativamente mais robusto e menos propenso a "decorar" os dados de treino, melhorando sua capacidade de generalização para dados novos.
+
+* **Alto Desempenho Geral:** Random Forests são conhecidos por sua alta precisão e por serem modelos muito eficazes em uma vasta gama de problemas de classificação, muitas vezes com menos necessidade de ajuste fino de hiperparâmetros em comparação com outros algoritmos complexos.
+
+* **Importância de Features Confiável:** Embora um Random Forest não seja diretamente visualizável como uma única árvore (é considerado um modelo de "caixa-preta"), ele oferece uma maneira robusta de medir a importância das features. A relevância de cada variável é calculada com base na média de sua contribuição para a redução de impureza em todas as árvores do conjunto, fornecendo uma estimativa mais estável e confiável do que a de uma única árvore.
+
+* **Tratamento de Dados Não-Lineares:** Assim como as árvores de decisão individuais, o Random Forest é capaz de capturar relações complexas e não-lineares entre as variáveis, sem exigir transformações manuais dos dados.
+  
 
 ### Resultados no Conjunto de Teste
 
