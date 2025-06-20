@@ -71,7 +71,7 @@ Siga a ordem dos blocos de código conforme estruturado no notebook/colab:
 * Geração de matriz de confusão e curva ROC
 * Validação cruzada estratificada (opcional)
 
-## 6. Resultados Esperados
+## 5. Resultados Esperados
 
 O pipeline completo fornece:
 
@@ -81,7 +81,7 @@ O pipeline completo fornece:
 * Melhor estratégia de SMOTE testada
 * Melhor limiar para maximização do F1-score
 
-## 7. Possíveis Problemas e Soluções
+## 6. Possíveis Problemas e Soluções
 
 | Problema                                      | Causa Comum                                   | Solução                                                   |
 | --------------------------------------------- | --------------------------------------------- | --------------------------------------------------------- |
@@ -89,7 +89,7 @@ O pipeline completo fornece:
 | ValueError: y contains NaN                    | Variável alvo com valores ausentes            | Aplique `dropna()` antes de treinar                       |
 | Baixa performance no teste                    | Variável alvo desbalanceada ou dados ruidosos | Ajuste `sampling_strategy` no SMOTE e revise os atributos |
 
-## 8. Salvamento do Modelo Treinado (Opcional)
+## 7. Salvamento do Modelo Treinado (Opcional)
 
 Para reuso posterior do modelo já treinado:
 
