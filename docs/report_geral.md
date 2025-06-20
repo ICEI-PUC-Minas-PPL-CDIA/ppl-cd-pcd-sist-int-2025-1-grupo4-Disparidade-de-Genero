@@ -1332,7 +1332,7 @@ Por exemplo:
 
 **Colocar link:**
 
-Do código (armazenado no repositório);
+[Do código (armazenado no repositório)](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/main/assets/models/hipoteses/hipotese_4);
 
 Dos artefatos (armazenado do repositório);
 
