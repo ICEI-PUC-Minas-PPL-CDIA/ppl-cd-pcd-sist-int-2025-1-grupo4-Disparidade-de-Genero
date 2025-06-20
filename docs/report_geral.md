@@ -1224,14 +1224,34 @@ em um sistema inteligente.
 
 ## 8. Conclusão
 
-Apresente aqui a conclusão do seu trabalho. Discussão dos resultados obtidos no trabalho, 
-onde se verifica as observações pessoais de cada aluno.
+O presente trabalho teve como objetivo o desenvolvimento de um sistema de inteligência artificial para identificar indivíduos em situação de desemprego, com um foco deliberado em maximizar a métrica de sensibilidade (recall) para a classe "Desempregado(a)". A conclusão abaixo sintetiza o processo completo, desde o tratamento inicial dos dados até a avaliação final dos modelos e as perspectivas futuras.
 
-Uma conclusão deve ter 3 partes:
+**Breve Resumo do que Foi Desenvolvido**
+O desenvolvimento do projeto iniciou-se com uma fase crucial de preparação dos dados. A partir de uma base bruta, foram selecionados atributos-chave e realizado um rigoroso tratamento de valores faltantes e inconsistentes. Decisões importantes foram tomadas, como a remoção de respostas ambíguas (ex: "Prefiro não informar") e o agrupamento da variável Situação de trabalho em uma classificação binária ("Empregado(a)" e "Desempregado(a)"), para focar a análise. Em seguida, o dataset foi transformado por meio de técnicas de discretização (binning para a idade), codificação por rótulo (Label Encoding) e codificação fictícia (One-Hot Encoding) para adequá-lo aos algoritmos de machine learning.
 
-   * Breve resumo do que foi desenvolvido
-	 * Apresenação geral dos resultados obtidos com discussão das vantagens e desvantagens do sistema inteligente
-	 * Limitações e possibilidades de melhoria
+Sobre esta base processada, foram desenvolvidos e comparados dois modelos de classificação, uma Árvore de Decisão e um Random Forest. Para lidar com o desbalanceamento de classes, a técnica SMOTE foi utilizada no treinamento. A avaliação dos modelos foi centrada no objetivo de maximizar o recall, refletindo a importância social de identificar o maior número possível de desempregados.
+
+### Apresentação Geral dos Resultados, Vantagens e Desvantagens
+A análise comparativa revelou que o modelo de Árvore de Decisão se mostrou superior para o objetivo proposto.
+
+**Vantagens:** A principal vantagem do sistema foi o cumprimento eficaz de sua missão principal: alcançar uma alta sensibilidade. O modelo atingiu um recall de 0.85 no conjunto de teste, identificando corretamente 85% dos indivíduos realmente desempregados. Além disso, a interpretabilidade da Árvore de Decisão validou a relevância dos atributos selecionados na fase de preparação, como "Nível de Ensino" e "Faixa Etária", que se destacaram como os mais importantes para a classificação.
+
+**Desvantagens:** O foco agressivo no recall resultou em desvantagens significativas. O modelo apresentou uma precisão extremamente baixa (0.10), significando que 90% das suas previsões positivas eram incorretas (falsos positivos). Este desequilíbrio comprometeu a acurácia geral (33% no teste) e, em uma aplicação prática, poderia levar a uma alocação de recursos massivamente ineficiente. Ademais, em ambos os modelos possui overfitting, fazendo com que ele generalizasse mal novos dados.
+
+**Limitações e Possibilidades de Melhoria**
+A análise crítica do processo e dos resultados revelou limitações importantes que abrem caminho para trabalhos futuros.
+
+### **Limitações:**
+
+**Overfitting Severo:** A principal limitação técnica foi o sobreajuste do modelo. A queda abrupta de desempenho entre treino e teste indica que o modelo "decorou" os dados em vez de aprender a generalizar, tornando-o pouco confiável para aplicação em dados inéditos.
+Viés de Exclusão: As decisões tomadas no pré-processamento, como a remoção de linhas com respostas "Prefiro não informar" ou "Outro", embora necessárias para simplificar a análise, introduziram um potencial viés. O modelo resultante é especializado em um subconjunto da população que fornece respostas claras e completas, e sua validade para um público mais amplo é questionável.
+
+### **Possibilidades de Melhoria:**
+
+**Controle de Overfitting:** A aplicação de técnicas de poda (pruning) na Árvore de Decisão (ex: limitando max_depth e min_samples_leaf) é o próximo passo mais crítico para criar um modelo mais robusto e generalizável.
+**Reavaliação do Tratamento de Dados:** Em vez de remover dados omissos, poderiam ser exploradas técnicas de imputação ou a criação de categorias específicas para "não informado", o que poderia gerar um modelo mais inclusivo e com melhor capacidade de lidar com a complexidade de dados reais.
+**Otimização do Balanço de Métricas:** Ajustar os hiperparâmetros do modelo buscando um equilíbrio mais funcional entre recall e precisão, utilizando o F1-Score como métrica-guia para encontrar um ponto ótimo que minimize tanto os falsos negativos quanto os falsos positivos.
+**Exploração de Outros Algoritmos:** Investigar o desempenho de modelos como Gradient Boosting (XGBoost, LightGBM), que podem oferecer uma solução mais balanceada e de maior performance para o problema.
 
 
 # REFERÊNCIAS
