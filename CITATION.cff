@@ -4,34 +4,34 @@ title: Disparidade de gênero
 authors:
 
    - name-suffix: Estudante
-    affiliation: PUC Minas
-    family-names: Gonçalves Valbonetti
-    given-names: Augusto Henrique
+     affiliation: PUC Minas
+     family-names: Gonçalves Valbonetti
+     given-names: Augusto Henrique
 
    - name-suffix: Estudante
-    affiliation: PUC Minas
-    family-names: Fraga Fonseca Gomes
-    given-names: Eduardo
+     affiliation: PUC Minas
+     family-names: Fraga Fonseca Gomes
+     given-names: Eduardo
 
    - name-suffix: Estudante
-    affiliation: PUC Minas
-    family-names: Bacellar Nunes Soares
-    given-names: Gustavo
+     affiliation: PUC Minas
+     family-names: Bacellar Nunes Soares
+     given-names: Gustavo
 
    - name-suffix: Estudante
-    affiliation: PUC Minas
-    family-names: Andrade Caetano Dornelas
-    given-names: Leonardo
+     affiliation: PUC Minas
+     family-names: Andrade Caetano Dornelas
+     given-names: Leonardo
 
    - name-suffix: Estudante
-    affiliation: PUC Minas
-    family-names: Lansdowne Oliveira
-    given-names: Pedro
+     affiliation: PUC Minas
+     family-names: Lansdowne Oliveira
+     given-names: Pedro
 
    - name-suffix: Estudante
-    affiliation: PUC Minas
-    family-names: Martins Gonçalves 
-    given-names: Vitor
+     affiliation: PUC Minas
+     family-names: Martins Gonçalves 
+     given-names: Vitor
 
   - name-suffix: Professor
     affiliation: PUC Minas
@@ -44,32 +44,32 @@ authors:
     given-names: Hayala
 
  - name: 'Pontifícia Universidade Católica de Minas Gerais'
-    city: Belo Horizonte
-    country: Brazil
-    post-code: '30140108'
-    website: 'https://www.pucminas.br/'
-    address: Rua Cláudio Manoel 1162 (Savassi)
-    date-start: '2024-03-5'
-    date-end: '2024-06-27'
+   city: Belo Horizonte
+   country: Brazil
+   post-code: '30140108'
+   website: 'https://www.pucminas.br/'
+   address: Rua Cláudio Manoel 1162 (Savassi)
+   date-start: '2024-03-5'
+   date-end: '2024-06-27'
 
-abstract:
-Este projeto investiga as disparidades de gênero na área de dados, com base na análise da base State of Data Brasil 2023,utilizando uma abordagem qualitativa e quantitativa. 
-Realizado pelo Grupo 4 durante o primeiro semestre de 2025, no âmbito do PPL‑CD do ICEI‑PUC‑Minas, 
-o estudo combina análises estatísticas e interpretação crítica dos dados para identificar e explicar padrões de desigualdade em oportunidades de contratação, remuneração e representatividade  entre diferentes gêneros no setor. 
-Os principais objetivos incluem mapear lacunas de gênero mensuráveis, compreender suas causas estruturais — como práticas discriminatórias, barreiras institucionais e normas culturais — e propor recomendações práticas para promover maior equidade no mercado de dados. 
-Os resultados revelam disparidades persistentes, como desigualdade salarial e sub-representação feminina em cargos de liderança, influenciadas por fatores sistêmicos e comportamentais.
-O projeto conclui com sugestões de políticas públicas e ações organizacionais voltadas à redução dessas desigualdades e à construção de ambientes mais inclusivos e igualitários no setor de dados.
+   abstract:
+   Este projeto investiga as disparidades de gênero na área de dados, com base na análise da base State of Data Brasil 2023,utilizando uma abordagem qualitativa e quantitativa. 
+   Realizado pelo Grupo 4 durante o primeiro semestre de 2025, no âmbito do PPL‑CD do ICEI‑PUC‑Minas, 
+   o estudo combina análises estatísticas e interpretação crítica dos dados para identificar e explicar padrões de desigualdade em oportunidades de contratação, remuneração e representatividade  entre diferentes gêneros no setor. 
+   Os principais objetivos incluem mapear lacunas de gênero mensuráveis, compreender suas causas estruturais — como práticas discriminatórias, barreiras institucionais e normas culturais — e propor recomendações práticas para promover maior equidade no mercado de dados. 
+   Os resultados revelam disparidades persistentes, como desigualdade salarial e sub-representação feminina em cargos de liderança, influenciadas por fatores sistêmicos e comportamentais.
+   O projeto conclui com sugestões de políticas públicas e ações organizacionais voltadas à redução dessas desigualdades e à construção de ambientes mais inclusivos e igualitários no setor de dados.
 
 
-keywords:
-  - disparidade de gênero
-  - inclusão
-  - análise de dados
-  - equidade
-  - ciência de dados
+   keywords:
+ - disparidade de gênero
+ - inclusão
+ - análise de dados
+ - equidade
+ - ciência de dados
 
-repository-code:
-<https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero>
-license: CC-BY-4.0
-version: 1.0.0
-date-released: 2023-06-30
+ repository-code:
+ <https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero>
+ license: CC-BY-4.0
+ version: 1.0.0
+ date-released: 2023-06-30
