@@ -29,6 +29,54 @@ _Curso de Ciência de Dados, Unidade Praça da Liberdade_
 _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Minas Gerais (PUC MINAS), Belo Horizonte – MG – Brasil_
 
 ---
+### Índice do Trabalho
+
+1.  [**Introdução**](#introdução)
+    * [1.1. Contextualização](#contextualização)
+    * [1.2. Problema](#problema)
+    * [1.3. Objetivo Geral](#objetivo-geral)
+        * [1.3.1. Objetivos Específicos](#objetivos-específicos)
+    * [1.4. Justificativas](#justificativas)
+
+2.  [**Público-Alvo**](#público-alvo)
+    * [2.1. Personas](#personas)
+
+3.  [**Análise Exploratória e Preparação dos Dados**](#análise-exploratória---disparidade-de-gênero-no-mercado-de-trabalho)
+    * [3.1. Dicionário de Dados (Base Principal e Auxiliar)](#dicionário-de-dados)
+    * [3.2. Preparação dos Dados](#preparação-dos-dados)
+        * [3.2.1. Seleção dos Atributos](#seleção-dos-atributos)
+        * [3.2.2. Tratamento dos Valores Faltantes ou Omissos](#tratamento-dos-valores-faltantes-ou-omissos)
+        * [3.2.3. Tratamento dos Valores Inconsistentes](#tratamento-dos-valores-inconsistentes)
+    * [3.3. Conversão de Dados](#conversão-de-dados-em-base_princ)
+        * [3.3.1. Discretização (Binning)](#1-discretização-binning)
+        * [3.3.2. Codificação por Rótulo (Label Encoding)](#2-codificação-por-rótulo-label-encoding)
+        * [3.3.3. Codificação Fictícia (One-Hot Encoding)](#3-codificação-fictícia-one-hot-encoding)
+    * [3.4. Dicionário de Dados da Base Modificada](#22-dicionário-de-dados-da-base-modificadapré-processada)
+    * [3.5. Análise Descritiva dos Dados](#3-análise-descritiva-dos-dados-utilizando-estatísticas-de-primeira-ordem)
+
+4.  [**Desenvolvimento e Análise dos Modelos**](#indução-de-modelos)
+    * [4.1. Indução do Modelo 1: Árvore de Decisão](#modelo-1-árvore-de-decisão)
+        * [4.1.1. Justificativa da Escolha do Modelo](#justificativa-da-escolha-do-modelo)
+        * [4.1.2. Processo de Amostragem de Dados](#processo-de-amostragem-de-dados)
+        * [4.1.3. Descrição dos Parâmetros Utilizados](#descrição-dos-parâmetros-utilizados)
+        * [4.1.4. Fluxo de Processamento e Visualizações](#fluxo-de-processamento-e-visualizações)
+    * [4.2. Resultados do Modelo 1 (Árvore de Decisão)](#resultados-obtidos-com-o-modelo-1-árvore-de-decisão)
+        * [4.2.1. Avaliação no Conjunto de Treino](#avaliação-do-modelo-final-no-conjunto-de-treino)
+        * [4.2.2. Avaliação no Conjunto de Teste](#avaliação-do-modelo-final-no-conjunto-de-teste)
+        * [4.2.3. Análise de Overfitting](#acurácia-nos-conjuntos-de-treino-e-teste)
+        * [4.2.4. Importância das Features e Interpretação Geral](#importância-das-features-na-árvore-de-decisão)
+    * [4.3. Resultados do Modelo 2 (Random Forest)](#resultados-obtidos-com-o-modelo-2-random-forest)
+    * [4.4. Análise Comparativa dos Modelos](#análise-comparativa-dos-modelos)
+
+5.  [**Conclusão**](#8-conclusão)
+    * [5.1. Resumo do Trabalho Desenvolvido](#breve-resumo-do-que-foi-desenvolvido)
+    * [5.2. Apresentação dos Resultados (Vantagens e Desvantagens)](#apresentação-geral-dos-resultados-vantagens-e-desvantagens)
+    * [5.3. Limitações e Possibilidades de Melhoria](#limitações-e-possibilidades-de-melhoria)
+
+6.  [**Referências**](#referências)
+
+7.  [**Apêndices**](#apêndices)
+---
 
 **Resumo**. 
 
@@ -1226,7 +1274,7 @@ em um sistema inteligente.
 
 O presente trabalho teve como objetivo o desenvolvimento de um sistema de inteligência artificial para identificar indivíduos em situação de desemprego, com um foco deliberado em maximizar a métrica de sensibilidade (recall) para a classe "Desempregado(a)". A conclusão abaixo sintetiza o processo completo, desde o tratamento inicial dos dados até a avaliação final dos modelos e as perspectivas futuras.
 
-**Breve Resumo do que Foi Desenvolvido**
+### **Breve Resumo do que Foi Desenvolvido**
 O desenvolvimento do projeto iniciou-se com uma fase crucial de preparação dos dados. A partir de uma base bruta, foram selecionados atributos-chave e realizado um rigoroso tratamento de valores faltantes e inconsistentes. Decisões importantes foram tomadas, como a remoção de respostas ambíguas (ex: "Prefiro não informar") e o agrupamento da variável Situação de trabalho em uma classificação binária ("Empregado(a)" e "Desempregado(a)"), para focar a análise. Em seguida, o dataset foi transformado por meio de técnicas de discretização (binning para a idade), codificação por rótulo (Label Encoding) e codificação fictícia (One-Hot Encoding) para adequá-lo aos algoritmos de machine learning.
 
 Sobre esta base processada, foram desenvolvidos e comparados dois modelos de classificação, uma Árvore de Decisão e um Random Forest. Para lidar com o desbalanceamento de classes, a técnica SMOTE foi utilizada no treinamento. A avaliação dos modelos foi centrada no objetivo de maximizar o recall, refletindo a importância social de identificar o maior número possível de desempregados.
@@ -1238,7 +1286,7 @@ A análise comparativa revelou que o modelo de Árvore de Decisão se mostrou su
 
 **Desvantagens:** O foco agressivo no recall resultou em desvantagens significativas. O modelo apresentou uma precisão extremamente baixa (0.10), significando que 90% das suas previsões positivas eram incorretas (falsos positivos). Este desequilíbrio comprometeu a acurácia geral (33% no teste) e, em uma aplicação prática, poderia levar a uma alocação de recursos massivamente ineficiente. Ademais, em ambos os modelos possui overfitting, fazendo com que ele generalizasse mal novos dados.
 
-**Limitações e Possibilidades de Melhoria**
+### **Limitações e Possibilidades de Melhoria**
 A análise crítica do processo e dos resultados revelou limitações importantes que abrem caminho para trabalhos futuros.
 
 ### **Limitações:**
