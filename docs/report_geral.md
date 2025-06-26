@@ -512,9 +512,9 @@ Temos como público alvo diretores e coordenadores de instiruições de ensino d
 
 
 
-## Base auxiliar
+# Base auxiliar
 
-# Dicionário de Dados - RELAÇÃO ANUAL DE INFORMAÇÕES SOCIAIS – RAIS
+## Dicionário de Dados - RELAÇÃO ANUAL DE INFORMAÇÕES SOCIAIS – RAIS
 
 | Atributo | Descrição | Tipo |
 | :--- | :--- | :--- |
@@ -943,6 +943,7 @@ O modelo foi desenvolvido com o objetivo principal de identificar pessoas em sit
 **Matriz de confusão Treino:**
 ![025a981b-f341-4fbb-85e0-efe417b982f1](https://github.com/user-attachments/assets/8631f073-9661-46fe-a96e-762400972d48)
 
+**Legenda:** Linhas representam as classes reais, colunas as classes previstas. A diagonal principal mostra as classificações corretas; os demais valores indicam erros do modelo.
 
 ## Avaliação do Modelo Final no Conjunto de Treino
 
@@ -968,6 +969,7 @@ O modelo foi desenvolvido com o objetivo principal de identificar pessoas em sit
 **Matriz de confusão Teste:**
 ![c6d84b5c-54f7-431b-9ffe-e717c29296ae](https://github.com/user-attachments/assets/d2df4018-e7b6-45ee-8ef6-80dee784565c)
 
+**Legenda:** Linhas representam as classes reais, colunas as classes previstas. A diagonal principal mostra as classificações corretas; os demais valores indicam erros do modelo.
 
 ## Avaliação do Modelo Final no Conjunto de Teste
 
@@ -1017,6 +1019,17 @@ Essa queda expressiva de 32 pontos percentuais indica que o modelo pode estar ap
 **Plotagem da árvore de decisão:**
 ![d174380a-3efb-4738-9704-dffa8e85ed1d](https://github.com/user-attachments/assets/5f792cd5-151c-4f5f-a978-1e531683a0eb)
 
+ **Legenda da Árvore de Decisão:**
+ 
+**feature_name ≤ valor:** Regra de decisão baseada em uma variável preditora.
+
+**gini:** Índice de impureza Gini do nó (quanto menor, mais puro).
+
+**samples:** Número de amostras que chegaram até o nó.
+
+**value:** Distribuição das amostras por classe no nó.
+
+**class:** Classe mais provável atribuída ao nó (previsão do modelo nesse ponto).
 
 ## Importância das Features na Árvore de Decisão
 
@@ -1059,6 +1072,7 @@ A análise da importância das variáveis no modelo final revela quais caracter�
 **Matriz de confusão Treino:**
 ![025a981b-f341-4fbb-85e0-efe417b982f1](https://github.com/user-attachments/assets/8631f073-9661-46fe-a96e-762400972d48)
 
+**Legenda:** Linhas representam as classes reais, colunas as classes previstas. A diagonal principal mostra as classificações corretas; os demais valores indicam erros do modelo.
 
 ## Avaliação do Modelo Final no Conjunto de Treino
 
@@ -1085,7 +1099,7 @@ A análise da importância das variáveis no modelo final revela quais caracter�
 **Matriz de confusão Teste:**
 ![6d714672-d5fc-44e5-8463-952e328f7f38](https://github.com/user-attachments/assets/d3074933-1312-487a-994d-292693ce9dc0)
 
-
+**Legenda:** Linhas representam as classes reais, colunas as classes previstas. A diagonal principal mostra as classificações corretas; os demais valores indicam erros do modelo.
 
 
 ## Avaliação do Modelo Final no Conjunto de Teste
@@ -1133,6 +1147,16 @@ Essa queda expressiva de 28 pontos percentuais indica que o modelo pode estar ap
 ## Importância das Features no Random Forest
 ![19b49541-3611-48a5-87be-84918d6712aa](https://github.com/user-attachments/assets/252ab476-0411-407f-a00c-57042b4e53fe)
 
+ **Legenda – Importância das Features:**
+ 
+_Importância das features representa o quanto cada variável contribuiu para a tomada de decisão da árvore._
+
+* Ela é calculada com base na redução da impureza (ex: Gini ou Entropia) proporcionada por cada feature ao longo da árvore.
+
+* Quanto maior o valor, mais relevante foi a feature para as decisões do modelo.
+
+* Os valores são normalizados para somar 1 (ou 100% em porcentagem).
+
 ### Interpretação do modelo 2
 O modelo é extremamente agressivo e sensível para encontrar a classe minoritária (Desempregado(a)).
 
@@ -1156,9 +1180,9 @@ Interpretação Prática: A cada 100 pessoas que o seu modelo classifica como "D
 Para ser tão sensível à classe Desempregado(a), o modelo sacrificou sua capacidade de identificar corretamente a classe Empregado(a). O recall para esta classe no teste foi de apenas 0.49.
 Interpretação Prática: O modelo errou a classificação de metade das pessoas que estavam de fato empregadas no conjunto de teste.
 
-## Análise comparativa dos modelos
+# Análise comparativa dos modelos
 
-# Análise Comparativa: Árvore de Decisão vs. Random Forest para Identificação de Desemprego
+## Análise Comparativa: Árvore de Decisão vs. Random Forest para Identificação de Desemprego
 
 ##  Objetivo Principal do Projeto
 
@@ -1193,7 +1217,9 @@ A diferença expressiva entre as métricas de treino e teste indica um **forte o
 - **Ponto Fraco:** A altíssima sensibilidade veio ao custo de uma precisão muito baixa (10%) e uma acurácia geral de apenas 33%. O modelo sacrifica completamente a performance na classe majoritária para focar na minoritária.
 
 ---
-**## Indução do modelo 02:**
+
+
+# Indução do modelo 02:
 
 ### Modelo 2: Random Forest
 
