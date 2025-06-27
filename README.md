@@ -17,6 +17,11 @@ O projeto tem como objetivo desenvolver um sistema inteligente para analisar a d
 * Hugo Bastos de Paula
 * Hayala Nepomuceno Curto
 
+## 🎬 Vídeo Promocional / Pitch do Modelo Final
+
+[![Assista ao vídeo no YouTube](https://img.youtube.com/vi/nC_IH6RFLqs/0.jpg)](https://youtu.be/nC_IH6RFLqs)
+
+
 ## Instruções de utilização
 
 ## 1. Requisitos do Sistema
