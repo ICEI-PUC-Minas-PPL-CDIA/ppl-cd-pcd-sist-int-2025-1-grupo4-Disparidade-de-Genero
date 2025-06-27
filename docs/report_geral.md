@@ -1359,10 +1359,13 @@ Viés de Exclusão: As decisões tomadas no pré-processamento, como a remoção
 
 **Colocar link:**
 
-[Do código (armazenado no repositório)](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/main/assets/models/hipoteses/hipotese_4);
+[Código](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/main/assets/models/hipoteses/hipotese_4);
 
-[Dos artefatos (armazenado do repositório)](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/main/assets);
+[Artefatos](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/tree/main/assets);
 
-[Da apresentação final (armazenado no repositório);](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/Disparidade%20de%20G%C3%AAnero%20.pdf)
+[Apresentação final](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/Disparidade%20de%20G%C3%AAnero%20.pdf)
+
+[Do vídeo de apresentação.
+](https://github.com/ICEI-PUC-Minas-PPL-CDIA/ppl-cd-pcd-sist-int-2025-1-grupo4-Disparidade-de-Genero/blob/main/Pitch%20Disparidade%20de%20G%C3%AAnero.mp4)
 
 
